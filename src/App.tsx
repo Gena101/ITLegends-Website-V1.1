@@ -1,4 +1,4 @@
-import { Menu, X, Code, Cloud, Shield, Zap, Users, TrendingUp, Mail, Phone, MapPin, ChevronRight, Cpu } from 'lucide-react';
+import { Menu, X, Code, Cloud, Shield, Zap, Users, TrendingUp, Mail, Phone, MapPin, ChevronRight, Cpu, BookOpen, Calendar, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
       <OurServices />
       <WhyPartner />
       <Blog />
+      <BlogAndITTips />
       <Contact />
       <Footer />
     </div>
@@ -302,6 +303,85 @@ function Blog() {
               </div>
             </article>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function BlogAndITTips() {
+  const blogPosts = [
+    {
+      title: '5 Essential Cybersecurity Tips for Small Businesses',
+      date: 'November 12, 2024',
+      snippet: 'Protect your business from cyber threats with these practical security measures that every small business should implement today.'
+    },
+    {
+      title: 'Understanding Cloud Migration: A Step-by-Step Guide',
+      date: 'November 8, 2024',
+      snippet: 'Planning to move your infrastructure to the cloud? Learn the key considerations and best practices for a smooth migration process.'
+    },
+    {
+      title: 'Windows 11 Update Alert: What IT Managers Need to Know',
+      date: 'November 5, 2024',
+      snippet: 'Microsoft has released critical security patches. Here is what you need to know about the latest updates and how they affect your systems.'
+    }
+  ];
+
+  return (
+    <section id="blog-tips" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-itgray to-itdark">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center mb-4">
+            <BookOpen className="h-10 w-10 text-itred mr-3" />
+            <h2 className="section-title">Blog & IT Tips</h2>
+          </div>
+          <div className="section-divider mb-6"></div>
+          <p className="text-lg text-itsilver max-w-2xl mx-auto">
+            Weekly IT tips, security alerts, and tech insights.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
+          {blogPosts.map((post, index) => (
+            <article
+              key={index}
+              className="card-dark hover:border-itred/50 transition-all duration-300 group"
+            >
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="w-10 h-10 bg-itblue/20 rounded-lg flex items-center justify-center border border-itblue/30">
+                  <Calendar className="h-5 w-5 text-itblue" />
+                </div>
+                <span className="text-sm text-itsilver/70">{post.date}</span>
+              </div>
+
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-itred transition-colors">
+                {post.title}
+              </h3>
+
+              <p className="text-itsilver leading-relaxed mb-4">
+                {post.snippet}
+              </p>
+
+              <a
+                href="#"
+                className="inline-flex items-center text-itred hover:text-itblue font-semibold transition-colors"
+              >
+                Read Full Article
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </article>
+          ))}
+        </div>
+
+        <div className="text-center">
+          <a
+            href="/blog"
+            className="btn-primary inline-flex items-center justify-center"
+          >
+            View All Blog Posts
+            <ChevronRight className="ml-2 h-5 w-5" />
+          </a>
         </div>
       </div>
     </section>
