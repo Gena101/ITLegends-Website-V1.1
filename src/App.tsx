@@ -204,50 +204,47 @@ function OurServices() {
 function WhyPartner() {
   const reasons = [
     {
-      title: 'Expert Team',
-      description: 'Our certified professionals bring decades of combined experience across all major technologies and industries.'
+      icon: Zap,
+      title: 'Rapid Response Times',
+      description: 'Our dedicated support team responds to your IT needs within hours, minimizing downtime and keeping your business running.'
     },
     {
-      title: 'Proven Track Record',
-      description: 'We have successfully delivered over 500 projects with client satisfaction rate of 98% and long-term partnerships.'
+      icon: Shield,
+      title: 'Certified Technicians',
+      description: 'Industry-certified experts with proven expertise across multiple technology platforms and best practices.'
     },
     {
-      title: 'Agile Approach',
-      description: 'We use agile methodologies to ensure flexibility, transparency, and rapid delivery of high-quality solutions.'
-    },
-    {
-      title: 'End-to-End Support',
-      description: 'From initial consultation to post-launch maintenance, we provide comprehensive support at every stage.'
-    },
-    {
-      title: 'Innovation First',
-      description: 'We stay ahead of technology trends to provide cutting-edge solutions that give you a competitive advantage.'
-    },
-    {
-      title: 'Cost-Effective',
-      description: 'Transparent pricing and efficient processes ensure you get maximum value from your technology investment.'
+      icon: TrendingUp,
+      title: 'Scalable Solutions for All Business Sizes',
+      description: 'From startups to enterprises, our solutions grow with your business, adapting to your evolving needs.'
     }
   ];
 
   return (
-    <section id="why-us" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-itgray to-itdark">
+    <section id="why-us" className="py-20 px-4 sm:px-6 lg:px-8 bg-itdark">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="section-title">Why Partner With Us</h2>
-          <div className="section-divider mb-6"></div>
-          <p className="section-subtitle">
-            The IT Legends difference: commitment to excellence, innovation, and your success
-          </p>
+          <div className="section-divider mb-8"></div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {reasons.map((reason, index) => (
-            <div key={index} className="relative pl-8 card-dark border-itsilver/20 hover:border-itred/50">
-              <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-itred to-itblue rounded"></div>
-              <h3 className="text-xl font-bold text-white mb-3">{reason.title}</h3>
-              <p className="text-itsilver leading-relaxed">{reason.description}</p>
-            </div>
-          ))}
+        <div className="grid md:grid-cols-3 gap-8">
+          {reasons.map((reason, index) => {
+            const Icon = reason.icon;
+            const isRed = index % 2 === 0;
+            return (
+              <div
+                key={index}
+                className={`card-dark ${isRed ? 'glow-red border-itred/30' : 'glow-blue border-itblue/30'} flex flex-col items-center text-center`}
+              >
+                <div className={`w-20 h-20 ${isRed ? 'bg-itred/20 text-itred' : 'bg-itblue/20 text-itblue'} rounded-lg flex items-center justify-center mb-6`}>
+                  <Icon className="h-10 w-10" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">{reason.title}</h3>
+                <p className="text-itsilver leading-relaxed">{reason.description}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
