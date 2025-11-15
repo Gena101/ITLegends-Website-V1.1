@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-itdark text-itsilver font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+
+  a {
+    @apply transition-colors duration-300;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-8 py-4 bg-itred text-white font-semibold rounded-lg hover:bg-red-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-itred/30;
+  }
+
+  .btn-secondary {
+    @apply px-8 py-4 border-2 border-itblue text-itblue font-semibold rounded-lg hover:bg-itblue hover:text-white transition-all duration-300;
+  }
+
+  .btn-outline {
+    @apply px-6 py-2 border border-itsilver text-itsilver font-medium rounded hover:bg-itsilver hover:text-itdark transition-all duration-300;
+  }
+
+  .section-title {
+    @apply text-4xl sm:text-5xl font-bold text-white mb-4;
+  }
+
+  .section-divider {
+    @apply w-24 h-1 bg-gradient-to-r from-itred to-itblue mx-auto;
+  }
+
+  .section-subtitle {
+    @apply text-xl text-itsilver max-w-3xl mx-auto;
+  }
+
+  .card-dark {
+    @apply bg-itgray border border-itgray2 rounded-xl p-6 hover:border-itblue transition-all duration-300;
+  }
+
+  .accent-text {
+    @apply text-itred font-semibold;
+  }
+
+  .glow-blue {
+    @apply shadow-lg shadow-itblue/20 hover:shadow-itblue/40 transition-shadow;
+  }
+
+  .glow-red {
+    @apply shadow-lg shadow-itred/20 hover:shadow-itred/40 transition-shadow;
+  }
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 50%, #0f0f1e 100%);
+}
+
+.tech-glass {
+  background: rgba(42, 42, 42, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(224, 224, 224, 0.1);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(199, 0, 57, 0.3), 0 0 40px rgba(0, 123, 255, 0.2);
+}
+
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(199, 0, 57, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(199, 0, 57, 0.6);
+  }
+}
