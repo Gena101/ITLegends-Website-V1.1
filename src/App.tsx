@@ -1,9 +1,22 @@
-import { Menu, X, Code, Cloud, Shield, Zap, Users, TrendingUp, Mail, Phone, MapPin, ChevronRight, Cpu, BookOpen, Calendar, ArrowRight } from 'lucide-react';
+import { Menu, X, Code, Cloud, Shield, Zap, Users, TrendingUp, Mail, Phone, MapPin, ChevronRight, Cpu, BookOpen, Calendar, ArrowRight, Check, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ManagedITSupportPage from './pages/ManagedITSupport';
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />} />
+        <Route path="/services/managed-it-support" element={<ManagedITSupportPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+function HomePage({ mobileMenuOpen, setMobileMenuOpen }: { mobileMenuOpen: boolean; setMobileMenuOpen: (open: boolean) => void }) {
   return (
     <div className="min-h-screen bg-itdark text-itsilver">
       <Navigation mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
