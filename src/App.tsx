@@ -119,43 +119,14 @@ function Hero() {
 
 function WhoWeAre() {
   return (
-    <section id="who-we-are" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-itdark to-itgray relative">
+    <section id="who-we-are" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-itdark to-itgray">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="section-title">Who We Are</h2>
-          <div className="section-divider"></div>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <p className="text-lg text-itsilver leading-relaxed mb-6">
-              IT Legends is a forward-thinking technology company dedicated to delivering exceptional digital solutions. With over a decade of experience, we have helped hundreds of businesses transform their operations through innovative technology.
-            </p>
-            <p className="text-lg text-itsilver leading-relaxed mb-6">
-              Our team of expert developers, designers, and strategists work collaboratively to create solutions that do not just meet expectations, they exceed them.
-            </p>
-            <p className="text-lg text-itsilver leading-relaxed">
-              We believe in building lasting partnerships with our clients, understanding their unique challenges, and crafting tailored solutions that drive real business results.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-6">
-            <div className="card-dark glow-blue border-itblue/30">
-              <div className="text-5xl font-bold text-itred mb-2">500+</div>
-              <div className="text-itsilver font-medium">Projects Completed</div>
-            </div>
-            <div className="card-dark glow-red border-itred/30">
-              <div className="text-5xl font-bold text-itblue mb-2">250+</div>
-              <div className="text-itsilver font-medium">Happy Clients</div>
-            </div>
-            <div className="card-dark glow-blue border-itblue/30">
-              <div className="text-5xl font-bold text-itred mb-2">50+</div>
-              <div className="text-itsilver font-medium">Team Members</div>
-            </div>
-            <div className="card-dark glow-red border-itred/30">
-              <div className="text-5xl font-bold text-itblue mb-2">10+</div>
-              <div className="text-itsilver font-medium">Years Experience</div>
-            </div>
-          </div>
+          <div className="section-divider mb-8"></div>
+          <p className="text-lg text-itsilver leading-relaxed max-w-3xl mx-auto">
+            IT Legends is dedicated to empowering South African businesses through innovative, reliable I.T. solutions. We combine cutting-edge technology with deep industry expertise to deliver transformative results. Our mission is to be your trusted partner in navigating the digital landscape, providing strategic guidance and robust solutions that drive growth, efficiency, and competitive advantage for organizations of all sizes.
+          </p>
         </div>
       </div>
     </section>
