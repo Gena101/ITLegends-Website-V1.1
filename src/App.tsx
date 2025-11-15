@@ -389,115 +389,124 @@ function BlogAndITTips() {
 }
 
 function Contact() {
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormState({
+      ...formState,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormState({ name: '', email: '', message: '' });
+  };
+
   return (
-    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-itdark to-itgray">
+    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-itgray to-itdark">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="section-title">Get In Touch</h2>
-          <div className="section-divider mb-6"></div>
-          <p className="section-subtitle">
-            Ready to start your digital transformation journey? Let us talk about your project
-          </p>
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">Let's Build Something Legendary.</h2>
+          <div className="section-divider mb-8"></div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
+          <div className="space-y-8">
+            <div>
+              <div className="flex items-start space-x-4 mb-6">
+                <div className="w-14 h-14 bg-itred/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-itred/30">
+                  <Phone className="h-7 w-7 text-itred" />
+                </div>
+                <div>
+                  <div className="font-semibold text-white mb-1 text-lg">Phone</div>
+                  <div className="text-itsilver text-base">+1 (555) 123-4567</div>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4 mb-6">
+                <div className="w-14 h-14 bg-itblue/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-itblue/30">
+                  <Mail className="h-7 w-7 text-itblue" />
+                </div>
+                <div>
+                  <div className="font-semibold text-white mb-1 text-lg">Email</div>
+                  <div className="text-itsilver text-base">contact@itlegends.com</div>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="w-14 h-14 bg-itred/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-itred/30">
+                  <MapPin className="h-7 w-7 text-itred" />
+                </div>
+                <div>
+                  <div className="font-semibold text-white mb-1 text-lg">Location</div>
+                  <div className="text-itsilver text-base">123 Tech Street, Suite 100<br />San Francisco, CA 94105</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div>
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-itsilver mb-2">
-                  Full Name
+                <label htmlFor="name" className="block text-sm font-semibold text-white mb-3">
+                  Name
                 </label>
                 <input
                   type="text"
                   id="name"
+                  name="name"
+                  value={formState.name}
+                  onChange={handleChange}
+                  required
                   className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
-                  placeholder="John Doe"
+                  placeholder="Your name"
                 />
               </div>
+
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-itsilver mb-2">
-                  Email Address
+                <label htmlFor="email" className="block text-sm font-semibold text-white mb-3">
+                  Email
                 </label>
                 <input
                   type="email"
                   id="email"
+                  name="email"
+                  value={formState.email}
+                  onChange={handleChange}
+                  required
                   className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
-                  placeholder="john@example.com"
+                  placeholder="your@email.com"
                 />
               </div>
+
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-itsilver mb-2">
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
-                  placeholder="How can we help?"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-itsilver mb-2">
+                <label htmlFor="message" className="block text-sm font-semibold text-white mb-3">
                   Message
                 </label>
                 <textarea
                   id="message"
+                  name="message"
+                  value={formState.message}
+                  onChange={handleChange}
+                  required
                   rows={5}
                   className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition resize-none text-white placeholder-itsilver/50"
-                  placeholder="Tell us about your project..."
+                  placeholder="Tell us how we can help..."
                 ></textarea>
               </div>
+
               <button
                 type="submit"
-                className="btn-primary w-full"
+                className="btn-primary w-full text-lg"
               >
                 Send Message
               </button>
             </form>
-          </div>
-
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
-              <div className="space-y-4">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-itred/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-itred/30">
-                    <Mail className="h-6 w-6 text-itred" />
-                  </div>
-                  <div>
-                    <div className="font-semibold text-white mb-1">Email</div>
-                    <div className="text-itsilver">contact@itlegends.com</div>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-itblue/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-itblue/30">
-                    <Phone className="h-6 w-6 text-itblue" />
-                  </div>
-                  <div>
-                    <div className="font-semibold text-white mb-1">Phone</div>
-                    <div className="text-itsilver">+1 (555) 123-4567</div>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-itred/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-itred/30">
-                    <MapPin className="h-6 w-6 text-itred" />
-                  </div>
-                  <div>
-                    <div className="font-semibold text-white mb-1">Office</div>
-                    <div className="text-itsilver">123 Tech Street, Suite 100<br />San Francisco, CA 94105</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="card-dark glow-blue border-itblue/30">
-              <h4 className="font-bold text-white mb-3">Business Hours</h4>
-              <div className="text-itsilver space-y-1">
-                <div>Monday - Friday: 9:00 AM - 6:00 PM</div>
-                <div>Saturday: 10:00 AM - 4:00 PM</div>
-                <div>Sunday: Closed</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
