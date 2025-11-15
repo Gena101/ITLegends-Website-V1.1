@@ -77,26 +77,9 @@ function ServiceHero() {
 
 function PainPoints() {
   const painPoints = [
-    {
-      icon: AlertCircle,
-      title: 'System Downtime',
-      description: 'Unexpected IT issues causing costly business interruptions and lost productivity.'
-    },
-    {
-      icon: Clock,
-      title: 'Reactive Support',
-      description: 'Waiting for problems to occur instead of preventing them before they impact your operations.'
-    },
-    {
-      icon: TrendingUp,
-      title: 'Rising IT Costs',
-      description: 'Emergency fixes and unplanned maintenance drain your budget without strategic planning.'
-    },
-    {
-      icon: Users,
-      title: 'Limited IT Resources',
-      description: 'Small IT teams stretched thin managing multiple systems and cannot keep up with demands.'
-    }
+    'Downtime costs money and disrupts operations',
+    'Slow response times leave problems unresolved',
+    'Recurring issues waste time and resources'
   ];
 
   return (
@@ -105,30 +88,22 @@ function PainPoints() {
         <div className="text-center mb-16">
           <h2 className="section-title">Common Pain Points</h2>
           <div className="section-divider mb-8"></div>
-          <p className="text-lg text-itsilver max-w-2xl mx-auto">
-            Many businesses struggle with IT management challenges that impact their bottom line.
-          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {painPoints.map((point, index) => {
-            const Icon = point.icon;
-            const isRed = index % 2 === 0;
-            return (
-              <div
+        <div className="max-w-3xl mx-auto">
+          <ul className="space-y-4">
+            {painPoints.map((point, index) => (
+              <li
                 key={index}
-                className={`card-dark ${isRed ? 'glow-red border-itred/30' : 'glow-blue border-itblue/30'} flex gap-6`}
+                className="card-dark glow-red border-itred/30 flex items-center gap-4"
               >
-                <div className={`w-16 h-16 ${isRed ? 'bg-itred/20 text-itred' : 'bg-itblue/20 text-itblue'} rounded-lg flex items-center justify-center flex-shrink-0`}>
-                  <Icon className="h-8 w-8" />
+                <div className="w-8 h-8 bg-itred/20 rounded-full flex items-center justify-center flex-shrink-0">
+                  <AlertCircle className="h-5 w-5 text-itred" />
                 </div>
-                <div>
-                  <h3 className="text-lg font-bold text-white mb-2">{point.title}</h3>
-                  <p className="text-itsilver text-sm">{point.description}</p>
-                </div>
-              </div>
-            );
-          })}
+                <p className="text-itsilver text-base">{point}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
@@ -137,26 +112,9 @@ function PainPoints() {
 
 function OurSolution() {
   const solutions = [
-    {
-      number: '01',
-      title: 'Proactive Monitoring',
-      description: 'Continuous 24/7 monitoring of your infrastructure to detect and resolve issues before they impact your business.'
-    },
-    {
-      number: '02',
-      title: 'Expert Support Team',
-      description: 'Certified technicians available around the clock to provide immediate assistance and technical expertise.'
-    },
-    {
-      number: '03',
-      title: 'Preventative Maintenance',
-      description: 'Regular system updates, patches, and maintenance to keep your infrastructure secure and optimized.'
-    },
-    {
-      number: '04',
-      title: 'Performance Optimization',
-      description: 'Continuous tuning and optimization to ensure your systems run at peak efficiency and reliability.'
-    }
+    'Proactive monitoring catches issues before they escalate',
+    'Remote & onsite support available when you need it',
+    'Flat-fee pricing keeps your IT budget predictable'
   ];
 
   return (
@@ -165,24 +123,22 @@ function OurSolution() {
         <div className="text-center mb-16">
           <h2 className="section-title">Our Solution</h2>
           <div className="section-divider mb-8"></div>
-          <p className="text-lg text-itsilver max-w-2xl mx-auto">
-            Comprehensive managed IT support that puts your mind at ease.
-          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {solutions.map((solution, index) => (
-            <div
-              key={index}
-              className="card-dark glow-blue border-itblue/30 relative"
-            >
-              <div className="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-itred to-itblue rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                {solution.number}
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3 mt-4">{solution.title}</h3>
-              <p className="text-itsilver leading-relaxed">{solution.description}</p>
-            </div>
-          ))}
+        <div className="max-w-3xl mx-auto">
+          <ul className="space-y-4">
+            {solutions.map((solution, index) => (
+              <li
+                key={index}
+                className="card-dark glow-blue border-itblue/30 flex items-center gap-4"
+              >
+                <div className="w-8 h-8 bg-itblue/20 rounded-full flex items-center justify-center flex-shrink-0">
+                  <CheckCircle className="h-5 w-5 text-itblue" />
+                </div>
+                <p className="text-itsilver text-base">{solution}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
@@ -192,28 +148,20 @@ function OurSolution() {
 function Benefits() {
   const benefits = [
     {
-      title: 'Reduced Downtime',
-      description: 'Minimize business interruptions with proactive monitoring and rapid response times.'
+      title: 'Fast Response',
+      description: 'We resolve issues quickly to minimize downtime.'
     },
     {
-      title: 'Cost Savings',
-      description: 'Predictable monthly costs instead of expensive emergency repairs and unplanned maintenance.'
+      title: 'Predictable Costs',
+      description: 'Fixed monthly pricing with no surprise bills.'
     },
     {
-      title: 'Enhanced Security',
-      description: 'Continuous security monitoring, threat detection, and compliance management.'
+      title: 'Better Uptime',
+      description: 'Proactive monitoring keeps systems running smoothly.'
     },
     {
-      title: 'Scalability',
-      description: 'Your support grows with your business, adapting to changing needs and demands.'
-    },
-    {
-      title: 'Peace of Mind',
-      description: 'Focus on your core business while we handle your IT infrastructure 24/7.'
-    },
-    {
-      title: 'Expert Guidance',
-      description: 'Strategic IT recommendations and planning to align technology with your business goals.'
+      title: 'Happier Staff',
+      description: 'Less IT frustration means more productivity.'
     }
   ];
 
@@ -225,7 +173,7 @@ function Benefits() {
           <div className="section-divider mb-8"></div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {benefits.map((benefit, index) => {
             const isRed = index % 2 === 0;
             return (
@@ -255,33 +203,18 @@ function Process() {
   const steps = [
     {
       number: 1,
-      title: 'Assessment',
-      description: 'We analyze your current IT infrastructure, identifying strengths, weaknesses, and improvement opportunities.'
+      title: 'Assess',
+      description: 'We review your current IT setup and identify gaps.'
     },
     {
       number: 2,
-      title: 'Planning',
-      description: 'We develop a customized managed support plan tailored to your specific business needs and goals.'
+      title: 'Implement',
+      description: 'We deploy monitoring tools and support systems.'
     },
     {
       number: 3,
-      title: 'Implementation',
-      description: 'Our team deploys monitoring tools, establishes support protocols, and integrates with your systems.'
-    },
-    {
-      number: 4,
-      title: 'Monitoring',
-      description: 'Continuous 24/7 monitoring begins, with proactive alerts and preventative maintenance.'
-    },
-    {
-      number: 5,
-      title: 'Optimization',
-      description: 'Regular performance reviews and adjustments ensure your systems remain optimized for peak efficiency.'
-    },
-    {
-      number: 6,
-      title: 'Support',
-      description: 'Dedicated support team available round-the-clock for any issues or technical assistance needed.'
+      title: 'Maintain',
+      description: 'We provide ongoing support and proactive maintenance.'
     }
   ];
 
@@ -291,12 +224,9 @@ function Process() {
         <div className="text-center mb-16">
           <h2 className="section-title">Our Process</h2>
           <div className="section-divider mb-8"></div>
-          <p className="text-lg text-itsilver max-w-2xl mx-auto">
-            A structured approach to ensuring your IT success.
-          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {steps.map((step, index) => (
             <div
               key={index}
