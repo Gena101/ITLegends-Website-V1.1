@@ -136,34 +136,34 @@ function WhoWeAre() {
 function OurServices() {
   const services = [
     {
-      icon: Cloud,
-      title: 'Cloud Solutions',
-      description: 'Scalable cloud infrastructure and migration services to modernize your operations and reduce costs.'
+      icon: Shield,
+      title: 'Managed IT Support',
+      description: 'Proactive monitoring and support to keep your systems running smoothly 24/7.'
     },
     {
-      icon: Code,
-      title: 'Custom Development',
-      description: 'Tailored software solutions built with cutting-edge technologies to meet your specific business needs.'
+      icon: Cpu,
+      title: 'Hardware & Network Setup',
+      description: 'Professional installation and configuration of enterprise-grade infrastructure.'
     },
     {
       icon: Shield,
-      title: 'Cybersecurity',
-      description: 'Comprehensive security solutions to protect your digital assets and ensure compliance.'
+      title: 'Cybersecurity & Protection',
+      description: 'Advanced threat detection and security measures to protect your business data.'
+    },
+    {
+      icon: Cloud,
+      title: 'Cloud & Backup Solutions',
+      description: 'Secure cloud infrastructure and automated backup systems for business continuity.'
     },
     {
       icon: Zap,
-      title: 'Digital Transformation',
-      description: 'Strategic consulting and implementation to accelerate your digital journey and innovation.'
+      title: 'Server Maintenance & Monitoring',
+      description: 'Continuous server health monitoring and preventative maintenance services.'
     },
     {
       icon: Users,
-      title: 'IT Consulting',
-      description: 'Expert guidance on technology strategy, architecture, and implementation best practices.'
-    },
-    {
-      icon: TrendingUp,
-      title: 'Analytics & AI',
-      description: 'Data-driven insights and artificial intelligence solutions to unlock business intelligence.'
+      title: 'Helpdesk & Remote Assistance',
+      description: 'Expert technical support through remote assistance and dedicated helpdesk.'
     }
   ];
 
@@ -172,10 +172,7 @@ function OurServices() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="section-title">Our Services</h2>
-          <div className="section-divider mb-6"></div>
-          <p className="section-subtitle">
-            Comprehensive technology solutions designed to drive your business forward
-          </p>
+          <div className="section-divider mb-8"></div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -185,13 +182,16 @@ function OurServices() {
             return (
               <div
                 key={index}
-                className={`card-dark ${isRed ? 'glow-red border-itred/30' : 'glow-blue border-itblue/30'}`}
+                className={`card-dark group cursor-pointer ${isRed ? 'glow-red border-itred/30 hover:border-itred/60' : 'glow-blue border-itblue/30 hover:border-itblue/60'}`}
               >
                 <div className={`w-16 h-16 ${isRed ? 'bg-itred/20 text-itred' : 'bg-itblue/20 text-itblue'} rounded-lg flex items-center justify-center mb-6`}>
                   <Icon className="h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
-                <p className="text-itsilver leading-relaxed">{service.description}</p>
+                <h3 className="text-lg font-bold text-white mb-2">{service.title}</h3>
+                <p className="text-itsilver text-sm mb-4">{service.description}</p>
+                <a href="#" className={`text-sm font-semibold ${isRed ? 'text-itred hover:text-itblue' : 'text-itblue hover:text-itred'} transition-colors`}>
+                  Learn more
+                </a>
               </div>
             );
           })}
