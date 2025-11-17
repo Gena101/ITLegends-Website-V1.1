@@ -377,9 +377,10 @@ function BlogAndITTips() {
 
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           {blogPosts.map((post, index) => (
-            <article
+            <a
               key={index}
-              className="card-dark hover:border-itred/50 transition-all duration-300 group"
+              href="/blog"
+              className="card-dark hover:border-itred/50 transition-all duration-300 group block cursor-pointer"
             >
               <div className="flex items-center space-x-3 mb-4">
                 <div className="w-10 h-10 bg-itblue/20 rounded-lg flex items-center justify-center border border-itblue/30">
@@ -396,14 +397,11 @@ function BlogAndITTips() {
                 {post.snippet}
               </p>
 
-              <a
-                href="#"
-                className="inline-flex items-center text-itred hover:text-itblue font-semibold transition-colors"
-              >
+              <span className="inline-flex items-center text-itred hover:text-itblue font-semibold transition-colors">
                 Read Full Article
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </article>
+              </span>
+            </a>
           ))}
         </div>
 
