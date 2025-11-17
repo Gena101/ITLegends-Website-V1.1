@@ -5,7 +5,7 @@ export default function CybersecurityPage() {
   return (
     <div className="min-h-screen bg-itdark text-itsilver">
       <ServiceNavigation />
-      <ServiceHero title="Cybersecurity" subtitle="Protect your business from evolving threats" />
+      <ServiceHero title="Cybersecurity & Protection" subtitle="Shield your business from cyber threats, data breaches, and ransomware." buttonText="Request a Security Assessment" />
       <ContentSection />
       <ServiceFooter />
     </div>
@@ -45,9 +45,10 @@ function ServiceNavigation() {
 interface ServiceHeroProps {
   title: string;
   subtitle: string;
+  buttonText?: string;
 }
 
-function ServiceHero({ title, subtitle }: ServiceHeroProps) {
+function ServiceHero({ title, subtitle, buttonText = "Request a Quote" }: ServiceHeroProps) {
   return (
     <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-16">
       <div className="absolute inset-0 bg-gradient-to-br from-itdark via-itgray to-itdark"></div>
@@ -68,7 +69,7 @@ function ServiceHero({ title, subtitle }: ServiceHeroProps) {
           href="/#contact"
           className="btn-primary inline-flex items-center justify-center"
         >
-          Request a Quote
+          {buttonText}
           <ChevronRight className="ml-2 h-5 w-5" />
         </a>
       </div>
