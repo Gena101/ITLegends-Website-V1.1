@@ -1,4 +1,4 @@
-import { Code, ChevronRight } from 'lucide-react';
+import { Code, ChevronRight, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
 
 export default function ServerMaintenancePage() {
@@ -6,6 +6,7 @@ export default function ServerMaintenancePage() {
     <div className="min-h-screen bg-itdark text-itsilver">
       <ServiceNavigation />
       <ServiceHero title="Server Maintenance & Monitoring" subtitle="Keep your servers secure, updated, and performing at their best." buttonText="Request a Server Health Check" />
+      <PainPoints />
       <ContentSection />
       <ServiceFooter />
     </div>
@@ -72,6 +73,39 @@ function ServiceHero({ title, subtitle, buttonText = "Request a Quote" }: Servic
           {buttonText}
           <ChevronRight className="ml-2 h-5 w-5" />
         </a>
+      </div>
+    </section>
+  );
+}
+
+function PainPoints() {
+  const painPoints = [
+    'Slow server performance causing delays and downtime.',
+    'Outdated patches and missed updates exposing security risks.',
+    'No proactive monitoring to detect issues early.'
+  ];
+
+  return (
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itdark">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="section-title">Common Pain Points</h2>
+          <div className="section-divider mb-8"></div>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {painPoints.map((point, index) => (
+            <div
+              key={index}
+              className="card-dark glow-red border-itred/30 flex flex-col items-center text-center"
+            >
+              <div className="w-12 h-12 bg-itred/20 rounded-full flex items-center justify-center mb-4">
+                <AlertCircle className="h-6 w-6 text-itred" />
+              </div>
+              <p className="text-itsilver text-base leading-relaxed">{point}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
