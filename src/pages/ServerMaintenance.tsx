@@ -1,4 +1,4 @@
-import { Code, ChevronRight, AlertCircle, CheckCircle } from 'lucide-react';
+import { Code, ChevronRight, AlertCircle, CheckCircle, Zap, TrendingUp, Shield, Database } from 'lucide-react';
 import { useState } from 'react';
 
 export default function ServerMaintenancePage() {
@@ -8,6 +8,7 @@ export default function ServerMaintenancePage() {
       <ServiceHero title="Server Maintenance & Monitoring" subtitle="Keep your servers secure, updated, and performing at their best." buttonText="Request a Server Health Check" />
       <PainPoints />
       <OurSolution />
+      <Benefits />
       <ContentSection />
       <ServiceFooter />
     </div>
@@ -145,9 +146,64 @@ function OurSolution() {
   );
 }
 
-function ContentSection() {
+function Benefits() {
+  const benefits = [
+    {
+      title: 'Improved Performance',
+      description: 'Optimised servers keep your business running smoothly.',
+      icon: Zap
+    },
+    {
+      title: 'Increased Uptime',
+      description: 'Proactive maintenance prevents costly downtime.',
+      icon: TrendingUp
+    },
+    {
+      title: 'Better Security',
+      description: 'Regular patching reduces vulnerabilities.',
+      icon: Shield
+    },
+    {
+      title: 'Reliable Backups',
+      description: 'We ensure your server data is always recoverable.',
+      icon: Database
+    }
+  ];
+
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itdark">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="section-title">Benefits</h2>
+          <div className="section-divider mb-8"></div>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {benefits.map((benefit, index) => {
+            const Icon = benefit.icon;
+            const isRed = index % 2 === 0;
+            return (
+              <div
+                key={index}
+                className={`card-dark ${isRed ? 'glow-red border-itred/30' : 'glow-blue border-itblue/30'} flex flex-col items-center text-center`}
+              >
+                <div className={`w-12 h-12 ${isRed ? 'bg-itred/20' : 'bg-itblue/20'} rounded-full flex items-center justify-center mb-4`}>
+                  <Icon className={`h-6 w-6 ${isRed ? 'text-itred' : 'text-itblue'}`} />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-3">{benefit.title}</h3>
+                <p className="text-itsilver text-sm leading-relaxed">{benefit.description}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ContentSection() {
+  return (
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-itdark to-itgray">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="section-title">Service Details</h2>
