@@ -1,4 +1,4 @@
-import { Code, ChevronRight, AlertCircle, CheckCircle, Zap, TrendingUp, Shield, Database } from 'lucide-react';
+import { Code, ChevronRight, AlertCircle, CheckCircle, Zap, TrendingUp, Shield, Database, Search, Wrench, Eye } from 'lucide-react';
 import { useState } from 'react';
 
 export default function ServerMaintenancePage() {
@@ -9,6 +9,7 @@ export default function ServerMaintenancePage() {
       <PainPoints />
       <OurSolution />
       <Benefits />
+      <Process />
       <ContentSection />
       <ServiceFooter />
     </div>
@@ -201,9 +202,67 @@ function Benefits() {
   );
 }
 
+function Process() {
+  const steps = [
+    {
+      title: 'Audit',
+      description: 'We perform a full health check of your servers.',
+      icon: Search
+    },
+    {
+      title: 'Optimise',
+      description: 'We apply patches, updates, and performance improvements.',
+      icon: Wrench
+    },
+    {
+      title: 'Monitor',
+      description: 'We continuously monitor and maintain your servers.',
+      icon: Eye
+    }
+  ];
+
+  return (
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-itgray to-itdark">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="section-title">Our Process</h2>
+          <div className="section-divider mb-8"></div>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {steps.map((step, index) => {
+            const Icon = step.icon;
+            return (
+              <div key={index} className="relative">
+                <div className="card-dark glow-blue border-itblue/30 flex flex-col items-center text-center">
+                  <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-itblue rounded-full flex items-center justify-center border-4 border-itdark">
+                    <span className="text-white font-bold">{index + 1}</span>
+                  </div>
+                  <div className="pt-8 pb-2">
+                    <div className="w-12 h-12 bg-itblue/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                      <Icon className="h-6 w-6 text-itblue" />
+                    </div>
+                    <h3 className="text-lg font-bold text-white mb-3">{step.title}</h3>
+                    <p className="text-itsilver text-sm leading-relaxed">{step.description}</p>
+                  </div>
+                </div>
+                {index < steps.length - 1 && (
+                  <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
+                    <ChevronRight className="h-6 w-6 text-itblue/50" />
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ContentSection() {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-itdark to-itgray">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itdark">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="section-title">Service Details</h2>
