@@ -1,4 +1,4 @@
-import { Code, ChevronRight, Shield, CheckCircle, Globe, RefreshCw } from 'lucide-react';
+import { Code, ChevronRight, Shield, CheckCircle, Globe, RefreshCw, Search, Cog, Lock } from 'lucide-react';
 import { useState } from 'react';
 
 export default function CloudBackupPage() {
@@ -12,6 +12,7 @@ export default function CloudBackupPage() {
       />
       <ContentSection />
       <Benefits />
+      <Process />
       <ServiceFooter />
     </div>
   );
@@ -204,6 +205,62 @@ function Benefits() {
                 </div>
                 <h3 className="text-lg font-bold text-white mb-3">{benefit.title}</h3>
                 <p className="text-itsilver text-sm leading-relaxed">{benefit.description}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Process() {
+  const steps = [
+    {
+      icon: Search,
+      title: 'Analyse',
+      description: 'We assess your current storage and backup needs.'
+    },
+    {
+      icon: Cog,
+      title: 'Configure',
+      description: 'We set up secure cloud systems and automated backups.'
+    },
+    {
+      icon: Lock,
+      title: 'Protect',
+      description: 'We monitor, maintain, and ensure your data stays recoverable.'
+    }
+  ];
+
+  return (
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itgray/20">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="section-title">Our Process</h2>
+          <div className="section-divider mb-8"></div>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {steps.map((step, index) => {
+            const Icon = step.icon;
+            return (
+              <div key={index} className="relative">
+                <div className="card-dark glow-blue border-itblue/30 flex flex-col items-center text-center h-full">
+                  <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-itblue text-white rounded-full flex items-center justify-center font-bold text-lg">
+                    {index + 1}
+                  </div>
+                  <div className="mt-6 mb-4">
+                    <div className="w-16 h-16 bg-itblue/20 rounded-full flex items-center justify-center">
+                      <Icon className="h-8 w-8 text-itblue" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
+                  <p className="text-itsilver leading-relaxed">{step.description}</p>
+                </div>
+                {index < steps.length - 1 && (
+                  <div className="hidden md:block absolute top-1/3 -right-4 w-8 h-0.5 bg-gradient-to-r from-itblue to-transparent"></div>
+                )}
               </div>
             );
           })}
