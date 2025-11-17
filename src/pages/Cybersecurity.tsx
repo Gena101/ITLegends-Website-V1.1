@@ -114,6 +114,41 @@ function ContentSection() {
           </div>
         </div>
       </section>
+
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itgray">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="section-title">Our Solution</h2>
+            <div className="section-divider mb-8"></div>
+          </div>
+          <div className="grid md:grid-cols-1 gap-8 max-w-3xl mx-auto">
+            <div className="bg-itdark border border-itgray2 rounded-lg p-6">
+              <div className="flex gap-4">
+                <div className="text-itblue text-2xl font-bold flex-shrink-0">•</div>
+                <p className="text-itsilver text-lg leading-relaxed">
+                  Advanced endpoint protection against malware and ransomware.
+                </p>
+              </div>
+            </div>
+            <div className="bg-itdark border border-itgray2 rounded-lg p-6">
+              <div className="flex gap-4">
+                <div className="text-itblue text-2xl font-bold flex-shrink-0">•</div>
+                <p className="text-itsilver text-lg leading-relaxed">
+                  Firewalls, intrusion detection, and secure network configuration.
+                </p>
+              </div>
+            </div>
+            <div className="bg-itdark border border-itgray2 rounded-lg p-6">
+              <div className="flex gap-4">
+                <div className="text-itblue text-2xl font-bold flex-shrink-0">•</div>
+                <p className="text-itsilver text-lg leading-relaxed">
+                  Ongoing monitoring, patching, and cybersecurity best practices.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
