@@ -1,4 +1,4 @@
-import { Code, ChevronRight } from 'lucide-react';
+import { Code, ChevronRight, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
 
 export default function HardwareNetworkPage() {
@@ -6,6 +6,7 @@ export default function HardwareNetworkPage() {
     <div className="min-h-screen bg-itdark text-itsilver">
       <ServiceNavigation />
       <ServiceHero title="Hardware & Network Setup" subtitle="Professional installation and configuration of your I.T. infrastructure." />
+      <PainPoints />
       <ContentSection />
       <ServiceFooter />
     </div>
@@ -75,6 +76,39 @@ function ServiceHero({ title, subtitle }: ServiceHeroProps) {
           Request a Quote
           <ChevronRight className="ml-2 h-5 w-5" />
         </a>
+      </div>
+    </section>
+  );
+}
+
+function PainPoints() {
+  const painPoints = [
+    'New offices taking too long to get fully connected.',
+    'Unstable Wi-Fi and slow network speeds.',
+    'Hardware that is outdated, mismatched, or not properly configured.'
+  ];
+
+  return (
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itdark">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="section-title">Common Pain Points</h2>
+          <div className="section-divider mb-8"></div>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {painPoints.map((point, index) => (
+            <div
+              key={index}
+              className="card-dark glow-red border-itred/30 flex flex-col items-center text-center"
+            >
+              <div className="w-12 h-12 bg-itred/20 rounded-full flex items-center justify-center mb-4">
+                <AlertCircle className="h-6 w-6 text-itred" />
+              </div>
+              <p className="text-itsilver text-base leading-relaxed">{point}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
