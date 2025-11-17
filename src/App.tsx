@@ -7,6 +7,7 @@ import CybersecurityPage from './pages/Cybersecurity';
 import CloudBackupPage from './pages/CloudBackup';
 import ServerMaintenancePage from './pages/ServerMaintenance';
 import HelpdeskPage from './pages/Helpdesk';
+import BlogPage from './pages/Blog';
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -21,6 +22,7 @@ function App() {
         <Route path="/services/cloud-backup" element={<CloudBackupPage />} />
         <Route path="/services/server-maintenance" element={<ServerMaintenancePage />} />
         <Route path="/services/helpdesk" element={<HelpdeskPage />} />
+        <Route path="/blog" element={<BlogPage />} />
       </Routes>
     </BrowserRouter>
   );
