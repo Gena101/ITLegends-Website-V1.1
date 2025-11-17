@@ -1,4 +1,4 @@
-import { Code, ChevronRight, AlertCircle } from 'lucide-react';
+import { Code, ChevronRight, AlertCircle, CheckCircle } from 'lucide-react';
 import { useState } from 'react';
 
 export default function HardwareNetworkPage() {
@@ -7,6 +7,7 @@ export default function HardwareNetworkPage() {
       <ServiceNavigation />
       <ServiceHero title="Hardware & Network Setup" subtitle="Professional installation and configuration of your I.T. infrastructure." />
       <PainPoints />
+      <OurSolution />
       <ContentSection />
       <ServiceFooter />
     </div>
@@ -106,6 +107,39 @@ function PainPoints() {
                 <AlertCircle className="h-6 w-6 text-itred" />
               </div>
               <p className="text-itsilver text-base leading-relaxed">{point}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function OurSolution() {
+  const solutions = [
+    'Full planning and installation of servers, switches, routers, and Wi-Fi.',
+    'Best-practice network design for speed, stability, and security.',
+    'Hardware recommendations that match your budget and growth plans.'
+  ];
+
+  return (
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-itdark to-itgray">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="section-title">Our Solution</h2>
+          <div className="section-divider mb-8"></div>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {solutions.map((solution, index) => (
+            <div
+              key={index}
+              className="card-dark glow-blue border-itblue/30 flex flex-col items-center text-center"
+            >
+              <div className="w-12 h-12 bg-itblue/20 rounded-full flex items-center justify-center mb-4">
+                <CheckCircle className="h-6 w-6 text-itblue" />
+              </div>
+              <p className="text-itsilver text-base leading-relaxed">{solution}</p>
             </div>
           ))}
         </div>
