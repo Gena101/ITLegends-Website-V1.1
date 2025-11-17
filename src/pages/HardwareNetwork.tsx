@@ -8,6 +8,7 @@ export default function HardwareNetworkPage() {
       <ServiceHero title="Hardware & Network Setup" subtitle="Professional installation and configuration of your I.T. infrastructure." />
       <PainPoints />
       <OurSolution />
+      <Benefits />
       <ContentSection />
       <ServiceFooter />
     </div>
@@ -142,6 +143,56 @@ function OurSolution() {
               <p className="text-itsilver text-base leading-relaxed">{solution}</p>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Benefits() {
+  const benefits = [
+    {
+      title: 'Faster Networks',
+      description: 'Optimised networks for speed and performance.'
+    },
+    {
+      title: 'Stable Connections',
+      description: 'Reduced dropouts and connectivity issues.'
+    },
+    {
+      title: 'Future-Ready Setup',
+      description: 'Scalable infrastructure that grows with your business.'
+    },
+    {
+      title: 'Expert Configuration',
+      description: 'Installed and configured by experienced technicians.'
+    }
+  ];
+
+  return (
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itdark">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="section-title">Key Benefits</h2>
+          <div className="section-divider mb-8"></div>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {benefits.map((benefit, index) => {
+            const isRed = index % 2 === 0;
+            return (
+              <div
+                key={index}
+                className={`card-dark ${isRed ? 'glow-red border-itred/30' : 'glow-blue border-itblue/30'} flex flex-col items-center text-center`}
+              >
+                <div className={`w-12 h-12 ${isRed ? 'bg-itred/20' : 'bg-itblue/20'} rounded-full flex items-center justify-center mb-4`}>
+                  <CheckCircle className={`h-6 w-6 ${isRed ? 'text-itred' : 'text-itblue'}`} />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-3">{benefit.title}</h3>
+                <p className="text-itsilver text-sm leading-relaxed">{benefit.description}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
