@@ -16,16 +16,17 @@ function GetInTouch() {
   const [formState, setFormState] = useState({
     name: '',
     email: '',
-    phone: ''
+    phone: '',
+    message: ''
   });
-  const [errors, setErrors] = useState<{ name?: string; email?: string; phone?: string }>({});
+  const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormState({
       ...formState,
@@ -41,7 +42,7 @@ function GetInTouch() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newErrors: { name?: string; email?: string } = {};
+    const newErrors: { name?: string; email?: string; message?: string } = {};
 
     if (!formState.name.trim()) {
       newErrors.name = 'Name is required';
@@ -53,12 +54,16 @@ function GetInTouch() {
       newErrors.email = 'Please enter a valid email address';
     }
 
+    if (!formState.message.trim()) {
+      newErrors.message = 'Message is required';
+    }
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
 
-    setFormState({ name: '', email: '', phone: '' });
+    setFormState({ name: '', email: '', phone: '', message: '' });
     setErrors({});
   };
 
@@ -119,6 +124,24 @@ function GetInTouch() {
               className={`w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50`}
               placeholder="+1 (555) 123-4567"
             />
+          </div>
+
+          <div>
+            <label htmlFor="message" className="block text-sm font-semibold text-white mb-3">
+              Your Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={formState.message}
+              onChange={handleChange}
+              rows={6}
+              className={`w-full px-4 py-3 bg-itgray border rounded-lg focus:ring-2 focus:border-transparent outline-none transition text-white placeholder-itsilver/50 resize-none ${
+                errors.message ? 'border-red-500 focus:ring-red-500' : 'border-itgray2 focus:ring-itred'
+              }`}
+              placeholder="Tell us about your IT needs..."
+            />
+            {errors.message && <p className="text-red-500 text-sm mt-2">{errors.message}</p>}
           </div>
 
           <button
