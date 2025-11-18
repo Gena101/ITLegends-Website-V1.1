@@ -600,9 +600,9 @@ function Footer() {
           <div>
             <h4 className="font-bold text-white mb-4">Connect</h4>
             <ul className="space-y-2 text-itsilver">
-              <li>contact@itlegends.com</li>
-              <li>+1 (555) 123-4567</li>
-              <li>San Francisco, CA</li>
+              <li>info@itlegends.co.za</li>
+              <li>+27 (84) 634 8144</li>
+              <li>Gauteng, South Africa</li>
             </ul>
           </div>
         </div>
