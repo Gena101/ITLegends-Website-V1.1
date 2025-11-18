@@ -15,9 +15,10 @@ export default function ContactPage() {
 function GetInTouch() {
   const [formState, setFormState] = useState({
     name: '',
-    email: ''
+    email: '',
+    phone: ''
   });
-  const [errors, setErrors] = useState<{ name?: string; email?: string }>({});
+  const [errors, setErrors] = useState<{ name?: string; email?: string; phone?: string }>({});
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -57,7 +58,7 @@ function GetInTouch() {
       return;
     }
 
-    setFormState({ name: '', email: '' });
+    setFormState({ name: '', email: '', phone: '' });
     setErrors({});
   };
 
@@ -103,6 +104,21 @@ function GetInTouch() {
               placeholder="your@email.com"
             />
             {errors.email && <p className="text-red-500 text-sm mt-2">{errors.email}</p>}
+          </div>
+
+          <div>
+            <label htmlFor="phone" className="block text-sm font-semibold text-white mb-3">
+              Phone Number <span className="text-itsilver/60">(optional)</span>
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formState.phone}
+              onChange={handleChange}
+              className={`w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50`}
+              placeholder="+1 (555) 123-4567"
+            />
           </div>
 
           <button
