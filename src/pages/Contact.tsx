@@ -1,4 +1,4 @@
-import { Code, ChevronRight } from 'lucide-react';
+import { Code, ChevronRight, Mail, Phone, MapPin } from 'lucide-react';
 import { useState } from 'react';
 
 export default function ContactPage() {
@@ -74,7 +74,7 @@ function GetInTouch() {
           Get in Touch
         </h2>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6 mb-16">
           <div>
             <label htmlFor="name" className="block text-sm font-semibold text-white mb-3">
               Name
@@ -151,6 +151,38 @@ function GetInTouch() {
             Send Message
           </button>
         </form>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          <div className="flex flex-col items-center md:items-start p-6 bg-itgray/50 rounded-lg border border-itgray2 hover:border-itblue/50 transition-colors">
+            <div className="p-3 bg-itblue/20 rounded-lg mb-4">
+              <Mail className="h-6 w-6 text-itblue" />
+            </div>
+            <h3 className="text-lg font-semibold text-white mb-2">Email</h3>
+            <a href="mailto:info@itlegends.co.za" className="text-itsilver hover:text-itblue transition-colors">
+              info@itlegends.co.za
+            </a>
+          </div>
+
+          <div className="flex flex-col items-center md:items-start p-6 bg-itgray/50 rounded-lg border border-itgray2 hover:border-itblue/50 transition-colors">
+            <div className="p-3 bg-itblue/20 rounded-lg mb-4">
+              <Phone className="h-6 w-6 text-itblue" />
+            </div>
+            <h3 className="text-lg font-semibold text-white mb-2">Phone</h3>
+            <a href="tel:+27846348144" className="text-itsilver hover:text-itblue transition-colors">
+              +27 (84) 634 8144
+            </a>
+          </div>
+
+          <div className="flex flex-col items-center md:items-start p-6 bg-itgray/50 rounded-lg border border-itgray2 hover:border-itblue/50 transition-colors">
+            <div className="p-3 bg-itblue/20 rounded-lg mb-4">
+              <MapPin className="h-6 w-6 text-itblue" />
+            </div>
+            <h3 className="text-lg font-semibold text-white mb-2">Location</h3>
+            <p className="text-itsilver">
+              Gauteng, South Africa
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
