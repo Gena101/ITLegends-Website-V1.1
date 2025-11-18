@@ -320,30 +320,36 @@ function Blog() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="section-title">Latest Insights</h2>
-          <div className="section-divider mb-6"></div>
-          <p className="section-subtitle">
+          <div className="section-divider mb-8"></div>
+          <p className="text-lg text-itsilver max-w-2xl mx-auto">
             Stay informed with our latest thoughts on technology trends and best practices
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {posts.map((post, index) => (
-            <article key={index} className="card-dark overflow-hidden hover:border-itred/50">
-              <div className="h-48 bg-gradient-to-br from-itblue/30 to-itred/30 border-b border-itgray2"></div>
-              <div className="p-6">
-                <div className="text-sm accent-text mb-2">{post.category}</div>
-                <h3 className="text-xl font-bold text-white mb-3">{post.title}</h3>
-                <p className="text-itsilver mb-4 leading-relaxed">{post.excerpt}</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-itsilver/60">{post.date}</span>
-                  <a href="#" className="text-itred hover:text-itblue font-semibold flex items-center transition-colors">
-                    Read More
-                    <ChevronRight className="ml-1 h-4 w-4" />
-                  </a>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.map((post, index) => {
+            const isRed = index % 2 === 0;
+            return (
+              <article
+                key={index}
+                className={`card-dark group cursor-pointer overflow-hidden ${isRed ? 'glow-red border-itred/30 hover:border-itred/60' : 'glow-blue border-itblue/30 hover:border-itblue/60'}`}
+              >
+                <div className="h-48 bg-gradient-to-br from-itblue/30 to-itred/30 border-b border-itgray2"></div>
+                <div className="p-6">
+                  <div className={`text-sm font-semibold mb-2 ${isRed ? 'text-itred' : 'text-itblue'}`}>{post.category}</div>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-itred transition-colors">{post.title}</h3>
+                  <p className="text-itsilver mb-4 leading-relaxed text-sm">{post.excerpt}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-itsilver/60">{post.date}</span>
+                    <span className={`font-semibold flex items-center transition-colors text-sm ${isRed ? 'text-itred group-hover:text-itblue' : 'text-itblue group-hover:text-itred'}`}>
+                      Read More
+                      <ChevronRight className="ml-1 h-4 w-4" />
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -377,40 +383,43 @@ function BlogAndITTips() {
             <BookOpen className="h-10 w-10 text-itred mr-3" />
             <h2 className="section-title">Blog & IT Tips</h2>
           </div>
-          <div className="section-divider mb-6"></div>
+          <div className="section-divider mb-8"></div>
           <p className="text-lg text-itsilver max-w-2xl mx-auto">
             Weekly IT tips, security alerts, and tech insights.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
-          {blogPosts.map((post, index) => (
-            <a
-              key={index}
-              href="/blog"
-              className="card-dark hover:border-itred/50 transition-all duration-300 group block cursor-pointer"
-            >
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-10 bg-itblue/20 rounded-lg flex items-center justify-center border border-itblue/30">
-                  <Calendar className="h-5 w-5 text-itblue" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {blogPosts.map((post, index) => {
+            const isRed = index % 2 === 0;
+            return (
+              <a
+                key={index}
+                href="/blog"
+                className={`card-dark group cursor-pointer ${isRed ? 'glow-red border-itred/30 hover:border-itred/60' : 'glow-blue border-itblue/30 hover:border-itblue/60'} block`}
+              >
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className={`w-10 h-10 ${isRed ? 'bg-itred/20' : 'bg-itblue/20'} rounded-lg flex items-center justify-center border ${isRed ? 'border-itred/30' : 'border-itblue/30'}`}>
+                    <Calendar className={`h-5 w-5 ${isRed ? 'text-itred' : 'text-itblue'}`} />
+                  </div>
+                  <span className="text-sm text-itsilver/70">{post.date}</span>
                 </div>
-                <span className="text-sm text-itsilver/70">{post.date}</span>
-              </div>
 
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-itred transition-colors">
-                {post.title}
-              </h3>
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-itred transition-colors">
+                  {post.title}
+                </h3>
 
-              <p className="text-itsilver leading-relaxed mb-4">
-                {post.snippet}
-              </p>
+                <p className="text-itsilver leading-relaxed mb-4 text-sm">
+                  {post.snippet}
+                </p>
 
-              <span className="inline-flex items-center text-itred hover:text-itblue font-semibold transition-colors">
-                Read Full Article
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </span>
-            </a>
-          ))}
+                <span className={`inline-flex items-center font-semibold transition-colors text-sm ${isRed ? 'text-itred group-hover:text-itblue' : 'text-itblue group-hover:text-itred'}`}>
+                  Read Full Article
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </span>
+              </a>
+            );
+          })}
         </div>
 
         <div className="text-center">
