@@ -590,6 +590,7 @@ function Footer() {
             <h4 className="font-bold text-white mb-4">Services</h4>
             <ul className="space-y-2 text-itsilver">
               <li><a href="/services/managed-it-support" className="hover:text-itred transition-colors">Managed IT Support</a></li>
+              <li><a href="/services/hardware-network" className="hover:text-itred transition-colors">Hardware & Network Setup</a></li>
               <li>Cloud Solutions</li>
               <li>Custom Development</li>
               <li>Cybersecurity</li>
