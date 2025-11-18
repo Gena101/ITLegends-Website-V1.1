@@ -48,7 +48,6 @@ function HomePage({ mobileMenuOpen, setMobileMenuOpen }: { mobileMenuOpen: boole
       <BlogAndITTips />
       <Contact />
       <Footer />
-      <EmptyFooter />
     </div>
   );
 }
@@ -609,13 +608,6 @@ function Footer() {
         </div>
       </div>
     </footer>
-  );
-}
-
-function EmptyFooter() {
-  return (
-    <section className="bg-itdark py-12 px-4 sm:px-6 lg:px-8">
-    </section>
   );
 }
 
