@@ -14,19 +14,51 @@ export default function ContactPage() {
 
 function GetInTouch() {
   const [formState, setFormState] = useState({
-    name: ''
+    name: '',
+    email: ''
   });
+  const [errors, setErrors] = useState<{ name?: string; email?: string }>({});
+
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
     setFormState({
       ...formState,
-      [e.target.name]: e.target.value
+      [name]: value
     });
+    if (errors[name as keyof typeof errors]) {
+      setErrors({
+        ...errors,
+        [name]: ''
+      });
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setFormState({ name: '' });
+    const newErrors: { name?: string; email?: string } = {};
+
+    if (!formState.name.trim()) {
+      newErrors.name = 'Name is required';
+    }
+
+    if (!formState.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!validateEmail(formState.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setFormState({ name: '', email: '' });
+    setErrors({});
   };
 
   return (
@@ -47,10 +79,30 @@ function GetInTouch() {
               name="name"
               value={formState.name}
               onChange={handleChange}
-              required
-              className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+              className={`w-full px-4 py-3 bg-itgray border rounded-lg focus:ring-2 focus:border-transparent outline-none transition text-white placeholder-itsilver/50 ${
+                errors.name ? 'border-red-500 focus:ring-red-500' : 'border-itgray2 focus:ring-itred'
+              }`}
               placeholder="Your name"
             />
+            {errors.name && <p className="text-red-500 text-sm mt-2">{errors.name}</p>}
+          </div>
+
+          <div>
+            <label htmlFor="email" className="block text-sm font-semibold text-white mb-3">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formState.email}
+              onChange={handleChange}
+              className={`w-full px-4 py-3 bg-itgray border rounded-lg focus:ring-2 focus:border-transparent outline-none transition text-white placeholder-itsilver/50 ${
+                errors.email ? 'border-red-500 focus:ring-red-500' : 'border-itgray2 focus:ring-itred'
+              }`}
+              placeholder="your@email.com"
+            />
+            {errors.email && <p className="text-red-500 text-sm mt-2">{errors.email}</p>}
           </div>
 
           <button
