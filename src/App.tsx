@@ -593,7 +593,7 @@ function Footer() {
               <li><a href="/services/hardware-network" className="hover:text-itred transition-colors">Hardware & Network Setup</a></li>
               <li>Cloud Solutions</li>
               <li>Custom Development</li>
-              <li>Cybersecurity</li>
+              <li><a href="/services/cybersecurity" className="hover:text-itred transition-colors">Cybersecurity & Protection</a></li>
               <li>IT Consulting</li>
             </ul>
           </div>
