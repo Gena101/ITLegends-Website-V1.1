@@ -11,6 +11,7 @@ export default function HelpdeskPage() {
       <BenefitsSection />
       <ProcessSection />
       <ContentSection />
+      <CTASection />
       <ServiceFooter />
     </div>
   );
@@ -268,6 +269,26 @@ function ContentSection() {
           <p className="text-lg text-itsilver max-w-2xl mx-auto">
             Content coming soon. Our team is preparing comprehensive information about this service.
           </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CTASection() {
+  return (
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itdark">
+      <div className="max-w-3xl mx-auto text-center">
+        <div className="bg-gradient-to-br from-itred/10 to-itblue/10 border border-itred/30 rounded-lg p-12 md:p-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Need reliable helpdesk support?</h2>
+          <p className="text-lg text-itsilver mb-8">We're here to assist your team whenever they need it.</p>
+          <a
+            href="/#contact"
+            className="btn-primary inline-flex items-center justify-center"
+          >
+            Speak to Our Support Team
+            <ChevronRight className="ml-2 h-5 w-5" />
+          </a>
         </div>
       </div>
     </section>
