@@ -607,7 +607,7 @@ function Footer() {
           </div>
         </div>
         <div className="border-t border-itgray2 pt-8 text-center text-itsilver/60">
-          <p>&copy; 2024 IT Legends. All rights reserved.</p>
+          <p>&copy; IT Legends. All rights reserved.</p>
         </div>
       </div>
     </footer>
