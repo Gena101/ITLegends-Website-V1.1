@@ -573,7 +573,7 @@ function Footer() {
               <span className="text-xl font-bold text-white">IT Legends</span>
             </div>
             <p className="text-itsilver">
-              Transforming ideas into digital excellence through innovative technology solutions.
+              Reliable managed IT support, cybersecurity, cloud and network solutions for South African businesses.
             </p>
           </div>
           <div>
