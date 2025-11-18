@@ -306,7 +306,7 @@ function ServiceFooter() {
               <span className="text-xl font-bold text-white">IT Legends</span>
             </a>
             <p className="text-itsilver">
-              Managed IT support for businesses of all sizes.
+              Reliable managed IT support, cybersecurity, cloud and network solutions for South African businesses.
             </p>
           </div>
           <div>
