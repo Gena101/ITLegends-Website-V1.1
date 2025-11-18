@@ -1,4 +1,4 @@
-import { Code, ChevronRight, AlertCircle, CheckCircle, Zap, TrendingUp, DollarSign, Smile } from 'lucide-react';
+import { Code, ChevronRight, AlertCircle, CheckCircle, Zap, TrendingUp, DollarSign, Smile, LogIn, Wrench, CheckSquare } from 'lucide-react';
 import { useState } from 'react';
 
 export default function HelpdeskPage() {
@@ -9,6 +9,7 @@ export default function HelpdeskPage() {
       <PainPointsSection />
       <SolutionSection />
       <BenefitsSection />
+      <ProcessSection />
       <ContentSection />
       <ServiceFooter />
     </div>
@@ -195,9 +196,71 @@ function BenefitsSection() {
   );
 }
 
-function ContentSection() {
+function ProcessSection() {
+  const steps = [
+    {
+      number: '1',
+      title: 'Log',
+      description: 'Your team logs an issue via email, call, or our helpdesk.',
+      icon: LogIn
+    },
+    {
+      number: '2',
+      title: 'Resolve',
+      description: 'We remotely troubleshoot and fix the issue.',
+      icon: Wrench
+    },
+    {
+      number: '3',
+      title: 'Follow Up',
+      description: 'We confirm resolution and prevent repeat problems.',
+      icon: CheckSquare
+    }
+  ];
+
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itdark">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="section-title">Our Process</h2>
+          <div className="section-divider mb-8"></div>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {steps.map((step, index) => {
+            const Icon = step.icon;
+            return (
+              <div key={index} className="relative">
+                <div className="flex flex-col items-center">
+                  <div className="relative z-10 mb-6">
+                    <div className="w-16 h-16 bg-gradient-to-br from-itred to-itred/60 rounded-full flex items-center justify-center border-2 border-itred/30">
+                      <Icon className="h-8 w-8 text-white" />
+                    </div>
+                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-itdark border-2 border-itred rounded-full flex items-center justify-center">
+                      <span className="text-xs font-bold text-itred">{step.number}</span>
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3 text-center">{step.title}</h3>
+                  <p className="text-itsilver text-sm text-center leading-relaxed">{step.description}</p>
+                </div>
+
+                {index < steps.length - 1 && (
+                  <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-gradient-to-r from-itred/50 to-transparent transform -translate-y-1/2 z-0"
+                    style={{ left: '50%', top: '2rem', width: 'calc(100% + 2rem)', transform: 'translateX(calc(50% + 1rem))' }}>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ContentSection() {
+  return (
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itgray">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="section-title">Service Details</h2>
