@@ -581,7 +581,7 @@ function Footer() {
             <ul className="space-y-2 text-itsilver">
               <li><a href="/" className="hover:text-itred transition-colors">Home</a></li>
               <li><a href="/#about" className="hover:text-itred transition-colors">Who We Are</a></li>
-              <li><a href="#why-us" className="hover:text-itred transition-colors">Why Us</a></li>
+              <li><a href="/#services" className="hover:text-itred transition-colors">Our Services</a></li>
               <li><a href="#blog" className="hover:text-itred transition-colors">Blog</a></li>
             </ul>
           </div>
