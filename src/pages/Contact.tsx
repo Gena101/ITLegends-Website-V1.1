@@ -68,120 +68,132 @@ function GetInTouch() {
   };
 
   return (
-    <section id="contact-form" className="py-20 px-4 sm:px-6 lg:px-8 bg-itdark">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl sm:text-5xl font-bold text-white mb-12 text-center">
-          Get in Touch
-        </h2>
+    <section id="contact-form" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-itgray to-itdark">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="section-title">Get in Touch</h2>
+          <div className="section-divider mb-8"></div>
+          <p className="text-lg text-itsilver leading-relaxed max-w-3xl mx-auto">
+            Reach out to IT Legends for proactive support and innovative IT solutions tailored to your business.
+          </p>
+        </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6 mb-16">
-          <div>
-            <label htmlFor="name" className="block text-sm font-semibold text-white mb-3">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formState.name}
-              onChange={handleChange}
-              className={`w-full px-4 py-3 bg-itgray border rounded-lg focus:ring-2 focus:border-transparent outline-none transition text-white placeholder-itsilver/50 ${
-                errors.name ? 'border-red-500 focus:ring-red-500' : 'border-itgray2 focus:ring-itred'
-              }`}
-              placeholder="Your name"
-            />
-            {errors.name && <p className="text-red-500 text-sm mt-2">{errors.name}</p>}
-          </div>
-
-          <div>
-            <label htmlFor="email" className="block text-sm font-semibold text-white mb-3">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formState.email}
-              onChange={handleChange}
-              className={`w-full px-4 py-3 bg-itgray border rounded-lg focus:ring-2 focus:border-transparent outline-none transition text-white placeholder-itsilver/50 ${
-                errors.email ? 'border-red-500 focus:ring-red-500' : 'border-itgray2 focus:ring-itred'
-              }`}
-              placeholder="your@email.com"
-            />
-            {errors.email && <p className="text-red-500 text-sm mt-2">{errors.email}</p>}
-          </div>
-
-          <div>
-            <label htmlFor="phone" className="block text-sm font-semibold text-white mb-3">
-              Phone Number <span className="text-itsilver/60">(optional)</span>
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              value={formState.phone}
-              onChange={handleChange}
-              className={`w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50`}
-              placeholder="+1 (555) 123-4567"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="message" className="block text-sm font-semibold text-white mb-3">
-              Your Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              value={formState.message}
-              onChange={handleChange}
-              rows={6}
-              className={`w-full px-4 py-3 bg-itgray border rounded-lg focus:ring-2 focus:border-transparent outline-none transition text-white placeholder-itsilver/50 resize-none ${
-                errors.message ? 'border-red-500 focus:ring-red-500' : 'border-itgray2 focus:ring-itred'
-              }`}
-              placeholder="Tell us about your IT needs..."
-            />
-            {errors.message && <p className="text-red-500 text-sm mt-2">{errors.message}</p>}
-          </div>
-
-          <button
-            type="submit"
-            className="w-full text-lg px-8 py-4 bg-itblue text-white font-semibold rounded-lg hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-itblue/30"
-          >
-            Send Message
-          </button>
-        </form>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="flex flex-col items-center md:items-start p-6 bg-itgray/50 rounded-lg border border-itgray2 hover:border-itblue/50 transition-colors">
-            <div className="p-3 bg-itblue/20 rounded-lg mb-4">
-              <Mail className="h-6 w-6 text-itblue" />
+        <div className="grid lg:grid-cols-2 gap-12 mb-20">
+          <div className="space-y-8">
+            <div className="flex items-start space-x-4">
+              <div className="w-14 h-14 bg-itblue/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-itblue/30">
+                <Mail className="h-7 w-7 text-itblue" />
+              </div>
+              <div>
+                <div className="font-semibold text-white mb-1 text-lg">Email</div>
+                <a href="mailto:info@itlegends.co.za" className="text-itsilver hover:text-itblue transition-colors text-base">
+                  info@itlegends.co.za
+                </a>
+              </div>
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Email</h3>
-            <a href="mailto:info@itlegends.co.za" className="text-itsilver hover:text-itblue transition-colors">
-              info@itlegends.co.za
-            </a>
+
+            <div className="flex items-start space-x-4">
+              <div className="w-14 h-14 bg-itred/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-itred/30">
+                <Phone className="h-7 w-7 text-itred" />
+              </div>
+              <div>
+                <div className="font-semibold text-white mb-1 text-lg">Phone</div>
+                <a href="tel:+27846348144" className="text-itsilver hover:text-itred transition-colors text-base">
+                  +27 (84) 634 8144
+                </a>
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-4">
+              <div className="w-14 h-14 bg-itblue/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-itblue/30">
+                <MapPin className="h-7 w-7 text-itblue" />
+              </div>
+              <div>
+                <div className="font-semibold text-white mb-1 text-lg">Location</div>
+                <p className="text-itsilver text-base">
+                  Gauteng, South Africa
+                </p>
+              </div>
+            </div>
           </div>
 
-          <div className="flex flex-col items-center md:items-start p-6 bg-itgray/50 rounded-lg border border-itgray2 hover:border-itblue/50 transition-colors">
-            <div className="p-3 bg-itblue/20 rounded-lg mb-4">
-              <Phone className="h-6 w-6 text-itblue" />
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label htmlFor="name" className="block text-sm font-semibold text-white mb-3">
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formState.name}
+                onChange={handleChange}
+                className={`w-full px-4 py-3 bg-itgray border rounded-lg focus:ring-2 focus:border-transparent outline-none transition text-white placeholder-itsilver/50 ${
+                  errors.name ? 'border-red-500 focus:ring-red-500' : 'border-itgray2 focus:ring-itred'
+                }`}
+                placeholder="Your name"
+              />
+              {errors.name && <p className="text-red-500 text-sm mt-2">{errors.name}</p>}
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Phone</h3>
-            <a href="tel:+27846348144" className="text-itsilver hover:text-itblue transition-colors">
-              +27 (84) 634 8144
-            </a>
-          </div>
 
-          <div className="flex flex-col items-center md:items-start p-6 bg-itgray/50 rounded-lg border border-itgray2 hover:border-itblue/50 transition-colors">
-            <div className="p-3 bg-itblue/20 rounded-lg mb-4">
-              <MapPin className="h-6 w-6 text-itblue" />
+            <div>
+              <label htmlFor="email" className="block text-sm font-semibold text-white mb-3">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formState.email}
+                onChange={handleChange}
+                className={`w-full px-4 py-3 bg-itgray border rounded-lg focus:ring-2 focus:border-transparent outline-none transition text-white placeholder-itsilver/50 ${
+                  errors.email ? 'border-red-500 focus:ring-red-500' : 'border-itgray2 focus:ring-itred'
+                }`}
+                placeholder="your@email.com"
+              />
+              {errors.email && <p className="text-red-500 text-sm mt-2">{errors.email}</p>}
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Location</h3>
-            <p className="text-itsilver">
-              Gauteng, South Africa
-            </p>
-          </div>
+
+            <div>
+              <label htmlFor="phone" className="block text-sm font-semibold text-white mb-3">
+                Phone Number <span className="text-itsilver/60">(optional)</span>
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formState.phone}
+                onChange={handleChange}
+                className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+                placeholder="+27 (84) 634 8144"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="message" className="block text-sm font-semibold text-white mb-3">
+                Your Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                value={formState.message}
+                onChange={handleChange}
+                rows={5}
+                className={`w-full px-4 py-3 bg-itgray border rounded-lg focus:ring-2 focus:border-transparent outline-none transition text-white placeholder-itsilver/50 resize-none ${
+                  errors.message ? 'border-red-500 focus:ring-red-500' : 'border-itgray2 focus:ring-itred'
+                }`}
+                placeholder="Tell us about your IT needs..."
+              />
+              {errors.message && <p className="text-red-500 text-sm mt-2">{errors.message}</p>}
+            </div>
+
+            <button
+              type="submit"
+              className="btn-primary w-full text-lg"
+            >
+              Send Message
+            </button>
+          </form>
         </div>
       </div>
     </section>
