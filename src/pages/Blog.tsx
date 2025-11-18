@@ -1,4 +1,4 @@
-import { Code, ChevronRight, Calendar, ArrowRight } from 'lucide-react';
+import { Code } from 'lucide-react';
 import { useState } from 'react';
 
 export default function BlogPage() {
@@ -54,7 +54,7 @@ function Hero() {
         </h1>
 
         <p className="text-lg sm:text-xl text-itsilver mb-12 leading-relaxed max-w-3xl mx-auto">
-          Weekly insights, security tips, and important updates in the IT world.
+          Weekly insights, security alerts, and updates from the IT world.
         </p>
       </div>
     </section>
@@ -62,84 +62,10 @@ function Hero() {
 }
 
 function BlogPosts() {
-  const posts = [
-    {
-      id: 1,
-      title: '5 Essential Cybersecurity Tips for Small Businesses',
-      date: 'November 12, 2024',
-      category: 'Security',
-      teaser: 'Protect your business from cyber threats with these practical security measures that every small business should implement today. Learn about password policies, employee training, and more.'
-    },
-    {
-      id: 2,
-      title: 'Understanding Cloud Migration: A Step-by-Step Guide',
-      date: 'November 8, 2024',
-      category: 'Cloud',
-      teaser: 'Planning to move your infrastructure to the cloud? Learn the key considerations and best practices for a smooth migration process. We cover assessment, planning, and execution.'
-    },
-    {
-      id: 3,
-      title: 'Windows 11 Update Alert: What IT Managers Need to Know',
-      date: 'November 5, 2024',
-      category: 'Updates',
-      teaser: 'Microsoft has released critical security patches. Here is what you need to know about the latest updates and how they affect your systems. Don\'t miss these important changes.'
-    }
-  ];
-
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itdark">
       <div className="max-w-7xl mx-auto">
-        <div className="grid gap-8">
-          {posts.map((post) => (
-            <article
-              key={post.id}
-              className="card-dark group hover:border-itred/50 transition-all duration-300 flex flex-col sm:flex-row gap-6"
-            >
-              <div className="flex-1">
-                <div className="flex items-center space-x-3 mb-4">
-                  <span className="inline-block px-3 py-1 text-xs font-semibold text-itred bg-itred/20 rounded-full border border-itred/30">
-                    {post.category}
-                  </span>
-                  <div className="flex items-center space-x-2 text-sm text-itsilver/70">
-                    <Calendar className="h-4 w-4" />
-                    <span>{post.date}</span>
-                  </div>
-                </div>
 
-                <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 group-hover:text-itred transition-colors">
-                  {post.title}
-                </h2>
-
-                <p className="text-itsilver leading-relaxed mb-6">
-                  {post.teaser}
-                </p>
-
-                <a
-                  href="#"
-                  className="inline-flex items-center text-itred hover:text-itblue font-semibold transition-colors"
-                >
-                  Read Full Article
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
-              </div>
-
-              <div className="w-full sm:w-48 h-40 sm:h-full bg-gradient-to-br from-itblue/20 to-itred/20 rounded-lg flex-shrink-0 border border-itgray2"></div>
-            </article>
-          ))}
-        </div>
-
-        <div className="text-center mt-16">
-          <p className="text-lg text-itsilver mb-8">
-            More posts coming soon. Check back for regular updates!
-          </p>
-          <a
-            href="/"
-            className="btn-primary inline-flex items-center justify-center"
-          >
-            Back to Home
-            <ChevronRight className="ml-2 h-5 w-5" />
-          </a>
-        </div>
       </div>
     </section>
   );
