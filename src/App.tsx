@@ -12,6 +12,7 @@ import BlogPostPage from './pages/BlogPost';
 import BlogPost1Page from './pages/BlogPost1';
 import BlogPost2Page from './pages/BlogPost2';
 import BlogPost3Page from './pages/BlogPost3';
+import ContactPage from './pages/Contact';
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -31,6 +32,7 @@ function App() {
         <Route path="/blog/post-2" element={<BlogPost2Page />} />
         <Route path="/blog/post-3" element={<BlogPost3Page />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </BrowserRouter>
   );
