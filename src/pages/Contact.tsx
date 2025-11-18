@@ -146,7 +146,7 @@ function GetInTouch() {
 
           <button
             type="submit"
-            className="btn-primary w-full text-lg"
+            className="w-full text-lg px-8 py-4 bg-itblue text-white font-semibold rounded-lg hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-itblue/30"
           >
             Send Message
           </button>
