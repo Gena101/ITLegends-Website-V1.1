@@ -1,4 +1,4 @@
-import { Code, ChevronRight } from 'lucide-react';
+import { Code, ChevronRight, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
 
 export default function HelpdeskPage() {
@@ -6,6 +6,7 @@ export default function HelpdeskPage() {
     <div className="min-h-screen bg-itdark text-itsilver">
       <ServiceNavigation />
       <ServiceHero title="Helpdesk & Remote Assistance" subtitle="Fast, friendly support for your team — anytime, anywhere." buttonText="Get Support Now" />
+      <PainPointsSection />
       <ContentSection />
       <ServiceFooter />
     </div>
@@ -72,6 +73,36 @@ function ServiceHero({ title, subtitle, buttonText = "Request a Quote" }: Servic
           {buttonText}
           <ChevronRight className="ml-2 h-5 w-5" />
         </a>
+      </div>
+    </section>
+  );
+}
+
+function PainPointsSection() {
+  const painPoints = [
+    "Staff wasting time trying to fix issues themselves.",
+    "Slow or inconsistent support responses.",
+    "Repeated problems due to lack of proper troubleshooting."
+  ];
+
+  return (
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itgray">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="section-title">Common Pain Points</h2>
+          <div className="section-divider mb-8"></div>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {painPoints.map((point, index) => (
+            <div key={index} className="bg-itdark/50 border border-itgray2 rounded-lg p-8 hover:border-itred/50 transition-colors">
+              <div className="flex items-start">
+                <AlertCircle className="h-6 w-6 text-itred mt-1 mr-4 flex-shrink-0" />
+                <p className="text-itsilver leading-relaxed">{point}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
