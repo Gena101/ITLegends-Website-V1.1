@@ -1,6 +1,7 @@
 import { Code, Calendar, User, ArrowLeft } from 'lucide-react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 export default function BlogPostPage() {
   const { slug } = useParams();
