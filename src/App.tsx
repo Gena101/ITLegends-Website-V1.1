@@ -312,8 +312,10 @@ function WhyPartner() {
   ];
 
   return (
-    <section id="why-us" className="pt-16 pb-16 px-4 sm:px-6 lg:px-8 bg-itdark">
-      <div className="max-w-7xl mx-auto">
+    <section id="why-us" className="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="absolute insert-0 bg-cover bg-centre" style={{ backgroundImage: "url('src/assets/whyus-bg.webp')" }}
+        <div className="absolute insert-0 bg-black/60"></div>
+      <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="section-title">Why Partner With Us</h2>
           <div className="section-divider mb-8"></div>
