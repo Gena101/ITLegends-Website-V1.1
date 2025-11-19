@@ -29,7 +29,7 @@ function App() {
         <Route path="/services/cloud-backup" element={<CloudBackupPage />} />
         <Route path="/services/server-maintenance" element={<ServerMaintenancePage />} />
         <Route path="/services/helpdesk" element={<HelpdeskPage />} />
-        {<Route path="/blog" element={<BlogPage />} />
+        <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/post-1" element={<BlogPost1Page />} />
         <Route path="/blog/post-2" element={<BlogPost2Page />} />
         <Route path="/blog/post-3" element={<BlogPost3Page />} />
