@@ -1,6 +1,7 @@
 import { Menu, X, Code, Cloud, Shield, Zap, Users, TrendingUp, Mail, Phone, MapPin, ChevronRight, Cpu, BookOpen, Calendar, ArrowRight, Check, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import SectionDivider from './components/SectionDivider';
 import ManagedITSupportPage from './pages/ManagedITSupport';
 import HardwareNetworkPage from './pages/HardwareNetwork';
 import CybersecurityPage from './pages/Cybersecurity';
@@ -13,7 +14,7 @@ import BlogPost1Page from './pages/BlogPost1';
 import BlogPost2Page from './pages/BlogPost2';
 import BlogPost3Page from './pages/BlogPost3';
 import ContactPage from './pages/Contact';
-import SectionDivider from './components/SectionDivider';
+
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
