@@ -1,7 +1,6 @@
 import { Menu, X, Code, Cloud, Shield, Zap, Users, TrendingUp, Mail, Phone, MapPin, ChevronRight, Cpu, BookOpen, Calendar, ArrowRight, Check, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import SectionDivider from './components/SectionDivider';
 import ManagedITSupportPage from './pages/ManagedITSupport';
 import HardwareNetworkPage from './pages/HardwareNetwork';
 import CybersecurityPage from './pages/Cybersecurity';
@@ -124,6 +123,15 @@ function Navigation({ mobileMenuOpen, setMobileMenuOpen }: { mobileMenuOpen: boo
         </div>
       )}
     </nav>
+  );
+}
+
+function SectionDivider() { 
+  return ( 
+    <div className="w-full flex justify-center py-8"> 
+      <div className="w-[90%] h-px bg-gradient-to-r from-itred to-itblue">
+        </div>
+      </div> 
   );
 }
 
