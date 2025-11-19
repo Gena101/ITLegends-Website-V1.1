@@ -5,6 +5,8 @@ export default function ManagedITSupportPage() {
   return (
     <div className="min-h-screen bg-itdark text-itsilver">
       <ServiceNavigation />
+      <SectionDivider />
+      
       <ServiceHero />
       <PainPoints />
       <OurSolution />
@@ -43,6 +45,15 @@ function ServiceNavigation() {
         </div>
       </div>
     </nav>
+  );
+}
+
+function SectionDivider() { 
+  return ( 
+    <div className="w-full flex justify-center py-8"> 
+      <div className="w-[90%] h-px bg-gradient-to-r from-itred to-itblue">
+        </div>
+      </div> 
   );
 }
 
