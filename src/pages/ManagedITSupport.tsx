@@ -1,5 +1,6 @@
 import { Code, ChevronRight, AlertCircle, Clock, TrendingUp, Users, CheckCircle, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
+import Footer from '../components/Footer';
 
 export default function ManagedITSupportPage() {
   return (
@@ -22,7 +23,7 @@ export default function ManagedITSupportPage() {
       <SectionDivider />
       
       <FinalCTA />
-      <ServiceFooter />
+      <Footer />
     </div>
   );
 }
