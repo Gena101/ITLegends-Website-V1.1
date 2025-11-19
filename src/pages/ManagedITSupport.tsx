@@ -5,15 +5,22 @@ export default function ManagedITSupportPage() {
   return (
     <div className="min-h-screen bg-itdark text-itsilver">
       <ServiceNavigation />
-      <SectionDivider />
-      
+     
       <ServiceHero />
       <SectionDivider />
       
       <PainPoints />
+      <SectionDivider />
+      
       <OurSolution />
+      <SectionDivider />
+      
       <Benefits />
+      <SectionDivider />
+      
       <Process />
+      <SectionDivider />
+      
       <FinalCTA />
       <ServiceFooter />
     </div>
