@@ -1,5 +1,6 @@
 import { Code, ChevronRight, AlertCircle, CheckCircle, Zap, TrendingUp, Shield, Database, Search, Wrench, Eye } from 'lucide-react';
 import { useState } from 'react';
+import Footer from '../components/Footer';
 
 export default function ServerMaintenancePage() {
   return (
@@ -24,7 +25,7 @@ export default function ServerMaintenancePage() {
       <SectionDivider />
       
       <CallToAction />
-      <ServiceFooter />
+      <Footer />
     </div>
   );
 }
