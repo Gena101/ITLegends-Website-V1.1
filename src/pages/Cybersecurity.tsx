@@ -164,6 +164,7 @@ function ContentSection() {
           </div>
         </div>
       </section>
+      <SectionDivider />
 
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itdark">
         <div className="max-w-7xl mx-auto">
@@ -203,6 +204,7 @@ function ContentSection() {
           </div>
         </div>
       </section>
+      <SectionDivider />
 
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itgray">
         <div className="max-w-7xl mx-auto">
