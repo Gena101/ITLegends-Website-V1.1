@@ -514,8 +514,17 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="pt-16 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-itgray to-itdark">
-      <div className="max-w-7xl mx-auto">
+   <section id="contact" className="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8">
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('src/assets/contact-bg-bg.webp')"
+        }}
+      ></div>
+
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">Let's Build Something Legendary.</h2>
           <div className="section-divider mb-8"></div>
