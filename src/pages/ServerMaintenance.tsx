@@ -6,11 +6,23 @@ export default function ServerMaintenancePage() {
     <div className="min-h-screen bg-itdark text-itsilver">
       <ServiceNavigation />
       <ServiceHero title="Server Maintenance & Monitoring" subtitle="Keep your servers secure, updated, and performing at their best." buttonText="Request a Server Health Check" />
+      <SectionDivider />
+      
       <PainPoints />
+      <SectionDivider />
+      
       <OurSolution />
+      <SectionDivider />
+      
       <Benefits />
+      <SectionDivider />
+      
       <Process />
+      <SectionDivider />
+      
       <ContentSection />
+      <SectionDivider />
+      
       <CallToAction />
       <ServiceFooter />
     </div>
@@ -44,6 +56,15 @@ function ServiceNavigation() {
         </div>
       </div>
     </nav>
+  );
+}
+
+function SectionDivider() { 
+  return ( 
+    <div className="w-full flex justify-center py-8"> 
+      <div className="w-[90%] h-px bg-gradient-to-r from-itred to-itblue">
+        </div>
+      </div> 
   );
 }
 
