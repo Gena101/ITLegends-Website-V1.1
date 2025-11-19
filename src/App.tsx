@@ -7,7 +7,7 @@ import CybersecurityPage from './pages/Cybersecurity';
 import CloudBackupPage from './pages/CloudBackup';
 import ServerMaintenancePage from './pages/ServerMaintenance';
 import HelpdeskPage from './pages/Helpdesk';
-import BlogPage from './pages/Blog';
+{//import BlogPage from './pages/Blog';
 import BlogPostPage from './pages/BlogPost';
 import BlogPost1Page from './pages/BlogPost1';
 import BlogPost2Page from './pages/BlogPost2';
@@ -29,7 +29,7 @@ function App() {
         <Route path="/services/cloud-backup" element={<CloudBackupPage />} />
         <Route path="/services/server-maintenance" element={<ServerMaintenancePage />} />
         <Route path="/services/helpdesk" element={<HelpdeskPage />} />
-        <Route path="/blog" element={<BlogPage />} />
+        {//<Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/post-1" element={<BlogPost1Page />} />
         <Route path="/blog/post-2" element={<BlogPost2Page />} />
         <Route path="/blog/post-3" element={<BlogPost3Page />} />
