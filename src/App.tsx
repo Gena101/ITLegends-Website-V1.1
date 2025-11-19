@@ -7,6 +7,7 @@ import CybersecurityPage from './pages/Cybersecurity';
 import CloudBackupPage from './pages/CloudBackup';
 import ServerMaintenancePage from './pages/ServerMaintenance';
 import HelpdeskPage from './pages/Helpdesk';
+import BlogPage from './pages/Blog';
 import BlogPostPage from './pages/BlogPost';
 import BlogPost1Page from './pages/BlogPost1';
 import BlogPost2Page from './pages/BlogPost2';
@@ -128,7 +129,7 @@ function Navigation({ mobileMenuOpen, setMobileMenuOpen }: { mobileMenuOpen: boo
 
 function SectionDivider() { 
   return ( 
-    <div className="w-full flex justify-center py-0.5 bg-black"> 
+    <div className="w-full flex justify-center py-8"> 
       <div className="w-[90%] h-px bg-gradient-to-r from-itred to-itblue">
         </div>
       </div> 
@@ -137,11 +138,11 @@ function SectionDivider() {
 
 function Hero() {
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-16 pb-16">
+    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-32 pb-32">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('src/assets/hero.webp')"
+          backgroundImage: "url('https://images.pexels.com/photos/3184654/pexels-photo-3184654.jpeg?auto=compress&cs=tinysrgb&w=1600')"
         }}
       ></div>
 
@@ -183,17 +184,8 @@ function Hero() {
 
 function WhoWeAre() {
   return (
-    <section id="who-we-are" className="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: "url('src/assets/who-we-are.webp')"
-        }}
-      ></div>
-
-      <div className="absolute inset-0 bg-black/60"></div>
-
-      <div className="relative z-10 max-w-7xl mx-auto">
+    <section id="who-we-are" className="pt-32 pb-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-itdark to-itgray">
+      <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="section-title">Who We Are</h2>
           <div className="section-divider mb-8"></div>
@@ -247,17 +239,8 @@ function OurServices() {
   ];
 
   return (
-    <section id="services" className="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: "url('src/assets/services-bg.webp')"
-        }}
-      ></div>
-
-      <div className="absolute inset-0 bg-black/60"></div>
-
-      <div className="relative z-10 max-w-7xl mx-auto">
+    <section id="services" className="pt-32 pb-32 px-4 sm:px-6 lg:px-8 bg-itdark">
+      <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="section-title">Our Services</h2>
           <div className="section-divider mb-8"></div>
@@ -311,17 +294,8 @@ function WhyPartner() {
   ];
 
   return (
-    <section id="why-us" className="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: "url('src/assets/whyus-bg.webp')"
-        }}
-      ></div>
-
-      <div className="absolute inset-0 bg-black/60"></div>
-
-      <div className="relative z-10 max-w-7xl mx-auto">
+    <section id="why-us" className="pt-32 pb-32 px-4 sm:px-6 lg:px-8 bg-itdark">
+      <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="section-title">Why Partner With Us</h2>
           <div className="section-divider mb-8"></div>
@@ -350,6 +324,133 @@ function WhyPartner() {
   );
 }
 
+function Blog() {
+  const posts = [
+    {
+      title: 'The Future of Cloud Computing in 2024',
+      excerpt: 'Explore the latest trends in cloud technology and how they are reshaping business infrastructure.',
+      date: 'Mar 15, 2024',
+      category: 'Cloud'
+    },
+    {
+      title: 'AI Integration: A Practical Guide for Businesses',
+      excerpt: 'Learn how to successfully integrate artificial intelligence into your existing workflows and systems.',
+      date: 'Mar 10, 2024',
+      category: 'AI'
+    },
+    {
+      title: 'Cybersecurity Best Practices for 2024',
+      excerpt: 'Essential security measures every organization should implement to protect against modern threats.',
+      date: 'Mar 5, 2024',
+      category: 'Security'
+    }
+  ];
+
+  return (
+    <section id="blog" className="pt-32 pb-32 px-4 sm:px-6 lg:px-8 bg-itdark">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="section-title">Latest Insights</h2>
+          <div className="section-divider mb-8"></div>
+          <p className="text-lg text-itsilver max-w-2xl mx-auto">
+            Stay informed with our latest thoughts on technology trends and best practices
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.map((post, index) => {
+            const isRed = index % 2 === 0;
+            return (
+              <article
+                key={index}
+                className={`card-dark group cursor-pointer overflow-hidden ${isRed ? 'glow-red border-itred/30 hover:border-itred/60' : 'glow-blue border-itblue/30 hover:border-itblue/60'}`}
+              >
+                <div className="h-48 bg-gradient-to-br from-itblue/30 to-itred/30 border-b border-itgray2"></div>
+                <div className="p-6">
+                  <div className={`text-sm font-semibold mb-2 ${isRed ? 'text-itred' : 'text-itblue'}`}>{post.category}</div>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-itred transition-colors">{post.title}</h3>
+                  <p className="text-itsilver mb-4 leading-relaxed text-sm">{post.excerpt}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-itsilver/60">{post.date}</span>
+                    <span className={`font-semibold flex items-center transition-colors text-sm ${isRed ? 'text-itred group-hover:text-itblue' : 'text-itblue group-hover:text-itred'}`}>
+                      Read More
+                      <ChevronRight className="ml-1 h-4 w-4" />
+                    </span>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+function Blog() {
+  const posts = [
+    {
+      title: 'The Future of Cloud Computing in 2024',
+      excerpt: 'Explore the latest trends in cloud technology and how they are reshaping business infrastructure.',
+      date: 'Mar 15, 2024',
+      category: 'Cloud'
+    },
+    {
+      title: 'AI Integration: A Practical Guide for Businesses',
+      excerpt: 'Learn how to successfully integrate artificial intelligence into your existing workflows and systems.',
+      date: 'Mar 10, 2024',
+      category: 'AI'
+    },
+    {
+      title: 'Cybersecurity Best Practices for 2024',
+      excerpt: 'Essential security measures every organization should implement to protect against modern threats.',
+      date: 'Mar 5, 2024',
+      category: 'Security'
+    }
+  ];
+
+  return (
+    <section id="blog" className="pt-16 pb-16 px-4 sm:px-6 lg:px-8 bg-itdark">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="section-title">Latest Insights</h2>
+          <div className="section-divider mb-8"></div>
+          <p className="text-lg text-itsilver max-w-2xl mx-auto">
+            Stay informed with our latest thoughts on technology trends and best practices
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.map((post, index) => {
+            const isRed = index % 2 === 0;
+            return (
+              <article
+                key={index}
+                className={`card-dark group cursor-pointer overflow-hidden ${isRed ? 'glow-red border-itred/30 hover:border-itred/60' : 'glow-blue border-itblue/30 hover:border-itblue/60'}`}
+              >
+                <div className="h-48 bg-gradient-to-br from-itblue/30 to-itred/30 border-b border-itgray2"></div>
+                <div className="p-6">
+                  <div className={`text-sm font-semibold mb-2 ${isRed ? 'text-itred' : 'text-itblue'}`}>{post.category}</div>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-itred transition-colors">{post.title}</h3>
+                  <p className="text-itsilver mb-4 leading-relaxed text-sm">{post.excerpt}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-itsilver/60">{post.date}</span>
+                    <span className={`font-semibold flex items-center transition-colors text-sm ${isRed ? 'text-itred group-hover:text-itblue' : 'text-itblue group-hover:text-itred'}`}>
+                      Read More
+                      <ChevronRight className="ml-1 h-4 w-4" />
+                    </span>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function BlogAndITTips() {
   const blogPosts = [
     {
@@ -370,7 +471,7 @@ function BlogAndITTips() {
   ];
 
   return (
-    <section id="blog-tips" className="pt-16 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-itgray to-itdark">
+    <section id="blog-tips" className="pt-32 pb-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-itgray to-itdark">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center mb-4">
@@ -450,17 +551,8 @@ function Contact() {
   };
 
   return (
-   <section id="contact" className="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: "url('src/assets/contact-bg.webp')"
-        }}
-      ></div>
-
-      <div className="absolute inset-0 bg-black/60"></div>
-
-      <div className="relative z-10 max-w-7xl mx-auto">
+    <section id="contact" className="pt-32 pb-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-itgray to-itdark">
+      <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">Let's Build Something Legendary.</h2>
           <div className="section-divider mb-8"></div>
