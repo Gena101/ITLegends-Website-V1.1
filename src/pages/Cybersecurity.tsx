@@ -1,5 +1,6 @@
 import { Code, ChevronRight, Shield, Network, CheckCircle, AlertCircle, Zap, Lock, Eye } from 'lucide-react';
 import { useState } from 'react';
+import Footer from '../components/Footer';
 
 export default function CybersecurityPage() {
   return (
@@ -12,7 +13,7 @@ export default function CybersecurityPage() {
       <SectionDivider />
       
       <FinalCTA />
-      <ServiceFooter />
+      <Footer />
     </div>
   );
 }
