@@ -127,7 +127,7 @@ function Navigation({ mobileMenuOpen, setMobileMenuOpen }: { mobileMenuOpen: boo
 
 function SectionDivider() {
   return (
-    <div className="w-full flex justify-centre py-8">
+    <div className="w-full flex justify-center py-8">
       <div className="w-[90%] h-px bg-gradient-to-r from-itred to-itblue"></div>
       </div>
   );
