@@ -252,7 +252,7 @@ function OurServices() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/assets/services-bg.webp')"
+          backgroundImage: "url('src/assets/services-bg.webp')"
         }}
       ></div>
 
