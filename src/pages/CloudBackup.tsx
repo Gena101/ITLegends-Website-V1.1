@@ -1,5 +1,6 @@
 import { Code, ChevronRight, Shield, CheckCircle, Globe, RefreshCw, Search, Cog, Lock } from 'lucide-react';
 import { useState } from 'react';
+import Footer from '../components/Footer';
 
 export default function CloudBackupPage() {
   return (
@@ -22,7 +23,7 @@ export default function CloudBackupPage() {
       <SectionDivider />
       
       <CTA />
-      <ServiceFooter />
+      <Footer />
     </div>
   );
 }
