@@ -188,7 +188,7 @@ function WhoWeAre() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/assets/who-we-are.webp')"
+          backgroundImage: "url('src/assets/who-we-are.webp')"
         }}
       ></div>
 
