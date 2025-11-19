@@ -7,7 +7,7 @@ import CybersecurityPage from './pages/Cybersecurity';
 import CloudBackupPage from './pages/CloudBackup';
 import ServerMaintenancePage from './pages/ServerMaintenance';
 import HelpdeskPage from './pages/Helpdesk';
-//import BlogPage from './pages/Blog';
+
 import BlogPostPage from './pages/BlogPost';
 import BlogPost1Page from './pages/BlogPost1';
 import BlogPost2Page from './pages/BlogPost2';
@@ -324,68 +324,6 @@ function WhyPartner() {
   );
 }
 
-function Blog() {
-  const posts = [
-    {
-      title: 'The Future of Cloud Computing in 2024',
-      excerpt: 'Explore the latest trends in cloud technology and how they are reshaping business infrastructure.',
-      date: 'Mar 15, 2024',
-      category: 'Cloud'
-    },
-    {
-      title: 'AI Integration: A Practical Guide for Businesses',
-      excerpt: 'Learn how to successfully integrate artificial intelligence into your existing workflows and systems.',
-      date: 'Mar 10, 2024',
-      category: 'AI'
-    },
-    {
-      title: 'Cybersecurity Best Practices for 2024',
-      excerpt: 'Essential security measures every organization should implement to protect against modern threats.',
-      date: 'Mar 5, 2024',
-      category: 'Security'
-    }
-  ];
-
-  return (
-    <section id="blog" className="pt-32 pb-32 px-4 sm:px-6 lg:px-8 bg-itdark">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="section-title">Latest Insights</h2>
-          <div className="section-divider mb-8"></div>
-          <p className="text-lg text-itsilver max-w-2xl mx-auto">
-            Stay informed with our latest thoughts on technology trends and best practices
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post, index) => {
-            const isRed = index % 2 === 0;
-            return (
-              <article
-                key={index}
-                className={`card-dark group cursor-pointer overflow-hidden ${isRed ? 'glow-red border-itred/30 hover:border-itred/60' : 'glow-blue border-itblue/30 hover:border-itblue/60'}`}
-              >
-                <div className="h-48 bg-gradient-to-br from-itblue/30 to-itred/30 border-b border-itgray2"></div>
-                <div className="p-6">
-                  <div className={`text-sm font-semibold mb-2 ${isRed ? 'text-itred' : 'text-itblue'}`}>{post.category}</div>
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-itred transition-colors">{post.title}</h3>
-                  <p className="text-itsilver mb-4 leading-relaxed text-sm">{post.excerpt}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-itsilver/60">{post.date}</span>
-                    <span className={`font-semibold flex items-center transition-colors text-sm ${isRed ? 'text-itred group-hover:text-itblue' : 'text-itblue group-hover:text-itred'}`}>
-                      Read More
-                      <ChevronRight className="ml-1 h-4 w-4" />
-                    </span>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-} 
 
 function BlogAndITTips() {
   const blogPosts = [
