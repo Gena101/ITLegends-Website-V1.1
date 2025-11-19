@@ -1,5 +1,6 @@
 import { Code, ChevronRight, AlertCircle, CheckCircle, Target, Zap, Wrench } from 'lucide-react';
 import { useState } from 'react';
+import Footer from '../components/Footer';
 
 export default function HardwareNetworkPage() {
   return (
@@ -24,7 +25,7 @@ export default function HardwareNetworkPage() {
       <SectionDivider />
       
       <CTA />
-      <ServiceFooter />
+      <Footer />
     </div>
   );
 }
