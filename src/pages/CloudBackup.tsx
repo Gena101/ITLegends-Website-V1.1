@@ -10,9 +10,17 @@ export default function CloudBackupPage() {
         subtitle="Secure cloud storage and automated backups to protect your business data."
         buttonText="Request a Cloud Consultation"
       />
+      <SectionDivider />
+      
       <ContentSection />
+      <SectionDivider />
+      
       <Benefits />
+      <SectionDivider />
+      
       <Process />
+      <SectionDivider />
+      
       <CTA />
       <ServiceFooter />
     </div>
@@ -46,6 +54,15 @@ function ServiceNavigation() {
         </div>
       </div>
     </nav>
+  );
+}
+
+function SectionDivider() { 
+  return ( 
+    <div className="w-full flex justify-center py-8"> 
+      <div className="w-[90%] h-px bg-gradient-to-r from-itred to-itblue">
+        </div>
+      </div> 
   );
 }
 
