@@ -8,6 +8,8 @@ export default function ManagedITSupportPage() {
       <SectionDivider />
       
       <ServiceHero />
+      <SectionDivider />
+      
       <PainPoints />
       <OurSolution />
       <Benefits />
