@@ -1,5 +1,6 @@
 import { Code, Calendar, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
+import Footer from '../components/Footer';
 
 export default function BlogPage() {
   return (
