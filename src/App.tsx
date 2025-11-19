@@ -176,6 +176,7 @@ function WhoWeAre() {
           </p>
         </div>
       </div>
+      <SectionDivider />
     </section>
   );
 }
