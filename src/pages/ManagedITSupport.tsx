@@ -60,7 +60,7 @@ function ServiceNavigation() {
             <a
               href="/"
               className="block text-itsilver hover:text-itred transition-colors font-medium"
-              onClick={() => setMobileMenuOpen(flase)}
+              onClick={() => setMobileMenuOpen(false)}
             >
               Back to Home
             </a>
