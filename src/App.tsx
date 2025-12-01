@@ -60,15 +60,13 @@ function HomePage({ mobileMenuOpen, setMobileMenuOpen }: { mobileMenuOpen: boole
       {/* Divider between Why Partner With Us and Latest Insights */}
       <SectionDivider />
       
-      <Blog />
-      {/* Divider between Latest Insights and Blog & IT Tips */}
-      <SectionDivider />
-      
       <BlogAndITTips />
       {/* Divider between Blog & IT Tips and Contact */}
       <SectionDivider />
       
       <Contact />
+      <SectionDivider />
+
       <Footer />
     </div>
   );
@@ -82,8 +80,10 @@ function Navigation({ mobileMenuOpen, setMobileMenuOpen }: { mobileMenuOpen: boo
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-2">
-            <Code className="h-8 w-8 text-itred" />
+           <a href="#" className="flex item-center space-x-2">
+            <img src="src/assets/header-img.webp" alt="IT Legends Logo" className="h-10 w-auto" />
             <span className="text-xl font-bold text-white">IT Legends</span>
+           </a>
           </div>
 
           <div className="hidden md:flex space-x-8">
@@ -129,8 +129,8 @@ function Navigation({ mobileMenuOpen, setMobileMenuOpen }: { mobileMenuOpen: boo
 
 function SectionDivider() { 
   return ( 
-    <div className="w-full flex justify-center py-8"> 
-      <div className="w-[90%] h-px bg-gradient-to-r from-itred to-itblue">
+    <div className="w-full flex justify-center py-0.5 bg-transparent"> 
+      <div className="w-[95%] h-px bg-gradient-to-r from-itred to-itblue">
         </div>
       </div> 
   );
@@ -138,11 +138,11 @@ function SectionDivider() {
 
 function Hero() {
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-32 pb-32">
+    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-16 pb-15">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('https://images.pexels.com/photos/3184654/pexels-photo-3184654.jpeg?auto=compress&cs=tinysrgb&w=1600')"
+          backgroundImage: "url('src/assets/hero.webp')"
         }}
       ></div>
 
@@ -150,12 +150,16 @@ function Hero() {
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="flex items-center justify-center mb-6">
-          <Code className="h-12 w-12 text-itred" />
-          <span className="text-2xl font-bold text-white ml-3">IT Legends</span>
+          <img src="src/assets/hero-img.webp" alt="IT Legends Logo" className="h-32 w-auto drop-shadow-[0_0_12px_tgba(255,255,255,0.35)]" />
+          
         </div>
 
         <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 text-glow">
-          Providing You with LEGENDARY I.T. Services.
+          Providing You with{" "}
+          <span className="bg-gradient-to-r from-itred to-itblue text-transparent bg-clip-text drop-shadow-[0_0_6px_rgba(0,0,0,0.7)] ">
+            LEGENDARY
+          </span>{" "}
+           I.T. Services.
         </h1>
 
         <p className="text-lg sm:text-xl text-itsilver mb-12 leading-relaxed">
@@ -172,7 +176,7 @@ function Hero() {
           </a>
           <a
             href="#services"
-            className="btn-secondary inline-flex items-center justify-center"
+            className="inline-flex items-center justify-center px-8 py-4 rounded-lg font-semibold bg-itblue text-white hover:shadow-[0_0_18px_4px_rgba(0,117,255,0.1)]"
           >
             Our Services
           </a>
@@ -184,8 +188,17 @@ function Hero() {
 
 function WhoWeAre() {
   return (
-    <section id="who-we-are" className="pt-32 pb-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-itdark to-itgray">
-      <div className="max-w-7xl mx-auto">
+    <section id="who-we-are" className="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('src/assets/who-we-are.webp')",
+        }}
+      ></div>
+
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="section-title">Who We Are</h2>
           <div className="section-divider mb-8"></div>
@@ -197,6 +210,7 @@ function WhoWeAre() {
     </section>
   );
 }
+
 
 function OurServices() {
   const services = [
@@ -239,8 +253,17 @@ function OurServices() {
   ];
 
   return (
-    <section id="services" className="pt-32 pb-32 px-4 sm:px-6 lg:px-8 bg-itdark">
-      <div className="max-w-7xl mx-auto">
+    <section id="services" className="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('src/assets/services-bg.webp')",
+        }}
+      ></div>
+
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="section-title">Our Services</h2>
           <div className="section-divider mb-8"></div>
@@ -279,23 +302,35 @@ function WhyPartner() {
     {
       icon: Zap,
       title: 'Rapid Response Times',
-      description: 'Our dedicated support team responds to your IT needs within hours, minimizing downtime and keeping your business running.'
+      description:
+        'Our dedicated support team responds to your IT needs within hours, minimizing downtime and keeping your business running.',
     },
     {
       icon: Shield,
       title: 'Certified Technicians',
-      description: 'Industry-certified experts with proven expertise across multiple technology platforms and best practices.'
+      description:
+        'Industry-certified experts with proven expertise across multiple technology platforms and best practices.',
     },
     {
       icon: TrendingUp,
       title: 'Scalable Solutions for All Business Sizes',
-      description: 'From startups to enterprises, our solutions grow with your business, adapting to your evolving needs.'
-    }
+      description:
+        'From startups to enterprises, our solutions grow with your business, adapting to your evolving needs.',
+    },
   ];
 
   return (
-    <section id="why-us" className="pt-32 pb-32 px-4 sm:px-6 lg:px-8 bg-itdark">
-      <div className="max-w-7xl mx-auto">
+    <section id="why-us" className="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('src/assets/whyus-bg.webp')",
+        }}
+      ></div>
+
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="section-title">Why Partner With Us</h2>
           <div className="section-divider mb-8"></div>
@@ -308,9 +343,15 @@ function WhyPartner() {
             return (
               <div
                 key={index}
-                className={`card-dark ${isRed ? 'glow-red border-itred/30' : 'glow-blue border-itblue/30'} flex flex-col items-center text-center`}
+                className={`card-dark ${
+                  isRed ? 'glow-red border-itred/30' : 'glow-blue border-itblue/30'
+                } flex flex-col items-center text-center`}
               >
-                <div className={`w-20 h-20 ${isRed ? 'bg-itred/20 text-itred' : 'bg-itblue/20 text-itblue'} rounded-lg flex items-center justify-center mb-6`}>
+                <div
+                  className={`w-20 h-20 ${
+                    isRed ? 'bg-itred/20 text-itred' : 'bg-itblue/20 text-itblue'
+                  } rounded-lg flex items-center justify-center mb-6`}
+                >
                   <Icon className="h-10 w-10" />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3">{reason.title}</h3>
@@ -324,91 +365,47 @@ function WhyPartner() {
   );
 }
 
-function Blog() {
-  const posts = [
-    {
-      title: 'The Future of Cloud Computing in 2024',
-      excerpt: 'Explore the latest trends in cloud technology and how they are reshaping business infrastructure.',
-      date: 'Mar 15, 2024',
-      category: 'Cloud'
-    },
-    {
-      title: 'AI Integration: A Practical Guide for Businesses',
-      excerpt: 'Learn how to successfully integrate artificial intelligence into your existing workflows and systems.',
-      date: 'Mar 10, 2024',
-      category: 'AI'
-    },
-    {
-      title: 'Cybersecurity Best Practices for 2024',
-      excerpt: 'Essential security measures every organization should implement to protect against modern threats.',
-      date: 'Mar 5, 2024',
-      category: 'Security'
-    }
-  ];
-
-  return (
-    <section id="blog" className="pt-32 pb-32 px-4 sm:px-6 lg:px-8 bg-itdark">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="section-title">Latest Insights</h2>
-          <div className="section-divider mb-8"></div>
-          <p className="text-lg text-itsilver max-w-2xl mx-auto">
-            Stay informed with our latest thoughts on technology trends and best practices
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post, index) => {
-            const isRed = index % 2 === 0;
-            return (
-              <article
-                key={index}
-                className={`card-dark group cursor-pointer overflow-hidden ${isRed ? 'glow-red border-itred/30 hover:border-itred/60' : 'glow-blue border-itblue/30 hover:border-itblue/60'}`}
-              >
-                <div className="h-48 bg-gradient-to-br from-itblue/30 to-itred/30 border-b border-itgray2"></div>
-                <div className="p-6">
-                  <div className={`text-sm font-semibold mb-2 ${isRed ? 'text-itred' : 'text-itblue'}`}>{post.category}</div>
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-itred transition-colors">{post.title}</h3>
-                  <p className="text-itsilver mb-4 leading-relaxed text-sm">{post.excerpt}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-itsilver/60">{post.date}</span>
-                    <span className={`font-semibold flex items-center transition-colors text-sm ${isRed ? 'text-itred group-hover:text-itblue' : 'text-itblue group-hover:text-itred'}`}>
-                      Read More
-                      <ChevronRight className="ml-1 h-4 w-4" />
-                    </span>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function BlogAndITTips() {
   const blogPosts = [
     {
       title: '5 Essential Cybersecurity Tips for Small Businesses',
       date: 'November 12, 2024',
-      snippet: 'Protect your business from cyber threats with these practical security measures that every small business should implement today.'
+      snippet:
+        'Protect your business from cyber threats with these practical security measures that every small business should implement today.',
     },
     {
       title: 'Understanding Cloud Migration: A Step-by-Step Guide',
       date: 'November 8, 2024',
-      snippet: 'Planning to move your infrastructure to the cloud? Learn the key considerations and best practices for a smooth migration process.'
+      snippet:
+        'Planning to move your infrastructure to the cloud? Learn the key considerations and best practices for a smooth migration process.',
     },
     {
       title: 'Windows 11 Update Alert: What IT Managers Need to Know',
       date: 'November 5, 2024',
-      snippet: 'Microsoft has released critical security patches. Here is what you need to know about the latest updates and how they affect your systems.'
-    }
+      snippet:
+        'Microsoft has released critical security patches. Here is what you need to know about the latest updates and how they affect your systems.',
+    },
   ];
 
   return (
-    <section id="blog-tips" className="pt-32 pb-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-itgray to-itdark">
-      <div className="max-w-7xl mx-auto">
+    <section
+      id="blog-tips"
+      className="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
+    >
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('src/assets/services-bg.webp')",
+        }}
+      ></div>
+
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/65"></div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center mb-4">
             <BookOpen className="h-10 w-10 text-itred mr-3" />
@@ -427,13 +424,29 @@ function BlogAndITTips() {
               <a
                 key={index}
                 href="/blog"
-                className={`card-dark group cursor-pointer ${isRed ? 'glow-red border-itred/30 hover:border-itred/60' : 'glow-blue border-itblue/30 hover:border-itblue/60'} block`}
+                className={`card-dark group cursor-pointer ${
+                  isRed
+                    ? 'glow-red border-itred/30 hover:border-itred/60'
+                    : 'glow-blue border-itblue/30 hover:border-itblue/60'
+                } block`}
               >
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className={`w-10 h-10 ${isRed ? 'bg-itred/20' : 'bg-itblue/20'} rounded-lg flex items-center justify-center border ${isRed ? 'border-itred/30' : 'border-itblue/30'}`}>
-                    <Calendar className={`h-5 w-5 ${isRed ? 'text-itred' : 'text-itblue'}`} />
+                  <div
+                    className={`w-10 h-10 ${
+                      isRed ? 'bg-itred/20' : 'bg-itblue/20'
+                    } rounded-lg flex items-center justify-center border ${
+                      isRed ? 'border-itred/30' : 'border-itblue/30'
+                    }`}
+                  >
+                    <Calendar
+                      className={`h-5 w-5 ${
+                        isRed ? 'text-itred' : 'text-itblue'
+                      }`}
+                    />
                   </div>
-                  <span className="text-sm text-itsilver/70">{post.date}</span>
+                  <span className="text-sm text-itsilver/70">
+                    {post.date}
+                  </span>
                 </div>
 
                 <h3 className="text-xl font-bold text-white mb-3 group-hover:text-itred transition-colors">
@@ -444,7 +457,13 @@ function BlogAndITTips() {
                   {post.snippet}
                 </p>
 
-                <span className={`inline-flex items-center font-semibold transition-colors text-sm ${isRed ? 'text-itred group-hover:text-itblue' : 'text-itblue group-hover:text-itred'}`}>
+                <span
+                  className={`inline-flex items-center font-semibold transition-colors text-sm ${
+                    isRed
+                      ? 'text-itred group-hover:text-itblue'
+                      : 'text-itblue group-hover:text-itred'
+                  }`}
+                >
                   Read Full Article
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </span>
@@ -453,7 +472,7 @@ function BlogAndITTips() {
           })}
         </div>
 
-        <div className="text-center">
+        <div className="text-center mb-10">
           <a
             href="/blog"
             className="btn-primary inline-flex items-center justify-center"
@@ -466,6 +485,7 @@ function BlogAndITTips() {
     </section>
   );
 }
+
 
 function Contact() {
   const [formState, setFormState] = useState({
@@ -487,52 +507,92 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="pt-32 pb-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-itgray to-itdark">
-      <div className="max-w-7xl mx-auto">
+    <section
+      id="contact"
+      className="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
+    >
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('src/assets/contact-bg.webp')"
+        }}
+      ></div>
+
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">Let's Build Something Legendary.</h2>
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+            Let's Build Something Legendary.
+          </h2>
           <div className="section-divider mb-8"></div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
+          {/* Contact Details */}
           <div className="space-y-8">
             <div>
+              {/* Phone */}
               <div className="flex items-start space-x-4 mb-6">
                 <div className="w-14 h-14 bg-itred/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-itred/30">
                   <Phone className="h-7 w-7 text-itred" />
                 </div>
                 <div>
-                  <div className="font-semibold text-white mb-1 text-lg">Phone</div>
-                  <div className="text-itsilver text-base">+1 (555) 123-4567</div>
+                  <div className="font-semibold text-white mb-1 text-lg">
+                    Phone
+                  </div>
+                  <div className="text-itsilver text-base">
+                    +27 (84) 634-8144
+                  </div>
                 </div>
               </div>
 
+              {/* Email */}
               <div className="flex items-start space-x-4 mb-6">
                 <div className="w-14 h-14 bg-itblue/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-itblue/30">
                   <Mail className="h-7 w-7 text-itblue" />
                 </div>
                 <div>
-                  <div className="font-semibold text-white mb-1 text-lg">Email</div>
-                  <div className="text-itsilver text-base">contact@itlegends.com</div>
+                  <div className="font-semibold text-white mb-1 text-lg">
+                    Email
+                  </div>
+                  <div className="text-itsilver text-base">
+                    info@itlegends.com
+                  </div>
                 </div>
               </div>
 
+              {/* Location */}
               <div className="flex items-start space-x-4">
                 <div className="w-14 h-14 bg-itred/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-itred/30">
                   <MapPin className="h-7 w-7 text-itred" />
                 </div>
                 <div>
-                  <div className="font-semibold text-white mb-1 text-lg">Location</div>
-                  <div className="text-itsilver text-base">123 Tech Street, Suite 100<br />San Francisco, CA 94105</div>
+                  <div className="font-semibold text-white mb-1 text-lg">
+                    Location
+                  </div>
+                  <div className="text-itsilver text-base">
+                    Gauteng,
+                    <br />
+                    South Africa
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
+          {/* Contact Form */}
           <div>
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Name */}
               <div>
-                <label htmlFor="name" className="block text-sm font-semibold text-white mb-3">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-semibold text-white mb-3"
+                >
                   Name
                 </label>
                 <input
@@ -547,8 +607,12 @@ function Contact() {
                 />
               </div>
 
+              {/* Email */}
               <div>
-                <label htmlFor="email" className="block text-sm font-semibold text-white mb-3">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-semibold text-white mb-3"
+                >
                   Email
                 </label>
                 <input
@@ -563,8 +627,12 @@ function Contact() {
                 />
               </div>
 
+              {/* Message */}
               <div>
-                <label htmlFor="message" className="block text-sm font-semibold text-white mb-3">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-semibold text-white mb-3"
+                >
                   Message
                 </label>
                 <textarea
@@ -579,6 +647,7 @@ function Contact() {
                 ></textarea>
               </div>
 
+              {/* Submit */}
               <button
                 type="submit"
                 className="btn-primary w-full text-lg"
@@ -592,5 +661,6 @@ function Contact() {
     </section>
   );
 }
+
 
 export default App;
