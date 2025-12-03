@@ -1,4 +1,4 @@
-import { Code, ChevronRight, AlertCircle, CheckCircle, Zap, TrendingUp, Shield, Database, Search, Wrench, Eye } from 'lucide-react';
+import { Code, ChevronRight, AlertCircle, CheckCircle, Server, Activity, Clock, Zap, TrendingUp, Shield, Database, Search, Wrench, Eye } from 'lucide-react';
 import { useState } from 'react';
 import Footer from '../components/Footer';
 
@@ -32,15 +32,16 @@ export default function ServerMaintenancePage() {
 
 function ServiceNavigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  return (
+return (
     <nav className="fixed top-0 w-full tech-glass z-50 border-b border-itgray2">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <a href="/" className="flex items-center space-x-2">
-            <Code className="h-8 w-8 text-itred" />
+          <div className="flex items-center space-x-2">
+          <a href="#" className="flex items-center space-x-2">
+            <img src="/src/assets/header-img.webp" alt="IT Legends Logo" className="h-10 w-auto" />
             <span className="text-xl font-bold text-white">IT Legends</span>
           </a>
+        </div>
 
           <div className="hidden md:flex space-x-8">
             <a href="/" className="text-itsilver hover:text-itred transition-colors font-medium">
@@ -56,16 +57,28 @@ function ServiceNavigation() {
           </button>
         </div>
       </div>
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-itgray border-t border-itgray2">
+          <div className="px-4 py-4">
+            <a
+              href="/"
+              className="block text-itsilver hover:text-itred transition-colors font-medium"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Back to Home
+            </a>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
 
 function SectionDivider() { 
   return ( 
-    <div className="w-full flex justify-center py-8"> 
-      <div className="w-[90%] h-px bg-gradient-to-r from-itred to-itblue">
-        </div>
-      </div> 
+    <div className="w-full flex justify-center py-0.5 bg-transparent"> 
+      <div className="w-[95%] h-px bg-gradient-to-r from-itred to-itblue"/>
+    </div> 
   );
 }
 
@@ -77,49 +90,68 @@ interface ServiceHeroProps {
 
 function ServiceHero({ title, subtitle, buttonText = "Request a Quote" }: ServiceHeroProps) {
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-16">
-      <div className="absolute inset-0 bg-gradient-to-br from-itdark via-itgray to-itdark"></div>
+    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-20 pb-16">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/src/assets/server-maintenance-hero.webp')"
+        }}
+      ></div>
 
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-itred/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-itblue/5 rounded-full blur-3xl"></div>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* Content */}
+      <div className="relative z-10 max-w-5xl mx-auto text-center px-4">
         <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 text-glow">
-          {title}
+          Server Maintenance & Monitoring
         </h1>
 
         <p className="text-lg sm:text-xl text-itsilver mb-12 leading-relaxed">
-          {subtitle}
+          Proactive server health, patching, and monitoring to keep your core systems secure, stable, and always available.
         </p>
 
         <a
           href="/#contact"
           className="btn-primary inline-flex items-center justify-center"
         >
-          {buttonText}
+          Stabilise My Servers
           <ChevronRight className="ml-2 h-5 w-5" />
         </a>
       </div>
     </section>
-  );
+  );    
 }
 
 function PainPoints() {
   const painPoints = [
-    'Slow server performance causing delays and downtime.',
-    'Outdated patches and missed updates exposing security risks.',
-    'No proactive monitoring to detect issues early.'
+    'Server going down unexpectedly during business hours.',
+    'Patches and security updates applied late - or not al all.',
+    'No central visibility into CPU, RAM, disk, and service health.',
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itdark">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/src/assets/server-maintenance-painpoints.webp')"
+        }}
+      ></div>
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/40"></div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="section-title">Common Pain Points</h2>
           <div className="section-divider mb-8"></div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid mb:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {painPoints.map((point, index) => (
             <div
               key={index}
@@ -134,21 +166,33 @@ function PainPoints() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
 function OurSolution() {
   const solutions = [
-    'Proactive server monitoring to detect performance or security issues.',
-    'Regular updates, patching, and optimisation.',
-    'Backup verification and uptime checks for critical systems.'
+    '24/7 monitoring of critical metrics like uptime, performance, and disk capacity.',
+    'Structured patch management schedules to keep servers secure and compliant.',
+    'Proactive issue resolution before users feel the impact.',
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-itdark to-itgray">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/src/assets/server-maintenance-solution.webp')"
+        }}
+      ></div>
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="section-title">Our Solution</h2>
+          <h2 className="section-title">Our Solutions</h2>
           <div className="section-divider mb-8"></div>
         </div>
 
@@ -159,7 +203,9 @@ function OurSolution() {
               className="card-dark glow-blue border-itblue/30 flex flex-col items-center text-center"
             >
               <div className="w-12 h-12 bg-itblue/20 rounded-full flex items-center justify-center mb-4">
-                <CheckCircle className="h-6 w-6 text-itblue" />
+                {index === 0 && <Activity className="h-6 w-6 text-itblue" />}
+                {index === 1 && <Shield className="h-6 w-6 text-itblue" />}
+                {index === 2 && <Clock className="h6 w-6 text-itblue" />}
               </div>
               <p className="text-itsilver text-base leading-relaxed">{solution}</p>
             </div>
@@ -173,49 +219,70 @@ function OurSolution() {
 function Benefits() {
   const benefits = [
     {
-      title: 'Improved Performance',
-      description: 'Optimised servers keep your business running smoothly.',
-      icon: Zap
+      title: 'Higher Uptime',
+      description: 'Proactive monitoring and intervention keep your servers online when your staff and customers need them most.',
     },
     {
-      title: 'Increased Uptime',
-      description: 'Proactive maintenance prevents costly downtime.',
-      icon: TrendingUp
+      title: 'Improved Security',
+      description: 'Timely patching and configuration hardening reduce vulnerabilities and attack surfaces.',
     },
     {
-      title: 'Better Security',
-      description: 'Regular patching reduces vulnerabilities.',
-      icon: Shield
+      title: 'Performance Visibility',
+      description: 'Clear insight into bottlenecks helps you plan upgrades before performance becomes a problem.',
     },
     {
-      title: 'Reliable Backups',
-      description: 'We ensure your server data is always recoverable.',
-      icon: Database
+      title: 'Predictable Support',
+      description: 'Maintenance windows and communication plans ensure your team always knows what is happening.',
     }
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itdark">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Background image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/src/assets/server-maintenance-benefits.webp')"
+        }}
+      ></div>
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="section-title">Benefits</h2>
+          <h2 className="section-title">Key Benefits</h2>
           <div className="section-divider mb-8"></div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {benefits.map((benefit, index) => {
-            const Icon = benefit.icon;
             const isRed = index % 2 === 0;
             return (
-              <div
+              <div 
                 key={index}
-                className={`card-dark ${isRed ? 'glow-red border-itred/30' : 'glow-blue border-itblue/30'} flex flex-col items-center text-center`}
+                className={`card-dark ${
+                  isRed ? 'glow-red border-itred/30' : 'glow-blue border-itblue/30'
+                } flex flex-col items-center text-center`}
               >
-                <div className={`w-12 h-12 ${isRed ? 'bg-itred/20' : 'bg-itblue/20'} rounded-full flex items-center justify-center mb-4`}>
-                  <Icon className={`h-6 w-6 ${isRed ? 'text-itred' : 'text-itblue'}`} />
+                <div
+                  className={`w-12 h-12 ${
+                    isRed ? 'bg-itred/20' : 'bg-itblue/20'
+                  } rounded-full flex items-center justify-center mb-4`}
+                >
+                  <CheckCircle
+                    className={`h-6 w-6 ${
+                      isRed ? 'text-itred' : 'text-itblue'
+                    }`}
+                  />   
                 </div>
-                <h3 className="text-lg font-bold text-white mb-3">{benefit.title}</h3>
-                <p className="text-itsilver text-sm leading-relaxed">{benefit.description}</p>
+                <h3 className="text-lg font-bold text-white mb-3">
+                  {benefit.title}  
+                </h3>         
+                <p className="text-itsilver text-sm leading-relaxed">
+                  {benefit.description}
+                </p>
               </div>
             );
           })}
@@ -228,55 +295,89 @@ function Benefits() {
 function Process() {
   const steps = [
     {
-      title: 'Audit',
-      description: 'We perform a full health check of your servers.',
-      icon: Search
+      number: 1,
+      title: 'Baseline & Audit',
+      description: 'We document your existing servers, roles, workloads, and current risks.',
     },
     {
-      title: 'Optimise',
-      description: 'We apply patches, updates, and performance improvements.',
-      icon: Wrench
+      number: 2,
+      title: 'Stabilise & Secure',
+      description: 'We apply patches, fix urgent issues, and harden configurations.',
     },
     {
-      title: 'Monitor',
-      description: 'We continuously monitor and maintain your servers.',
-      icon: Eye
+      number: 3,
+      title: 'Monitor & Optimise',
+      description: 'We continuously monitor, report, and fine-tune performance and capacity.',
     }
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-itgray to-itdark">
-      <div className="max-w-7xl mx-auto">
+    <section
+      id="process"
+      className="relative py-20 px-4 sm:px-6 lg_px-8 overflow-hidden"
+    >
+      {/* Background image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/src/assets/server-maintenance-process.webp')"
+        }}
+      ></div>
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="section-title">Our Process</h2>
           <div className="section-divider mb-8"></div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {steps.map((step, index) => {
-            const Icon = step.icon;
-            return (
+        <div className="max-w-5xl mx-auto">
+          {/* Desktop */}
+          <div className="hidden md:grid md:grid-cols-3 gap-8">
+            {steps.map((step, index) => (
               <div key={index} className="relative">
-                <div className="card-dark glow-blue border-itblue/30 flex flex-col items-center text-center">
-                  <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-itblue rounded-full flex items-center justify-center border-4 border-itdark">
-                    <span className="text-white font-bold">{index + 1}</span>
-                  </div>
-                  <div className="pt-8 pb-2">
-                    <div className="w-12 h-12 bg-itblue/20 rounded-full flex items-center justify-center mb-4 mx-auto">
-                      <Icon className="h-6 w-6 text-itblue" />
-                    </div>
-                    <h3 className="text-lg font-bold text-white mb-3">{step.title}</h3>
-                    <p className="text-itsilver text-sm leading-relaxed">{step.description}</p>
-                  </div>
-                </div>
                 {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
-                    <ChevronRight className="h-6 w-6 text-itblue/50" />
-                  </div>
+                  <div className="hidden md:block absolute top-12 left-1/2 w-full h-1 bg-gradient-to-r from-itred to-transparent transform translate-y-0"></div>
                 )}
+                <div className="card-dark glow-red border-itred/30 relative">
+                  <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gradient-to-br from-itred to-itblue rounded-lg flex items-center justify-center text-white font-bold text-xl1">
+                    {step.number}
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3 mt-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-itsilver leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
               </div>
-            );
-          })}
+            ))}
+          </div>
+
+          {/* Mobile */}
+          <div className="md:hidden space-y-6">
+            {steps.map((step, index) => (
+              <div key={index} className="relative">
+                {index < steps.length - 1 && (
+                  <div className="absolute left-6 top-12 w-1 h-6 bg-gradient-to-b from-itred to-transparent"></div>
+                )}
+                <div className="card-dark glow-red border-itred/30 relative pl-16">
+                  <div className="absolute -left-6 -top-6 w-12 h-12 bg-gradient-to-br from-itred to-itblue rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                    {step.number}
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3">
+                    {step.title}
+                  </h3>
+                  <p className="text-itsilver leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -284,17 +385,48 @@ function Process() {
 }
 
 function ContentSection() {
+  const detailGroups = [
+  {
+      title: 'Server Types We Support',
+      items: [
+        'Windows Server (AD, file, print, application roles)',
+        'Linux servers for applications, web, and databases',
+        'On-premises, virtualised, and hybrid environments',
+      ],
+    },
+    {
+      title: 'Maintenance & Monitoring',
+      items: [
+        'Patch management planning and deployment',
+        'Performance monitoring (CPU, RAM, I/O, services)',
+        'Log review and alerting on critical events',
+      ],
+    },
+    {
+      title: 'Stability & Recovery',
+      items: [
+        'Capacity planning and hardware lifecycle guidance',
+        'Backup and restore coordination with your backup solution',
+        'Disaster recovery planning input for server workloads',
+      ],
+    },
+  ];
+
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itdark">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="section-title">Service Details</h2>
-          <div className="section-divider mb-8"></div>
-          <p className="text-lg text-itsilver max-w-2xl mx-auto">
-            Content coming soon. Our team is preparing comprehensive information about this service.
-          </p>
-        </div>
-      </div>
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/src/assets/server-maintenance-details.webp')"
+        }}
+      ></div>
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      {/* Content */}
+      
     </section>
   );
 }

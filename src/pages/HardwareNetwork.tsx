@@ -32,8 +32,7 @@ export default function HardwareNetworkPage() {
 
 function ServiceNavigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  return (
+return (
     <nav className="fixed top-0 w-full tech-glass z-50 border-b border-itgray2">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
@@ -58,7 +57,6 @@ function ServiceNavigation() {
           </button>
         </div>
       </div>
-
       {mobileMenuOpen && (
         <div className="md:hidden bg-itgray border-t border-itgray2">
           <div className="px-4 py-4">
@@ -70,7 +68,7 @@ function ServiceNavigation() {
               Back to Home
             </a>
           </div>
-        </div>        
+        </div>
       )}
     </nav>
   );
