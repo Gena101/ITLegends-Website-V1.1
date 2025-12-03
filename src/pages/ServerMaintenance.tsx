@@ -1,5 +1,5 @@
 import { Code, ChevronRight, AlertCircle, CheckCircle, Server, Activity, Clock, Zap, TrendingUp, Shield, Database, Search, Wrench, Eye } from 'lucide-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Footer from '../components/Footer';
 
 export default function ServerMaintenancePage() {
@@ -426,34 +426,174 @@ function ContentSection() {
       <div className="absolute inset-0 bg-black/60"></div>
 
       {/* Content */}
-      
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="section-title">Service Details</h2>
+          <div className="section-divider mb-8"></div>
+          <p className="text-lg test-itsilver max-w-3xl mx-auto">
+            Our Server Maintenance & Monitoring service is designed to give you the stability and insight you need around your most critical systems.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {detailGroups.map((group, index) => (
+            <div 
+              key={index}
+              className="card-dark glow-blue border-itblue/30 h-full"
+            >
+             <h3 className="text-xl font-bold text-white mb-4">
+              {group.title}
+             </h3>
+             <ul className="space-y-3 text-itsilver text-sm leading-relaxed">
+              {group.items.map((item, idx) => (
+                <li key={idx} className="flex items-start space-x-2">
+                  <span className="mt-1 h-2 w-2 rounded-full bg-itblue" />
+                  <span>{item}</span>
+                </li>
+              ))}
+             </ul>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
 
 function CallToAction() {
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    company: '',
+    message: '',
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setFormState({
+      ...formState,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormState({ name: '', email: '', company: '', message: '' });
+  };
+
   return (
-    <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-itgray via-itdark to-itgray overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-itblue/5 to-itred/5"></div>
-      <div className="absolute top-1/2 left-1/4 w-80 h-80 bg-itblue/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-itred/10 rounded-full blur-3xl"></div>
+    <section
+      id="contact"
+      className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+    >
+      {/* Background image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/src/assets/contact-bg.webp')"
+        }}
+      ></div>
 
-      <div className="relative z-10 max-w-3xl mx-auto text-center">
-        <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6 leading-tight">
-          Keep your servers running at peak performance.
-        </h2>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
 
-        <p className="text-lg sm:text-xl text-itsilver mb-10 leading-relaxed">
-          Let's maintain and monitor your entire server environment.
-        </p>
+      {/* Content */}
+      <div className="relative z-10 max-w-4xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+            Ready to Stabilise your Servers?
+          </h2>
+          <div className="section-divider mb-8"></div>
+          <p className="text-lg text-itsilver">
+            Tell us about your current server environment and challenges. We`ll help you design a maintenance and monitoring plan that keeps everything running smoothly.
+          </p>
+        </div>
 
-        <a
-          href="/#contact"
-          className="btn-primary inline-flex items-center justify-center"
-        >
-          Schedule a Maintenance Review
-          <ChevronRight className="ml-2 h-5 w-5" />
-        </a>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <label
+                htmlFor="name"
+                className="block text-sm font-semibold text-white mb-3"
+              >
+                Full Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formState.name}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+                placeholder="Your name"
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-semibold text-white mb-3"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formState.email}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+                placeholder="your@email.com"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label
+              htmlFor="company"
+              className="block text-sm font-semibold text-white mb-3"
+            >
+              Company
+            </label>
+            <input
+              type="text"
+              id="company"
+              name="company"
+              value={formState.company}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+              placeholder="Your company name"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="message"
+              className="block text-sm font-semibold text-white mb-3"
+            >
+              Tell us about your servers
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={formState.message}
+              onChange={handleChange}
+              required
+              rows={5}
+              className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition resize-none text-white placeholder-itsilver/50"
+              placeholder="How many servers do you have, what do they run, and what issues are you currently seeing?"
+            ></textarea>
+          </div>
+
+          <button type="submit" className="btn-primary w-full text-lg">
+            Request a Server Health Check
+            <ChevronRight className="ml-2 h-5 w-5" />
+          </button>
+        </form>
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
-import { Code, ChevronRight, Shield, Network, CheckCircle, AlertCircle, Zap, Lock, Eye } from 'lucide-react';
-import { useState } from 'react';
+import { Code, ChevronRight, Shield, Network, CheckCircle, AlertCircle, Zap, Lock, Bug, Activity, Eye } from 'lucide-react';
+import React, { useState } from 'react';
 import Footer from '../components/Footer';
 
 export default function CybersecurityPage() {
@@ -8,8 +8,17 @@ export default function CybersecurityPage() {
       <ServiceNavigation />
       <ServiceHero title="Cybersecurity & Protection" subtitle="Shield your business from cyber threats, data breaches, and ransomware." buttonText="Request a Security Assessment" />
       <SectionDivider />
-      
-      <ContentSection />
+
+      <PainPoints />
+      <SectionDivider />
+
+      <OurSolution />
+      <SectionDivider />
+
+      <Benefits />
+      <SectionDivider />
+
+      <Process />
       <SectionDivider />
       
       <FinalCTA />
@@ -25,10 +34,12 @@ function ServiceNavigation() {
     <nav className="fixed top-0 w-full tech-glass z-50 border-b border-itgray2">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <a href="/" className="flex items-center space-x-2">
-            <Code className="h-8 w-8 text-itred" />
+          <div className="flex items-center space-x-2">
+          <a href="#" className="flex items-center space-x-2">
+            <img src="/src/assets/header-img.webp" alt="IT Legends Logo" className="h-10 w-auto" />
             <span className="text-xl font-bold text-white">IT Legends</span>
           </a>
+        </div>
 
           <div className="hidden md:flex space-x-8">
             <a href="/" className="text-itsilver hover:text-itred transition-colors font-medium">
@@ -44,16 +55,28 @@ function ServiceNavigation() {
           </button>
         </div>
       </div>
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-itgray border-t border-itgray2">
+          <div className="px-4 py-4">
+            <a
+              href="/"
+              className="block text-itsilver hover:text-itred transition-colors font-medium"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Back to Home
+            </a>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
 
 function SectionDivider() { 
   return ( 
-    <div className="w-full flex justify-center py-8"> 
-      <div className="w-[90%] h-px bg-gradient-to-r from-itred to-itblue">
-        </div>
-      </div> 
+    <div className="w-full flex justify-center py-0.5 bg-transparent"> 
+      <div className="w-[95%] h-px bg-gradient-to-r from-itred to-itblue"/>
+    </div> 
   );
 }
 
@@ -65,26 +88,33 @@ interface ServiceHeroProps {
 
 function ServiceHero({ title, subtitle, buttonText = "Request a Quote" }: ServiceHeroProps) {
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-16">
-      <div className="absolute inset-0 bg-gradient-to-br from-itdark via-itgray to-itdark"></div>
+    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-20 pb-16">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/src/assets/cybersecurity-hero.webp')"
+        }}
+      ></div>
 
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-itred/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-itblue/5 rounded-full blur-3xl"></div>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/65"></div>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* Content */}
+      <div className="relative z-10 max-w-5xl mx-auto text-center px-4">
         <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 text-glow">
-          {title}
+          Cybersecurity & Protection
         </h1>
 
-        <p className="text-lg sm:text-xl text-itsilver mb-12 leading-relaxed">
-          {subtitle}
+        <p className="text-lg sm:text-xl text-itseilver mb-12 leading-relaxed">
+          Shielding your business from ransomware, phising, and data breaches with layered, proactive security.
         </p>
 
-        <a
+        <a 
           href="/#contact"
           className="btn-primary inline-flex items-center justify-center"
         >
-          {buttonText}
+          Secure My Business
           <ChevronRight className="ml-2 h-5 w-5" />
         </a>
       </div>
@@ -92,205 +122,402 @@ function ServiceHero({ title, subtitle, buttonText = "Request a Quote" }: Servic
   );
 }
 
-function ContentSection() {
+function PainPoints() {
+  const painPoints = [
+    'Staff receiving suspicious emails and not knowing what to do.',
+    'No clear visibility into security risks across devices and users.',
+    'Unpatched systems and weak passwords increasing your attack surface.',
+  ];
+
   return (
-    <>
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itdark">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="section-title">Pain Points</h2>
-            <div className="section-divider mb-8"></div>
-          </div>
-          <div className="grid md:grid-cols-1 gap-8 max-w-3xl mx-auto">
-            <div className="bg-itgray/30 border border-itgray2 rounded-lg p-6">
-              <div className="flex gap-4">
-                <div className="text-itred text-2xl font-bold flex-shrink-0">•</div>
-                <p className="text-itsilver text-lg leading-relaxed">
-                  Increased cyberattacks targeting SMEs in South Africa.
-                </p>
-              </div>
-            </div>
-            <div className="bg-itgray/30 border border-itgray2 rounded-lg p-6">
-              <div className="flex gap-4">
-                <div className="text-itred text-2xl font-bold flex-shrink-0">•</div>
-                <p className="text-itsilver text-lg leading-relaxed">
-                  Weak passwords and outdated software creating vulnerabilities.
-                </p>
-              </div>
-            </div>
-            <div className="bg-itgray/30 border border-itgray2 rounded-lg p-6">
-              <div className="flex gap-4">
-                <div className="text-itred text-2xl font-bold flex-shrink-0">•</div>
-                <p className="text-itsilver text-lg leading-relaxed">
-                  No real visibility into threats until it's too late.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <SectionDivider />
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/src/assets/cybersecurity-painpoints.webp')"
+        }}
+      ></div>
 
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itgray">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="section-title">Our Solution</h2>
-            <div className="section-divider mb-8"></div>
-          </div>
-          <div className="grid md:grid-cols-1 gap-8 max-w-3xl mx-auto">
-            <div className="bg-itdark border border-itgray2 rounded-lg p-6">
-              <div className="flex gap-4">
-                <div className="text-itblue text-2xl font-bold flex-shrink-0">•</div>
-                <p className="text-itsilver text-lg leading-relaxed">
-                  Advanced endpoint protection against malware and ransomware.
-                </p>
-              </div>
-            </div>
-            <div className="bg-itdark border border-itgray2 rounded-lg p-6">
-              <div className="flex gap-4">
-                <div className="text-itblue text-2xl font-bold flex-shrink-0">•</div>
-                <p className="text-itsilver text-lg leading-relaxed">
-                  Firewalls, intrusion detection, and secure network configuration.
-                </p>
-              </div>
-            </div>
-            <div className="bg-itdark border border-itgray2 rounded-lg p-6">
-              <div className="flex gap-4">
-                <div className="text-itblue text-2xl font-bold flex-shrink-0">•</div>
-                <p className="text-itsilver text-lg leading-relaxed">
-                  Ongoing monitoring, patching, and cybersecurity best practices.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <SectionDivider />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
 
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itdark">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="section-title">Benefits</h2>
-            <div className="section-divider mb-8"></div>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-itgray/30 border border-itgray2 rounded-lg p-8 hover:border-itblue transition-colors">
-              <Shield className="h-12 w-12 text-itblue mb-4" />
-              <h3 className="text-xl font-bold text-white mb-3">Strong Protection</h3>
-              <p className="text-itsilver">
-                Defend your business from modern cyber threats.
-              </p>
-            </div>
-            <div className="bg-itgray/30 border border-itgray2 rounded-lg p-8 hover:border-itblue transition-colors">
-              <Network className="h-12 w-12 text-itblue mb-4" />
-              <h3 className="text-xl font-bold text-white mb-3">Secure Network</h3>
-              <p className="text-itsilver">
-                Professional configuration reduces risk exposure.
-              </p>
-            </div>
-            <div className="bg-itgray/30 border border-itgray2 rounded-lg p-8 hover:border-itblue transition-colors">
-              <CheckCircle className="h-12 w-12 text-itblue mb-4" />
-              <h3 className="text-xl font-bold text-white mb-3">Compliance Ready</h3>
-              <p className="text-itsilver">
-                Meet security requirements and safeguard client data.
-              </p>
-            </div>
-            <div className="bg-itgray/30 border border-itgray2 rounded-lg p-8 hover:border-itblue transition-colors">
-              <AlertCircle className="h-12 w-12 text-itblue mb-4" />
-              <h3 className="text-xl font-bold text-white mb-3">Real-Time Monitoring</h3>
-              <p className="text-itsilver">
-                Instant alerts and proactive threat prevention.
-              </p>
-            </div>
-          </div>
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="section-title">Common Cybersecurity Pain Points</h2>
+          <div className="section-divider mb-8"></div>
         </div>
-      </section>
-      <SectionDivider />
 
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itgray">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="section-title">Our Process</h2>
-            <div className="section-divider mb-8"></div>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="relative">
-              <div className="bg-itdark border border-itgray2 rounded-lg p-8 h-full">
-                <div className="flex items-center justify-center w-14 h-14 rounded-full bg-itblue/20 mb-6">
-                  <Zap className="h-7 w-7 text-itblue" />
+        <div className="grid mb:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {painPoints.map((point, index) => (
+            <div
+              key={index}
+              className="card-dark glow-red border-itred/30 flex flex-col items-center text-center"
+            >
+              <div className="w-12 h-12 bg-itred/20 rounded-full flex items-center justify-center mb-4">
+                <AlertCircle className="h-6 w-6 text-itred" />
+              </div>
+              <p className="text-itsilver text-base leading-relaxed">{point}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function OurSolution() {
+  const solutions = [
+    'Endpoint protection and threat detection across laptops, desktops, and servers.',
+    'Email security and anti-phising protection, including link and attachment scanning.',
+    'Security policies, patch management, and best-practice configuration of your environment.',
+  ];
+
+  return (
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/src/assets/cybersecurity-solution.webp')"
+        }}
+      ></div>
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="section-title">Our Cybersecurity Approach</h2>
+          <div className="section-divider mb-8"></div>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {solutions.map((solution, index) => (
+            <div
+              key={index}
+              className="card-dark glow-blue border-itblue/30 flex flex-col items-center text-center"
+            >
+              <div className="w-12 h-12 bg-itblue/20 rounded-full flex items-center justify-center mb-4">
+                {index === 0 && <Shield className="h-6 w-6 text-itblue" />}
+                {index === 1 && <Lock className="h-6 w-6 text-itblue" />}
+                {index === 3 && <Activity className="h-6 w-6 text-itblue" />}
+              </div>
+              <p className="text-itsilver text-base leading-relaxed">{solution}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Benefits() {
+  const benefits = [
+    {
+      title: 'Reduced Risk of Breach',
+      description: 'Layered protection makes it harder for attackers to compromise your systems and data.',
+    },
+    {
+      title: 'User Awareness',
+      description: 'Staff training and phising awareness help your people become part of the defense, not the weakness.',
+    },
+    {
+      title: 'Compliance & Governance',
+      description: 'Security policies, logging, and reporting support audits and regulatory requirements.',
+    },
+    {
+      title: 'Continuous Visibility',
+      description: 'Ongoing monitoring and alerting keep you informed about threats andsuspicious activity.',
+    },
+  ];
+
+  return (
+    <section className="relative py-20 px-4 sm:px-6 lg_px-8 overflow-hidden">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/src/assets/cybersecurity-benefits.webp')"
+        }}
+      ></div>
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="section-title">Key Benefits</h2>
+          <div className= "section-divider mb-8"></div>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {benefits.map((benefit, index) => {
+            const isRed = index % 2 === 0;
+            return (
+              <div
+                key={index}
+                className={`card-dark ${
+                  isRed ? 'glow-red border-itred/30' : 'glow-blue border-itblue/30'
+                } flex flex-col items-center text-center`}
+              >
+                <div
+                  className={`w-12 h-12 ${
+                    isRed ? 'bg-itred/20' : 'bg-itblue/20'
+                  } rounded-full flex items-center justify-center mb-4`}
+                >
+                  <CheckCircle
+                    className={`h-6 w-6 &{
+                      isRed ? 'text-itred' : 'text-itblue'
+                    }`}
+                  />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">Evaluate</h3>
-                <p className="text-itsilver">
-                  We review your cybersecurity risks and vulnerabilities.
+                <h3 className="text-lg font-bold text-white mb-3">
+                  {benefit.title}
+                </h3>
+                <p className="text-itsilver text-sm leading-relaxed">
+                  {benefit.description}
                 </p>
               </div>
-              <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
-                <div className="w-8 h-0.5 bg-itgray2"></div>
-                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-itblue rounded-full"></div>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="bg-itdark border border-itgray2 rounded-lg p-8 h-full">
-                <div className="flex items-center justify-center w-14 h-14 rounded-full bg-itblue/20 mb-6">
-                  <Lock className="h-7 w-7 text-itblue" />
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Process() {
+  const steps = [
+    {
+      number: 1,
+      title: 'Assess & Discover',
+      description: 'We review your current environment, security controls, and biggest risks.',
+    },
+    {
+      number: 2,
+      title: 'Harden & Protect',
+      description: 'We roll out tools, policies, and configurations that strenghten your security posture.',
+    },
+    {
+      number: 3,
+      title: 'Monitor & Educate',
+      description: 'We monitor for threats and help keep your staff informed with ongoing awareness.',
+    },
+  ];
+
+  return (
+    <section
+      id="process"
+      className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+    >
+      {/* Background image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/src/assets/cybersecurity-process.webp')"
+        }}
+      ></div>
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="section-title">Our Process</h2>
+          <div className="section-divider mb-8"></div>
+        </div>
+
+        <div className="max-w-5xl mx-auto">
+          {/* Desktop */}
+          <div className="hidden md:grid md:grid-cols-3 gap-8">
+            {steps.map((step, index) => (
+              <div key={index} className="relative">
+                {index < steps.length - 1 && (
+                  <div className="hidden md:block absolute top-12 left-1/2 w-full h-1 bg-gradient-to-r from-itred to-transparent transform translate-y-0"></div>
+                )}
+                <div className="card-dark glow-red border-itred/30 relative">
+                  <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gradient-to-br from-itred to-itblue rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                    {step.number}
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3 mt-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-itsilver leading-relaxed">
+                    {step.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">Secure</h3>
-                <p className="text-itsilver">
-                  We deploy protection tools and harden your systems.
-                </p>
               </div>
-              <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
-                <div className="w-8 h-0.5 bg-itgray2"></div>
-                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-itblue rounded-full"></div>
+            ))}
+          </div>
+
+          {/* Mobile */}
+          <div className="md:hidden space-y-6">
+            {steps.map((step, index) => (
+              <div key={index} className="relative">
+                {index < steps.length - 1 && (
+                  <div className="absolute left-6 top-12 w-1 h-6 bg-gradient-to-b from-itred to-transparent"></div>
+                )}
+                <div className="card-dark glow-red border-itred/30 relative pl-16">
+                  <div className="absolute -left-6 -top-6 w-12 h-12 bg-gradient-to-br from-itred to-itblue rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                    {step.number}
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3">
+                    {step.title}
+                  </h3>
+                  <p className="text-itsilver leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="bg-itdark border border-itgray2 rounded-lg p-8">
-              <div className="flex items-center justify-center w-14 h-14 rounded-full bg-itblue/20 mb-6">
-                <Eye className="h-7 w-7 text-itblue" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Monitor</h3>
-              <p className="text-itsilver">
-                We monitor continuously and respond proactively.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
 
 function FinalCTA() {
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    company: '',
+    message: '',
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setFormState({
+      ...formState,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormState({ name: '', email: '', company: '', message: '' });
+  };
+
   return (
-    <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section
+      id="contact"
+      className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+    >
+      {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=1600')"
+          backgroundImage: "url('/src/assets/contact-bg.webp')"
         }}
       ></div>
 
-      <div className="absolute inset-0 bg-black/70"></div>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
 
-      <div className="relative z-10 max-w-4xl mx-auto text-center">
-        <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4 leading-tight text-glow">
-          Ready to protect your business from cyber threats?
-        </h2>
+      {/* Content */}
+      <div className="relative z-10 max-w-4xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+            Want to Sleep Better at Night?
+          </h2>
+          <div className="section-divider mb-8"></div>
+          <p className="text-lg text-itsilver">
+            Share your cybersecurity concerns with us. We'll help you design a layered security plan that matches your risk, budget, and business reality.
+          </p>
+        </div>
 
-        <p className="text-lg text-itsilver mb-8">
-          Let IT Legends secure your systems and data.
-        </p>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <label
+                htmlFor="name"
+                className="block text-sm font-semibold text-white mb-3"
+              >
+                Full Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formState.name}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+                placeholder="Your name"
+              />
+            </div>
 
-        <a
-          href="/#contact"
-          className="btn-primary inline-flex items-center justify-center"
-        >
-          Get Protected Today
-          <ChevronRight className="ml-2 h-5 w-5" />
-        </a>
-      </div>
-    </section>
-  );
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-semibold text-white mb-3"
+                >
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formState.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+                  placeholder="your@email.com"
+                />
+                </div>
+                <div>
+
+                <div>
+                  <label
+                  htmlFor="company"
+                  className="block text-sm font-semibold text-white mb-3"
+                >
+                  Company
+                </label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  value={formState.company}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus_ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+                  placeholder="Your company name"
+                />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-semibold text-white mb-3"
+                  >
+                    What are your top security worries?
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formState.message}
+                    onChange={handleChange}
+                    required
+                    rows={5}
+                    className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition resize-none text-white placeholder-itsilver/50"
+                    placeholder="E.g. phising attacks, ransomware, remote workers, access control, compliance..."
+                  ></textarea>
+                </div>
+
+                <button type="submit" className="btn-primary w-full text'lg">
+                  Request a Cybersecurity Review
+                  <ChevronRight className="ml-2 h-5 w-5" />
+                </button>
+            </div>
+          </section>        
+  );  
 }
 
 function ServiceFooter() {
