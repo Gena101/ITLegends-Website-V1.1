@@ -29,7 +29,6 @@ export default function CybersecurityPage() {
 
 function ServiceNavigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   return (
     <nav className="fixed top-0 w-full tech-glass z-50 border-b border-itgray2">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -471,7 +470,7 @@ function FinalCTA() {
                   placeholder="your@email.com"
                 />
                 </div>
-                <div>
+              </div>
 
                 <div>
                   <label
@@ -487,7 +486,7 @@ function FinalCTA() {
                   value={formState.company}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus_ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+                  className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
                   placeholder="Your company name"
                 />
                 </div>
@@ -511,10 +510,11 @@ function FinalCTA() {
                   ></textarea>
                 </div>
 
-                <button type="submit" className="btn-primary w-full text'lg">
+                <button type="submit" className="btn-primary w-full text-lg">
                   Request a Cybersecurity Review
                   <ChevronRight className="ml-2 h-5 w-5" />
                 </button>
+              </form>
             </div>
           </section>        
   );  
