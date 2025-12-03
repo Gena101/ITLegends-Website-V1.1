@@ -1,5 +1,5 @@
 import { Code, ChevronRight, AlertCircle, CheckCircle, Target, Zap, Wrench } from 'lucide-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Footer from '../components/Footer';
 
 export default function HardwareNetworkPage() {
@@ -37,10 +37,12 @@ function ServiceNavigation() {
     <nav className="fixed top-0 w-full tech-glass z-50 border-b border-itgray2">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <a href="/" className="flex items-center space-x-2">
-            <Code className="h-8 w-8 text-itred" />
+          <div className="flex items-center space-x-2">
+          <a href="#" className="flex items-center space-x-2">
+            <img src="/src/assets/header-img.webp" alt="IT Legends Logo" className="h-10 w-auto" />
             <span className="text-xl font-bold text-white">IT Legends</span>
           </a>
+        </div>
 
           <div className="hidden md:flex space-x-8">
             <a href="/" className="text-itsilver hover:text-itred transition-colors font-medium">
@@ -99,7 +101,7 @@ function ServiceHero({ title, subtitle }: ServiceHeroProps) {
       ></div>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/60"></div>
+      <div className="absolute inset-0 bg-black/40"></div>
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -244,7 +246,7 @@ function Benefits() {
         ></div>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/60"></div>
+      <div className="absolute inset-0 bg-black/40"></div>
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto">
@@ -419,35 +421,140 @@ function ContentSection() {
 }
 
 function CTA() {
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    company: '',
+    message: '',
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setFormState({
+      ...formState,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormState({ name: '', email: '', company: '', message: ''});
+  };
+
   return (
-    <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section id="contact"
+    className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('https://images.pexels.com/photos/3182750/pexels-photo-3182750.jpeg?auto=compress&cs=tinysrgb&w=1600')"
+          backgroundImage: "url('/src/assets/contact-bg.webp')"
         }}
       ></div>
 
-      <div className="absolute inset-0 bg-black/70"></div>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
 
-      <div className="relative z-10 max-w-4xl mx-auto text-center">
-        <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4 leading-tight text-glow">
+      {/* Content */}
+      <div className="relative z-10 max-w-4xl mx-auto">
+        <div className="text-center mb-16">
+        <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
           Need a reliable hardware and network setup?
         </h2>
+        <div className="section-divider mb-8"></div>
 
-        <p className="text-lg text-itsilver mb-8">
+        <p className="text-lg text-itsilver">
           We'll design and install infrastructure that just works.
         </p>
-
-        <a
-          href="/#contact"
-          className="btn-primary inline-flex items-center justify-center"
-        >
-          Book a Site Assessment
-          <ChevronRight className="ml-2 h-5 w-5" />
-        </a>
       </div>
-    </section>
+
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="grid md:grid-cols-2 gap-6">
+          <div>
+            <label
+              htmlFor="name"
+              className="block text-sm font-semibold text-white mb-3"
+            >
+              Full Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formState.name}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+              placeholder="Your name"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-sm font-semibold text-white mb-3"
+            >
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formState.email}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+              placeholder="your@email.com"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label
+            htmlFor="company"
+            className="block text-sm font-semibold text-white mb-3"
+          >
+            Company
+          </label>
+          <input
+            type="text"
+            id="company"
+            name="company"
+            value={formState.company}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+            placeholder="Your company name"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="message"
+            className="block text-sm font-semibold text-white mb-3"
+          >
+            Tell us about your current setup
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            value={formState.message}
+            onChange={handleChange}
+            required
+            rows={5}
+            className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition resize-none text-white placeholder-itsilver/50"
+            placeholder="Describe your current hardware, network, and any issue you're experiencing..."
+          ></textarea>
+        </div>
+
+        <button type="submit" className="btn-primary w-full text-lg">
+          Request a Hardware & Network Audit
+          <ChevronRight className="ml-2 h-5 w-5" />
+        </button>
+      </form>
+    </div>
+  </section>
   );
 }
 

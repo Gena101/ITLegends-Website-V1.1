@@ -1,5 +1,5 @@
-import { Code, ChevronRight, Shield, CheckCircle, Globe, RefreshCw, Search, Cog, Lock } from 'lucide-react';
-import { useState } from 'react';
+import { Code, ChevronRight, AlertCircle, CheckCircle, Cloud, Shield, Server } from 'lucide-react';
+import React, { useState } from 'react';
 import Footer from '../components/Footer';
 
 export default function CloudBackupPage() {
@@ -13,7 +13,10 @@ export default function CloudBackupPage() {
       />
       <SectionDivider />
       
-      <ContentSection />
+      <PainPoints />
+      <SectionDivider />
+
+      <OurSolution />
       <SectionDivider />
       
       <Benefits />
@@ -35,13 +38,15 @@ function ServiceNavigation() {
     <nav className="fixed top-0 w-full tech-glass z-50 border-b border-itgray2">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <a href="/" className="flex items-center space-x-2">
-            <Code className="h-8 w-8 text-itred" />
+          <div className="flex items-center space-x-2">
+          <a href="#" className="flex items-center space-x-2">
+            <img src="/src/assets/header-img.webp" alt="IT Legends Logo" className="h-10 w-auto" />
             <span className="text-xl font-bold text-white">IT Legends</span>
           </a>
+        </div>
 
           <div className="hidden md:flex space-x-8">
-            <a href="/" className="text-itsilver hover:text-itred transition-colors font-medium">
+            <a href="#" className="text-itsilver hover:text-itred transition-colors font-medium">
               Back to Home
             </a>
           </div>
@@ -54,16 +59,28 @@ function ServiceNavigation() {
           </button>
         </div>
       </div>
+
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-itgray border-t border-itgray2">
+          <div className="px-4 py-4">
+            <a
+              href="#" className="block text-itsilver hover:text-itred transition-colors font-medium"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Back to Home
+            </a>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
 
 function SectionDivider() { 
   return ( 
-    <div className="w-full flex justify-center py-8"> 
-      <div className="w-[90%] h-px bg-gradient-to-r from-itred to-itblue">
-        </div>
-      </div> 
+    <div className="w-full flex justify-center py-0.5 bg-transparent"> 
+      <div className="w-[95%] h-px bg-gradient-to-r from-itred to-itblue"/>
+    </div> 
   );
 }
 
@@ -75,13 +92,20 @@ interface ServiceHeroProps {
 
 function ServiceHero({ title, subtitle, buttonText = "Request a Quote" }: ServiceHeroProps) {
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-16">
-      <div className="absolute inset-0 bg-gradient-to-br from-itdark via-itgray to-itdark"></div>
+    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-20 pb-16">
+      {/* Background image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/src/assets/cloud-hero.webp')"
+        }}
+      ></div>
 
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-itred/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-itblue/5 rounded-full blur-3xl"></div>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* Content */}
+      <div className="relative z-10 max-w-5xl mx-auto text-center px-4">
         <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 text-glow">
           {title}
         </h1>
@@ -102,134 +126,170 @@ function ServiceHero({ title, subtitle, buttonText = "Request a Quote" }: Servic
   );
 }
 
-function ContentSection() {
-  return (
-    <>
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itdark">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="section-title">Pain Points</h2>
-            <div className="section-divider mb-8"></div>
-          </div>
-          <div className="grid md:grid-cols-1 gap-8 max-w-3xl mx-auto">
-            <div className="bg-itgray/30 border border-itgray2 rounded-lg p-6">
-              <div className="flex gap-4">
-                <div className="text-itred text-2xl font-bold flex-shrink-0">•</div>
-                <p className="text-itsilver text-lg leading-relaxed">
-                  Lost files due to hardware failure or accidental deletion.
-                </p>
-              </div>
-            </div>
-            <div className="bg-itgray/30 border border-itgray2 rounded-lg p-6">
-              <div className="flex gap-4">
-                <div className="text-itred text-2xl font-bold flex-shrink-0">•</div>
-                <p className="text-itsilver text-lg leading-relaxed">
-                  Unreliable local backups that fail when you need them most.
-                </p>
-              </div>
-            </div>
-            <div className="bg-itgray/30 border border-itgray2 rounded-lg p-6">
-              <div className="flex gap-4">
-                <div className="text-itred text-2xl font-bold flex-shrink-0">•</div>
-                <p className="text-itsilver text-lg leading-relaxed">
-                  Difficulty accessing data remotely or securely.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <SectionDivider />
+function PainPoints() {
+  const painPoints = [
+    'No reliable offsite backups if your office is hit by theft, fire, or hardware failure.',
+    'Backups are manual, inconsistent, or never tested for recovery.',
+    'No clear Recovery Time Objective (RTO) or Recovery Point Objective (RPO)',
+  ];
 
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itgray/20">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="section-title">Our Solution</h2>
-            <div className="section-divider mb-8"></div>
-          </div>
-          <div className="grid md:grid-cols-1 gap-8 max-w-3xl mx-auto">
-            <div className="bg-itgray/30 border border-itgray2 rounded-lg p-6">
-              <div className="flex gap-4">
-                <div className="text-itblue text-2xl font-bold flex-shrink-0">✓</div>
-                <p className="text-itsilver text-lg leading-relaxed">
-                  Secure cloud-based storage with encrypted access.
-                </p>
-              </div>
-            </div>
-            <div className="bg-itgray/30 border border-itgray2 rounded-lg p-6">
-              <div className="flex gap-4">
-                <div className="text-itblue text-2xl font-bold flex-shrink-0">✓</div>
-                <p className="text-itsilver text-lg leading-relaxed">
-                  Automated scheduled backups with full restore options.
-                </p>
-              </div>
-            </div>
-            <div className="bg-itgray/30 border border-itgray2 rounded-lg p-6">
-              <div className="flex gap-4">
-                <div className="text-itblue text-2xl font-bold flex-shrink-0">✓</div>
-                <p className="text-itsilver text-lg leading-relaxed">
-                  Remote access to important files from anywhere, on any device.
-                </p>
-              </div>
-            </div>
-          </div>
+  return (
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/src/assets/cloud-hero.webp')"
+        }}
+      ></div>
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-9xl ms-auto">
+        <div className="text-center mb-16">
+          <h2 className="section-title">Common Pain Points</h2>
+          <div className="section-divider mb-8"></div>
         </div>
-      </section>
-    </>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {painPoints.map((point, index) => (
+            <div
+              key={index}
+              className="card-dark glow-red border-itred/30 flex flex-col items-center text-center"
+            >
+              <div className="w-12 h-12 bg-itred/20 rounded-full flex items-center justify-center mb-4">
+                <AlertCircle className="h-6 w-6 text-itred" />
+              </div>
+              <p className="text-itsilver text-base leading.relaxed">{point}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function OurSolution() {
+  const solutions = [
+    'Automated cloud backups for servers, workstations, and critical business data.',
+    'Geo-redundant storage options to protect against local disasters.',
+    'Monitored backup jobs with alerts for failures and guided recovery testing.',
+  ];
+
+  return (
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/src/assets/cloud-solution.webp')"
+        }}
+      ></div>
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="section-title">Our Solutions</h2>
+          <div className="section-divider mb-8"></div>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {solutions.map((solutions, index) => (
+            <div
+              key={index}
+              className="card-dark glow-blue border-itblue/30 flex flex-col items-center text-center"
+            >
+              <div className="w-12 h-12 bg-itblue/20 rounded-full flex items-center justify-center mb-4">
+                {index === 0 && <Cloud className="h-6 w_6 text-itblue" />}
+                {index === 1 && <Shield className="h6 w-6 text-itblue" />}
+                {index === 2 && <Server className="h-6 w-6 text-itblue" />}
+              </div>
+              <p className="text-itsilver text-base leading-relaxed">{solutions}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
 function Benefits() {
   const benefits = [
     {
-      icon: Shield,
-      title: 'Data Security',
-      description: 'Encrypted cloud storage protects sensitive information.'
+      title: 'Business Continuity',
+      description: 'Your business can recover quickly from ransomware, hardware failures, or accidental deletions',
     },
     {
-      icon: CheckCircle,
-      title: 'Peace of Mind',
-      description: 'Automatic backups ensure your files are always safe.'
+      title: 'Compliance & Peace of Mind',
+      description: 'Retention policies and secure storage help you meet compliance and audit requirements',
     },
     {
-      icon: Globe,
-      title: 'Remote Access',
-      description: 'Access data easily from anywhere, anytime.'
+      title: 'Predictable Costs',
+      description: 'Clear monthly pricing models based on data usage and protection requirements', 
     },
     {
-      icon: RefreshCw,
-      title: 'Disaster Recovery',
-      description: 'Fast restore options in case of data loss.'
+      title: 'Monitored by Experts',
+      description: 'The IT Legends team monitors backup jobs and helps you validate that restores actually work.',
     }
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itdark">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="section-title">Benefits</h2>
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/src/assets/cloud-benefits.webp')"
+        }}
+      ></div>
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="text-center mb-18">
+          <h2 className="section-title">Key Benefits</h2>
           <div className="section-divider mb-8"></div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-          {benefits.map((benefit, index) => {
-            const Icon = benefit.icon;
+        <div className="grid md:grid-cols-2 lg-grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {benefits.map((benefits, index) => {
             const isRed = index % 2 === 0;
             return (
               <div
                 key={index}
-                className={`card-dark ${isRed ? 'glow-red border-itred/30' : 'glow-blue border-itblue/30'} flex flex-col items-center text-center`}
+                className={`card-dark ${
+                  isRed ? 'glow-red border-itred/30' : 'glow-blue border-itblue/30'
+                } flex flex-col items-center text-center`}
               >
-                <div className={`w-12 h-12 ${isRed ? 'bg-itred/20' : 'bg-itblue/20'} rounded-full flex items-center justify-center mb-4`}>
-                  <Icon className={`h-6 w-6 ${isRed ? 'text-itred' : 'text-itblue'}`} />
+                <div
+                  className={`w-12 h-12 ${
+                    isRed ? 'bg-itred/20' : 'bg-itblue/20'
+                  } rounded-full flex items-center justify-center mb-4`}
+                >
+                  <CheckCircle
+                    className={`h-6 w-6 ${
+                      isRed ? 'text-itred' : 'text-itblue'
+                    }`}
+                    />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-3">{benefit.title}</h3>
-                <p className="text-itsilver text-sm leading-relaxed">{benefit.description}</p>
-              </div>
+                <h3 className="text-lg font-bold text-white mb-3">
+                  {benefits.title}
+                </h3>
+                <p className="text-itsilver text-sm leading-relaxed">
+                  {benefits.description}
+                </p>
+              </div>                  
             );
           })}
         </div>
-      </div>
+      </div>          
     </section>
   );
 }
@@ -237,53 +297,89 @@ function Benefits() {
 function Process() {
   const steps = [
     {
-      icon: Search,
-      title: 'Analyse',
-      description: 'We assess your current storage and backup needs.'
+      number: 1,
+      title: 'Discover',
+      description: 'We analyze your current data locations, volumes, and critical systems.',
     },
     {
-      icon: Cog,
-      title: 'Configure',
-      description: 'We set up secure cloud systems and automated backups.'
+      number: 2,
+      title: 'Design & Implement',
+      description: 'We design a cloud and backup strategy and deploy the required tools and policies.',
     },
     {
-      icon: Lock,
-      title: 'Protect',
-      description: 'We monitor, maintain, and ensure your data stays recoverable.'
+      number: 3,
+      title: 'Monitor & Test',
+      description: 'We monitor backups, run test restores, and adjust as your environment grows.',
     }
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itgray/20">
-      <div className="max-w-7xl mx-auto">
+    <section
+      id="process"
+      className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+    >
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/src/assets/cloud-process.webp')"
+        }}
+      ></div>
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="section-title">Our Process</h2>
           <div className="section-divider mb-8"></div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {steps.map((step, index) => {
-            const Icon = step.icon;
-            return (
+        <div className="max-w-5xl mx-auto">
+          {/* Desktop */}
+          <div className="hidden md:grid md:grid-cols-3 gap-8">
+            {steps.map((step, index) => (
               <div key={index} className="relative">
-                <div className="card-dark glow-blue border-itblue/30 flex flex-col items-center text-center h-full">
-                  <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-itblue text-white rounded-full flex items-center justify-center font-bold text-lg">
-                    {index + 1}
-                  </div>
-                  <div className="mt-6 mb-4">
-                    <div className="w-16 h-16 bg-itblue/20 rounded-full flex items-center justify-center">
-                      <Icon className="h-8 w-8 text-itblue" />
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
-                  <p className="text-itsilver leading-relaxed">{step.description}</p>
-                </div>
                 {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-1/3 -right-4 w-8 h-0.5 bg-gradient-to-r from-itblue to-transparent"></div>
+                  <div className="hidden md:block absolute top-12 left-1/2 w-full h-1 bg-gradient-to-r from-itred to-transparent transform translate-y-0"></div>
                 )}
+                <div className="card-dark glow-red border-itred/30 relative">
+                  <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gradient-to-br from-itred to-itblue rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                    {step.number}
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3 mt-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-itsilver leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </div> 
+            ))}
+          </div>
+
+          {/* Mobile */}
+          <div className="md:hidden space-y-6">
+            {steps.map((step, index) => (
+              <div key={index} className="relative">
+                {index < steps.length - 1 && (
+                  <div className="absolute left-6 top-12 w-1 h-6 bg-gradient-to-b from it-red to transparent"></div>
+                )}
+                <div className="card-dark glow-red border-itred/30 relative pl-16">
+                  <div className="absolute -left-6 -top-6 w-12 h-12 bg-gradient-to-br from it-red to it-blue rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                    {step.number}
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3">
+                    {step.title}
+                  </h3>
+                  <p className="text-itsilver leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -291,25 +387,142 @@ function Process() {
 }
 
 function CTA() {
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    company: '',
+    message: '',
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setFormState({
+      ...formState,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormState({ name: '', email: '', company: '', message: ''});
+  };
+
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-itred/10 to-itblue/10 border-y border-itgray2">
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4 leading-tight">
-          Protect your data with reliable cloud solutions.
-        </h2>
-        <p className="text-lg text-itsilver mb-8">
-          Let's secure your files and keep your business resilient.
-        </p>
-        <a
-          href="/#contact"
-          className="btn-primary inline-flex items-center justify-center"
-        >
-          Secure My Data
-          <ChevronRight className="ml-2 h-5 w-5" />
-        </a>
+    <section
+      id="contact"
+      className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+    >
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/src/assets/contact-bg.webp')"
+        }}
+      ></div>
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-4xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+            Ready to Protect Your Data in the Cloud?
+          </h2>
+          <div className="section-divider mb-8"></div>
+          <p className="text-lg text-itsilver">
+            Share a bit about your environment, and we`ll help you design a cloud and backup strategy that fits your risk, budget, and growth plans.
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <label
+                htmlFor="name"
+                className="block text-sm font-semibold text-white mb-3"
+              >
+                Full Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formState.name}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itseilver/50"
+                placeholder="Your name"
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-semibold text-white mb-3"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formState.email}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+                placeholder="your@email.com"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label
+              htmlFor="company"
+              className="block text-sm font-semibold text-white mb-3"
+            >
+              Company
+            </label>
+            <input
+              type="text"
+              id="company"
+              name="company"
+              value={formState.company}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+              placeholder="Your company name"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="message"
+              className="block text-sm font-semibold text-white mb-3"
+            >
+              Tell us about your data & systems
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={formState.message}
+              onChange={handleChange}
+              required
+              rows={5}
+              className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition resize-none text-white placeholder-itsilver/50"
+              placeholder="Which systems do you want protected? Servers, laptops, line-of-business apps, databases, shared folders..."
+            ></textarea>
+          </div>
+
+          <button type="submit" className="btn-primary w-full text-lg">
+            Request a Cloud & Backup Stategy Call
+            <ChevronRight className="ml-2 h-5 w-5" />
+          </button>
+        </form>
       </div>
     </section>
-  );
+  )
 }
 
 function ServiceFooter() {

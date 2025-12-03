@@ -35,10 +35,12 @@ function ServiceNavigation() {
     <nav className="fixed top-0 w-full tech-glass z-50 border-b border-itgray2">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <a href="/" className="flex items-center space-x-2">
-            <Code className="h-8 w-8 text-itred" />
+          <div className="flex items-center space-x-2">
+          <a href="#" className="flex items-center space-x-2">
+            <img src="/src/assets/header-img.webp" alt="IT Legends Logo" className="h-10 w-auto" />
             <span className="text-xl font-bold text-white">IT Legends</span>
           </a>
+        </div>
 
           <div className="hidden md:flex space-x-8">
             <a href="/" className="text-itsilver hover:text-itred transition-colors font-medium">
@@ -133,7 +135,7 @@ function PainPoints() {
         }}
       ></div>
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/40"></div>
+      <div className="absolute inset-0 bg-black/30"></div>
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
