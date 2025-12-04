@@ -1,5 +1,5 @@
 import { Code, ChevronRight, AlertCircle, CheckCircle, Headphones, PhoneCall, Monitor, Clock, Users, Zap, TrendingUp, DollarSign, Smile, LogIn, Wrench, CheckSquare } from 'lucide-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Footer from '../components/Footer';
 
 export default function HelpdeskPage() {
@@ -336,7 +336,48 @@ function ProcessSection() {
 
         <div className="max-w-5xl mx-auto">
           {/* Desktop */}
-          
+          <div className="hidden md:grid md:grid-cols-3 gap-8">
+            {steps.map((step, index) => (
+              <div key={index} className="relative">
+                {index < steps.length - 1 && (
+                  <div className="hidden md:block absolute top-12 left-1/2 w-full h-1 bg-gradient-to-r from-itred to-transparent transform translate-y-0"></div>
+                )}
+                <div className="card-dark glow-red border-itred/30 relative">
+                  <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gradient-to-br from-itred to-itblue rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                    {step.number}
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3 mt-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-itsilver leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Mobile */}
+          <div className="md:hidden space-y-6">
+            {steps.map((step, index) => (
+              <div key={index} className="relative">
+                {index < steps.length -1 && (
+                  <div className="absolute left-6 top-12 w-1 h-6 bg-gradient-to-b from-itred to-transparent"></div>
+                )}
+                <div className="card-dark glow-red border-itred/30 relative pl-16">
+                  <div className="absolute -left-6 -top-6 w-12 h-12 bg-gradient-to-br from-itred to-itblue rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                    {step.number}
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3">
+                    {step.title}
+                  </h3>
+                  <p className="text-itsilver leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -344,15 +385,75 @@ function ProcessSection() {
 }
 
 function ContentSection() {
+  const detailGroups = [
+    {
+      title: 'How Your Team Gets Support',
+      items: [
+        'Dedicated email address for logging tickets.',
+        'Optional phone line / WhatsApp for urgent issues.',
+        'Remote support sessions to resolve problems quickly.',
+      ],
+    },
+    {
+      title: 'What We Support',
+      items: [
+        'Laptops, desktops, and basic peripherals.',
+        'Common business applications, email, and collaboration tools.',
+        'Basic network and connectivity troubleshooting for end-users.',
+      ],
+    },
+    {
+      title: 'Service Levels & Coverage',
+      items: [
+        'Business hours supported, with after-hours options available.',
+        'Target response and resolution times based on ticket priority.',
+        'Escalation paths for complex or recurring issues.',
+      ],
+    },
+  ];
+
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itgray">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/src/assets/helpdesk-details.webp')"
+        }}
+      ></div>
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="section-title">Service Details</h2>
           <div className="section-divider mb-8"></div>
-          <p className="text-lg text-itsilver max-w-2xl mx-auto">
-            Content coming soon. Our team is preparing comprehensive information about this service.
+          <p className="text-lg text-itsilver max-w-3xl mx-auto">
+            Our Helpdesk & Remote Support service is designed to become your team's go-to place whenever "something doesn't work".
           </p>
+        </div>
+
+        <div className="grid md:grid-cold-3 gap-8">
+          {detailGroups.map((group, index) => (
+            <div
+              key={index}
+              className="card-dark glow-blue border-itblue/30 h-full"
+            >
+              <h3 className="text-xl font-bold text-white mb-4">
+                {group.title}
+              </h3>
+              <ul className="space-y-3 text-itsilver text-sm leading-relaxed">
+                {group.items.map((item, idx) => (
+                  <li key={idx} className="flex items-start space-x-2">
+                    <span className="mt-1 h-2 w-2 rounded-full bg-itblue" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -360,59 +461,140 @@ function ContentSection() {
 }
 
 function CTASection() {
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    company: '',
+    message: '',
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setFormState({
+      ...formState,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormState({ name: '', email: '', company: '', message: '' });
+  };
+
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itdark">
-      <div className="max-w-3xl mx-auto text-center">
-        <div className="bg-gradient-to-br from-itred/10 to-itblue/10 border border-itred/30 rounded-lg p-12 md:p-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Need reliable helpdesk support?</h2>
-          <p className="text-lg text-itsilver mb-8">We're here to assist your team whenever they need it.</p>
-          <a
-            href="/#contact"
-            className="btn-primary inline-flex items-center justify-center"
-          >
-            Speak to Our Support Team
-            <ChevronRight className="ml-2 h-5 w-5" />
-          </a>
+    <section
+      id="contact"
+      className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+    >
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/src/assets/contact-bg.webp')"
+        }}
+      ></div>
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-4xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+            Ready to Give Your Team a Legendary Helpdesk?
+          </h2>
+        <div className="section-divider mb-8"></div>
+        <p className="text-lg text-itsilver">
+          Tell us about your team size, locations, and current support challenges. We'll propose a helpdesk model taht fits your business.
+        </p>
         </div>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <label
+                htmlFor="name"
+                className="block text-sm font-semibold text-white mb-3"
+              >
+                Full Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formState.name}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+                placeholder="Your name"
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-semibold text-white mb-3"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formState.email}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+                placeholder="your@email.com"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label
+              htmlFor="company"
+              className="block text-sm font-semibold text-white mb-3"
+            >
+              Company
+            </label>
+            <input
+              type="text"
+              id="company"
+              name="company"
+              value={formState.company}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+              placeholder="Your company name"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="message"
+              className="block text-sm font-semibold text-white mb-3"
+            >
+              Tell us about your support challenges
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={formState.message}
+              onChange={handleChange}
+              required
+              rows={5}
+              className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition resize-none text-white placeholder-itsilver/50"
+              placeholder="E.g. long response times, no tracking, remote staff not supported properly..."
+            ></textarea>
+          </div>
+
+          <button type="submit" className="btn-primary w-full text-lg">
+            Request a Helpdesk Proposal
+            <ChevronRight className="ml-2 h-5 w-5" />
+          </button>
+        </form>
       </div>
     </section>
-  );
-}
-
-function ServiceFooter() {
-  return (
-    <footer className="bg-itdark border-t border-itgray2 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
-          <div>
-            <a href="/" className="flex items-center space-x-2 mb-4">
-              <Code className="h-8 w-8 text-itred" />
-              <span className="text-xl font-bold text-white">IT Legends</span>
-            </a>
-            <p className="text-itsilver">
-              Reliable managed IT support, cybersecurity, cloud and network solutions for South African businesses.
-            </p>
-          </div>
-          <div>
-            <h4 className="font-bold text-white mb-4">Services</h4>
-            <ul className="space-y-2 text-itsilver text-sm">
-              <li><a href="/services/managed-it-support" className="hover:text-itred transition-colors">Managed IT Support</a></li>
-              <li><a href="/services/cloud-backup" className="hover:text-itred transition-colors">Cloud & Backup Solutions</a></li>
-              <li><a href="/" className="hover:text-itred transition-colors">Other Services</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold text-white mb-4">Connect</h4>
-            <ul className="space-y-2 text-itsilver text-sm">
-              <li>contact@itlegends.com</li>
-              <li>+1 (555) 123-4567</li>
-            </ul>
-          </div>
-        </div>
-        <div className="border-t border-itgray2 pt-8 text-center text-itsilver/60">
-          <p>&copy; 2024 IT Legends. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
   );
 }
