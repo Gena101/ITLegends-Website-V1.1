@@ -468,25 +468,50 @@ function CallToAction() {
     message: '',
   });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [reference, setReference] = useState<string | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormState({
       ...formState,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormState({ name: '', email: '', company: '', message: '' });
-  };
+    setStatus('loading');
+    setErrorMessage(null);
+    setReference(null);
+
+    try {
+      const res = await fetch ('https://hook.us2.make.com/pt14ynlwgyio4c48iwruduu9curorf4a', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formState,
+          service: 'Server Maintenance Query',
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to send message. Please try again.');
+      }
+
+      const data = await res.json();
+      setReference(data.reference || null);
+      setStatus('success');
+      setFormState({ name: '', email: '', company: '', message: '' });
+    } catch (err: any) {
+      console.error(err);
+      setStatus('error');
+      setErrorMessage(err.message || 'Something went wrong. Please try again.');
+    }
+  }; 
 
   return (
-    <section
-      id="contact"
-      className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
-    >
+    <section id="contact" className="relative py-20 px-4 sm:px-6 lg:px-8">
       {/* Background image */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
@@ -498,25 +523,21 @@ function CallToAction() {
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/60"></div>
 
-      {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-            Ready to Stabilise your Servers?
+            Need Proactive Server Maintenance?
           </h2>
-          <div className="section-divider mb-8"></div>
+          <div className="section-divier mb-8"></div>
           <p className="text-lg text-itsilver">
-            Tell us about your current server environment and challenges. We`ll help you design a maintenance and monitoring plan that keeps everything running smoothly.
+            Share your current server environment and challenges, and we'll design a maintenance and monitoring plan.
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-semibold text-white mb-3"
-              >
+              <label htmlFor="name" className="block text-sm font-semibold text-white mb-3">
                 Full Name
               </label>
               <input
@@ -526,19 +547,16 @@ function CallToAction() {
                 value={formState.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+                className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:reing-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
                 placeholder="Your name"
               />
             </div>
 
             <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-semibold text-white mb-3"
-              >
+              <label htmlFor="email" className="block text-sm font-semibold text-white mb-3">
                 Email
               </label>
-              <input
+              <input 
                 type="email"
                 id="email"
                 name="email"
@@ -552,11 +570,8 @@ function CallToAction() {
           </div>
 
           <div>
-            <label
-              htmlFor="company"
-              className="block text-sm font-semibold text-white mb-3"
-            >
-              Company
+            <label htmlFor="company" className="block text-sm font-semibold text-white mb-3">
+              Company 
             </label>
             <input
               type="text"
@@ -564,18 +579,14 @@ function CallToAction() {
               name="company"
               value={formState.company}
               onChange={handleChange}
-              required
-              className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+              className="w-full px-4 py-3 bg-itgray border border-itgray2 reounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
               placeholder="Your company name"
             />
           </div>
 
           <div>
-            <label
-              htmlFor="message"
-              className="block text-sm font-semibold text-white mb-3"
-            >
-              Tell us about your servers
+            <label htmlFor="message" className="block text-sm font-semibold text-white mb-3">
+              Tell us about your IT needs
             </label>
             <textarea
               id="message"
@@ -584,15 +595,30 @@ function CallToAction() {
               onChange={handleChange}
               required
               rows={5}
-              className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition resize-none text-white placeholder-itsilver/50"
-              placeholder="How many servers do you have, what do they run, and what issues are you currently seeing?"
+              className="w-full px-4 py-3 bg-itgray border border-itgray-2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition resize-none text-white placeholder-itsilver/50"
+              placeholder="Tell us about your current IT challenges and goals..."
             ></textarea>
           </div>
 
-          <button type="submit" className="btn-primary w-full text-lg">
-            Request a Server Health Check
+          <button
+            type="submit"
+            disabled={status === 'loading'}
+            className="btn-primary w-full text-lg"
+          >
+            {status === 'loading' ? 'Sending...' : 'Request a Consultation'}
             <ChevronRight className="ml-2 h-5 w-5" />
           </button>
+
+          {status === 'success' && reference && (
+            <p className="text-sm text-green-400 mt-3 text-center">
+              Thank you! Your reference number is{' '}
+              <span className="font-semibold">{reference}</span>.
+            </p>
+          )}
+
+          {status === 'error' && errorMessage && (
+            <p className="text-sm text-red-400 mt-3 text-center">{errorMessage}</p>
+          )}
         </form>
       </div>
     </section>

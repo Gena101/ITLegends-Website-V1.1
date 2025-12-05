@@ -386,32 +386,57 @@ function Process() {
 }
 
 function CTA() {
-  const [formState, setFormState] = useState({
+  const [formState, setFromState] = useState({
     name: '',
     email: '',
     company: '',
     message: '',
   });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    setFormState({
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [reference, setReference] = useState<string | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFromState({
       ...formState,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e:React.FormEvent) => {
     e.preventDefault();
-    setFormState({ name: '', email: '', company: '', message: ''});
-  };
+    setStatus('loading');
+    setErrorMessage(null);
+    setReference(null);
+
+    try {
+      const res = await fetch('https://hook.us2.make.com/pt14ynlwgyio4c48iwruduu9curorf4a', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formState,
+          service: 'Cloud & Backup Query',
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to send message. Please try again.');
+      }
+
+      const data = await res.json();
+      setReference(data.reference || null);
+      setStatus('success');
+      setFromState({ name: '', email: '', company: '', message: '' });
+    } catch (err: any) {
+      console.error(err);
+      setStatus('error');
+      setErrorMessage(err.message || 'Something went wrong. Please try again.');
+    }
+  }; 
 
   return (
-    <section
-      id="contact"
-      className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
-    >
+    <section id="contact" className="relative py-20 px-4 sm:px-6 lg:px-8">
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -423,25 +448,21 @@ function CTA() {
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/60"></div>
 
-      {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-            Ready to Protect Your Data in the Cloud?
+            Ready to Secure Your Data in the Cloud?
           </h2>
           <div className="section-divider mb-8"></div>
           <p className="text-lg text-itsilver">
-            Share a bit about your environment, and we`ll help you design a cloud and backup strategy that fits your risk, budget, and growth plans.
+            Let us help you design a robust cloud and backup strategy that keeps your data safe and recoverable.
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-semibold text-white mb-3"
-              >
+              <label htmlFor="name" className="block text-sm font-semibold text-white mb-3">
                 Full Name
               </label>
               <input
@@ -451,16 +472,13 @@ function CTA() {
                 value={formState.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itseilver/50"
+                className="w-full px-4 py-3 bg-itgray border border-itgray2 reounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
                 placeholder="Your name"
               />
             </div>
 
             <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-semibold text-white mb-3"
-              >
+              <label htmlFor="email" className="block text-sm font-semibold text-white mb-3">
                 Email
               </label>
               <input
@@ -477,10 +495,7 @@ function CTA() {
           </div>
 
           <div>
-            <label
-              htmlFor="company"
-              className="block text-sm font-semibold text-white mb-3"
-            >
+            <label htmlFor="company" className="block text-sm font-semibold text-white mb-3">
               Company
             </label>
             <input
@@ -489,18 +504,14 @@ function CTA() {
               name="company"
               value={formState.company}
               onChange={handleChange}
-              required
               className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
               placeholder="Your company name"
             />
           </div>
 
           <div>
-            <label
-              htmlFor="message"
-              className="block text-sm font-semibold text-white mb-3"
-            >
-              Tell us about your data & systems
+            <label htmlFor="message" className="block text-sm font-semibold text-white mb-3">
+              Tell us about your IT needs
             </label>
             <textarea
               id="message"
@@ -510,14 +521,29 @@ function CTA() {
               required
               rows={5}
               className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition resize-none text-white placeholder-itsilver/50"
-              placeholder="Which systems do you want protected? Servers, laptops, line-of-business apps, databases, shared folders..."
+              placeholder="Tell us about your current IT challenges and goals..."
             ></textarea>
           </div>
 
-          <button type="submit" className="btn-primary w-full text-lg">
-            Request a Cloud & Backup Stategy Call
+          <button
+            type="submit"
+            disabled={status === 'loading'}
+            className="btn-primary w-full text-lg"
+          >
+            {status === 'loading' ? 'Sending...' : 'Request a Consultation'}
             <ChevronRight className="ml-2 h-5 w-5" />
           </button>
+
+          {status === 'success' && reference && (
+            <p className="text-sm text-green-400 mt-3 text-center">
+              Thank you! Your reference number is{' '}
+              <span className="font-semibold">{reference}</span>.
+            </p>
+          )}
+
+          {status === 'error' && errorMessage && (
+            <p className="text-sm text-red-400 mt-3 text-center">{errorMessage}</p>
+          )}
         </form>
       </div>
     </section>
