@@ -444,7 +444,7 @@ function CTA() {
     setReference(null);
 
     try {
-      const res = await fetch('https://hook.us2.make.com/pt14ynlwgyio4c48iwruduu9curorf4a' {
+      const res = await fetch('https://hook.us2.make.com/pt14ynlwgyio4c48iwruduu9curorf4a', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -481,9 +481,106 @@ function CTA() {
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/60"></div>
 
-      
+      <div className="relative z-10 max-w-4xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+            Need Reliable Hardware & Network Setup?
+          </h2>
+          <div className="section-divider mb-8"></div>
+          <p className="text-lg text-itsilver">
+            Share your environment and requirements, and we'll design a stable, secure infrastructure for your business.
+          </p>
+        </div>
+
+        <form onSubmit={handlesubmit} className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <label htmlFor="name" className="block text-sm font-semibold text-white mb-3">
+                Full Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formState.name}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+                placeholder="Your name"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block text-sm font-semibold text-white mb-3">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formState.email}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+                placeholder="your@email.com"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="company" className="block text-sm font-semibold text-white mb-3">
+              Company
+            </label>
+            <input
+              type="text"
+              id="company"
+              name="company"
+              value={formState.company}
+              onChange={handleChange}
+              className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+              placeholder="Your company name"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="message" className="block text-sm font-semibold text-white mb-3">
+              Tell us about your IT needs
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={formState.message}
+              onChange={handleChange}
+              required
+              rows={5}
+              className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition resize-none text-white placeholder-itsilver/50"
+              placeholder="Tell us about your current IT challenges and goals..."
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            disabled={status === 'loading'}
+            className="btn-primary w-full text-lg"
+          >
+            {status === 'loading' ? 'Sending...' : 'Request a Consultation'}
+            <ChevronRight className='ml-2 h-5 w-5' />
+          </button>
+
+          {status === 'success' && reference && (
+            <p className="text-sm text-green-400 mt-3 text-center">
+              Thank you! Your reference number is{' '}
+              <span className="font-semibold">{reference}</span>.
+            </p>
+          )}
+
+          {status === 'error' && errorMessage && (
+            <p className="text-sm text-red-400 mt-3 text-center">{errorMessage}</p>
+          )}
+        </form>
+      </div>
     </section>
-  )
+  );
 }
 
 function ServiceFooter() {
