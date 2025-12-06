@@ -1,205 +1,333 @@
-import { Code, Calendar, User, ArrowLeft } from 'lucide-react';
-import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Calendar, Clock, ArrowLeft, Tag } from 'lucide-react';
 import Footer from '../components/Footer';
 
-export default function BlogPostPage() {
-  const { slug } = useParams();
+type Section = {
+  heading: string;
+  paragraphs?: string[];
+  listItems?: string[];
+};
 
-  const blogPost = {
-    title: 'Why Every Business Needs Proactive IT Support',
-    date: 'November 18, 2024',
-    author: 'IT Legends Team',
-    content: `
-      <p>In today's fast-paced digital landscape, businesses rely heavily on their IT infrastructure to maintain operations, serve customers, and drive growth. Yet many organizations still take a reactive approach to IT support, only addressing issues after they've caused disruption. This outdated strategy can lead to costly downtime, lost productivity, and frustrated employees.</p>
+type BlogPost = {
+  slug: string;
+  title: string;
+  date: string;
+  readTime: string;
+  category: string;
+  excerpt: string;
+  sections: Section[];
+  ctaLabel: string;
+  ctaHref: string;
+  image: string;
+};
 
-      <h2>The Cost of Reactive IT Support</h2>
+// Central blog data - add new posts by pushing into this array
+const blogPosts: BlogPost[] = [
+  {
+    slug: 'cloud-future',
+    title: 'The Future of Cloud Computing in 2024 (and Beyond) for South African Businesses',
+    date: 'Mar 15, 2024',
+    readTime: '7 min read',
+    category: 'Cloud',
+    excerpt: 'Cloud is no longer a "nice to have". It is the backbone of modern, always-on business - especially for SMEs that need flexibility, resilience, and predictable costs.',
+    image: '/src/assets/blog-card-cloud.webp',
+    sections: [
+      {
+        heading: '1. From Servers in the Corner to "Cloud-First" Thinking',
+        paragraphs: [
+          'Many South African businesses still run critical systems on a single on-premise server sitting in a storeroom. It works... until it doesn`t. Load shedding, hardware failures, theft, and lack of maintenance all put your data and uptime at risk.',
+          'A cloud-first mindset means asking: "Can this safely and sensibly live in the cloud?" instead of defaulting to on-premises every time. You don`t have to move everything at once, but you need a roadmap.',
+        ],
+        listItems: [
+          'Move email and collaboration to Microsoft 365 or Google Workspace.',
+          'Create off-site backup copies into secure cloud storage.',
+          'Migrate line-of-business applications to hosted servers or SaaS.',
+          'Provide secure remote access or VPN for staff working remotely.',
+        ],
+      },
+      {
+        heading: '2. Hybrid Cloud Will Be the Default',
+        paragraphs: [
+          'For most SMEs, a hybrid setup is the sweet spot: some services in the cloud, some kept on-site for performance, regulation or cost reasons. The key is that everything is managed as a single environment, not as two separate worlds.',
+        ],
+        listItems: [
+          'Centralised monitoring for both cloud and on-prem servers.',
+          'Standardised security policies across all locations.',
+          'Documented failover and recovery plans.',
+        ],
+      },
+      {
+        heading: '3. Cost Management: Avoid Cloud Bill Shock',
+        paragraphs: [
+          'Cloud can save money, but only if it is designed properly. Spinning up random servers with no plan is a quick way to overspend.'
+        ],
+        listItems: [
+          'Right-size servers based on actual utilisation.',
+          'Shut down non-critical workloads outside business hours.',
+          'Review cloud usage and costs monthly.',
+        ],
+      },
+      {
+        heading: '4. Where IT Legends Fits In',
+        paragraphs: [
+          'At IT Legends, we help South African businesses move to the cloud in a controlled, low-risk way. We assess your environment, design a realistic roadmap, and then migrate, secure and maintain your cloud and hybrid environment.',
+        ],
+      },
+    ],
+    ctaLabel: 'Chat to us about your cloud plan',
+    ctaHref: '/#contact',
+  },
+  {
+    slug: 'ai-integration-guide',
+    title: 'AI Integration: A Practical Guide for Business Owners (Not Data Scientists)',
+    date: 'Mar 10, 2024',
+    readTime: '8 min read',
+    category: 'AI',
+    excerpt: 'Artificial intelligence does not have to be confusing, expensive or risky. Used correctly, it quietly makes your team faster, your decisions better, and your customers happier.',
+    image: '/src/assets/blog-card-ai.webp',
+    sections: [
+      {
+        heading: '1. Start with Pain Points, Not Tools',
+        paragraphs: [
+          'The worst way to adopt AI is to start with a shiny tool and then go hunting for problems. Instead, list the repetitive, time-consuming or error-prone tasks in your business and ask, "Can AI help here?".',
+        ],
+        listItems: [
+          'Support tickets or emails that ask the same question.',
+          'Manual data capture into spreadsheets or systems.',
+          'Simple reports that take staff hours every month.',
+        ],
+      },
+      {
+        heading: '2. Great Early Use Cases for SMEs',
+        paragraphs: [
+          'Here are some low-risk starting points that work well in real businesses.',
+        ],
+        listItems: [
+          'Support assistants that suggest answers to technicians based on past tickets.',
+          'Document assistants that summarise long PDFs, proposals or contracts.',
+          'Internal chatbots that answer common HR or IT questions.',
+          'Data cleanup and enrichment for CRM or asset lists.',
+        ],
+      },
+      {
+        heading: '3. Keep a Human in the Loop',
+        paragraphs: [
+          'For most SMEs, the right pattern is "AI suggests, humans approve." AI drafts the answer, email or summary - your team clicks send or takes the final decision.',
+        ],
+      },
+      {
+        heading: '4. Data Security and Privacy',
+        paragraphs: [
+          'When you plug AI into your environment, it must be done with proper controls. Use tools that allow you to restrict what data the AI can see, protect logs and restrict access to prompts and outputs.',
+        ],
+      },
+      {
+        heading: '5. Where IT Legends Fits In',
+        paragraphs: [
+          'We help businesses design and implement practical AI automation - from IT support chatbots and admin assistants to reporting and internal tools. No hype, just workflows that actually work.',
+        ],
+      },
+    ],
+    ctaLabel: 'Talk to us about AI in your business',
+    ctaHref: '/#contact',
+  },
+  {
+    slug: 'cybersecurity-best-practices-2024',
+    title: 'Cybersecurity Best Practices for 2024: A Practical Checklist for SMEs',
+    date: 'Mar 5, 2024',
+    readTime: '6 min read',
+    category: 'Security',
+    excerpt: 'Most breaches do not start with elite hackers. They start with a simple password, a fake email, or an unpatched system. the good news: disciplined basics make you a uch harder target.',
+    image: '/src/assets/blog-card-security.webp',
+    sections: [
+      {
+        heading: '1. Strong identity: Passwords and MFA',
+        paragraphs: [
+          'Identity is the new perimeter. Weak or reused passwords are still one of the biggest risks for SMEs.',
+        ],
+        listItems: [
+          'Use a password manager instead of spreadsheets or notes.',
+          'Enforce strong, unique passwords for email, VPN and admin accounts.',
+          'Enable multi-factor authentication (MFA) everywhere you can.',
+        ],
+      },
+      {
+        heading: '2. Patch and Update Regularly',
+        paragraphs: [
+          'Unpatched systems are one of the easiest ways attackers get in. You need a disciplined approach to updates.',
+        ],
+        listItems: [
+          'Automatic updates for workstations and laptops.',
+          'Regular patching cycles for servers and network devices.',
+          'Plans for replacing unsupported operating systems.',
+        ],
+      },
+      {
+        heading: '3. Email Security and User Awareness',
+        paragraphs: [
+          'Phising is still the number one way attackers reach your users. Technology and training must work together.',
+        ],
+        listItems: [
+          'Modern email filtering with spoofing and malware protection.',
+          'Regular phising awareness training.',
+          'Clear internal process if someone clicks a suspicious link.',
+        ],
+      },
+      {
+        heading: '4. Backups and Recovery',
+        paragraphs: [
+          'Backups are your last line of defence against ransomware and accidental deletion. They must be tested, not just configured.',
+        ],
+        listItems: [
+          'Multiple backup copies, including off-site or cloud.',
+          'Regular restore tests to prove backups work.',
+          'Documented recovery time objectives (RTOs) for key systems.',
+        ],
+      },
+      {
+        heading: '5. Where IT Legends Fits In',
+        paragraphs: [
+          'We help design layered security for SMEs - from firewalls and endpoint protection to backup, MFA and staff awareness - so you can focus on running your business.',
+        ],
+      },
+    ],
+    ctaLabel: 'Book a cybersecurity review',
+    ctaHref: '/#contact',
+  },
+];
 
-      <p>When businesses wait for problems to occur before taking action, they face several significant challenges:</p>
-
-      <ul>
-        <li><strong>Unexpected Downtime:</strong> System failures can halt operations for hours or even days, directly impacting revenue and customer satisfaction.</li>
-        <li><strong>Data Loss Risks:</strong> Without proactive monitoring and backup verification, critical business data remains vulnerable.</li>
-        <li><strong>Security Vulnerabilities:</strong> Unpatched systems and outdated software create entry points for cyberattacks.</li>
-        <li><strong>Higher Repair Costs:</strong> Emergency fixes are typically more expensive than preventative maintenance.</li>
-      </ul>
-
-      <h2>The Proactive Alternative</h2>
-
-      <p>Proactive IT support flips this model on its head. Instead of waiting for problems to occur, your IT partner continuously monitors your systems, identifies potential issues before they become critical, and implements preventative measures to keep everything running smoothly.</p>
-
-      <p>Key benefits of proactive IT support include:</p>
-
-      <ul>
-        <li><strong>24/7 Monitoring:</strong> Automated systems watch for anomalies, performance degradation, and security threats around the clock.</li>
-        <li><strong>Predictable Costs:</strong> Fixed monthly fees replace unpredictable emergency repair bills.</li>
-        <li><strong>Improved Uptime:</strong> Issues are resolved before they impact your business operations.</li>
-        <li><strong>Strategic Planning:</strong> Regular assessments help you plan for future technology needs and investments.</li>
-      </ul>
-
-      <h2>Real-World Impact</h2>
-
-      <p>Consider a typical scenario: A server's hard drive begins showing signs of failure. With reactive support, this drive fails completely during business hours, causing unexpected downtime while emergency repairs are arranged. With proactive support, monitoring systems detect the early warning signs, the drive is replaced during a planned maintenance window, and business continues uninterrupted.</p>
-
-      <h2>What Proactive Support Looks Like</h2>
-
-      <p>A comprehensive proactive IT support plan typically includes:</p>
-
-      <ul>
-        <li>Continuous system monitoring and alerting</li>
-        <li>Regular software updates and security patches</li>
-        <li>Automated backup verification</li>
-        <li>Performance optimization</li>
-        <li>Security audits and vulnerability assessments</li>
-        <li>Capacity planning and scalability reviews</li>
-        <li>Documentation and disaster recovery planning</li>
-      </ul>
-
-      <h2>Making the Transition</h2>
-
-      <p>Moving from reactive to proactive IT support doesn't have to be complicated. Start by conducting a comprehensive assessment of your current IT environment, identifying pain points, and understanding your business's specific needs. A qualified managed service provider can help you develop a customized support plan that fits your budget and requirements.</p>
-
-      <h2>The Bottom Line</h2>
-
-      <p>In an era where technology underpins virtually every business operation, proactive IT support isn't just a luxury—it's a necessity. By investing in preventative maintenance and continuous monitoring, you protect your business from costly disruptions, enhance security, and free your team to focus on what they do best: growing your business.</p>
-
-      <p>Ready to make the switch to proactive IT support? Contact IT Legends today to learn how we can help keep your systems running smoothly and securely.</p>
-    `
-  };
-
+function SectionDivider() {
   return (
-    <div className="min-h-screen bg-itdark text-itsilver">
-      <Navigation />
-      <BlogPostHero title={blogPost.title} date={blogPost.date} author={blogPost.author} />
-      <BlogContent content={blogPost.content} />
-      <BackToBlog />
-      <Footer />
+    <div className="w-full flex justify-center py-0.5 bg-transparent"> 
+      <div className="w-[95%] h-px bg-gradient-to-r from-itred to-itblue"/>
     </div>
   );
 }
 
-function Navigation() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+export default function BlogPostPage() {
+  const { slug } = useParams<{ slug: string }>();
+  const post = blogPosts.find((p) => p.slug === slug);
+
+  if (!post) {
+    return (
+      <div className="min-h-screen bg-itdark text-itsilver flex flex-col">
+        <nav className="fixed top-0 w-full tech-glass z-50 border-b border-itgray2">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href='/' className="text-white font-bold text-lg">
+            IT Legends
+            </a>
+            <a
+              href="/#blog"
+              className="inline-flex items-center text-itsilver hover:text-itred transition-colors text-sm sm:text-base"
+            >
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Insights
+            </a>
+          </div>
+        </nav>
+        <div className="flex-1 flex items-center justify-center pt-20">
+          <p className="text-itsilver">Blog post not found.</p>
+        </div>
+          <Footer />
+      </div>
+    );
+  }
 
   return (
-    <nav className="fixed top-0 w-full tech-glass z-50 border-b border-itgray2">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <a href="/" className="flex items-center space-x-2">
-            <Code className="h-8 w-8 text-itred" />
-            <span className="text-xl font-bold text-white">IT Legends</span>
+    <div className="min-h-screen bg-itdark text-itsilver flex flex-col">
+      {/* Top nav */}
+      <nav className="fixed top-0 w-full tech-glass z-50 border-b border-itgray2">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <a href='/' className="text-white font-bold text-lg">
+            IT Legends
           </a>
-
-          <div className="hidden md:flex space-x-8">
-            <a href="/blog" className="text-itsilver hover:text-itred transition-colors font-medium">
-              Back to Blog
-            </a>
-            <a href="/" className="text-itsilver hover:text-itred transition-colors font-medium">
-              Home
-            </a>
-          </div>
-
-          <button
-            className="md:hidden text-itsilver"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          <a
+            href="/#blog"
+            className="inline-flex items-center text-itsilver hover:text-itred transition-colors text-sm sm:text-base"
           >
-            {mobileMenuOpen ? '✕' : '☰'}
-          </button>
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Insights
+          </a>
         </div>
-      </div>
+      </nav>
 
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-itgray border-t border-itgray2">
-          <div className="px-4 py-4 space-y-3">
-            <a
-              href="/blog"
-              className="block text-itsilver hover:text-itred transition-colors font-medium"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Back to Blog
-            </a>
-            <a
-              href="/"
-              className="block text-itsilver hover:text-itred transition-colors font-medium"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Home
-            </a>
-          </div>
-        </div>
-      )}
-    </nav>
-  );
-}
-
-interface BlogPostHeroProps {
-  title: string;
-  date: string;
-  author: string;
-}
-
-function BlogPostHero({ title, date, author }: BlogPostHeroProps) {
-  return (
-    <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-itdark via-itgray to-itdark overflow-hidden">
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-itred/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-itblue/5 rounded-full blur-3xl"></div>
-
-      <div className="relative z-10 max-w-4xl mx-auto">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-8 text-glow">
-          {title}
-        </h1>
-
-        <div className="flex flex-wrap gap-6 text-itsilver">
-          <div className="flex items-center gap-2">
-            <Calendar className="h-5 w-5 text-itred" />
-            <span>{date}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <User className="h-5 w-5 text-itblue" />
-            <span>{author}</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-interface BlogContentProps {
-  content: string;
-}
-
-function BlogContent({ content }: BlogContentProps) {
-  return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-itdark">
-      <div className="max-w-4xl mx-auto">
-        <article
-          className="prose prose-invert prose-lg max-w-none
-            prose-headings:font-bold prose-headings:text-white prose-headings:mb-4 prose-headings:mt-8
-            prose-h2:text-3xl prose-h2:text-itred
-            prose-h3:text-2xl prose-h3:text-itblue
-            prose-p:text-itsilver prose-p:leading-relaxed prose-p:mb-6
-            prose-ul:text-itsilver prose-ul:space-y-3
-            prose-li:leading-relaxed
-            prose-strong:text-white prose-strong:font-semibold"
-          dangerouslySetInnerHTML={{ __html: content }}
+      {/* Hero with shared background */}
+      <section className="relative pt-28 pb-16 px-4 sm:px-6 lg:px-8">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('/src/assets/blog-hero.webp')"
+          }}
         />
-      </div>
-    </section>
-  );
-}
+        <div className="absolute inset-0 bg-black/60" />
 
-function BackToBlog() {
-  return (
-    <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-itdark to-itgray border-t border-itgray2">
-      <div className="max-w-4xl mx-auto text-center">
-        <a
-          href="/blog"
-          className="btn-secondary inline-flex items-center justify-center"
-        >
-          <ArrowLeft className="mr-2 h-5 w-5" />
-          Back to Blog
-        </a>
+        <div className="relative z-10 max-w-4xl mx-auto">
+          <div className="flex flex-wrap items-center gap-4 mb-4 text-itsilver/80 text-sm">
+            <span className="inline-flex items-center">
+              <Calendar className="h-4 w-4 mr-1" /> {post.date}
+            </span>
+            <span className="inline-flex items-center">
+              <Clock className="h-4 w-4 mr-1" /> {post.readTime}
+            </span>
+            <span className="inline-flex items-center">
+              <Tag className="h-4 w-4 mr-1" /> {post.category}
+            </span>
+          </div>
+
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+            {post.title}
+          </h1>
+          <p className="text-lg text-itsilver max-w-2xl">{post.excerpt}</p>
+        </div>
+      </section>
+
+      {/* Content */}
+      <main className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 w-full">
+        <SectionDivider />
+
+        <div className="bg-itgray/40 border border-itgray2/60 rounded-2xl p-6 sm:p-8 shadow-lg">
+        {/* Card image inside grey content block */}
+        <img
+          src={post.image}
+          alt={post.title}
+          className="w-full rounded-lg mb-8 shadow-md object-cover max-h-96"
+        />
+
+        {/* Article content */}
+        <article className="prose prose-invert max-w-none prose-p:text-itsilver prose-li:text-itsilver prose-h2:text-white prose-h3:text-white">
+          {post.sections.map((section, idx) => (
+            <div key={idx} className="mb-10">
+              <h2 className="mb-4">{section.heading}</h2>
+              {section.paragraphs?.map((p, i) => (
+                <p key={i} className="mb-4">{p}</p>
+              ))}
+
+              {section.listItems && (
+                <ul className="mb-4">
+                  {section.listItems.map((item, j) => (
+                    <li key={j}>{item}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
+        </article>
+
+        {/* CTA inside the same grey block */}
+        <div className="text-center mt-10">
+          <a
+            href={post.ctaHref}
+            className="btn-primary inline-flex items-center justify-center"
+          >
+            {post.ctaLabel}
+          </a>
+        </div>
       </div>
-    </section>
+
+      <SectionDivider />
+      </main>
+
+      <Footer />
+    </div>
   );
 }

@@ -9,9 +9,6 @@ import ServerMaintenancePage from './pages/ServerMaintenance';
 import HelpdeskPage from './pages/Helpdesk';
 import BlogPage from './pages/Blog';
 import BlogPostPage from './pages/BlogPost';
-import BlogPost1Page from './pages/BlogPost1';
-import BlogPost2Page from './pages/BlogPost2';
-import BlogPost3Page from './pages/BlogPost3';
 import ContactPage from './pages/Contact'; 
 import Footer from './components/Footer';
 
@@ -30,9 +27,6 @@ function App() {
         <Route path="/services/server-maintenance" element={<ServerMaintenancePage />} />
         <Route path="/services/helpdesk" element={<HelpdeskPage />} />
         <Route path="/blog" element={<BlogPage />} />
-        <Route path="/blog/post-1" element={<BlogPost1Page />} />
-        <Route path="/blog/post-2" element={<BlogPost2Page />} />
-        <Route path="/blog/post-3" element={<BlogPost3Page />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="/contact" element={<ContactPage />} />
       </Routes>
@@ -90,7 +84,7 @@ function Navigation({ mobileMenuOpen, setMobileMenuOpen }: { mobileMenuOpen: boo
             {navItems.map((item) => (
               <a
                 key={item}
-                href={`#${item.toLowerCase().replace(' ', '-')}`}
+                href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
                 className="text-itsilver hover:text-itred transition-colors font-medium"
               >
                 {item}
@@ -196,7 +190,7 @@ function WhoWeAre() {
         }}
       ></div>
 
-      <div className="absolute inset-0 bg-black/60"></div>
+      <div className="absolute inset-0 bg-black/70"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
@@ -367,30 +361,36 @@ function WhyPartner() {
 
 
 function BlogAndITTips() {
-  const blogPosts = [
+  const posts = [
     {
-      title: '5 Essential Cybersecurity Tips for Small Businesses',
-      date: 'November 12, 2024',
-      snippet:
-        'Protect your business from cyber threats with these practical security measures that every small business should implement today.',
+      slug: 'cloud-future',
+      title: 'The Future of Cloud Computing in 2024',
+      excerpt: 'Explore the latest trends in cloud technology and how they are reshaping business infrastructure.',
+      date: 'Mar 15, 2024',
+      Catagory: 'Cloud',
+      image: '/src/assets/blog-card-cloud.webp',
     },
     {
-      title: 'Understanding Cloud Migration: A Step-by-Step Guide',
-      date: 'November 8, 2024',
-      snippet:
-        'Planning to move your infrastructure to the cloud? Learn the key considerations and best practices for a smooth migration process.',
+      slug: 'ai-integration-guide',
+      title: 'AI Integration: A Prectical Guide for Businesses',
+      excerpt: 'Learn how to successfully integrate artifical intelligence into your existing workflows and systems.',
+      date: 'Mar 10, 2024',
+      category: 'AI',
+      image: '/src/assets/blog-card-ai.webp',
     },
     {
-      title: 'Windows 11 Update Alert: What IT Managers Need to Know',
-      date: 'November 5, 2024',
-      snippet:
-        'Microsoft has released critical security patches. Here is what you need to know about the latest updates and how they affect your systems.',
+      slug: 'cybersecurity-best-practices-2024',
+      title: 'Cybersecurity Best Practices for 2024',
+      excerpt: 'Essential security measures every organization should implement to protect against modern threats.',
+      date: 'Mar 5, 2024',
+      category: 'Security',
+      image: '/src/assets/blog-card-security.webp',
     },
   ];
 
   return (
     <section
-      id="blog-tips"
+      id="blog"
       className="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
       {/* Background image */}
@@ -409,77 +409,63 @@ function BlogAndITTips() {
         <div className="text-center mb-16">
           <div className="flex items-center justify-center mb-4">
             <BookOpen className="h-10 w-10 text-itred mr-3" />
-            <h2 className="section-title">Blog & IT Tips</h2>
+            <h2 className="section-title">Latest Insights</h2>
           </div>
           <div className="section-divider mb-8"></div>
           <p className="text-lg text-itsilver max-w-2xl mx-auto">
-            Weekly IT tips, security alerts, and tech insights.
+            Stay informed with our latest thoughts on technology trends and best practices.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {blogPosts.map((post, index) => {
+        <div className="grid grid-cols-1 md:grid-cols-2 lg_grid-cols-3 gap-8">
+          {posts.map((post, index) => {
             const isRed = index % 2 === 0;
             return (
               <a
-                key={index}
-                href="/blog"
-                className={`card-dark group cursor-pointer ${
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className={`card-dark group cursor-pointer overflow-hidden block ${
                   isRed
                     ? 'glow-red border-itred/30 hover:border-itred/60'
-                    : 'glow-blue border-itblue/30 hover:border-itblue/60'
-                } block`}
+                    : 'glow-blue boder-itblue/30 hover:border-itblue/60'
+                }`}
               >
-                <div className="flex items-center space-x-3 mb-4">
+                <div className="h-48 w-full overflow-hidden border-b border-itgray2">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-6">
                   <div
-                    className={`w-10 h-10 ${
-                      isRed ? 'bg-itred/20' : 'bg-itblue/20'
-                    } rounded-lg flex items-center justify-center border ${
-                      isRed ? 'border-itred/30' : 'border-itblue/30'
+                    className={`text-sm font-semibold mb-2 ${
+                      isRed ? 'text-itred' : 'text-itblue'
                     }`}
                   >
-                    <Calendar
-                      className={`h-5 w-5 ${
-                        isRed ? 'text-itred' : 'text-itblue'
-                      }`}
-                    />
+                    {post.category}
                   </div>
-                  <span className="text-sm text-itsilver/70">
-                    {post.date}
-                  </span>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-itred transition-colors">
+                    {post.title}
+                  </h3>
+                  <p className="text-itsilver mb-4 leading-relaxed text-sm">
+                    {post.excerpt}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-itsilver/60">{post.date}</span>
+                    <span
+                      className={`font-semibold flex items-center transition-colors text-sm ${
+                        isRed ? 'text-itred group-hover:text-itblue' : 'text-itblue group-hover:text-itred'
+                      }`}
+                    >
+                      Read More
+                      <ChevronRight className="ml-1 h-4 w-4" />
+                    </span>
+                  </div>
                 </div>
-
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-itred transition-colors">
-                  {post.title}
-                </h3>
-
-                <p className="text-itsilver leading-relaxed mb-4 text-sm">
-                  {post.snippet}
-                </p>
-
-                <span
-                  className={`inline-flex items-center font-semibold transition-colors text-sm ${
-                    isRed
-                      ? 'text-itred group-hover:text-itblue'
-                      : 'text-itblue group-hover:text-itred'
-                  }`}
-                >
-                  Read Full Article
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </span>
               </a>
             );
           })}
-        </div>
-
-        <div className="text-center mb-10">
-          <a
-            href="/blog"
-            className="btn-primary inline-flex items-center justify-center"
-          >
-            View All Blog Posts
-            <ChevronRight className="ml-2 h-5 w-5" />
-          </a>
         </div>
       </div>
     </section>
@@ -594,14 +580,42 @@ function Contact() {
                 <div className="w-14 h-14 bg-itred/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-itred/30">
                   <MapPin className="h-7 w-7 text-itred" />
                 </div>
-                <div>
-                  <div className="font-semibold text-white mb-1 text-lg">Location</div>
-                  <div className="text-itsilver text-base">
-                    Gauteng, South Africa
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-itsilver text-base w-full">
+
+                  {/* Johannesburg */}
+                  <div>
+                    <span className="font-semibold text-white block mb-1">Johannesburg:</span>
+                    <a
+                      href="https://www.google.com/maps/search/?api=1&query=715+Elmstreet+,+Grobler+Park,+Roodepoort,+1724"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-itred transition-colors leading-relaxed"
+                    >
+                      715 Elm Street<br />
+                      Grobler Park<br />
+                      Roodepoort, 1724
+                    </a>
                   </div>
+
+                  {/* Pretoria */}
+                  <div>
+                    <span className="font-semibold text-white block mb-1">Pretoria:</span>
+                    <a
+                      href="https://www.google.com/maps/search/?api=1&query=265+Theuns+Van+Niekerk+Street,+Wierdapark,+Centurion,+0157"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-itred transition-colors leading-relaxed"
+                    >
+                      265 Theuns Van Niekerk Street<br />
+                      Wierdapark<br />
+                      Centurion, 0157
+                    </a>
+                  </div>
+                
                 </div>
               </div>
-            </div>
+            
           </div>
 
           {/* Right form */}
@@ -692,6 +706,7 @@ function Contact() {
           </div>
         </div>
       </div>
+    </div>
     </section>
   );
 }

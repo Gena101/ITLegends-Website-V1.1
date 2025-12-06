@@ -67,7 +67,29 @@ export default function Footer() {
                 </a> 
               </li>
 
-              <li>Gauteng, South Africa</li>
+              <li>
+                <span className="font-semibold text-white">Johannesburg:</span><br />
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=715+Elm+Street,+Gronler+Park,+Roodepoort,+1724"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-itred transition-colors"
+                >
+                  715 Elm Street, Grobler Park, Roodepoort, 1724
+                </a>
+              </li>
+
+              <li>
+                <span className="font-semibold text-white">Pretoria:</span><br />
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=265+Theuns+Van+Niekerk+Street,+Wierdapark,+Centurion,+0157"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-itred transition-colors"
+                >
+                  265 Theuns Van Niekerk Street, Wierdapark, Centurion, 0157
+                </a>
+              </li>
             </ul>
           </div>
 
