@@ -1,3 +1,5 @@
+import { Facebook, Instagram } from 'lucide-react';
+
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden pt-16 pb-12 px-4 sm:px-6 lg:px-8">
@@ -21,9 +23,32 @@ export default function Footer() {
             <div className="flex items-center space-x-2 mb-4">
               <span className="text-xl font-bold text-white">IT Legends</span>
             </div>
+
             <p className="text-itsilver text-sm sm:text-base">
               Reliable managed IT support, cybersecurity, cloud and network solutions for South African businesses.
             </p>
+
+            <div className="flex space-x-4 mt-6">
+
+              <a 
+                href="https://www.facebook.com/itlegends"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg border border-itgray2 hover:border-itblue/60 hover:bg-itblue/2 transition-all"
+              >
+                <Facebook className="h-6 w-6 text-itsilver hover:text-itblue transition-colors" />
+              </a>
+
+              <a
+                href="https://www.instagram.com/itlegends/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg border border-itgray2 hover:border-itred/60 hover:bg-itred/20 transition-all"
+              >
+                <Instagram className="h-6 w-6 text-itsilver hover:text-itred transition-colors" />
+              </a>
+
+            </div>
           </div>
 
           {/* Quick Links */}
