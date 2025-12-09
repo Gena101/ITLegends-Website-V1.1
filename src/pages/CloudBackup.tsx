@@ -1,6 +1,14 @@
-import { ChevronRight, AlertCircle, CheckCircle, Cloud, Shield, Server } from 'lucide-react';
 import React, { useState } from 'react';
+import { ChevronRight, AlertCircle, CheckCircle, Cloud, Shield, Server } from 'lucide-react';
 import Footer from '../components/Footer';
+
+// ✅ Image imports so Netlify/Vite bundle them correctly
+import headerImg from '../assets/header-img.webp';
+import cloudHeroBg from '../assets/cloud-hero.webp';
+import cloudSolutionBg from '../assets/cloud-solution.webp';
+import cloudBenefitsBg from '../assets/cloud-benefits.webp';
+import cloudProcessBg from '../assets/cloud-process.webp';
+import contactBg from '../assets/contact-bg.webp';
 
 export default function CloudBackupPage() {
   return (
@@ -33,16 +41,18 @@ export default function CloudBackupPage() {
 
 function ServiceNavigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-return (
+  return (
     <nav className="fixed top-0 w-full tech-glass z-50 border-b border-itgray2">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-2">
-          <a href="#" className="flex items-center space-x-2">
-            <img src="/src/assets/header-img.webp" alt="IT Legends Logo" className="h-10 w-auto" />
-            <span className="text-xl font-bold text-white">IT Legends | Cloud & Backup Solutions</span>
-          </a>
-        </div>
+            <a href="/" className="flex items-center space-x-2">
+              <img src={headerImg} alt="IT Legends Logo" className="h-10 w-auto" />
+              <span className="text-xl font-bold text-white">
+                IT Legends | Cloud &amp; Backup Solutions
+              </span>
+            </a>
+          </div>
 
           <div className="hidden md:flex space-x-8">
             <a href="/" className="text-itsilver hover:text-itred transition-colors font-medium">
@@ -78,7 +88,7 @@ return (
 function SectionDivider() { 
   return ( 
     <div className="w-full flex justify-center py-0.5 bg-transparent"> 
-      <div className="w-[95%] h-px bg-gradient-to-r from-itred to-itblue"/>
+      <div className="w-[95%] h-px bg-gradient-to-r from-itred to-itblue" />
     </div> 
   );
 }
@@ -89,14 +99,14 @@ interface ServiceHeroProps {
   buttonText?: string;
 }
 
-function ServiceHero({ title, subtitle, buttonText = "Request a Quote" }: ServiceHeroProps) {
+function ServiceHero({ title, subtitle, buttonText = 'Request a Quote' }: ServiceHeroProps) {
   return (
     <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-20 pb-16">
       {/* Background image */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/cloud-hero.webp')"
+          backgroundImage: `url(${cloudHeroBg})`,
         }}
       ></div>
 
@@ -129,16 +139,16 @@ function PainPoints() {
   const painPoints = [
     'No reliable offsite backups if your office is hit by theft, fire, or hardware failure.',
     'Backups are manual, inconsistent, or never tested for recovery.',
-    'No clear Recovery Time Objective (RTO) or Recovery Point Objective (RPO)',
+    'No clear Recovery Time Objective (RTO) or Recovery Point Objective (RPO).',
   ];
 
   return (
     <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background image */}
+      {/* Background image (re-use hero) */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/cloud-hero.webp')"
+          backgroundImage: `url(${cloudHeroBg})`,
         }}
       ></div>
 
@@ -146,7 +156,7 @@ function PainPoints() {
       <div className="absolute inset-0 bg-black/60"></div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-9xl ms-auto">
+      <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="section-title">Common Pain Points</h2>
           <div className="section-divider mb-8"></div>
@@ -161,7 +171,7 @@ function PainPoints() {
               <div className="w-12 h-12 bg-itred/20 rounded-full flex items-center justify-center mb-4">
                 <AlertCircle className="h-6 w-6 text-itred" />
               </div>
-              <p className="text-itsilver text-base leading.relaxed">{point}</p>
+              <p className="text-itsilver text-base leading-relaxed">{point}</p>
             </div>
           ))}
         </div>
@@ -183,7 +193,7 @@ function OurSolution() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/cloud-solution.webp')"
+          backgroundImage: `url(${cloudSolutionBg})`,
         }}
       ></div>
 
@@ -198,17 +208,17 @@ function OurSolution() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {solutions.map((solutions, index) => (
+          {solutions.map((solution, index) => (
             <div
               key={index}
               className="card-dark glow-blue border-itblue/30 flex flex-col items-center text-center"
             >
               <div className="w-12 h-12 bg-itblue/20 rounded-full flex items-center justify-center mb-4">
-                {index === 0 && <Cloud className="h-6 w_6 text-itblue" />}
-                {index === 1 && <Shield className="h6 w-6 text-itblue" />}
+                {index === 0 && <Cloud className="h-6 w-6 text-itblue" />}
+                {index === 1 && <Shield className="h-6 w-6 text-itblue" />}
                 {index === 2 && <Server className="h-6 w-6 text-itblue" />}
               </div>
-              <p className="text-itsilver text-base leading-relaxed">{solutions}</p>
+              <p className="text-itsilver text-base leading-relaxed">{solution}</p>
             </div>
           ))}
         </div>
@@ -221,20 +231,20 @@ function Benefits() {
   const benefits = [
     {
       title: 'Business Continuity',
-      description: 'Your business can recover quickly from ransomware, hardware failures, or accidental deletions',
+      description: 'Your business can recover quickly from ransomware, hardware failures, or accidental deletions.',
     },
     {
       title: 'Compliance & Peace of Mind',
-      description: 'Retention policies and secure storage help you meet compliance and audit requirements',
+      description: 'Retention policies and secure storage help you meet compliance and audit requirements.',
     },
     {
       title: 'Predictable Costs',
-      description: 'Clear monthly pricing models based on data usage and protection requirements', 
+      description: 'Clear monthly pricing models based on data usage and protection requirements.',
     },
     {
       title: 'Monitored by Experts',
       description: 'The IT Legends team monitors backup jobs and helps you validate that restores actually work.',
-    }
+    },
   ];
 
   return (
@@ -243,7 +253,7 @@ function Benefits() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/cloud-benefits.webp')"
+          backgroundImage: `url(${cloudBenefitsBg})`,
         }}
       ></div>
 
@@ -252,13 +262,13 @@ function Benefits() {
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto">
-        <div className="text-center mb-18">
+        <div className="text-center mb-16">
           <h2 className="section-title">Key Benefits</h2>
           <div className="section-divider mb-8"></div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg-grid-cols-4 gap-6 max-w-6xl mx-auto">
-          {benefits.map((benefits, index) => {
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {benefits.map((benefit, index) => {
             const isRed = index % 2 === 0;
             return (
               <div
@@ -276,13 +286,13 @@ function Benefits() {
                     className={`h-6 w-6 ${
                       isRed ? 'text-itred' : 'text-itblue'
                     }`}
-                    />
+                  />
                 </div>
                 <h3 className="text-lg font-bold text-white mb-3">
-                  {benefits.title}
+                  {benefit.title}
                 </h3>
                 <p className="text-itsilver text-sm leading-relaxed">
-                  {benefits.description}
+                  {benefit.description}
                 </p>
               </div>                  
             );
@@ -309,7 +319,7 @@ function Process() {
       number: 3,
       title: 'Monitor & Test',
       description: 'We monitor backups, run test restores, and adjust as your environment grows.',
-    }
+    },
   ];
 
   return (
@@ -321,7 +331,7 @@ function Process() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/cloud-process.webp')"
+          backgroundImage: `url(${cloudProcessBg})`,
         }}
       ></div>
 
@@ -363,10 +373,10 @@ function Process() {
             {steps.map((step, index) => (
               <div key={index} className="relative">
                 {index < steps.length - 1 && (
-                  <div className="absolute left-6 top-12 w-1 h-6 bg-gradient-to-b from it-red to transparent"></div>
+                  <div className="absolute left-6 top-12 w-1 h-6 bg-gradient-to-b from-itred to-transparent"></div>
                 )}
                 <div className="card-dark glow-red border-itred/30 relative pl-16">
-                  <div className="absolute -left-6 -top-6 w-12 h-12 bg-gradient-to-br from it-red to it-blue rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                  <div className="absolute -left-6 -top-6 w-12 h-12 bg-gradient-to-br from-itred to-itblue rounded-lg flex items-center justify-center text-white font-bold text-xl">
                     {step.number}
                   </div>
                   <h3 className="text-xl font-bold text-white mb-3">
@@ -386,12 +396,12 @@ function Process() {
 }
 
 function CTA() {
-  const [formState, setFromState] = useState({
+  const [formState, setFormState] = useState({
     name: '',
     email: '',
     company: '',
     message: '',
-    honeypot: ''
+    honeypot: '',
   });
 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -399,13 +409,13 @@ function CTA() {
   const [reference, setReference] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFromState({
+    setFormState({
       ...formState,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e:React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Honeypot check
@@ -435,7 +445,7 @@ function CTA() {
       const data = await res.json();
       setReference(data.reference || null);
       setStatus('success');
-      setFromState({ name: '', email: '', company: '', message: '', honeypot: '' });
+      setFormState({ name: '', email: '', company: '', message: '', honeypot: '' });
     } catch (err: any) {
       console.error(err);
       setStatus('error');
@@ -449,7 +459,7 @@ function CTA() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/contact-bg.webp')"
+          backgroundImage: `url(${contactBg})`,
         }}
       ></div>
 
@@ -468,7 +478,6 @@ function CTA() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-
           {/* Honeypot field */}
           <div className="hidden" aria-hidden="true">
             <label htmlFor="website">Website</label>
@@ -494,7 +503,7 @@ function CTA() {
                 value={formState.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-itgray border border-itgray2 reounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+                className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
                 placeholder="Your name"
               />
             </div>
@@ -569,5 +578,5 @@ function CTA() {
         </form>
       </div>
     </section>
-  )
+  );
 }

@@ -1,6 +1,16 @@
-import { ChevronRight, AlertCircle, CheckCircle, Activity, Clock, Shield } from 'lucide-react';
 import React, { useState } from 'react';
+import { ChevronRight, AlertCircle, CheckCircle, Activity, Clock, Shield } from 'lucide-react';
 import Footer from '../components/Footer';
+
+// ✅ Image imports so they bundle correctly
+import headerImg from '../assets/header-img.webp';
+import serverHeroBg from '../assets/server-maintenance-hero.webp';
+import serverPainpointsBg from '../assets/server-maintenance-painpoints.webp';
+import serverSolutionBg from '../assets/server-maintenance-solution.webp';
+import serverBenefitsBg from '../assets/server-maintenance-benefits.webp';
+import serverProcessBg from '../assets/server-maintenance-process.webp';
+import serverDetailsBg from '../assets/server-maintenance-details.webp';
+import contactBg from '../assets/contact-bg.webp';
 
 export default function ServerMaintenancePage() {
   return (
@@ -32,16 +42,18 @@ export default function ServerMaintenancePage() {
 
 function ServiceNavigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-return (
+  return (
     <nav className="fixed top-0 w-full tech-glass z-50 border-b border-itgray2">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-2">
-          <a href="#" className="flex items-center space-x-2">
-            <img src="/src/assets/header-img.webp" alt="IT Legends Logo" className="h-10 w-auto" />
-            <span className="text-xl font-bold text-white">IT Legends | Server Maintenance & Monitoring</span>
-          </a>
-        </div>
+            <a href="/" className="flex items-center space-x-2">
+              <img src={headerImg} alt="IT Legends Logo" className="h-10 w-auto" />
+              <span className="text-xl font-bold text-white">
+                IT Legends | Server Maintenance &amp; Monitoring
+              </span>
+            </a>
+          </div>
 
           <div className="hidden md:flex space-x-8">
             <a href="/" className="text-itsilver hover:text-itred transition-colors font-medium">
@@ -77,7 +89,7 @@ return (
 function SectionDivider() { 
   return ( 
     <div className="w-full flex justify-center py-0.5 bg-transparent"> 
-      <div className="w-[95%] h-px bg-gradient-to-r from-itred to-itblue"/>
+      <div className="w-[95%] h-px bg-gradient-to-r from-itred to-itblue" />
     </div> 
   );
 }
@@ -89,7 +101,7 @@ function ServiceHero() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/server-maintenance-hero.webp')"
+          backgroundImage: `url(${serverHeroBg})`,
         }}
       ></div>
 
@@ -99,7 +111,7 @@ function ServiceHero() {
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto text-center px-4">
         <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 text-glow">
-          Server Maintenance & Monitoring
+          Server Maintenance &amp; Monitoring
         </h1>
 
         <p className="text-lg sm:text-xl text-itsilver mb-12 leading-relaxed">
@@ -120,8 +132,8 @@ function ServiceHero() {
 
 function PainPoints() {
   const painPoints = [
-    'Server going down unexpectedly during business hours.',
-    'Patches and security updates applied late - or not al all.',
+    'Servers going down unexpectedly during business hours.',
+    'Patches and security updates applied late – or not at all.',
     'No central visibility into CPU, RAM, disk, and service health.',
   ];
 
@@ -131,7 +143,7 @@ function PainPoints() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/server-maintenance-painpoints.webp')"
+          backgroundImage: `url(${serverPainpointsBg})`,
         }}
       ></div>
 
@@ -145,7 +157,7 @@ function PainPoints() {
           <div className="section-divider mb-8"></div>
         </div>
 
-        <div className="grid mb:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {painPoints.map((point, index) => (
             <div
               key={index}
@@ -160,7 +172,7 @@ function PainPoints() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function OurSolution() {
@@ -176,7 +188,7 @@ function OurSolution() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/server-maintenance-solution.webp')"
+          backgroundImage: `url(${serverSolutionBg})`,
         }}
       ></div>
 
@@ -199,7 +211,7 @@ function OurSolution() {
               <div className="w-12 h-12 bg-itblue/20 rounded-full flex items-center justify-center mb-4">
                 {index === 0 && <Activity className="h-6 w-6 text-itblue" />}
                 {index === 1 && <Shield className="h-6 w-6 text-itblue" />}
-                {index === 2 && <Clock className="h6 w-6 text-itblue" />}
+                {index === 2 && <Clock className="h-6 w-6 text-itblue" />}
               </div>
               <p className="text-itsilver text-base leading-relaxed">{solution}</p>
             </div>
@@ -227,7 +239,7 @@ function Benefits() {
     {
       title: 'Predictable Support',
       description: 'Maintenance windows and communication plans ensure your team always knows what is happening.',
-    }
+    },
   ];
 
   return (
@@ -236,7 +248,7 @@ function Benefits() {
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/server-maintenance-benefits.webp')"
+          backgroundImage: `url(${serverBenefitsBg})`,
         }}
       ></div>
 
@@ -302,19 +314,19 @@ function Process() {
       number: 3,
       title: 'Monitor & Optimise',
       description: 'We continuously monitor, report, and fine-tune performance and capacity.',
-    }
+    },
   ];
 
   return (
     <section
       id="process"
-      className="relative py-20 px-4 sm:px-6 lg_px-8 overflow-hidden"
+      className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
       {/* Background image */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/server-maintenance-process.webp')"
+          backgroundImage: `url(${serverProcessBg})`,
         }}
       ></div>
 
@@ -337,7 +349,7 @@ function Process() {
                   <div className="hidden md:block absolute top-12 left-1/2 w-full h-1 bg-gradient-to-r from-itred to-transparent transform translate-y-0"></div>
                 )}
                 <div className="card-dark glow-red border-itred/30 relative">
-                  <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gradient-to-br from-itred to-itblue rounded-lg flex items-center justify-center text-white font-bold text-xl1">
+                  <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gradient-to-br from-itred to-itblue rounded-lg flex items-center justify-center text-white font-bold text-xl">
                     {step.number}
                   </div>
                   <h3 className="text-xl font-bold text-white mb-3 mt-2">
@@ -380,7 +392,7 @@ function Process() {
 
 function ContentSection() {
   const detailGroups = [
-  {
+    {
       title: 'Server Types We Support',
       items: [
         'Windows Server (AD, file, print, application roles)',
@@ -412,7 +424,7 @@ function ContentSection() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/server-maintenance-details.webp')"
+          backgroundImage: `url(${serverDetailsBg})`,
         }}
       ></div>
 
@@ -424,8 +436,8 @@ function ContentSection() {
         <div className="text-center mb-16">
           <h2 className="section-title">Service Details</h2>
           <div className="section-divider mb-8"></div>
-          <p className="text-lg test-itsilver max-w-3xl mx-auto">
-            Our Server Maintenance & Monitoring service is designed to give you the stability and insight you need around your most critical systems.
+          <p className="text-lg text-itsilver max-w-3xl mx-auto">
+            Our Server Maintenance &amp; Monitoring service is designed to give you the stability and insight you need around your most critical systems.
           </p>
         </div>
 
@@ -435,17 +447,17 @@ function ContentSection() {
               key={index}
               className="card-dark glow-blue border-itblue/30 h-full"
             >
-             <h3 className="text-xl font-bold text-white mb-4">
-              {group.title}
-             </h3>
-             <ul className="space-y-3 text-itsilver text-sm leading-relaxed">
-              {group.items.map((item, idx) => (
-                <li key={idx} className="flex items-start space-x-2">
-                  <span className="mt-1 h-2 w-2 rounded-full bg-itblue" />
-                  <span>{item}</span>
-                </li>
-              ))}
-             </ul>
+              <h3 className="text-xl font-bold text-white mb-4">
+                {group.title}
+              </h3>
+              <ul className="space-y-3 text-itsilver text-sm leading-relaxed">
+                {group.items.map((item, idx) => (
+                  <li key={idx} className="flex items-start space-x-2">
+                    <span className="mt-1 h-2 w-2 rounded-full bg-itblue" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
@@ -460,7 +472,7 @@ function CallToAction() {
     email: '',
     company: '',
     message: '',
-    honeypot: ''
+    honeypot: '',
   });
 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -488,7 +500,7 @@ function CallToAction() {
     setReference(null);
 
     try {
-      const res = await fetch ('https://hook.us2.make.com/pt14ynlwgyio4c48iwruduu9curorf4a', {
+      const res = await fetch('https://hook.us2.make.com/pt14ynlwgyio4c48iwruduu9curorf4a', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -518,7 +530,7 @@ function CallToAction() {
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/contact-bg.webp')"
+          backgroundImage: `url(${contactBg})`,
         }}
       ></div>
 
@@ -530,14 +542,13 @@ function CallToAction() {
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
             Need Proactive Server Maintenance?
           </h2>
-          <div className="section-divier mb-8"></div>
+          <div className="section-divider mb-8"></div>
           <p className="text-lg text-itsilver">
             Share your current server environment and challenges, and we'll design a maintenance and monitoring plan.
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-
           {/* Honeypot field */}
           <div className="hidden" aria-hidden="true">
             <label htmlFor="website">Website</label>
@@ -563,7 +574,7 @@ function CallToAction() {
                 value={formState.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:reing-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+                className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
                 placeholder="Your name"
               />
             </div>
@@ -595,7 +606,7 @@ function CallToAction() {
               name="company"
               value={formState.company}
               onChange={handleChange}
-              className="w-full px-4 py-3 bg-itgray border border-itgray2 reounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+              className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
               placeholder="Your company name"
             />
           </div>

@@ -1,6 +1,23 @@
-import { Menu, X,  Cloud, Shield, Zap, Users, TrendingUp, Mail, Phone, MapPin, ChevronRight, Cpu, BookOpen } from 'lucide-react';
+import {
+  Menu,
+  X,
+  Cloud,
+  Shield,
+  Zap,
+  Users,
+  TrendingUp,
+  Mail,
+  Phone,
+  MapPin,
+  ChevronRight,
+  Cpu,
+  BookOpen,
+  Calendar,
+  ArrowRight,
+} from 'lucide-react';
 import { useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+
 import ManagedITSupportPage from './pages/ManagedITSupport';
 import HardwareNetworkPage from './pages/HardwareNetwork';
 import CybersecurityPage from './pages/Cybersecurity';
@@ -8,11 +25,19 @@ import CloudBackupPage from './pages/CloudBackup';
 import ServerMaintenancePage from './pages/ServerMaintenance';
 import HelpdeskPage from './pages/Helpdesk';
 import BlogPostPage from './pages/BlogPost';
-import ContactPage from './pages/Contact'; 
+import ContactPage from './pages/Contact';
 import Footer from './components/Footer';
 import BlogIndexPage from './pages/BlogIndexPage';
 import { blogPosts } from './data/blogPosts';
 
+// ✅ Image imports so Vite/Netlify can bundle them correctly
+import heroBg from './assets/hero.webp';
+import whoWeAreBg from './assets/who-we-are.webp';
+import servicesBg from './assets/services-bg.webp';
+import whyUsBg from './assets/whyus-bg.webp';
+import contactBg from './assets/contact-bg.webp';
+import headerImg from './assets/header-img.webp';
+import heroLogoImg from './assets/hero-img.webp';
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -20,12 +45,32 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />} />
-        <Route path="/services/managed-it-support" element={<ManagedITSupportPage />} />
-        <Route path="/services/hardware-network" element={<HardwareNetworkPage />} />
-        <Route path="/services/cybersecurity" element={<CybersecurityPage />} />
+        <Route
+          path="/"
+          element={
+            <HomePage
+              mobileMenuOpen={mobileMenuOpen}
+              setMobileMenuOpen={setMobileMenuOpen}
+            />
+          }
+        />
+        <Route
+          path="/services/managed-it-support"
+          element={<ManagedITSupportPage />}
+        />
+        <Route
+          path="/services/hardware-network"
+          element={<HardwareNetworkPage />}
+        />
+        <Route
+          path="/services/cybersecurity"
+          element={<CybersecurityPage />}
+        />
         <Route path="/services/cloud-backup" element={<CloudBackupPage />} />
-        <Route path="/services/server-maintenance" element={<ServerMaintenancePage />} />
+        <Route
+          path="/services/server-maintenance"
+          element={<ServerMaintenancePage />}
+        />
         <Route path="/services/helpdesk" element={<HelpdeskPage />} />
         <Route path="/blog" element={<BlogIndexPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
@@ -35,30 +80,39 @@ function App() {
   );
 }
 
-function HomePage({ mobileMenuOpen, setMobileMenuOpen }: { mobileMenuOpen: boolean; setMobileMenuOpen: (open: boolean) => void }) {
+function HomePage({
+  mobileMenuOpen,
+  setMobileMenuOpen,
+}: {
+  mobileMenuOpen: boolean;
+  setMobileMenuOpen: (open: boolean) => void;
+}) {
   return (
     <div className="min-h-screen bg-itdark text-itsilver">
-      <Navigation mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
+      <Navigation
+        mobileMenuOpen={mobileMenuOpen}
+        setMobileMenuOpen={setMobileMenuOpen}
+      />
       <Hero />
       {/* Divider between Hero and Who We Are */}
       <SectionDivider />
-      
+
       <WhoWeAre />
       {/* Divider between Who We Are and Our Services */}
       <SectionDivider />
-      
+
       <OurServices />
       {/* Divider between Our Services and Why Partner With Us */}
       <SectionDivider />
-      
+
       <WhyPartner />
-      {/* Divider between Why Partner With Us and Latest Insights */}
+      {/* Divider between Why Partner With Us and Blog & IT Tips */}
       <SectionDivider />
-      
+
       <BlogAndITTips />
       {/* Divider between Blog & IT Tips and Contact */}
       <SectionDivider />
-      
+
       <Contact />
       <SectionDivider />
 
@@ -67,7 +121,13 @@ function HomePage({ mobileMenuOpen, setMobileMenuOpen }: { mobileMenuOpen: boole
   );
 }
 
-function Navigation({ mobileMenuOpen, setMobileMenuOpen }: { mobileMenuOpen: boolean; setMobileMenuOpen: (open: boolean) => void }) {
+function Navigation({
+  mobileMenuOpen,
+  setMobileMenuOpen,
+}: {
+  mobileMenuOpen: boolean;
+  setMobileMenuOpen: (open: boolean) => void;
+}) {
   const navItems = ['Who We Are', 'Services', 'Why Us', 'Blog', 'Contact'];
 
   return (
@@ -75,10 +135,14 @@ function Navigation({ mobileMenuOpen, setMobileMenuOpen }: { mobileMenuOpen: boo
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-2">
-           <a href="#" className="flex item-center space-x-2">
-            <img src="src/assets/header-img.webp" alt="IT Legends Logo" className="h-10 w-auto" />
-            <span className="text-xl font-bold text-white">IT Legends</span>
-           </a>
+            <a href="#" className="flex items-center space-x-2">
+              <img
+                src={headerImg}
+                alt="IT Legends Logo"
+                className="h-10 w-auto"
+              />
+              <span className="text-xl font-bold text-white">IT Legends</span>
+            </a>
           </div>
 
           <div className="hidden md:flex space-x-8">
@@ -108,7 +172,7 @@ function Navigation({ mobileMenuOpen, setMobileMenuOpen }: { mobileMenuOpen: boo
             {navItems.map((item) => (
               <a
                 key={item}
-                href={`#${item.toLowerCase().replace(' ', '-')}`}
+                href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
                 className="block text-itsilver hover:text-itred transition-colors font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -122,12 +186,11 @@ function Navigation({ mobileMenuOpen, setMobileMenuOpen }: { mobileMenuOpen: boo
   );
 }
 
-function SectionDivider() { 
-  return ( 
-    <div className="w-full flex justify-center py-0.5 bg-transparent"> 
-      <div className="w-[95%] h-px bg-gradient-to-r from-itred to-itblue">
-        </div>
-      </div> 
+function SectionDivider() {
+  return (
+    <div className="w-full flex justify-center py-0.5 bg-transparent">
+      <div className="w-[95%] h-px bg-gradient-to-r from-itred to-itblue"></div>
+    </div>
   );
 }
 
@@ -137,7 +200,7 @@ function Hero() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('src/assets/hero.webp')"
+          backgroundImage: `url(${heroBg})`,
         }}
       ></div>
 
@@ -145,16 +208,19 @@ function Hero() {
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="flex items-center justify-center mb-6">
-          <img src="src/assets/hero-img.webp" alt="IT Legends Logo" className="h-32 w-auto drop-shadow-[0_0_12px_tgba(255,255,255,0.35)]" />
-          
+          <img
+            src={heroLogoImg}
+            alt="IT Legends Logo"
+            className="h-32 w-auto drop-shadow-[0_0_12px_rgba(255,255,255,0.35)]"
+          />
         </div>
 
         <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 text-glow">
-          Providing You with{" "}
+          Providing You with{' '}
           <span className="bg-gradient-to-r from-itred to-itblue text-transparent bg-clip-text drop-shadow-[0_0_6px_rgba(0,0,0,0.7)] ">
             LEGENDARY
-          </span>{" "}
-           I.T. Services.
+          </span>{' '}
+          I.T. Services.
         </h1>
 
         <p className="text-lg sm:text-xl text-itsilver mb-12 leading-relaxed">
@@ -183,11 +249,14 @@ function Hero() {
 
 function WhoWeAre() {
   return (
-    <section id="who-we-are" className="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section
+      id="who-we-are"
+      className="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
+    >
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('src/assets/who-we-are.webp')",
+          backgroundImage: `url(${whoWeAreBg})`,
         }}
       ></div>
 
@@ -198,7 +267,13 @@ function WhoWeAre() {
           <h2 className="section-title">Who We Are</h2>
           <div className="section-divider mb-8"></div>
           <p className="text-lg text-itsilver leading-relaxed max-w-3xl mx-auto">
-            IT Legends is dedicated to empowering South African businesses through innovative, reliable I.T. solutions. We combine cutting-edge technology with deep industry expertise to deliver transformative results. Our mission is to be your trusted partner in navigating the digital landscape, providing strategic guidance and robust solutions that drive growth, efficiency, and competitive advantage for organizations of all sizes.
+            IT Legends is dedicated to empowering South African businesses
+            through innovative, reliable I.T. solutions. We combine
+            cutting-edge technology with deep industry expertise to deliver
+            transformative results. Our mission is to be your trusted partner
+            in navigating the digital landscape, providing strategic guidance
+            and robust solutions that drive growth, efficiency, and competitive
+            advantage for organizations of all sizes.
           </p>
         </div>
       </div>
@@ -206,53 +281,61 @@ function WhoWeAre() {
   );
 }
 
-
 function OurServices() {
   const services = [
     {
       icon: Shield,
       title: 'Managed IT Support',
-      description: 'Proactive monitoring and support to keep your systems running smoothly 24/7.',
-      link: '/services/managed-it-support'
+      description:
+        'Proactive monitoring and support to keep your systems running smoothly 24/7.',
+      link: '/services/managed-it-support',
     },
     {
       icon: Cpu,
       title: 'Hardware & Network Setup',
-      description: 'Professional installation and configuration of enterprise-grade infrastructure.',
-      link: '/services/hardware-network'
+      description:
+        'Professional installation and configuration of enterprise-grade infrastructure.',
+      link: '/services/hardware-network',
     },
     {
       icon: Shield,
       title: 'Cybersecurity & Protection',
-      description: 'Advanced threat detection and security measures to protect your business data.',
-      link: '/services/cybersecurity'
+      description:
+        'Advanced threat detection and security measures to protect your business data.',
+      link: '/services/cybersecurity',
     },
     {
       icon: Cloud,
       title: 'Cloud & Backup Solutions',
-      description: 'Secure cloud infrastructure and automated backup systems for business continuity.',
-      link: '/services/cloud-backup'
+      description:
+        'Secure cloud infrastructure and automated backup systems for business continuity.',
+      link: '/services/cloud-backup',
     },
     {
       icon: Zap,
       title: 'Server Maintenance & Monitoring',
-      description: 'Continuous server health monitoring and preventative maintenance services.',
-      link: '/services/server-maintenance'
+      description:
+        'Continuous server health monitoring and preventative maintenance services.',
+      link: '/services/server-maintenance',
     },
     {
       icon: Users,
       title: 'Helpdesk & Remote Assistance',
-      description: 'Expert technical support through remote assistance and dedicated helpdesk.',
-      link: '/services/helpdesk'
-    }
+      description:
+        'Expert technical support through remote assistance and dedicated helpdesk.',
+      link: '/services/helpdesk',
+    },
   ];
 
   return (
-    <section id="services" className="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section
+      id="services"
+      className="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
+    >
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('src/assets/services-bg.webp')",
+          backgroundImage: `url(${servicesBg})`,
         }}
       ></div>
 
@@ -269,21 +352,39 @@ function OurServices() {
             const Icon = service.icon;
             const isRed = index % 2 === 0;
             return (
-              <a
+              <Link
                 key={index}
-                href={service.link}
+                to={service.link}
                 aria-label={`Learn more about ${service.title}`}
-                className={`card-dark group cursor-pointer ${isRed ? 'glow-red border-itred/30 hover:border-itred/60' : 'glow-blue border-itblue/30 hover:border-itblue/60'} block`}
+                className={`card-dark group cursor-pointer ${
+                  isRed
+                    ? 'glow-red border-itred/30 hover:border-itred/60'
+                    : 'glow-blue border-itblue/30 hover:border-itblue/60'
+                } block`}
               >
-                <div className={`w-16 h-16 ${isRed ? 'bg-itred/20 text-itred' : 'bg-itblue/20 text-itblue'} rounded-lg flex items-center justify-center mb-6`}>
+                <div
+                  className={`w-16 h-16 ${
+                    isRed ? 'bg-itred/20 text-itred' : 'bg-itblue/20 text-itblue'
+                  } rounded-lg flex items-center justify-center mb-6`}
+                >
                   <Icon className="h-8 w-8" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">{service.title}</h3>
-                <p className="text-itsilver text-sm mb-4">{service.description}</p>
-                <span className={`text-sm font-semibold ${isRed ? 'text-itred group-hover:text-itblue' : 'text-itblue group-hover:text-itred'} transition-colors`}>
+                <h3 className="text-lg font-bold text-white mb-2">
+                  {service.title}
+                </h3>
+                <p className="text-itsilver text-sm mb-4">
+                  {service.description}
+                </p>
+                <span
+                  className={`text-sm font-semibold ${
+                    isRed
+                      ? 'text-itred group-hover:text-itblue'
+                      : 'text-itblue group-hover:text-itred'
+                  } transition-colors`}
+                >
                   Learn more
                 </span>
-              </a>
+              </Link>
             );
           })}
         </div>
@@ -315,11 +416,14 @@ function WhyPartner() {
   ];
 
   return (
-    <section id="why-us" className="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section
+      id="why-us"
+      className="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
+    >
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('src/assets/whyus-bg.webp')",
+          backgroundImage: `url(${whyUsBg})`,
         }}
       ></div>
 
@@ -349,8 +453,12 @@ function WhyPartner() {
                 >
                   <Icon className="h-10 w-10" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">{reason.title}</h3>
-                <p className="text-itsilver leading-relaxed">{reason.description}</p>
+                <h3 className="text-xl font-bold text-white mb-3">
+                  {reason.title}
+                </h3>
+                <p className="text-itsilver leading-relaxed">
+                  {reason.description}
+                </p>
               </div>
             );
           })}
@@ -360,7 +468,6 @@ function WhyPartner() {
   );
 }
 
-
 function BlogAndITTips() {
   const posts = blogPosts.slice(0, 3);
 
@@ -369,11 +476,11 @@ function BlogAndITTips() {
       id="blog"
       className="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
-      {/* Background image */}
+      {/* Background image (reusing servicesBg for now) */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('src/assets/services-bg.webp')",
+          backgroundImage: `url(${servicesBg})`,
         }}
       ></div>
 
@@ -389,7 +496,8 @@ function BlogAndITTips() {
           </div>
           <div className="section-divider mb-8"></div>
           <p className="text-lg text-itsilver max-w-2xl mx-auto">
-            Stay informed with our latest thoughts on technology trends and best practices.
+            Stay informed with our latest thoughts on technology trends and best
+            practices.
           </p>
         </div>
 
@@ -397,13 +505,13 @@ function BlogAndITTips() {
           {posts.map((post, index) => {
             const isRed = index % 2 === 0;
             return (
-              <a
+              <Link
                 key={post.slug}
-                href={`/blog/${post.slug}`}
+                to={`/blog/${post.slug}`}
                 className={`card-dark group cursor-pointer ${
                   isRed
                     ? 'glow-red border-itred/30 hover:border-itred/60'
-                    : 'glow-blue boder-itblue/30 hover:border-itblue/60'
+                    : 'glow-blue border-itblue/30 hover:border-itblue/60'
                 } block`}
               >
                 <div className="h-48 w-full overflow-hidden border-b border-itgray2">
@@ -431,7 +539,9 @@ function BlogAndITTips() {
                     <span className="text-sm text-itsilver/60">{post.date}</span>
                     <span
                       className={`font-semibold flex items-center transition-colors text-sm ${
-                        isRed ? 'text-itred group-hover:text-itblue' : 'text-itblue group-hover:text-itred'
+                        isRed
+                          ? 'text-itred group-hover:text-itblue'
+                          : 'text-itblue group-hover:text-itred'
                       }`}
                     >
                       Read Full Article
@@ -439,23 +549,25 @@ function BlogAndITTips() {
                     </span>
                   </div>
                 </div>
-              </a>
+              </Link>
             );
           })}
         </div>
 
         {/* Load more blogs button */}
         <div className="text-center">
-          <a href="/blog" className="btn-secondary inline-flex items-center justify-center">
+          <Link
+            to="/blog"
+            className="btn-secondary inline-flex items-center justify-center"
+          >
             Load more blogs
             <ChevronRight className="ml-2 h-5 w-5" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>
   );
 }
-
 
 function Contact() {
   const [formState, setFormState] = useState({
@@ -463,17 +575,21 @@ function Contact() {
     email: '',
     company: '',
     message: '',
-    honeypot: ''
+    honeypot: '',
   });
 
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>(
+    'idle'
+  );
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [reference, setReference] = useState<string | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormState({
       ...formState,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -490,32 +606,41 @@ function Contact() {
     setErrorMessage(null);
     setReference(null);
 
-  try {
-    const res = await fetch('https://hook.us2.make.com/pt14ynlwgyio4c48iwruduu9curorf4a', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        ...formState,
-        service: 'General Query',
-      }),
-    });
+    try {
+      const res = await fetch(
+        'https://hook.us2.make.com/pt14ynlwgyio4c48iwruduu9curorf4a',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ...formState,
+            service: 'General Query',
+          }),
+        }
+      );
 
-    if (!res.ok) {
-      throw new Error('Failed to send message. Please try again.');
+      if (!res.ok) {
+        throw new Error('Failed to send message. Please try again.');
+      }
+
+      const data = await res.json();
+      setReference(data.reference || null);
+      setStatus('success');
+
+      // Reset all fields including honeypot
+      setFormState({
+        name: '',
+        email: '',
+        company: '',
+        message: '',
+        honeypot: '',
+      });
+    } catch (err: any) {
+      console.error(err);
+      setStatus('error');
+      setErrorMessage(err.message || 'Something went wrong. Please try again.');
     }
-
-    const data = await res.json();
-    setReference(data.reference || null);
-    setStatus('success');
-
-    // Reset all fields including honeypot
-    setFormState({ name: '', email: '', company: '',  message: '', honeypot: '' });
-  } catch (err: any) {
-    console.error(err);
-    setStatus('error');
-    setErrorMessage(err.message || 'Something went wrong. Please try again.');
-  }
-};
+  };
 
   return (
     <section id="contact" className="relative py-20 px-4 sm:px-6 lg:px-8">
@@ -523,7 +648,7 @@ function Contact() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/contact-bg.webp')"
+          backgroundImage: `url(${contactBg})`,
         }}
       ></div>
 
@@ -547,9 +672,14 @@ function Contact() {
                   <Phone className="h-7 w-7 text-itred" />
                 </div>
                 <div>
-                  <div className="font-semibold text-white mb-1 text-lg">Phone</div>
+                  <div className="font-semibold text-white mb-1 text-lg">
+                    Phone
+                  </div>
                   <div className="text-itsilver text-base">
-                    <a href="tel:+27846348144" className="hover:text-itred transition-colors">
+                    <a
+                      href="tel:+27846348144"
+                      className="hover:text-itred transition-colors"
+                    >
                       +27 (84) 634 8144
                     </a>
                   </div>
@@ -561,9 +691,14 @@ function Contact() {
                   <Mail className="h-7 w-7 text-itblue" />
                 </div>
                 <div>
-                  <div className="font-semibold text-white mb-1 text-lg">Email</div>
+                  <div className="font-semibold text-white mb-1 text-lg">
+                    Email
+                  </div>
                   <div className="text-itsilver text-base">
-                    <a href="mailto:info@itlegends.co.za" className="hover:text-itred transition-colors">
+                    <a
+                      href="mailto:info@itlegends.co.za"
+                      className="hover:text-itred transition-colors"
+                    >
                       info@itlegends.co.za
                     </a>
                   </div>
@@ -576,40 +711,46 @@ function Contact() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-itsilver text-base w-full">
-
                   {/* Johannesburg */}
                   <div>
-                    <span className="font-semibold text-white block mb-1">Johannesburg:</span>
+                    <span className="font-semibold text-white block mb-1">
+                      Johannesburg:
+                    </span>
                     <a
                       href="https://www.google.com/maps/search/?api=1&query=715+Elmstreet+,+Grobler+Park,+Roodepoort,+1724"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-itred transition-colors leading-relaxed"
                     >
-                      715 Elm Street<br />
-                      Grobler Park<br />
+                      715 Elm Street
+                      <br />
+                      Grobler Park
+                      <br />
                       Roodepoort, 1724
                     </a>
                   </div>
 
                   {/* Pretoria */}
                   <div>
-                    <span className="font-semibold text-white block mb-1">Pretoria:</span>
+                    <span className="font-semibold text-white block mb-1">
+                      Pretoria:
+                    </span>
                     <a
                       href="https://www.google.com/maps/search/?api=1&query=265+Theuns+Van+Niekerk+Street,+Wierdapark,+Centurion,+0157"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-itred transition-colors leading-relaxed"
                     >
-                      265 Theuns Van Niekerk Street<br />
-                      Wierdapark<br />
+                      265 Theuns Van Niekerk Street
+                      <br />
+                      Wierdapark
+                      <br />
                       Centurion, 0157
                     </a>
                   </div>
-                
                 </div>
               </div>
-            
+            </div>
           </div>
 
           {/* Right form */}
@@ -629,7 +770,10 @@ function Contact() {
               </div>
 
               <div>
-                <label htmlFor="name" className="block text-sm font-semibold text-white mb-3">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-semibold text-white mb-3"
+                >
                   Name
                 </label>
                 <input
@@ -645,7 +789,10 @@ function Contact() {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-semibold text-white mb-3">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-semibold text-white mb-3"
+                >
                   Email
                 </label>
                 <input
@@ -661,7 +808,10 @@ function Contact() {
               </div>
 
               <div>
-                <label htmlFor="company" className="block text-sm font-semibold text-white mb-3">
+                <label
+                  htmlFor="company"
+                  className="block text-sm font-semibold text-white mb-3"
+                >
                   Company (Optional)
                 </label>
                 <input
@@ -676,7 +826,10 @@ function Contact() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-semibold text-white mb-3">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-semibold text-white mb-3"
+                >
                   Message
                 </label>
                 <textarea
@@ -707,13 +860,14 @@ function Contact() {
               )}
 
               {status === 'error' && errorMessage && (
-                <p className="text-sm text-red-400 mt-3 text-center">{errorMessage}</p>
+                <p className="text-sm text-red-400 mt-3 text-center">
+                  {errorMessage}
+                </p>
               )}
             </form>
           </div>
         </div>
       </div>
-    </div>
     </section>
   );
 }

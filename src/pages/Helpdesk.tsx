@@ -1,6 +1,16 @@
-import { ChevronRight, AlertCircle, CheckCircle, Headphones, Monitor, Clock } from 'lucide-react';
 import React, { useState } from 'react';
+import { ChevronRight, AlertCircle, CheckCircle, Headphones, Monitor, Clock } from 'lucide-react';
 import Footer from '../components/Footer';
+
+// ✅ Image imports for bundling / Netlify
+import headerImg from '../assets/header-img.webp';
+import helpdeskHeroBg from '../assets/helpdesk-hero.webp';
+import hardwarePainpointsBg from '../assets/hardware-painpoints.webp';
+import helpdeskSolutionBg from '../assets/helpdesk-solution.webp';
+import helpdeskBenefitsBg from '../assets/helpdesk-benefits.webp';
+import helpdeskProcessBg from '../assets/helpdesk-process.webp';
+import helpdeskDetailsBg from '../assets/helpdesk-details.webp';
+import contactBg from '../assets/contact-bg.webp';
 
 export default function HelpdeskPage() {
   return (
@@ -37,11 +47,13 @@ function ServiceNavigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-2">
-          <a href="#" className="flex items-center space-x-2">
-            <img src="/src/assets/header-img.webp" alt="IT Legends Logo" className="h-10 w-auto" />
-            <span className="text-xl font-bold text-white">IT Legends | Helpdesk & Remote Assistance</span>
-          </a>
-        </div>
+            <a href="/" className="flex items-center space-x-2">
+              <img src={headerImg} alt="IT Legends Logo" className="h-10 w-auto" />
+              <span className="text-xl font-bold text-white">
+                IT Legends | Helpdesk &amp; Remote Assistance
+              </span>
+            </a>
+          </div>
 
           <div className="hidden md:flex space-x-8">
             <a href="/" className="text-itsilver hover:text-itred transition-colors font-medium">
@@ -77,19 +89,19 @@ function ServiceNavigation() {
 function SectionDivider() { 
   return ( 
     <div className="w-full flex justify-center py-0.5 bg-transparent"> 
-      <div className="w-[95%] h-px bg-gradient-to-r from-itred to-itblue"/>
+      <div className="w-[95%] h-px bg-gradient-to-r from-itred to-itblue" />
     </div> 
   );
 }
 
-function ServiceHero () {
+function ServiceHero() {
   return (
     <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-20 pb-16">
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/helpdesk-hero.webp')"
+          backgroundImage: `url(${helpdeskHeroBg})`,
         }}
       ></div>
 
@@ -98,12 +110,12 @@ function ServiceHero () {
 
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto text-center px-4">
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bond text-white leading-tight mb-6 text-glow">
-          Helpdesk & Remote Support
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 text-glow">
+          Helpdesk &amp; Remote Support
         </h1>
 
         <p className="text-lg sm:text-xl text-itsilver mb-12 leading-relaxed">
-          Fast, friendly, technical support for your users - wherever they are, on any device.
+          Fast, friendly, technical support for your users – wherever they are, on any device.
         </p>
 
         <a
@@ -120,9 +132,9 @@ function ServiceHero () {
 
 function PainPointsSection() {
   const painPoints = [
-    "Staff waiting hours (or days) for help when something breaks.",
-    "No single place for users to log issues or track progress.",
-    "Remote staff struggling to get IT support when working from home or on the road.",
+    'Staff waiting hours (or days) for help when something breaks.',
+    'No single place for users to log issues or track progress.',
+    'Remote staff struggling to get IT support when working from home or on the road.',
   ];
 
   return (
@@ -131,7 +143,7 @@ function PainPointsSection() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/hardware-painpoints.webp')"
+          backgroundImage: `url(${hardwarePainpointsBg})`,
         }}
       ></div>
 
@@ -145,7 +157,7 @@ function PainPointsSection() {
           <div className="section-divider mb-8"></div>
         </div>
 
-        <div className="grid mb:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {painPoints.map((point, index) => (
             <div
               key={index}
@@ -176,7 +188,7 @@ function SolutionSection() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/helpdesk-solution.webp')"
+          backgroundImage: `url(${helpdeskSolutionBg})`,
         }}
       ></div>
 
@@ -186,7 +198,7 @@ function SolutionSection() {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="section-title">Our Helpdesk & Remote Support Solution</h2>
+          <h2 className="section-title">Our Helpdesk &amp; Remote Support Solution</h2>
           <div className="section-divider mb-8"></div>
         </div>
 
@@ -222,12 +234,12 @@ function BenefitsSection() {
     },
     {
       title: 'Support for Remote & Hybrid Teams',
-      description: 'Your staff can get help from anywhere - home, office, or on the road.',
+      description: 'Your staff can get help from anywhere – home, office, or on the road.',
     },
     {
       title: 'Clear Insight into IT Issues',
       description: 'Reporting and ticket trends help you see what is breaking and where improvements are needed.',
-    }
+    },
   ];
 
   return (
@@ -236,7 +248,7 @@ function BenefitsSection() {
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/helpdesk-benefits.webp')"
+          backgroundImage: `url(${helpdeskBenefitsBg})`,
         }}
       ></div>
 
@@ -269,15 +281,15 @@ function BenefitsSection() {
                     className={`h-6 w-6 ${
                       isRed ? 'text-itred' : 'text-itblue'
                     }`}
-                />
+                  />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-3">
+                  {benefit.title}
+                </h3>
+                <p className="text-itsilver text-sm leading-relaxed">
+                  {benefit.description}
+                </p>
               </div>
-              <h3 className="text-lg font-bold text-white mb-3">
-                {benefit.title}
-              </h3>
-              <p className="text-itsilver text-sm leading-relaxed">
-                {benefit.description}
-              </p>
-            </div>
             );
           })}
         </div>
@@ -302,7 +314,7 @@ function ProcessSection() {
       number: '3',
       title: 'Monitor, Report & Improve',
       description: 'We track response and resolution times, identify patterns, and continuously improve.',
-    }
+    },
   ];
 
   return (
@@ -314,7 +326,7 @@ function ProcessSection() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/helpdesk-process.webp')"
+          backgroundImage: `url(${helpdeskProcessBg})`,
         }}
       ></div>
 
@@ -355,7 +367,7 @@ function ProcessSection() {
           <div className="md:hidden space-y-6">
             {steps.map((step, index) => (
               <div key={index} className="relative">
-                {index < steps.length -1 && (
+                {index < steps.length - 1 && (
                   <div className="absolute left-6 top-12 w-1 h-6 bg-gradient-to-b from-itred to-transparent"></div>
                 )}
                 <div className="card-dark glow-red border-itred/30 relative pl-16">
@@ -399,7 +411,7 @@ function ContentSection() {
     {
       title: 'Service Levels & Coverage',
       items: [
-        'Business hours supported, with after-hours options available.',
+        'Business hours support, with after-hours options available.',
         'Target response and resolution times based on ticket priority.',
         'Escalation paths for complex or recurring issues.',
       ],
@@ -412,7 +424,7 @@ function ContentSection() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/helpdesk-details.webp')"
+          backgroundImage: `url(${helpdeskDetailsBg})`,
         }}
       ></div>
 
@@ -425,11 +437,11 @@ function ContentSection() {
           <h2 className="section-title">Service Details</h2>
           <div className="section-divider mb-8"></div>
           <p className="text-lg text-itsilver max-w-3xl mx-auto">
-            Our Helpdesk & Remote Support service is designed to become your team's go-to place whenever "something doesn't work".
+            Our Helpdesk &amp; Remote Support service is designed to become your team's go-to place whenever &quot;something doesn't work&quot;.
           </p>
         </div>
 
-        <div className="grid md:grid-cold-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           {detailGroups.map((group, index) => (
             <div
               key={index}
@@ -460,7 +472,7 @@ function CTASection() {
     email: '',
     company: '',
     message: '',
-    honeypot: ''
+    honeypot: '',
   });
 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -518,7 +530,7 @@ function CTASection() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/contact-bg.webp')"
+          backgroundImage: `url(${contactBg})`,
         }}
       ></div>
 
@@ -528,16 +540,15 @@ function CTASection() {
       <div className="relative z-10 max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-            Need reliable Helpdesk & Remote Support?
+            Need reliable Helpdesk &amp; Remote Support?
           </h2>
           <div className="section-divider mb-8"></div>
           <p className="text-lg text-itsilver">
-            Tell us about your users and support needs, we'll tailor a helpdesk and remote assistance plan.
+            Tell us about your users and support needs, and we'll tailor a helpdesk and remote assistance plan.
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-
           {/* Honeypot field */}
           <div className="hidden" aria-hidden="true">
             <label htmlFor="website">Website</label>
@@ -566,75 +577,75 @@ function CTASection() {
                 className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
                 placeholder="Your name"
               />
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block text-sm font-semibold text-white mb-3">
+                Email
+              </label>
+              <input 
+                type="email"
+                id="email"
+                name="email"
+                value={formState.email}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+                placeholder="your@email.com"
+              />
+            </div>
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-sm font-semibold text-white mb-3">
-              Email
+            <label htmlFor="company" className="block text-sm font-semibold text-white mb-3">
+              Company (Optional)
             </label>
-            <input 
-              type="email"
-              id="email"
-              name="email"
-              value={formState.email}
+            <input
+              type="text"
+              id="company"
+              name="company"
+              value={formState.company}
               onChange={handleChange}
-              required
               className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
-              placeholder="your@email.com"
+              placeholder="Your company name"
             />
           </div>
-        </div>
 
-        <div>
-          <label htmlFor="company" className="block text-sm font-semibold text-white mb-3">
-            Company (Optional)
-          </label>
-          <input
-            type="text"
-            id="company"
-            name="company"
-            value={formState.company}
-            onChange={handleChange}
-            className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
-            placeholder="Your company name"
-          />
-        </div>
+          <div>
+            <label htmlFor="message" className="block text-sm font-semibold text-white mb-3">
+              Tell us about your IT needs
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={formState.message}
+              onChange={handleChange}
+              required
+              rows={5}
+              className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition resize-none text-white placeholder-itsilver/50"
+              placeholder="Tell us about your current IT challenges and goals..."
+            ></textarea>
+          </div>
 
-        <div>
-          <label htmlFor="message" className="block text-sm font-semibold text-white mb-3">
-            Tell us about your IT needs
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            value={formState.message}
-            onChange={handleChange}
-            required
-            rows={5}
-            className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition resize-none text-white placeholder-itsilver/50"
-            placeholder="Tell us about your current IT challanges and goals..."
-          ></textarea>
-        </div>
+          <button
+            type="submit"
+            disabled={status === 'loading'}
+            className="btn-primary w-full text-lg flex items-center justify-center gap-2"
+          >
+            {status === 'loading' ? 'Sending...' : 'Request a Consultation'}
+            <ChevronRight className="h-5 w-5" />
+          </button>
 
-        <button
-          type="submit"
-          disabled={status === 'loading'}
-          className="btn-primary w-full text-lg flex items-center justify-center gap-2"
-        >
-          {status === 'loading' ? 'Sending...' : 'Request a Consultation'}
-          <ChevronRight className="h-5 w-5" />
-        </button>
+          {status === 'success' && reference && (
+            <p className="text-sm text-green-400 mt-3 text-center">
+              Thank you! Your reference number is{' '}
+              <span className="font-semibold">{reference}</span>.
+            </p>
+          )}
 
-        {status === 'success' && reference && (
-          <p className="text-sm text-green-400 mt-3 text-center">
-            Thank you! Your reference number is{' '}
-            <span className="font-semibold">{reference}</span>.
-          </p>
-        )}
-
-        {status === 'error' && errorMessage && (
-          <p className="text-s text-red-400 mt-3 text-center">{errorMessage}</p>
-        )}
+          {status === 'error' && errorMessage && (
+            <p className="text-sm text-red-400 mt-3 text-center">{errorMessage}</p>
+          )}
         </form>
       </div>
     </section>  

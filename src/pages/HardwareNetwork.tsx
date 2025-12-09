@@ -1,12 +1,25 @@
-import { ChevronRight, AlertCircle, CheckCircle, Target, Zap, Wrench } from 'lucide-react';
 import React, { useState } from 'react';
+import { ChevronRight, AlertCircle, CheckCircle, Target, Zap, Wrench } from 'lucide-react';
 import Footer from '../components/Footer';
+
+// ✅ Import images so Netlify/Vite bundle them correctly
+import headerImg from '../assets/header-img.webp';
+import hardwareHeroBg from '../assets/hardware-hero.webp';
+import hardwarePainpointsBg from '../assets/hardware-painpoints.webp';
+import hardwareSolutionBg from '../assets/hardware-solution.webp';
+import hardwareBenefitsBg from '../assets/hardware-benefits.webp';
+import hardwareProcessBg from '../assets/hardware-process.webp';
+import hardwareDetailsBg from '../assets/hardware-details.webp';
+import contactBg from '../assets/contact-bg.webp';
 
 export default function HardwareNetworkPage() {
   return (
     <div className="min-h-screen bg-itdark text-itsilver">
       <ServiceNavigation />
-      <ServiceHero title="Hardware & Network Setup" subtitle="Professional installation and configuration of your I.T. infrastructure." />
+      <ServiceHero
+        title="Hardware & Network Setup"
+        subtitle="Professional installation and configuration of your I.T. infrastructure."
+      />
       <SectionDivider />
       
       <PainPoints />
@@ -32,16 +45,19 @@ export default function HardwareNetworkPage() {
 
 function ServiceNavigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-return (
+  return (
     <nav className="fixed top-0 w-full tech-glass z-50 border-b border-itgray2">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-2">
-          <a href="#" className="flex items-center space-x-2">
-            <img src="/src/assets/header-img.webp" alt="IT Legends Logo" className="h-10 w-auto" />
-            <span className="text-xl font-bold text-white">IT Legends | Harware & Network Setup</span>
-          </a>
-        </div>
+            <a href="/" className="flex items-center space-x-2">
+              {/* ✅ Use imported header image instead of /src path */}
+              <img src={headerImg} alt="IT Legends Logo" className="h-10 w-auto" />
+              <span className="text-xl font-bold text-white">
+                IT Legends | Hardware & Network Setup
+              </span>
+            </a>
+          </div>
 
           <div className="hidden md:flex space-x-8">
             <a href="/" className="text-itsilver hover:text-itred transition-colors font-medium">
@@ -77,7 +93,7 @@ return (
 function SectionDivider() { 
   return ( 
     <div className="w-full flex justify-center py-0.5 bg-transparent"> 
-      <div className="w-[95%] h-px bg-gradient-to-r from-itred to-itblue"/>
+      <div className="w-[95%] h-px bg-gradient-to-r from-itred to-itblue" />
     </div> 
   );
 }
@@ -90,11 +106,11 @@ interface ServiceHeroProps {
 function ServiceHero({ title, subtitle }: ServiceHeroProps) {
   return (
     <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-20 pb-16">
-      {/* Background image */}
+      {/* ✅ Background image via imported asset */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/hardware-hero.webp')"
+          backgroundImage: `url(${hardwareHeroBg})`,
         }}
       ></div>
 
@@ -127,28 +143,28 @@ function PainPoints() {
   const painPoints = [
     'New offices taking too long to get fully connected.',
     'Unstable Wi-Fi and slow network speeds.',
-    'Hardware that is outdated, mismatched, or not properly configured.'
+    'Hardware that is outdated, mismatched, or not properly configured.',
   ];
 
   return (
     <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background image */}
+      {/* ✅ Background image */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/hardware-painpoints.webp')"
+          backgroundImage: `url(${hardwarePainpointsBg})`,
         }}
-        ></div>
+      ></div>
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/60"></div>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
 
-        {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="section-title">Common Pain Points</h2>
-            <div className="section-divider mb-8"></div>
-          </div>
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="section-title">Common Pain Points</h2>
+          <div className="section-divider mb-8"></div>
+        </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {painPoints.map((point, index) => (
@@ -172,18 +188,18 @@ function OurSolution() {
   const solutions = [
     'Full planning and installation of servers, switches, routers, and Wi-Fi.',
     'Best-practice network design for speed, stability, and security.',
-    'Hardware recommendations that match your budget and growth plans.'
+    'Hardware recommendations that match your budget and growth plans.',
   ];
 
   return (
     <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background image */}
+      {/* ✅ Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/hardware-solution.webp')"
+          backgroundImage: `url(${hardwareSolutionBg})`,
         }}
-        ></div>
+      ></div>
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/60"></div>
@@ -217,31 +233,31 @@ function Benefits() {
   const benefits = [
     {
       title: 'Faster Networks',
-      description: 'Optimised networks for speed and performance.'
+      description: 'Optimised networks for speed and performance.',
     },
     {
       title: 'Stable Connections',
-      description: 'Reduced dropouts and connectivity issues.'
+      description: 'Reduced dropouts and connectivity issues.',
     },
     {
       title: 'Future-Ready Setup',
-      description: 'Scalable infrastructure that grows with your business.'
+      description: 'Scalable infrastructure that grows with your business.',
     },
     {
       title: 'Expert Configuration',
-      description: 'Installed and configured by experienced technicians.'
-    }
+      description: 'Installed and configured by experienced technicians.',
+    },
   ];
 
   return (
     <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background image */}
+      {/* ✅ Background image */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/hardware-benefits.webp')"
+          backgroundImage: `url(${hardwareBenefitsBg})`,
         }}
-        ></div>
+      ></div>
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40"></div>
@@ -259,13 +275,27 @@ function Benefits() {
             return (
               <div
                 key={index}
-                className={`card-dark ${isRed ? 'glow-red border-itred/30' : 'glow-blue border-itblue/30'} flex flex-col items-center text-center`}
+                className={`card-dark ${
+                  isRed ? 'glow-red border-itred/30' : 'glow-blue border-itblue/30'
+                } flex flex-col items-center text-center`}
               >
-                <div className={`w-12 h-12 ${isRed ? 'bg-itred/20' : 'bg-itblue/20'} rounded-full flex items-center justify-center mb-4`}>
-                  <CheckCircle className={`h-6 w-6 ${isRed ? 'text-itred' : 'text-itblue'}`} />
+                <div
+                  className={`w-12 h-12 ${
+                    isRed ? 'bg-itred/20' : 'bg-itblue/20'
+                  } rounded-full flex items-center justify-center mb-4`}
+                >
+                  <CheckCircle
+                    className={`h-6 w-6 ${
+                      isRed ? 'text-itred' : 'text-itblue'
+                    }`}
+                  />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-3">{benefit.title}</h3>
-                <p className="text-itsilver text-sm leading-relaxed">{benefit.description}</p>
+                <h3 className="text-lg font-bold text-white mb-3">
+                  {benefit.title}
+                </h3>
+                <p className="text-itsilver text-sm leading-relaxed">
+                  {benefit.description}
+                </p>
               </div>
             );
           })}
@@ -281,29 +311,29 @@ function Process() {
       title: 'Plan',
       description: 'We assess your space, users, and requirements.',
       icon: Target,
-      number: '01'
+      number: '01',
     },
     {
       title: 'Deploy',
       description: 'We install and configure all hardware and network equipment.',
       icon: Zap,
-      number: '02'
+      number: '02',
     },
     {
       title: 'Optimise',
       description: 'We test, fine-tune, and document your setup for future changes.',
       icon: Wrench,
-      number: '03'
-    }
+      number: '03',
+    },
   ];
 
   return (
     <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background Image */}
+      {/* ✅ Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/hardware-process.webp')"
+          backgroundImage: `url(${hardwareProcessBg})`,
         }}
       ></div>
 
@@ -323,12 +353,18 @@ function Process() {
             return (
               <div key={index} className="relative">
                 <div className="card-dark glow-blue border-itblue/30">
-                  <div className="text-5xl font-bold text-itblue/20 mb-4">{step.number}</div>
+                  <div className="text-5xl font-bold text-itblue/20 mb-4">
+                    {step.number}
+                  </div>
                   <div className="w-12 h-12 bg-itblue/20 rounded-full flex items-center justify-center mb-4">
                     <Icon className="h-6 w-6 text-itblue" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
-                  <p className="text-itsilver text-sm leading-relaxed">{step.description}</p>
+                  <h3 className="text-xl font-bold text-white mb-3">
+                    {step.title}
+                  </h3>
+                  <p className="text-itsilver text-sm leading-relaxed">
+                    {step.description}
+                  </p>
                 </div>
                 {index < steps.length - 1 && (
                   <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-itblue to-transparent"></div>
@@ -372,11 +408,11 @@ function ContentSection() {
 
   return (
     <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background image */}
+      {/* ✅ Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/hardware-details.webp')",
+          backgroundImage: `url(${hardwareDetailsBg})`,
         }}
       ></div>
 
@@ -389,7 +425,8 @@ function ContentSection() {
           <h2 className="section-title">Service Details</h2>
           <div className="section-divider mb-8"></div>
           <p className="text-lg text-itsilver max-w-3xl mx-auto">
-            Our Hardware & Network Setup service covers everything from planning and procurement to clean installations and long-term support.
+            Our Hardware & Network Setup service covers everything from planning and procurement
+            to clean installations and long-term support.
           </p>
         </div>
 
@@ -424,10 +461,10 @@ function CTA() {
     email: '',
     company: '',
     message: '',
-    honeypot: ''
+    honeypot: '',
   });
 
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle') ;
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [reference, setReference] = useState<string | null>(null);
 
@@ -443,7 +480,7 @@ function CTA() {
 
     // Honeypot check
     if (formState.honeypot) {
-      console.warn('.Spam submission blocked (honeypot triggered).');
+      console.warn('Spam submission blocked (honeypot triggered).');
       return;
     }
 
@@ -478,11 +515,11 @@ function CTA() {
 
   return (
     <section id="contact" className="relative py-20 px-4 sm:px-6 lg:px-8">
-      {/* Background image */}
+      {/* ✅ Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/contact-bg.webp')"
+          backgroundImage: `url(${contactBg})`,
         }}
       ></div>
 
@@ -496,12 +533,12 @@ function CTA() {
           </h2>
           <div className="section-divider mb-8"></div>
           <p className="text-lg text-itsilver">
-            Share your environment and requirements, and we'll design a stable, secure infrastructure for your business.
+            Share your environment and requirements, and we'll design a stable, secure
+            infrastructure for your business.
           </p>
         </div>
 
         <form onSubmit={handlesubmit} className="space-y-6">
-
           {/* Honeypot field */}
           <div className="hidden" aria-hidden="true">
             <label htmlFor="website">Website</label>
@@ -586,7 +623,7 @@ function CTA() {
             className="btn-primary w-full text-lg flex items-center justify-center gap-2"
           >
             {status === 'loading' ? 'Sending...' : 'Request a Consultation'}
-            <ChevronRight className='h-5 w-5' />
+            <ChevronRight className="h-5 w-5" />
           </button>
 
           {status === 'success' && reference && (

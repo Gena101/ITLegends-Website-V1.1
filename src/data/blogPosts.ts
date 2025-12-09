@@ -1,37 +1,44 @@
+// src/data/blogPosts.ts
+
+import cloudCardImg from '../assets/blog-card-cloud.webp';
+import aiCardImg from '../assets/blog-card-ai.webp';
+import securityCardImg from '../assets/blog-card-security.webp';
+
 export type Section = {
-    heading: string;
-    paragraphs?: string[];
-    listItems?: string[];
+  heading: string;
+  paragraphs?: string[];
+  listItems?: string[];
 };
 
 export type BlogPost = {
-    slug: string;
-    title: string;
-    date: string;
-    readTime: string;
-    category: string;
-    excerpt: string;
-    sections: Section[];
-    ctaLabel: string;
-    ctaHref: string;
-    image: string;
+  slug: string;
+  title: string;
+  date: string;
+  readTime: string;
+  category: string;
+  excerpt: string;
+  sections: Section[];
+  ctaLabel: string;
+  ctaHref: string;
+  image: string;
 };
 
 export const blogPosts: BlogPost[] = [
-    {
-        slug: 'cloud-future',
+  {
+    slug: 'cloud-future',
     title: 'The Future of Cloud Computing in 2025 (and Beyond) for South African Businesses',
     date: 'Nov 3, 2025',
     readTime: '7 min read',
     category: 'Cloud',
-    excerpt: 'Cloud is no longer a "nice to have". It is the backbone of modern, always-on business - especially for SMEs that need flexibility, resilience, and predictable costs.',
-    image: '/src/assets/blog-card-cloud.webp',
+    excerpt:
+      'Cloud is no longer a "nice to have". It is the backbone of modern, always-on business - especially for SMEs that need flexibility, resilience, and predictable costs.',
+    image: cloudCardImg,
     sections: [
       {
         heading: '1. From Servers in the Corner to "Cloud-First" Thinking',
         paragraphs: [
-          'Many South African businesses still run critical systems on a single on-premise server sitting in a storeroom. It works... until it doesn`t. Load shedding, hardware failures, theft, and lack of maintenance all put your data and uptime at risk.',
-          'A cloud-first mindset means asking: "Can this safely and sensibly live in the cloud?" instead of defaulting to on-premises every time. You don`t have to move everything at once, but you need a roadmap.',
+          'Many South African businesses still run critical systems on a single on-premise server sitting in a storeroom. It works... until it doesn\'t. Load shedding, hardware failures, theft, and lack of maintenance all put your data and uptime at risk.',
+          'A cloud-first mindset means asking: "Can this safely and sensibly live in the cloud?" instead of defaulting to on-premises every time. You don\'t have to move everything at once, but you need a roadmap.',
         ],
         listItems: [
           'Move email and collaboration to Microsoft 365 or Google Workspace.',
@@ -54,7 +61,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: '3. Cost Management: Avoid Cloud Bill Shock',
         paragraphs: [
-          'Cloud can save money, but only if it is designed properly. Spinning up random servers with no plan is a quick way to overspend.'
+          'Cloud can save money, but only if it is designed properly. Spinning up random servers with no plan is a quick way to overspend.',
         ],
         listItems: [
           'Right-size servers based on actual utilisation.',
@@ -67,8 +74,8 @@ export const blogPosts: BlogPost[] = [
         paragraphs: [
           'At IT Legends, we help South African businesses move to the cloud in a controlled, low-risk way. We assess your environment, design a realistic roadmap, and then migrate, secure and maintain your cloud and hybrid environment.',
         ],
-    },
-   ],
+      },
+    ],
     ctaLabel: 'Chat to us about your cloud plan',
     ctaHref: '/#contact',
   },
@@ -78,8 +85,9 @@ export const blogPosts: BlogPost[] = [
     date: 'Nov 10, 2025',
     readTime: '8 min read',
     category: 'AI',
-    excerpt: 'Artificial intelligence does not have to be confusing, expensive or risky. Used correctly, it quietly makes your team faster, your decisions better, and your customers happier.',
-    image: '/src/assets/blog-card-ai.webp',
+    excerpt:
+      'Artificial intelligence does not have to be confusing, expensive or risky. Used correctly, it quietly makes your team faster, your decisions better, and your customers happier.',
+    image: aiCardImg,
     sections: [
       {
         heading: '1. Start with Pain Points, Not Tools',
@@ -94,9 +102,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         heading: '2. Great Early Use Cases for SMEs',
-        paragraphs: [
-          'Here are some low-risk starting points that work well in real businesses.',
-        ],
+        paragraphs: ['Here are some low-risk starting points that work well in real businesses.'],
         listItems: [
           'Support assistants that suggest answers to technicians based on past tickets.',
           'Document assistants that summarise long PDFs, proposals or contracts.',
@@ -132,14 +138,13 @@ export const blogPosts: BlogPost[] = [
     date: 'Nov 17, 2025',
     readTime: '6 min read',
     category: 'Security',
-    excerpt: 'Most breaches do not start with elite hackers. They start with a simple password, a fake email, or an unpatched system. The good news: disciplined basics make you a much harder target.',
-    image: '/src/assets/blog-card-security.webp',
+    excerpt:
+      'Most breaches do not start with elite hackers. They start with a simple password, a fake email, or an unpatched system. The good news: disciplined basics make you a much harder target.',
+    image: securityCardImg,
     sections: [
       {
         heading: '1. Strong identity: Passwords and MFA',
-        paragraphs: [
-          'Identity is the new perimeter. Weak or reused passwords are still one of the biggest risks for SMEs.',
-        ],
+        paragraphs: ['Identity is the new perimeter. Weak or reused passwords are still one of the biggest risks for SMEs.'],
         listItems: [
           'Use a password manager instead of spreadsheets or notes.',
           'Enforce strong, unique passwords for email, VPN and admin accounts.',
@@ -160,11 +165,11 @@ export const blogPosts: BlogPost[] = [
       {
         heading: '3. Email Security and User Awareness',
         paragraphs: [
-          'Phising is still the number one way attackers reach your users. Technology and training must work together.',
+          'Phishing is still the number one way attackers reach your users. Technology and training must work together.',
         ],
         listItems: [
           'Modern email filtering with spoofing and malware protection.',
-          'Regular phising awareness training.',
+          'Regular phishing awareness training.',
           'Clear internal process if someone clicks a suspicious link.',
         ],
       },

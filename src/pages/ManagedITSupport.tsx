@@ -1,6 +1,15 @@
-import { ChevronRight, AlertCircle, CheckCircle } from 'lucide-react';
 import React, { useState } from 'react';
+import { ChevronRight, AlertCircle, CheckCircle } from 'lucide-react';
 import Footer from '../components/Footer';
+
+// ✅ Import images so they get bundled correctly for Netlify
+import headerImg from '../assets/header-img.webp';
+import heroBg from '../assets/hero.webp';
+import managedPainpointsBg from '../assets/managed-painpoints.webp';
+import managedSolutionsBg from '../assets/managed-solutions.webp';
+import managedBenefitsBg from '../assets/managed-benefits.webp';
+import managedProcessBg from '../assets/managed-process.webp';
+import contactBg from '../assets/contact-bg.webp';
 
 export default function ManagedITSupportPage() {
   return (
@@ -35,11 +44,14 @@ function ServiceNavigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-2">
-          <a href="#" className="flex items-center space-x-2">
-            <img src="/src/assets/header-img.webp" alt="IT Legends Logo" className="h-10 w-auto" />
-            <span className="text-xl font-bold text-white">IT Legends | Managed IT Support</span>
-          </a>
-        </div>
+            <a href="/" className="flex items-center space-x-2">
+              {/* ✅ Use imported header image */}
+              <img src={headerImg} alt="IT Legends Logo" className="h-10 w-auto" />
+              <span className="text-xl font-bold text-white">
+                IT Legends | Managed IT Support
+              </span>
+            </a>
+          </div>
 
           <div className="hidden md:flex space-x-8">
             <a href="/" className="text-itsilver hover:text-itred transition-colors font-medium">
@@ -75,7 +87,7 @@ function ServiceNavigation() {
 function SectionDivider() { 
   return ( 
     <div className="w-full flex justify-center py-0.5 bg-transparent"> 
-      <div className="w-[95%] h-px bg-gradient-to-r from-itred to-itblue"/>
+      <div className="w-[95%] h-px bg-gradient-to-r from-itred to-itblue" />
     </div> 
   );
 }
@@ -83,11 +95,11 @@ function SectionDivider() {
 function ServiceHero() {
   return (
     <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-20 pb-16">
-      {/* Background image */}
+      {/* ✅ Background image via imported asset */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/hero.webp')",
+          backgroundImage: `url(${heroBg})`,
         }}
       ></div>
 
@@ -126,11 +138,11 @@ function PainPoints() {
 
   return (
     <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background image */}
+      {/* ✅ Background image via imported asset */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/managed-painpoints.webp')",
+          backgroundImage: `url(${managedPainpointsBg})`,
         }}
       ></div>
       {/* Overlay */}
@@ -169,11 +181,11 @@ function OurSolution() {
 
   return (
     <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background image */}
+      {/* ✅ Background image via imported asset */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/managed-solutions.webp')",
+          backgroundImage: `url(${managedSolutionsBg})`,
         }}
       ></div>
       {/* Overlay */}
@@ -228,11 +240,11 @@ function Benefits() {
 
   return (
     <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background image */}
+      {/* ✅ Background image via imported asset */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/managed-benefits.webp')",
+          backgroundImage: `url(${managedBenefitsBg})`,
         }}
       ></div>
       {/* Overlay */}
@@ -307,11 +319,11 @@ function Process() {
       id="process"
       className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
-      {/* Background image */}
+      {/* ✅ Background image via imported asset */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/managed-process.webp')",
+          backgroundImage: `url(${managedProcessBg})`,
         }}
       ></div>
       {/* Overlay */}
@@ -434,11 +446,11 @@ function FinalCTA() {
 
   return (
     <section id="contact" className="relative py-20 px-4 sm:px-6 lg:px-8">
-      {/* Background image */}
+      {/* ✅ Background image via imported asset */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/contact-bg.webp')"
+          backgroundImage: `url(${contactBg})`
         }}
       ></div>
 
@@ -457,8 +469,7 @@ function FinalCTA() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-
-          {/* Honeyport field */}
+          {/* Honeypot field */}
           <div className="hidden" aria-hidden="true">
             <label htmlFor="website">Website</label>
             <input 
@@ -502,59 +513,59 @@ function FinalCTA() {
                 className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
                 placeholder="your@email.com"
               />
+            </div>
           </div>
-        </div>
 
-        <div>
-          <label htmlFor="company" className="block text-sm font-semibold text-white mb-3">
-            Company (Optional)
-          </label>
-          <input
-            type="text"
-            id="company"
-            name="company"
-            value={formState.company}
-            onChange={handleChange}
-            className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
-            placeholder="Your company name"
-          />
-        </div>
+          <div>
+            <label htmlFor="company" className="block text-sm font-semibold text-white mb-3">
+              Company (Optional)
+            </label>
+            <input
+              type="text"
+              id="company"
+              name="company"
+              value={formState.company}
+              onChange={handleChange}
+              className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+              placeholder="Your company name"
+            />
+          </div>
 
-        <div>
-          <label htmlFor="message" className="block text-sm font-semibold text-white mb-3">
-            Tell us about your IT needs
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            value={formState.message}
-            onChange={handleChange}
-            required
-            rows={5}
-            className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition resize-none text-white placeholder-itsilver/50"
-            placeholder="Tell us about your current IT challenges and goals..."
-          ></textarea>
-        </div>
+          <div>
+            <label htmlFor="message" className="block text-sm font-semibold text-white mb-3">
+              Tell us about your IT needs
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={formState.message}
+              onChange={handleChange}
+              required
+              rows={5}
+              className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition resize-none text-white placeholder-itsilver/50"
+              placeholder="Tell us about your current IT challenges and goals..."
+            ></textarea>
+          </div>
 
-        <button
-          type="submit"
-          disabled={status === 'loading'}
-          className="btn-primary w-full text-lg flex items-center justify-center gap-2"
-        >
-          {status === 'loading' ? 'sending...' : 'Request a Consultation'}
-          <ChevronRight className="h-5 w-5" />
-        </button>
+          <button
+            type="submit"
+            disabled={status === 'loading'}
+            className="btn-primary w-full text-lg flex items-center justify-center gap-2"
+          >
+            {status === 'loading' ? 'sending...' : 'Request a Consultation'}
+            <ChevronRight className="h-5 w-5" />
+          </button>
 
-        {status === 'success' && reference && (
-          <p className="text-sm text-green-400 mt-3 text-center">
-            Thank you! Your reference number is{' '}
-            <span className="font-semibold">{reference}</span>.
-          </p>
-        )}
+          {status === 'success' && reference && (
+            <p className="text-sm text-green-400 mt-3 text-center">
+              Thank you! Your reference number is{' '}
+              <span className="font-semibold">{reference}</span>.
+            </p>
+          )}
 
-        {status === 'error' && errorMessage && (
-          <p className="text-sm text-red-400 mt-3 text-center">{errorMessage}</p>
-        )}
+          {status === 'error' && errorMessage && (
+            <p className="text-sm text-red-400 mt-3 text-center">{errorMessage}</p>
+          )}
         </form>
       </div>
     </section>

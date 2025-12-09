@@ -1,6 +1,15 @@
-import { ChevronRight, Shield, CheckCircle, AlertCircle, Lock, Activity } from 'lucide-react';
 import React, { useState } from 'react';
+import { ChevronRight, Shield, CheckCircle, AlertCircle, Lock, Activity } from 'lucide-react';
 import Footer from '../components/Footer';
+
+// ✅ Import images so Vite/Netlify bundle them correctly
+import headerImg from '../assets/header-img.webp';
+import cybersecurityHeroBg from '../assets/cybersecurity-hero.webp';
+import cybersecurityPainpointsBg from '../assets/cybersecurity-painpoints.webp';
+import cybersecuritySolutionBg from '../assets/cybersecurity-solution.webp';
+import cybersecurityBenefitsBg from '../assets/cybersecurity-benefits.webp';
+import cybersecurityProcessBg from '../assets/cybersecurity-process.webp';
+import contactBg from '../assets/contact-bg.webp';
 
 export default function CybersecurityPage() {
   return (
@@ -34,11 +43,14 @@ function ServiceNavigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-2">
-          <a href="#" className="flex items-center space-x-2">
-            <img src="/src/assets/header-img.webp" alt="IT Legends Logo" className="h-10 w-auto" />
-            <span className="text-xl font-bold text-white">IT Legends | Cybersecurity & Protection</span>
-          </a>
-        </div>
+            <a href="/" className="flex items-center space-x-2">
+              {/* ✅ Use imported header image */}
+              <img src={headerImg} alt="IT Legends Logo" className="h-10 w-auto" />
+              <span className="text-xl font-bold text-white">
+                IT Legends | Cybersecurity &amp; Protection
+              </span>
+            </a>
+          </div>
 
           <div className="hidden md:flex space-x-8">
             <a href="/" className="text-itsilver hover:text-itred transition-colors font-medium">
@@ -74,7 +86,7 @@ function ServiceNavigation() {
 function SectionDivider() { 
   return ( 
     <div className="w-full flex justify-center py-0.5 bg-transparent"> 
-      <div className="w-[95%] h-px bg-gradient-to-r from-itred to-itblue"/>
+      <div className="w-[95%] h-px bg-gradient-to-r from-itred to-itblue" />
     </div> 
   );
 }
@@ -82,11 +94,11 @@ function SectionDivider() {
 function ServiceHero() {
   return (
     <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-20 pb-16">
-      {/* Background image */}
+      {/* ✅ Background image via import */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/cybersecurity-hero.webp')"
+          backgroundImage: `url(${cybersecurityHeroBg})`,
         }}
       ></div>
 
@@ -96,11 +108,11 @@ function ServiceHero() {
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto text-center px-4">
         <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 text-glow">
-          Cybersecurity & Protection
+          Cybersecurity &amp; Protection
         </h1>
 
-        <p className="text-lg sm:text-xl text-itseilver mb-12 leading-relaxed">
-          Shielding your business from ransomware, phising, and data breaches with layered, proactive security.
+        <p className="text-lg sm:text-xl text-itsilver mb-12 leading-relaxed">
+          Shielding your business from ransomware, phishing, and data breaches with layered, proactive security.
         </p>
 
         <a 
@@ -124,11 +136,11 @@ function PainPoints() {
 
   return (
     <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background image */}
+      {/* ✅ Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/cybersecurity-painpoints.webp')"
+          backgroundImage: `url(${cybersecurityPainpointsBg})`,
         }}
       ></div>
 
@@ -142,7 +154,7 @@ function PainPoints() {
           <div className="section-divider mb-8"></div>
         </div>
 
-        <div className="grid mb:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {painPoints.map((point, index) => (
             <div
               key={index}
@@ -163,17 +175,20 @@ function PainPoints() {
 function OurSolution() {
   const solutions = [
     'Endpoint protection and threat detection across laptops, desktops, and servers.',
-    'Email security and anti-phising protection, including link and attachment scanning.',
+    'Email security and anti-phishing protection, including link and attachment scanning.',
     'Security policies, patch management, and best-practice configuration of your environment.',
   ];
 
+  // ✅ Simple mapping of icons so all 3 cards have icons
+  const icons = [Shield, Lock, Activity];
+
   return (
     <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background image */}
+      {/* ✅ Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/cybersecurity-solution.webp')"
+          backgroundImage: `url(${cybersecuritySolutionBg})`,
         }}
       ></div>
 
@@ -188,19 +203,20 @@ function OurSolution() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {solutions.map((solution, index) => (
-            <div
-              key={index}
-              className="card-dark glow-blue border-itblue/30 flex flex-col items-center text-center"
-            >
-              <div className="w-12 h-12 bg-itblue/20 rounded-full flex items-center justify-center mb-4">
-                {index === 0 && <Shield className="h-6 w-6 text-itblue" />}
-                {index === 1 && <Lock className="h-6 w-6 text-itblue" />}
-                {index === 3 && <Activity className="h-6 w-6 text-itblue" />}
+          {solutions.map((solution, index) => {
+            const Icon = icons[index] ?? Shield;
+            return (
+              <div
+                key={index}
+                className="card-dark glow-blue border-itblue/30 flex flex-col items-center text-center"
+              >
+                <div className="w-12 h-12 bg-itblue/20 rounded-full flex items-center justify-center mb-4">
+                  <Icon className="h-6 w-6 text-itblue" />
+                </div>
+                <p className="text-itsilver text-base leading-relaxed">{solution}</p>
               </div>
-              <p className="text-itsilver text-base leading-relaxed">{solution}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
@@ -215,7 +231,7 @@ function Benefits() {
     },
     {
       title: 'User Awareness',
-      description: 'Staff training and phising awareness help your people become part of the defense, not the weakness.',
+      description: 'Staff training and phishing awareness help your people become part of the defense, not the weakness.',
     },
     {
       title: 'Compliance & Governance',
@@ -223,17 +239,17 @@ function Benefits() {
     },
     {
       title: 'Continuous Visibility',
-      description: 'Ongoing monitoring and alerting keep you informed about threats andsuspicious activity.',
+      description: 'Ongoing monitoring and alerting keep you informed about threats and suspicious activity.',
     },
   ];
 
   return (
-    <section className="relative py-20 px-4 sm:px-6 lg_px-8 overflow-hidden">
-      {/* Background image */}
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* ✅ Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/cybersecurity-benefits.webp')"
+          backgroundImage: `url(${cybersecurityBenefitsBg})`,
         }}
       ></div>
 
@@ -244,7 +260,7 @@ function Benefits() {
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="section-title">Key Benefits</h2>
-          <div className= "section-divider mb-8"></div>
+          <div className="section-divider mb-8"></div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
@@ -262,8 +278,9 @@ function Benefits() {
                     isRed ? 'bg-itred/20' : 'bg-itblue/20'
                   } rounded-full flex items-center justify-center mb-4`}
                 >
+                  {/* ✅ Fix className bug (&{) */}
                   <CheckCircle
-                    className={`h-6 w-6 &{
+                    className={`h-6 w-6 ${
                       isRed ? 'text-itred' : 'text-itblue'
                     }`}
                   />
@@ -293,7 +310,7 @@ function Process() {
     {
       number: 2,
       title: 'Harden & Protect',
-      description: 'We roll out tools, policies, and configurations that strenghten your security posture.',
+      description: 'We roll out tools, policies, and configurations that strengthen your security posture.',
     },
     {
       number: 3,
@@ -307,11 +324,11 @@ function Process() {
       id="process"
       className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
-      {/* Background image */}
+      {/* ✅ Background image */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/cybersecurity-process.webp')"
+          backgroundImage: `url(${cybersecurityProcessBg})`,
         }}
       ></div>
 
@@ -381,7 +398,7 @@ function FinalCTA() {
     email: '',
     company: '',
     message: '',
-    honeypot: ''
+    honeypot: '',
   });
 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -435,11 +452,11 @@ function FinalCTA() {
 
   return (
     <section id="contact" className="relative py-20 px-4 sm:px-6 lg:px-8">
-      {/* Background image */}
+      {/* ✅ Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/contact-bg.webp')"
+          backgroundImage: `url(${contactBg})`,
         }}
       ></div>
 
@@ -449,7 +466,7 @@ function FinalCTA() {
       <div className="relative z-10 max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-            Ready to Strenghten Your Security?
+            Ready to Strengthen Your Security?
           </h2>
           <div className="section-divider mb-8"></div>
           <p className="text-lg text-itsilver">
@@ -458,7 +475,6 @@ function FinalCTA() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-
           {/* Honeypot field */}
           <div className="hidden" aria-hidden="true">
             <label htmlFor="website">Website</label>
@@ -487,75 +503,75 @@ function FinalCTA() {
                 className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
                 placeholder="Your name"
               />
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block text-sm font-semibold text-white mb-3">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formState.email}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
+                placeholder="your@email.com"
+              />
+            </div>
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-sm font-semibold text-white mb-3">
-              Email
+            <label htmlFor="company" className="block text-sm font-semibold text-white mb-3">
+              Company (Optional)
             </label>
             <input
-              type="email"
-              id="email"
-              name="email"
-              value={formState.email}
+              type="text"
+              id="company"
+              name="company"
+              value={formState.company}
               onChange={handleChange}
-              required
               className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
-              placeholder="your@email.com"
+              placeholder="Your company name"
             />
           </div>
-        </div>
 
-        <div>
-          <label htmlFor="company" className="block text-sm font-semibold text-white mb-3">
-            Company (Optional)
-          </label>
-          <input
-            type="text"
-            id="company"
-            name="company"
-            value={formState.company}
-            onChange={handleChange}
-            className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition text-white placeholder-itsilver/50"
-            placeholder="Your company name"
-          />
-        </div>
+          <div>
+            <label htmlFor="message" className="block text-sm font-semibold text-white mb-3">
+              Tell us about your IT needs
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={formState.message}
+              onChange={handleChange}
+              required
+              rows={5}
+              className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition resize-none text-white placeholder-itsilver/50"
+              placeholder="Tell us about your current IT challenges and goals..."
+            ></textarea>
+          </div>
 
-        <div>
-          <label htmlFor="message" className="block text-sm font-semibold text-white mb-3">
-            Tell us about your IT needs
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            value={formState.message}
-            onChange={handleChange}
-            required
-            rows={5}
-            className="w-full px-4 py-3 bg-itgray border border-itgray2 rounded-lg focus:ring-2 focus:ring-itred focus:border-transparent outline-none transition resize-none text-white placeholder-itsilver/50"
-            placeholder="Tell us about your current IT challenges and goals..."
-          ></textarea>
-        </div>
+          <button
+            type="submit"
+            disabled={status === 'loading'}
+            className="btn-primary w-full text-lg flex items-center justify-center gap-2"
+          >
+            {status === 'loading' ? 'Sending...' : 'Request a Consultation'}
+            <ChevronRight className="h-5 w-5" />
+          </button>
 
-        <button
-          type="submit"
-          disabled={status === 'loading'}
-          className="btn-primary w-full text-lg flex items-center justify-center gap-2"
-        >
-          {status === 'loading' ? 'Sending...' : 'Request a Consultation'}
-          <ChevronRight className="h-5 w-5" />
-        </button>
+          {status === 'success' && reference && (
+            <p className="text-sm text-green-400 mt-3 text-center">
+              Thank you! Your reference number is{' '}
+              <span className="font-semibold">{reference}</span>.
+            </p>
+          )}
 
-        {status === 'success' && reference && (
-          <p className="text-sm text-green-400 mt-3 text-center">
-            Thank you! Your reference number is{' '}
-            <span className="font-semibold">{reference}</span>.
-          </p>
-        )}
-
-        {status === 'error' && errorMessage && (
-          <p className="text-sm text-red-400 mt-3 text-center">{errorMessage}</p>
-        )}
+          {status === 'error' && errorMessage && (
+            <p className="text-sm text-red-400 mt-3 text-center">{errorMessage}</p>
+          )}
         </form>
       </div>
     </section>            
