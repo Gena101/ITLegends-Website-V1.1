@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronRight, AlertCircle, CheckCircle, Cloud, Shield, Server } from 'lucide-react';
 import Footer from '../components/Footer';
+import { useEffect } from 'react';
 
 // ✅ Image imports so Netlify/Vite bundle them correctly
 import headerImg from '../assets/header-img.webp';
@@ -11,6 +12,11 @@ import cloudProcessBg from '../assets/cloud-process.webp';
 import contactBg from '../assets/contact-bg.webp';
 
 export default function CloudBackupPage() {
+
+  useEffect (() => {
+    window.scrollTo (0, 0);
+  }, []);
+  
   return (
     <div className="min-h-screen bg-itdark text-itsilver">
       <ServiceNavigation />

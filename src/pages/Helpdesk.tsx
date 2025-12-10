@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronRight, AlertCircle, CheckCircle, Headphones, Monitor, Clock } from 'lucide-react';
 import Footer from '../components/Footer';
+import { useEffect } from 'react';
 
 // ✅ Image imports for bundling / Netlify
 import headerImg from '../assets/header-img.webp';
@@ -13,6 +14,11 @@ import helpdeskDetailsBg from '../assets/helpdesk-details.webp';
 import contactBg from '../assets/contact-bg.webp';
 
 export default function HelpdeskPage() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   return (
     <div className="min-h-screen bg-itdark text-itsilver">
       <ServiceNavigation />

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronRight, AlertCircle, CheckCircle, Target, Zap, Wrench } from 'lucide-react';
 import Footer from '../components/Footer';
+import { useEffect } from 'react';
 
 // ✅ Import images so Netlify/Vite bundle them correctly
 import headerImg from '../assets/header-img.webp';
@@ -13,6 +14,11 @@ import hardwareDetailsBg from '../assets/hardware-details.webp';
 import contactBg from '../assets/contact-bg.webp';
 
 export default function HardwareNetworkPage() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   return (
     <div className="min-h-screen bg-itdark text-itsilver">
       <ServiceNavigation />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ChevronRight, AlertCircle, CheckCircle } from 'lucide-react';
 import Footer from '../components/Footer';
 
@@ -12,6 +12,11 @@ import managedProcessBg from '../assets/managed-process.webp';
 import contactBg from '../assets/contact-bg.webp';
 
 export default function ManagedITSupportPage() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-itdark text-itsilver">
       <ServiceNavigation />

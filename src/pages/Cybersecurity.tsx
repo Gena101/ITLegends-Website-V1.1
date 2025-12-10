@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronRight, Shield, CheckCircle, AlertCircle, Lock, Activity } from 'lucide-react';
 import Footer from '../components/Footer';
+import { useEffect } from 'react';
 
 // ✅ Import images so Vite/Netlify bundle them correctly
 import headerImg from '../assets/header-img.webp';
@@ -12,6 +13,11 @@ import cybersecurityProcessBg from '../assets/cybersecurity-process.webp';
 import contactBg from '../assets/contact-bg.webp';
 
 export default function CybersecurityPage() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   return (
     <div className="min-h-screen bg-itdark text-itsilver">
       <ServiceNavigation />
