@@ -12,6 +12,7 @@ import serverBenefitsBg from '../assets/server-maintenance-benefits.webp';
 import serverProcessBg from '../assets/server-maintenance-process.webp';
 import serverDetailsBg from '../assets/server-maintenance-details.webp';
 import contactBg from '../assets/contact-bg.webp';
+import SeoHead from '../components/SeoHead';
 
 export default function ServerMaintenancePage() {
 
@@ -21,6 +22,11 @@ export default function ServerMaintenancePage() {
   
   return (
     <div className="min-h-screen bg-itdark text-itsilver">
+      <SeoHead
+        title="Server Maintenance & Monitoring"
+        description="Server maintenance, monitoring and patching to keep your critical systems online, secure and performing for your South African business."
+      />
+      
       <ServiceNavigation />
       <ServiceHero />
       <SectionDivider />

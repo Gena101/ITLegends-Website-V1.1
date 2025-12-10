@@ -12,6 +12,7 @@ import helpdeskBenefitsBg from '../assets/helpdesk-benefits.webp';
 import helpdeskProcessBg from '../assets/helpdesk-process.webp';
 import helpdeskDetailsBg from '../assets/helpdesk-details.webp';
 import contactBg from '../assets/contact-bg.webp';
+import SeoHead from '../components/SeoHead';
 
 export default function HelpdeskPage() {
 
@@ -21,6 +22,11 @@ export default function HelpdeskPage() {
   
   return (
     <div className="min-h-screen bg-itdark text-itsilver">
+      <SeoHead
+        title="Helpdesk & Remote IT Support"
+        description="Fast, friendly helpdesk and remote IT support for South African SMEs. IT Legends keeps your staff productive and supported wherever they work."
+      />
+      
       <ServiceNavigation />
       <ServiceHero />
       <SectionDivider />

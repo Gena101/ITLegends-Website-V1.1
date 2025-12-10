@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronRight, Shield, CheckCircle, AlertCircle, Lock, Activity } from 'lucide-react';
 import Footer from '../components/Footer';
-import { useEffect } from 'react';
 
 // ✅ Import images so Vite/Netlify bundle them correctly
 import headerImg from '../assets/header-img.webp';
@@ -11,6 +10,26 @@ import cybersecuritySolutionBg from '../assets/cybersecurity-solution.webp';
 import cybersecurityBenefitsBg from '../assets/cybersecurity-benefits.webp';
 import cybersecurityProcessBg from '../assets/cybersecurity-process.webp';
 import contactBg from '../assets/contact-bg.webp';
+import SeoHead from '../components/SeoHead';
+
+const cybersecurityServiceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Cybersecurity & Protection',
+  name: 'Cybersecurity & Protection for SMEs',
+  provider: {
+    '@type': 'Organization',
+    '@id': 'https://www.itlegends.co.za/#it-legends',
+    name: 'IT Legends',
+  },
+  areaServed: {
+    '@type': 'AdministrativeArea',
+    name: 'Gauteng, South Africa',
+  },
+  url: 'https:///www.itlegends.co.za/services/cybersecurity',
+  description:
+    'Layered cybersecurity, email protection and user awareness training to protect South African businesses against ransomware, phising and data breaches.',
+};
 
 export default function CybersecurityPage() {
 
@@ -20,6 +39,14 @@ export default function CybersecurityPage() {
   
   return (
     <div className="min-h-screen bg-itdark text-itsilver">
+      <SeoHead
+        title="Cybersecurity & Protection for Business | IT Legends South Africa"
+        description="Protect your business from ransomware, phising and data breaches with layered cybersecurity, email filtering and user awareness from IT Legends."
+        url="/services/cybersecurity"
+        type="article"
+        schema={cybersecurityServiceSchema}
+      />
+      
       <ServiceNavigation />
       <ServiceHero />
       <SectionDivider />

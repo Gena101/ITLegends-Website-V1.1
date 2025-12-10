@@ -1,10 +1,16 @@
 import { Code, ChevronRight, Mail, Phone, MapPin } from 'lucide-react';
 import { useState } from 'react';
 import Footer from '../components/Footer';
+import SeoHead from '../components/SeoHead';
 
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-itdark text-itsilver">
+      <SeoHead
+        title="Contact IT Legends"
+        description="Get in touch with IT Legends for managed IT support, cybersecurity, cloud and network solutions for your South African business."
+      />
+      
       <Navigation />
       <Hero />
       <GetInTouch />

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://itlegends.co.za/sitemap.xml

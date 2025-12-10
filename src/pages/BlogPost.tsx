@@ -7,6 +7,7 @@ import blogCardSecurity from '../assets/blog-card-security.webp';
 import blogHero from '../assets/blog-hero.webp';
 import headerImg from '../assets/header-img.webp';
 import { useEffect } from 'react';
+import SeoHead from '../components/SeoHead';
 
 type Section = {
   heading: string;
@@ -221,6 +222,12 @@ export default function BlogPostPage() {
   if (!post) {
     return (
       <div className="min-h-screen bg-itdark text-itsilver flex flex-col">
+        {/* SEO for 404 state */}
+        <SeoHead
+          title="Blog post not found"
+          description="The blog article you were looking for could not be found on IT Legends."
+        />
+
         <nav className="fixed top-0 w-full tech-glass z-50 border-b border-itgray2">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <a href='/' className="flex items-center spcae-x-2">
@@ -246,6 +253,9 @@ export default function BlogPostPage() {
 
   return (
     <div className="min-h-screen bg-itdark text-itsilver flex flex-col">
+      {/* SEO for actual blog post */}
+      <SeoHead title={post.title} description={post.excerpt} />
+      
       {/* Top nav */}
       <nav className="fixed top-0 w-full tech-glass z-50 border-b border-itgray2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">

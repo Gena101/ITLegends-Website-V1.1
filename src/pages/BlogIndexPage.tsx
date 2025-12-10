@@ -1,3 +1,4 @@
+import React from 'react';
 import { Calendar, Clock, ArrowLeft, Tag, ChevronRight } from 'lucide-react';
 import Footer from '../components/Footer';
 import { blogPosts } from '../data/blogPosts';
@@ -6,9 +7,17 @@ import { blogPosts } from '../data/blogPosts';
 import headerImg from '../assets/header-img.webp';
 import blogHeroBg from '../assets/blog-hero.webp';
 
+import SeoHead from '../components/SeoHead';
+
 export default function BlogIndexPage() {
   return (
     <div className="min-h-screen bg-itdark text-itsilver flex flex-col">
+      {/* SEO */}
+      <SeoHead
+        title="Blog & IT Tips"
+        description="IT Legends blog with cloud, cybersecurity, IT Tips, Server Maintenance, End User Support and AI insights for South African businesses that reliable, secure IT."
+      />
+      
       {/* Top Nav */}
       <nav className="fixed top-0 w-full tech-glass z-50 border-b border-itgray2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">

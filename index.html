@@ -2,15 +2,108 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <title>IT Legends - Digital Excellence</title>
-    <meta property="og:image" content="https://bolt.new/static/og_default.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
-</head>
-  <body>
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0"
+    />
+
+    <title>
+      IT Legends | Managed IT Support, Cybersecurity & Cloud Solutions
+    </title>
+
+    <!-- Basic SEO -->
+    <meta
+      name="description"
+      content="IT Legends provides managed IT support, cybersecurity, cloud & backup solutions, server maintenance and helpdesk services for South African businesses."
+    />
+    <meta
+      name="keywords"
+      content="IT Legends, IT support South Africa, managed IT services, cybersecurity, cloud backup, server maintenance, helpdesk, network support, Johannesburg, Pretoria."
+    />
+
+    <!-- Canonical URL -->
+    <link rel="Canonical" href="https://itlegends.co.za" />
+
+    <!-- Favicon (place these in /public) -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/favicon-192x192.png"
+    />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      propert="og:title"
+      content="IT Legends | Managed IT Support, Cybersecurity & Cloud Solutions"
+    />
+    <meta
+      property="og:description"
+      content="Reliable managed IT support, cybersecurity and cloud solutions for South African businesses"
+    />
+    <meta property="og:url" content="https://itlegends.co.za" />
+    <meta property="og:site_name" content="IT Legends" />
+    <!-- Put a share image called social-share.jpg in /public -->
+    <meta
+      property="og:image"
+      content="https://itlegends.co.za/social-share.jpg"
+    />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta 
+      name="twitter:title"
+      content="IT Legends | Managed IT Support, Cybersecurity & Cloud Solutions"
+    />
+    <meta
+      name="twitter:description"
+      content="Reliable managed IT support, cybersecurity and cloud solutions for South African businesses"
+    />
+    <meta
+      name="twitter:image"
+      content="https://itlegends.co.za/social-share.jpg"
+    />
+
+    <!-- Structured Data (Local Business) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "IT Legends",
+        "url": "https://itlegends.co.za/",
+        "image": "https://itlegends.co.za/social-share.jpg",
+        "description": "Managed IT support, cybersecurity, cloud solutions and network services for South African businesses",
+        "telephone": "+27-84-634-8144",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "ZA",
+          "addressLocality": "Johannesburg & Pretoria",
+          "streetAddress": "715 Elm Street, Grobler Park, Roodepoort & 265 Theuns Van Nieker Street, Wierdapark, Centurion"
+        }
+      }
+    </script>
+
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-QFCYN911RS"
+    ></script>
+    <script>
+      window.dataLayer = windoe.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('configure', 'G-QFCYN911RS');
+    </script>
+  </head>
+
+  <body class="bg-itdark text-silver">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

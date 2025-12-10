@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronRight, AlertCircle, CheckCircle, Cloud, Shield, Server } from 'lucide-react';
 import Footer from '../components/Footer';
-import { useEffect } from 'react';
 
 // ✅ Image imports so Netlify/Vite bundle them correctly
 import headerImg from '../assets/header-img.webp';
@@ -10,6 +9,26 @@ import cloudSolutionBg from '../assets/cloud-solution.webp';
 import cloudBenefitsBg from '../assets/cloud-benefits.webp';
 import cloudProcessBg from '../assets/cloud-process.webp';
 import contactBg from '../assets/contact-bg.webp';
+import SeoHead from '../components/SeoHead';
+
+const cloudbackupSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Cloud & Backup Solutions',
+  name: 'Cloud & Backup Solutions for SMEs',
+  provider: {
+    '@type': 'Organization',
+    '@id': 'https://www.itlegends.co.za/#it-legends',
+    name: 'IT Legends',
+  },
+  areaServed: {
+    '@type': 'AdministrativeArea',
+    name: 'Gauteng, South Africa',
+  },
+  url: 'https://www.itlegends.co.za/services/cloud-backup',
+  description:
+  '',
+};
 
 export default function CloudBackupPage() {
 
@@ -19,6 +38,14 @@ export default function CloudBackupPage() {
   
   return (
     <div className="min-h-screen bg-itdark text-itsilver">
+      <SeoHead
+        title="Cloud & Backup Solutions for Business | IT Legends South Africa"
+        description=""
+        url="/services/cloud-backup"
+        type="article"
+        schema={cloudbackupSchema}
+      />
+      
       <ServiceNavigation />
       <ServiceHero
         title="Cloud & Backup Solutions"

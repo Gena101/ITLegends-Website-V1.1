@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Core pages -->
+  <url>
+    <loc>https://itlegends.co.za/</loc>
+  </url>
+  <url>
+    <loc>https://itlegends.co.za/services/managed-it-support</loc>
+  </url>
+  <url>
+    <loc>https://itlegends.co.za/services/hardware-network</loc>
+  </url>
+  <url>
+    <loc>https://itlegends.co.za/services/cloud-backup</loc>
+  </url>
+  <url>
+    <loc>https://itlegends.co.za/services/server-maintenance</loc>
+  </url>
+  <url>
+    <loc>https://itlegends.co.za/services/cybersecurity</loc>
+  </url>
+  <url>
+    <loc>https://itlegends.co.za/services/helpdesk</loc>
+  </url>
+  <url>
+    <loc>https://itlegends.co.za/contact</loc>
+  </url>
+
+  <!-- Blog listing -->
+  <url>
+    <loc>https://itlegends.co.za/blog</loc>
+  </url>
+
+  <!-- Individual blog posts -->
+  <url>
+    <loc>https://itlegends.co.za/blog/cloud-future</loc>
+  </url>
+  <url>
+    <loc>https://itlegends.co.za/blog/ai-integration-guide</loc>
+  </url>
+  <url>
+    <loc>https://itlegends.co.za/blog/cybersecurity-best-practices-2025</loc>
+  </url>
+</urlset>

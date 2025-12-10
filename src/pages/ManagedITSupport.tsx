@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronRight, AlertCircle, CheckCircle } from 'lucide-react';
 import Footer from '../components/Footer';
 
@@ -10,6 +10,26 @@ import managedSolutionsBg from '../assets/managed-solutions.webp';
 import managedBenefitsBg from '../assets/managed-benefits.webp';
 import managedProcessBg from '../assets/managed-process.webp';
 import contactBg from '../assets/contact-bg.webp';
+import SeoHead from '../components/SeoHead';
+
+const managedITSupportSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Managed IT Support',
+  name: 'Managed IT Support & IT Outsourcing',
+  provider: {
+    '@type': 'Organization',
+    '@id': 'https://www.itlegends.co.za/#it-legends',
+    name: 'IT Legends',
+  },
+  areaServed: {
+    '@type': 'AdministrativeArea',
+    name: 'Gauteng, South Africa',
+  },
+  url: 'https://www.itlegends.co.za/services/managed-it-support',
+  description:
+    'Proactive managed IT support, monitoring and maintenance for small and medium businesses in Johannesburg, Pretoria and Gauteng.',
+};
 
 export default function ManagedITSupportPage() {
 
@@ -19,6 +39,14 @@ export default function ManagedITSupportPage() {
 
   return (
     <div className="min-h-screen bg-itdark text-itsilver">
+      <SeoHead
+        title="Managed IT Support for SMEs | IT Legends South Africa"
+        description="Proactive IT support, remote monitoring and maintenance for South African businesses. Reduce downtime and stabilize your IT with IT Legends managed IT support."
+        url="/services/managed-it-support"
+        type="article"
+        schema={managedITSupportSchema}
+      />
+
       <ServiceNavigation />
      
       <ServiceHero />

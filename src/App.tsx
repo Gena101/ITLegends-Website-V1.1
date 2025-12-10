@@ -13,6 +13,7 @@ import {
   Cpu,
   BookOpen
 } from 'lucide-react';
+import React from 'react';
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
@@ -36,6 +37,58 @@ import whyUsBg from './assets/whyus-bg.webp';
 import contactBg from './assets/contact-bg.webp';
 import headerImg from './assets/header-img.webp';
 import heroLogoImg from './assets/hero-img.webp';
+import SeoHead from './components/SeoHead';
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': 'https://www.itlegends.co.za/#it-legends',
+  name: 'IT Legends',
+  url: 'https://www.itlegends.co.za/',
+  logo: 'https://www.itlegends.co.za/logo-itlegends.png',
+  image:'https://www.itlegends.co.za/logo-itlegends.png',
+  telephone: '+27-84-634-8144',
+  email: 'info@itlegends.co.za',
+  priceRange: '$$',
+  areaServed: {
+    '@type': 'Country',
+    name: 'South Africa',
+  },
+  address: [
+    {
+      '@type': 'PostalAddress',
+      streetAddress: '715 Elm Street, Grobler Park',
+      addressLocality: 'Roodepoort',
+      postalCode: '1724',
+      addressCountry: 'ZA',
+    },
+    {
+      '@type': 'PostalAddress',
+      streetAddress: '265 Theuns Van Niekerk Street, Wierdapark',
+      addressLocality: 'Centurion',
+      postalCode: '0157',
+      addressCountry: 'ZA',
+    },
+  ],
+  sameAs: [
+    'https://www.facebook.com/itlegends',
+    'https://www.instagram.com/itlegends/',
+  ],
+};
+
+const webSiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Website',
+  '@id': 'https://www.itlegends.co.za/#website',
+  url: 'https://www.itlegends.co.za/',
+  name: 'IT Legends',
+  inLanguage: 'en-ZA',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: 'https://www.itlegends.co.za/?s={search_term_string}',
+    'query-input': 'required name=search_term_string',
+  },
+};
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -87,6 +140,15 @@ function HomePage({
 }) {
   return (
     <div className="min-h-screen bg-itdark text-itsilver">
+      <SeoHead
+        title="Managed IT Support, Cybersecurity & Cloud Services | IT Legends South Africa"
+        description="IT Legends provides managed IT support, cybersecurity, cloud & backup, server maintenance and helpdesk services for small and medium businesses in Johannesburg, Pretoria and greater Gauteng."
+        url="/"
+        type="website"
+        image="https://www.itlegends.co.za/logo-itlegends.png"
+        schema={[localBusinessSchema, webSiteSchema]}
+      />
+
       <Navigation
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
