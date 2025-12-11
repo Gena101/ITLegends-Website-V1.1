@@ -79,6 +79,11 @@ export default function Footer() {
                   Contact
                 </a>
               </li>
+              <li>
+                <a href="/privacy-policy" className="hover:text-itblue tansition-colors">
+                  Privacy &amp; Cookies
+                </a>
+              </li>
             </ul>
           </div>
 

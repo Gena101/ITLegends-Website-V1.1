@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Footer from '../components/Footer';
 import SeoHead from '../components/SeoHead';
+import privacyBg from '../assets/services-bg.webp';
+import headerImg from '../assets/header-img.webp';
 
 export default function PrivacyPolicyPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-itdark text-itsilver flex flex-col">
+
       <SeoHead
         title="Privacy & Cookie Policy | IT Legends"
         description="Learn how IT Legends collects, uses and protects your personal information, and how we use cookies and analytics on this website."
@@ -15,23 +22,34 @@ export default function PrivacyPolicyPage() {
     {/* Simple top bar */}
     <nav className="fixed top-0 w-full tech-glass z-50 border-b border-itgray2">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <a href="/" className="text-white font-bold text-lg">
-          IT Legends
-        </a>
+            <a href="/" className="flex items-center space-x-2">
+              {/* ✅ Use imported header image */}
+              <img src={headerImg} alt="IT Legends Logo" className="h-10 w-auto" />
+              <span className="text-xl font-bold text-white">
+                IT Legends
+              </span>
+            </a>
         <a
-          href="/#contact"
-          className="text-itsilver hover:text-itred text-sm sm:text-base transition-colors"
+          href="/"
+          className="inline-flex items-center text-itsilver hover:text-itred transition-colors text-sm sm:text-base"
         >
-          Contact Us
+          Back to Home
         </a>
       </div>
     </nav>
 
-    <main className="flex-1 pt-24 pb-16 px-4 sm:px-6 lg_px-8">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+    {/* Content */}
+    <main 
+      className="flex-1 w-full pt-24 pb-20 px-4 sm:px-6 lg:px-8 bg-cover bg-center"
+      style={{
+        backgroundImage: `url(${privacyBg})`
+      }}
+    >
+      <div className="max-w-4xl mx-auto bg-black/65 border border-itgray2 rounded-2xl shadow-xl p-8 backdrop-blur-sm">
+        <h1 className="text-3xl font-bold text-white mb-6">
           Privacy &amp; Cookie Policy
         </h1>
+
         <p className="text-sm text-itsilver/70 mb-8">
           Last updated: {new Date().getFullYear()}
         </p>
@@ -175,10 +193,88 @@ export default function PrivacyPolicyPage() {
               <span className="font-semibold">Make.com / automation tools:</span>{' '}
               to route contact form submission to our internal systems.
             </li>
+            <li>
+              <span className="font-semibold">Email providers:</span> to send
+              and receive email communication.
+            </li>
+            <li>
+              <span className="font-semibold">Analytics providers:</span> such
+              as Google Analytics (only when analytics cookies are accepted).
+            </li>
           </ul>
+          <p className="mt-3">
+            These providers only receive the information necessary to perform
+            their services and are expected to protect it appropriately.
+          </p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-xl font-bold text-white mb-3">
+            6. Data Retention
+          </h2>
+          <p>
+            We keep your personal data for as long as necessary to fulfill the
+            purposes described above, or as required by applicable law. Contact
+            enquiries may be retained for a reasonable period for reference
+            and recordkeeping.
+          </p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-xl font-bold text-white mb-3">
+            7. Your Rights
+          </h2>
+          <p className="mb-3">
+            Depending on applicable law, you may have the right to:
+          </p>
+          <ul className="list-disc list-inside space-y-2 mb-3">
+            <li>Request access to the personal data we gold about you.</li>
+            <li>Request correction of inaccurate or incomplete data.</li>
+            <li>Request deletion of your data, where applicable.</li>
+            <li>Object to certain types of processing.</li>
+          </ul>
+          <p>
+            To exercise any of these rights, please contact us at{' '}
+            <a
+              href="mailto:info@itlegends.co.za"
+              className="text-itblue hover:text-itred"
+            >
+              info@itlegends.co.za
+            </a>
+            .
+          </p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-xl font-bold text-white mb-3">
+            8. Changes To This Policy
+          </h2>
+          <p>
+            We may update this Privacy &amp; Cookie Policy from time to time to
+            reflect changes in our practices or legal requirements. The
+            &quot;Last updated&quot; date at the top indicates when it was
+            last revised.
+          </p> 
+        </section>
+
+        <section>
+          <h2 className="text-xl font-bold text-white mb-3">9. Contact</h2>
+          <p>
+            If you have any questions about this policy or how we handle your
+            data, please contact us at{' '}
+            <a
+              href="mailto:info@itlegends.co.za"
+              className="text-itblue hover:text-itred"
+            >
+              info@itlegends.co.za
+            </a>
+            .
+          </p>
         </section>
       </div>
     </main>
+
+    <Footer />
     </div>
-  )
+  );
 }

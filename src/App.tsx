@@ -39,6 +39,7 @@ import headerImg from './assets/header-img.webp';
 import heroLogoImg from './assets/hero-img.webp';
 import SeoHead from './components/SeoHead';
 import CookieBanner from './components/CookieBanner';
+import PrivacyPolicyPage from './pages/PrivacyPolicy';
 
 const localBusinessSchema = {
   '@context': 'https://schema.org',
@@ -142,6 +143,10 @@ function App() {
           <Route 
             path="/contact" 
             element={<ContactPage />} 
+          />
+          <Route
+            path="/privacy-policy"
+            element={<PrivacyPolicyPage />}
           />
       </Routes>
 
