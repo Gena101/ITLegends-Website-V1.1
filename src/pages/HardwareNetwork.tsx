@@ -14,6 +14,25 @@ import hardwareDetailsBg from '../assets/hardware-details.webp';
 import contactBg from '../assets/contact-bg.webp';
 import SeoHead from '../components/SeoHead';
 
+const hardwareNetworkSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Hardware & Network Setup',
+  name: 'Harware & Network Setup for SMEs',
+  provider: {
+    '@type': 'Organization',
+    '@id': 'https://www.itlegends.co.za/#it-legends',
+    name: 'IT Legends',
+  },
+  areaServed: {
+    '@type': 'AdministrativeArea',
+    name: 'Gauteng, South Africa',
+  },
+  url: 'https://www.itlegends.co.za/services/hardware-network',
+  description: 
+    '',
+};
+
 export default function HardwareNetworkPage() {
 
   useEffect(() => {
@@ -23,8 +42,11 @@ export default function HardwareNetworkPage() {
   return (
     <div className="min-h-screen bg-itdark text-itsilver">
       <SeoHead
-        title="Hardware & Network Setup"
-        description="Professional hardware, Wi-Fi and network setup for offices and branches, designed and installed by IT Legends for speed, reliability and security."
+        title="Hardware & Network Setup for Business | IT Legends South Africa"
+        description=""
+        url="/services/hardware-network"
+        type="article"
+        schema={hardwareNetworkSchema}
       />
       
       <ServiceNavigation />

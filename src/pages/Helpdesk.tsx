@@ -14,6 +14,25 @@ import helpdeskDetailsBg from '../assets/helpdesk-details.webp';
 import contactBg from '../assets/contact-bg.webp';
 import SeoHead from '../components/SeoHead';
 
+const HelpdeskRemoteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Helpdesk & Remote IT Support',
+  name: 'Helpdesk & Remote IT Support for SMEs',
+  provider: {
+    '@type': 'Organization',
+    '@id': 'https://www.itlegends.co.za/#it-legends',
+    name: 'IT Legends',
+  },
+  areaServed: {
+    '@type': 'AdministrativeArea',
+    name: 'Gauteng, South Africa',
+  },
+  url: 'https://www.itlegends.co.za/services/helpdesk',
+  description: 
+    '',
+};
+
 export default function HelpdeskPage() {
 
   useEffect(() => {
@@ -23,8 +42,11 @@ export default function HelpdeskPage() {
   return (
     <div className="min-h-screen bg-itdark text-itsilver">
       <SeoHead
-        title="Helpdesk & Remote IT Support"
-        description="Fast, friendly helpdesk and remote IT support for South African SMEs. IT Legends keeps your staff productive and supported wherever they work."
+        title="Helpdesk & Remote IT Support for Business | IT Legends South Africa"
+        description=""
+        url="/services/helpdesk"
+        type="article"
+        schema={HelpdeskRemoteSchema}
       />
       
       <ServiceNavigation />

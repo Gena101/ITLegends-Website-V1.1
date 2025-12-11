@@ -144,7 +144,7 @@ const blogPosts: BlogPost[] = [
     date: 'Nov 17, 2025',
     readTime: '6 min read',
     category: 'Security',
-    excerpt: 'Most breaches do not start with elite hackers. They start with a simple password, a fake email, or an unpatched system. The good news: disciplined basics makes you a much harder target.',
+    excerpt: 'Most breaches do not start with elite hackers. They start with a simple password, a fake email, or an unpatched system. The good news: disciplined basics make you a much harder target.',
     image: blogCardSecurity,
     sections: [
       {
@@ -172,11 +172,11 @@ const blogPosts: BlogPost[] = [
       {
         heading: '3. Email Security and User Awareness',
         paragraphs: [
-          'Phising is still the number one way attackers reach your users. Technology and training must work together.',
+          'Phishing is still the number one way attackers reach your users. Technology and training must work together.',
         ],
         listItems: [
           'Modern email filtering with spoofing and malware protection.',
-          'Regular phising awareness training.',
+          'Regular phishing awareness training.',
           'Clear internal process if someone clicks a suspicious link.',
         ],
       },
@@ -230,7 +230,7 @@ export default function BlogPostPage() {
 
         <nav className="fixed top-0 w-full tech-glass z-50 border-b border-itgray2">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <a href='/' className="flex items-center spcae-x-2">
+            <a href='/' className="flex items-center space-x-2">
               <img src={headerImg} alt="IT Legends Logo" className="h-10 w-auto" />
               <span className="text-xl font-bold text-white">IT Legends</span>
             </a>
@@ -243,19 +243,56 @@ export default function BlogPostPage() {
             </a>
           </div>
         </nav>
+
         <div className="flex-1 flex items-center justify-center pt-20">
           <p className="text-itsilver">Blog post not found.</p>
         </div>
+
           <Footer />
       </div>
     );
   }
 
+  const baseURL = 'https://www.itlegends.co.za';
+  const postURL = `${baseURL}/blog/${post.slug}`;
+
+  const blogPostSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headLine: post.title,
+    description: post.excerpt,
+    datePublished: new Date(post.date).toISOString(),
+    dateModified: new Date(post.date).toISOString(),
+    author: {
+      '@type': 'Organization',
+      name: 'IT Legends',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'IT Legends',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseURL}/logo-itlegends.png`,
+      },
+    },
+    image: `${baseURL}&{post.image.replace('/src', '')}`,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': postURL,
+    },
+  };
+
   return (
     <div className="min-h-screen bg-itdark text-itsilver flex flex-col">
       {/* SEO for actual blog post */}
-      <SeoHead title={post.title} description={post.excerpt} />
-      
+      <SeoHead
+        title={post.title + ' | IT Legends'}
+        description={post.excerpt}
+        url={`/blog/${post.slug}`}
+        type="article"
+        schema={[blogPostSchema]}
+      />
+
       {/* Top nav */}
       <nav className="fixed top-0 w-full tech-glass z-50 border-b border-itgray2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -312,6 +349,7 @@ export default function BlogPostPage() {
         <img
           src={post.image}
           alt={post.title}
+          loading="lazy"
           className="w-full rounded-lg mb-8 shadow-md object-cover max-h-96"
         />
 

@@ -14,6 +14,25 @@ import serverDetailsBg from '../assets/server-maintenance-details.webp';
 import contactBg from '../assets/contact-bg.webp';
 import SeoHead from '../components/SeoHead';
 
+const servermaintenanceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Server Maintenance & Monitoring',
+  name: 'Server Maintenance & Monitoring',
+  provider: {
+    '@type': 'Organization',
+    '@id': 'https://www.itlegends.co.za/#it-legends',
+    name: 'IT Legends',
+  },
+  areaServed: {
+    '@type': 'AdministrativeArea',
+    name: 'Gauteng, South Africa',
+  },
+  url: 'https://www.itlegends.co.za/services/server-maintenance',
+  description:
+  '',
+};
+
 export default function ServerMaintenancePage() {
 
   useEffect(() => {
@@ -23,10 +42,13 @@ export default function ServerMaintenancePage() {
   return (
     <div className="min-h-screen bg-itdark text-itsilver">
       <SeoHead
-        title="Server Maintenance & Monitoring"
-        description="Server maintenance, monitoring and patching to keep your critical systems online, secure and performing for your South African business."
+        title="Server Maintenance & Monitoring for Businesses | IT Legends South Africa"
+        description=""
+        url="/services/server-maintenance"
+        type="article"
+        schema={servermaintenanceSchema}
       />
-      
+            
       <ServiceNavigation />
       <ServiceHero />
       <SectionDivider />

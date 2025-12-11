@@ -1,4 +1,3 @@
-import React from 'react';
 import { Calendar, Clock, ArrowLeft, Tag, ChevronRight } from 'lucide-react';
 import Footer from '../components/Footer';
 import { blogPosts } from '../data/blogPosts';
@@ -70,12 +69,14 @@ export default function BlogIndexPage() {
                 className="card-dark group cursor-pointer overflow-hidden glow-blue border-itblue/30 hover:border-itblue/60 block"
               >
                 {/* Card Image */}
-                <div
-                  className="h-40 bg-cover bg-center border-b border-itgray2"
-                  style={{
-                    backgroundImage: `url('${post.image}')`,
-                  }}
-                />
+                <div className="h-40 overflow-hidden border-b border-itgray2">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3 text-xs text-itsilver/70">

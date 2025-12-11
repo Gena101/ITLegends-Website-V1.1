@@ -78,7 +78,7 @@ const localBusinessSchema = {
 
 const webSiteSchema = {
   '@context': 'https://schema.org',
-  '@type': 'Website',
+  '@type': 'WebSite',
   '@id': 'https://www.itlegends.co.za/#website',
   url: 'https://www.itlegends.co.za/',
   name: 'IT Legends',
@@ -271,6 +271,7 @@ function Hero() {
           <img
             src={heroLogoImg}
             alt="IT Legends Logo"
+            loading="lazy"
             className="h-32 w-auto drop-shadow-[0_0_12px_rgba(255,255,255,0.35)]"
           />
         </div>
@@ -578,6 +579,7 @@ function BlogAndITTips() {
                   <img
                     src={post.image}
                     alt={post.title}
+                    loading="lazy"
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
