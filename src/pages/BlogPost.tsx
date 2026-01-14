@@ -201,6 +201,79 @@ const blogPosts: BlogPost[] = [
     ctaLabel: 'Book a cybersecurity review',
     ctaHref: '/#contact',
   },
+  {
+    slug: 'it-equipment=price-increase-sa',
+    title: 'Why IT Equipment Prices in South Africa Are Set to Increase (And What You Can Do About It)',
+    date: 'Jan 14, 2026',
+    readTime: '6 min read',
+    category: 'IT Costs',
+    excerpt: 'IT hardware prices in South Africa are rising due to global supply pressure, a weaker rand, and higher logistics costs. Businesses that plan ahead can reduce the impact and avoid costly surprises.',
+    image: '/src/assets/blog-card-it-costs.webp',
+    sections: [
+      {
+        heading: '1. Global Supply Chain Pressure Isn`t Over.',
+        paragraphs: [
+          'Although the worst of the global chip shortage has eased, supply chains have not returned to pre-2020 stability.',
+          'Key components such as CPUs, memory, SSDs, and networking chips are still affected by limited manufacturing capacity, higher production costs, and ongoing geopolitical uncertainty.',
+          'When global suppliers increase prices, South African importers feel it immediately - and those costs are passed down to businesses.',
+        ],
+      },
+      {
+        heading: '2. The Weak Rand Makes Imported Technology More Expensive',
+        paragraphs: [
+          'Most IT hardware sold in South Africa is imported and priced in US dollars or euros.',
+          'A weaker rand increases landed costs for laptops, servers, firewalls, and networking equipment. Even if international prices stays flat, local prices can rise purely due to exchange rate movement.',
+        ],
+      },
+      {
+        heading: '3. Rising SHipping, Insurance, and Compliance Costs',
+        paragraphs: [
+          'The cost of getting hardware into the country has increased significantly.',
+          'Higher fuel prices, shipping fees, insurance premiums, and regulatory overhead all contribute to higher final prices, even if these costs are not visible as seperate line items on invoices.'
+        ],
+      },
+      {
+        heading: '4. Modern IT Equipment Is More Powerful - and More Expensive',
+        paragraphs: [
+          'Modern business hardware includes advanced security chips, faster storage, AI acceleration features, and higher-grade components.',
+          'While these improvements deliver better performance and security, they also increase manufacturing and replacement costs compared to older systems.',
+        ],
+      },
+      {
+        heading: '5. Shorter Upgrade Cycles Increase Replacement Pressure',
+        paragraphs: [
+          'Software vendors now enforce faster upgrade and end-of-support cycles.',
+          'This often forces businesses to replace equipment earlier than expected to remain secure and compliant, rather than upgrading gradually over time.',
+        ],
+      },
+      {
+        heading: '6. What This Means for South African Businesses',
+        paragraphs: [
+          'Without proper planning, rising IT costs can result in unexpected capital expenses, delayed upgrades, increased security risks, and reduced productivity.',
+          'Businesses that react only when equipment fails are usually the ones hit hardest.',
+        ],
+      },
+      {
+        heading: '7. What You Can Do to Reduce the Impact',
+        paragraphs: [
+          'Plan hardware upgrades in advance to avoid emergency purchases.',
+          'Extend equipment lifespan safely through maintenance and monitoring.',
+          'Standardise hardware models to reduce support and replacement costs.',
+          'Consider leasing or lifecycle-based procurement to smooth cash flow.',
+          'Work with an IT partner who proactively monitors pricing and end-of-life risks.',
+        ],
+      },
+      {
+        heading: '8. Where IT Legends Fits In',
+        paragraphs: [
+          'At IT Legends, we help South African businesses plan realistic hardware refresh cycles, extend the life of existing equipment, and avoid unnecessary emergency replacements.',
+          'Smart IT planning reduces downtime, security risk, and long-term costs - without panic buying.',
+        ],
+      },
+    ],
+    ctaLabel: 'Chat to us about your strategy',
+    ctaHref: '/#contact',
+  },
 ];
 
 function SectionDivider() {
