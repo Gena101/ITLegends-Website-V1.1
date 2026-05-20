@@ -25,6 +25,7 @@ import ServerMaintenancePage from './pages/ServerMaintenance';
 import HelpdeskPage from './pages/Helpdesk';
 import BlogPostPage from './pages/BlogPost';
 import ContactPage from './pages/Contact';
+import FAQPage from './pages/FAQ';
 import Footer from './components/Footer';
 import BlogIndexPage from './pages/BlogIndexPage';
 import { blogPosts } from './data/blogPosts';
@@ -47,8 +48,8 @@ const localBusinessSchema = {
   '@id': 'https://www.itlegends.co.za/#it-legends',
   name: 'IT Legends',
   url: 'https://www.itlegends.co.za/',
-  logo: 'https://www.itlegends.co.za/logo-itlegends.png',
-  image:'https://www.itlegends.co.za/logo-itlegends.png',
+  logo: 'https://www.itlegends.co.za/logo-itlegends.webp',
+  image:'https://www.itlegends.co.za/logo-itlegends.webp',
   telephone: '+27-84-634-8144',
   email: 'info@itlegends.co.za',
   priceRange: '$$',
@@ -90,6 +91,61 @@ const webSiteSchema = {
     target: 'https://www.itlegends.co.za/?s={search_term_string}',
     'query-input': 'required name=search_term_string',
   },
+};
+
+const homepageFAQSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What IT support services does IT Legends offer?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'IT Legends offers managed IT support, cybersecurity, cloud and backup solutions, server maintenance, hardware and network setup, and helpdesk remote assistance for businesses across Gauteng, South Africa.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Where does IT Legends provide IT support?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'IT Legends provides IT support across the greater Gauteng are including Johannesburg, Roodepoort, Sandton, Midrand, Centurion and Pretoria. We have offices in Roodepoort and Centurion.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much does managed IT support cost for a small business in South Africa?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'IT Legends offers scalable managed IT support packages tailored to the size and needs of your business. Contact us for a custom quote - we serve SMEs across Gauteng with cost-effective monthly plans.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is a managed IT services provider (MSP)?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'A managed IT service provider like IT Legends acts as your outsourced IT department. We handle proactive monitoring, maintenance, security, helpdesk support and cloud management for a predictable monthly cost - so you can focus on running your business.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly does IT Legends respond to IT problems?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'IT Legends aims to respond to critical IT issues within hours. Our helpdesk provides fast remote assistance for day-to-day problems, minimising downtime for your business.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can IT Legends help my business recover from load shedding damage?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. IT Legends helps South African businesses protect against and recover from load shedding-related IT failures through UPS recommendations, surge protection, cloud backups, and disaster recovery planning.',
+      },
+    },
+  ],
 };
 
 function App() {
@@ -145,6 +201,10 @@ function App() {
             element={<ContactPage />} 
           />
           <Route
+            path="/faq"
+            element={<FAQPage />}
+          />
+          <Route
             path="/privacy-policy"
             element={<PrivacyPolicyPage />}
           />
@@ -171,8 +231,8 @@ function HomePage({
         description="IT Legends provides managed IT support, cybersecurity, cloud & backup, server maintenance and helpdesk services for small and medium businesses in Johannesburg, Pretoria and greater Gauteng."
         url="/"
         type="website"
-        image="https://www.itlegends.co.za/logo-itlegends.png"
-        schema={[localBusinessSchema, webSiteSchema]}
+        image="https://www.itlegends.co.za/logo-itlegends.webp"
+        schema={[localBusinessSchema, webSiteSchema, homepageFAQSchema]}
       />
 
       <Navigation
@@ -242,6 +302,12 @@ function Navigation({
               </a>
             ))}
           </div>
+          <a
+            href="/faq"
+            className="hidden md:block text-itsilver hover:text-itred transition-colors font-medium"
+          >
+            FAQ
+          </a>
 
           <button
             className="md:hidden text-itsilver"
@@ -265,6 +331,13 @@ function Navigation({
                 {item}
               </a>
             ))}
+            <a
+              href="/faq"
+              className="block text-itsilver hover:text-itred transition-colors font-medium"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              FAQ
+            </a>
           </div>
         </div>
       )}
@@ -297,7 +370,8 @@ function Hero() {
           <img
             src={heroLogoImg}
             alt="IT Legends Logo"
-            loading="lazy"
+            loading="eager"
+            fetchPriority="high"
             className="h-32 w-auto drop-shadow-[0_0_12px_rgba(255,255,255,0.35)]"
           />
         </div>

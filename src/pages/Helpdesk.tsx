@@ -33,6 +33,53 @@ const HelpdeskRemoteSchema = {
     '',
 };
 
+const helpdeskFAQSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is an IT helpdesk service for small businesses?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'An IT helpdesk gives your staff a single point of contact for all day-to-day IT problems - from password resets and software issues to printer problems and connectivity errors. IT Legends provides fast remote helpdesk support so your team can get back to work quickly.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does IT Legends remote support work?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'When you contact IT Legends with an IT problem, our technicians connect to your device remotely (with your permission) to diagnose and fix the issue in real time - no waiting for someone to drive to your office for most common problems.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly can IT Legends resolve helpdesk issues?',
+      acceptedAnswers: {
+        '@type': 'Answer',
+        text: 'Most common helpdesk issues are resolved remotely within the same business day. Critical issues affecting your whole business are prioritised and addresses as quickly  as possible to minimise downtime.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does IT Legends offer on-site IT support in Johannesburg and Pretoria?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. While most issues are resolved remotely, IT Legends technicians are available for on-site visits across Johannesburg, Roodepoort, Sandton, Centurion and Pretoria when hands-on support is required.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can IT Legends support my remote or hybrid workforce?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. IT Legends supports remote and hybrid teams through secure VPN setup, Microsoft 365 and Google Workspace management, remote device management, and helpdesk support for staff working from home across South Africa.',
+      },
+    },
+  ],
+};
+
 export default function HelpdeskPage() {
 
   useEffect(() => {
@@ -46,7 +93,7 @@ export default function HelpdeskPage() {
         description=""
         url="/services/helpdesk"
         type="article"
-        schema={HelpdeskRemoteSchema}
+        schema={[HelpdeskRemoteSchema, helpdeskFAQSchema]}
       />
       
       <ServiceNavigation />

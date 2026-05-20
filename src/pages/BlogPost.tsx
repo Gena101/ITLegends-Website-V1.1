@@ -329,29 +329,30 @@ export default function BlogPostPage() {
   const baseURL = 'https://www.itlegends.co.za';
   const postURL = `${baseURL}/blog/${post.slug}`;
 
-  const blogPostSchema = {
+  const articleSchema = {
     '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
+    '@type': 'Article',
     headLine: post.title,
     description: post.excerpt,
-    datePublished: new Date(post.date).toISOString(),
-    dateModified: new Date(post.date).toISOString(),
+    datePublished: post.date,
+    dateModified: post.date,
     author: {
       '@type': 'Organization',
       name: 'IT Legends',
+      url: 'https://www.itlegends.co.za',
     },
     publisher: {
       '@type': 'Organization',
       name: 'IT Legends',
       logo: {
         '@type': 'ImageObject',
-        url: `${baseURL}/logo-itlegends.png`,
+        url: 'https://www.itlegends.co.za/logo-itlegends.webp',
       },
     },
-    image: `${baseURL}&{post.image.replace('/src', '')}`,
+    image: `https://www.itlegends.co.za${post.image}`,
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': postURL,
+      '@id': `https://www.itlegends.co.za/blog/${post.slug}`,
     },
   };
 
@@ -363,7 +364,7 @@ export default function BlogPostPage() {
         description={post.excerpt}
         url={`/blog/${post.slug}`}
         type="article"
-        schema={[blogPostSchema]}
+        schema={[articleSchema]}
       />
 
       {/* Top nav */}

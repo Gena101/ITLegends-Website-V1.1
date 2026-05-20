@@ -33,6 +33,53 @@ const hardwareNetworkSchema = {
     '',
 };
 
+const hardwareNetworkFAQSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What hardware and network services does IT legends offer?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'IT Legends supplies, installs and configures routers, switches, Wi-Fi access points, structured cabling, firewalls, network storage, and workstations for businesses across Gauteng. We design networks that are fast, secure and scalable.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I set up a business network in Johannesburg?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'IT Legends handles the full process - from assessing your business requirements and designing the network layout, to supplying hardware, running cables, configuring equipment, and testing everything before handover. Contact us for a site assessment.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can IT Legends supply and install business computers and laptops?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. IT Legends sources, supplies and configures business workstations and laptops, including Windows setup, software installation, domain joining, and security configuration - ready for your staff to use from day one.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How can I improve my business Wi-Fi in South Africa?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Poor Wi-Fi is usually casued by outdated access points, incorrect placement, or network congestion. IT Legends conducts a Wi-Fi assessment and designs a coverage solution using enterprise-grade access points to ensure reliable connectivity throughout your premises.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does IT Legends do structured network cabling for offices?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. IT Legends provides professional structured cabling installations including Cat6 cabling, patch panels, and truncking for offices across Gauteng. Proper cabling is the foundation of a reliable business network.',
+      },
+    },
+  ],
+};
+
 export default function HardwareNetworkPage() {
 
   useEffect(() => {
@@ -46,7 +93,7 @@ export default function HardwareNetworkPage() {
         description=""
         url="/services/hardware-network"
         type="article"
-        schema={hardwareNetworkSchema}
+        schema={[hardwareNetworkSchema, hardwareNetworkFAQSchema]}
       />
       
       <ServiceNavigation />

@@ -31,6 +31,53 @@ const cybersecurityServiceSchema = {
     'Layered cybersecurity, email protection and user awareness training to protect South African businesses against ransomware, phising and data breaches.',
 };
 
+const cybersecurityFAQSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What cybersecurity services does IT Legends offer in gauteng?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'IT Legends provides endpoint protecction, firewall management, threat detection, security audits, staff phising awareness training, and ransomware protection for businesses across Johannesburg, Centurion and freater Gauteng.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How can I protect my small business from cyberattacks in South Africa?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Key staps include installing enterprise-grade antivirus and endpoint protection, enabling multi-factor authentication, keeping software patched and updated, backing up data offsite, and training staff to recognise phishing emails. IT Legends can implement and manage all of these for your business.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What should I do if my business has been hacked?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Immediately isolate affected devices from your network, contact IT Legends on +27 84 634 8144 for emergency response, and do not pay any ransom without professional advice. We will help contain the breach, assess the damage, and restore your system from clean backups.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much does business cybersecurity cost in South Africa?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The cost depends on the size of your business and the level of protection required. IT Legends offers scalable cybersecurity packages for SMEs. Contact us for a quote tailored to your environment.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is my business at risk of a cyberattack in South Africa?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. South Africa is one of the most targeted countries for cybercrime in Africa. Small businesses are frequently targeted because they often have weaker security than large corporations. A single ransomware attack or data breach can cost a small business hundreds of thousands of rands.',
+      },
+    },
+  ],
+};
+
 export default function CybersecurityPage() {
 
   useEffect(() => {
@@ -44,7 +91,7 @@ export default function CybersecurityPage() {
         description="Protect your business from ransomware, phising and data breaches with layered cybersecurity, email filtering and user awareness from IT Legends."
         url="/services/cybersecurity"
         type="article"
-        schema={cybersecurityServiceSchema}
+        schema={[cybersecurityServiceSchema, cybersecurityFAQSchema]}
       />
       
       <ServiceNavigation />

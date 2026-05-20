@@ -33,6 +33,53 @@ const servermaintenanceSchema = {
   '',
 };
 
+const serverMaintenanceFAQSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What does server maintenance include for a small business?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'IT Legends server maintenance includes health monitoring, operating system and software patching, performance optimisation, hardware checks, backup verification, and proactive alerting. We catch problems before they cause server failures or downtime.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How often should a business server be maintained?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Servers should be monitored continuously and maintained at least monthly. Critical patches should be applied as soon as they are released. IT Legends handles all of this automatically as part of our managed server maintenance service.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What happens if my business server fails?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'IT Legends responds quickly to server failures with remote diagnostics and on-site support across Gauteng when needed. If you have a backup solution in place, we can restore your systems rapidly to minimise downtime and data loss.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Should my small business use a physical sever or move to the cloud?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'It depends on your business needs, budget and existing setup. Many SMEs benefit from a hybrid approach - keeping some systems on-site while moving others to the cloud. IT Legends will assess your environment and recommend the best approach for your situation.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does IT Legends provide on-site server support in Johannesburg and Pretoria?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. IT Legends provides both remote and on-site server support across Johannesburg, Roodepoort, Sandton, Midrand, Centurion and Pretoria.',
+      },
+    },
+  ],
+};
+
 export default function ServerMaintenancePage() {
 
   useEffect(() => {
@@ -46,7 +93,7 @@ export default function ServerMaintenancePage() {
         description=""
         url="/services/server-maintenance"
         type="article"
-        schema={servermaintenanceSchema}
+        schema={[servermaintenanceSchema, serverMaintenanceFAQSchema]}
       />
             
       <ServiceNavigation />

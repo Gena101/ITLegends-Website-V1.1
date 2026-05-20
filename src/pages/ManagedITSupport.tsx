@@ -31,6 +31,53 @@ const managedITSupportSchema = {
     'Proactive managed IT support, monitoring and maintenance for small and medium businesses in Johannesburg, Pretoria and Gauteng.',
 };
 
+const managedITFAQSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is managed IT support and do I need it?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Managed IT support means having a dedicated team proactively monitoring, maintaining and supporting your IT systems for a fixed monthly cost. If your business relies on computers, internet or servers to operate, managed IT support prevents costly downtime and removes the stress of dealing with IT problems yourself.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does IT Legends manage IT support for small businesses in Johannesburg?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'IT Legends uses remote monitoring tools to watch your systems 24/7, catching problems before they cause downtime. When issues arise, our helpdesk team provides fast remote support. We also visit on-site across Johannesburg and Gauteng when needed.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is included in a managed IT support contract?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'IT Legends managed IT support typically includes remote monitoring, helpdesk support, patch management, antivirus management, backup monitoring, and regular IT health reporting. Contracts are tailored to your business size and needs.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is managed IT support worth it for a small business?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. For most SMEs, managed IT support costs far less than hiring a full-time IT person, while providing broader expertise and faster response times.It also converts unpredictable IT repair bills into a fixed monthly cost you can budget for.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I get started with IT Legends managed IT support?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Contact IT Legends via our website or call +27 84 634 8144. We start with a free IT assessment of your current environment, then recommend a support plan tailored to your business needs and budget.',
+      },
+    },
+  ],
+};
+
 export default function ManagedITSupportPage() {
 
   useEffect(() => {
@@ -44,7 +91,7 @@ export default function ManagedITSupportPage() {
         description="Proactive IT support, remote monitoring and maintenance for South African businesses. Reduce downtime and stabilize your IT with IT Legends managed IT support."
         url="/services/managed-it-support"
         type="article"
-        schema={managedITSupportSchema}
+        schema={[managedITSupportSchema, managedITFAQSchema]}
       />
 
       <ServiceNavigation />

@@ -23,7 +23,8 @@
     />
 
     <!-- Canonical URL -->
-    <link rel="Canonical" href="https://itlegends.co.za" />
+    <link rel="Canonical" href="https://www.itlegends.co.za" />
+    <link rel="preload" as="image" href="src/assets/hero.webp" />
 
     <!-- Favicon (place these in /public) -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -39,19 +40,19 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta
-      propert="og:title"
+      property="og:title"
       content="IT Legends | Managed IT Support, Cybersecurity & Cloud Solutions"
     />
     <meta
       property="og:description"
       content="Reliable managed IT support, cybersecurity and cloud solutions for South African businesses"
     />
-    <meta property="og:url" content="https://itlegends.co.za" />
+    <meta property="og:url" content="https://www.itlegends.co.za" />
     <meta property="og:site_name" content="IT Legends" />
     <!-- Put a share image called social-share.jpg in /public -->
     <meta
       property="og:image"
-      content="https://itlegends.co.za/social-share.jpg"
+      content="https://www.itlegends.co.za/social-share.jpg"
     />
 
     <!-- Twitter -->
@@ -66,27 +67,58 @@
     />
     <meta
       name="twitter:image"
-      content="https://itlegends.co.za/social-share.jpg"
+      content="https://www.itlegends.co.za/social-share.jpg"
     />
 
     <!-- Structured Data (Local Business) -->
     <script type="application/ld+json">
+    [
       {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        "name": "IT Legends",
-        "url": "https://itlegends.co.za/",
-        "image": "https://itlegends.co.za/social-share.jpg",
-        "description": "Managed IT support, cybersecurity, cloud solutions and network services for South African businesses",
+        "@id": "https://www.itlegends.co.za/#it-legends-johannesburg",
+        "name": "IT Legends - Johannesburg",
+        "url": "https://www.itlegends.co.za/",
         "telephone": "+27-84-634-8144",
         "email": "info@itlegends.co.za",
         "address": {
           "@type": "PostalAddress",
-          "addressCountry": "ZA",
-          "addressLocality": "Johannesburg & Pretoria",
-          "streetAddress": "715 Elm Street, Grobler Park, Roodepoort & 265 Theuns Van Nieker Street, Wierdapark, Centurion"
-        }
+          "streetAddress": "715 Elm Street, Grobler Park",
+          "addressLocality": "Roodepoort",
+          "addressRegion": "Gauteng",
+          "postalCode": "1724",
+          "addressCountry": "ZA"
+        },
+        "geo": { "@type": "GeoCoordinates", "latitude": -26.1436, "longitude": 27.8564 },
+        "areaServed": [
+          { "@type": "City", "name": "Johannesburg" },
+          { "@type": "City", "name": "Roodepoort" },
+          { "@type": "City", "name": "Sandton" }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "@id": "https://www.itlegends.co.za/#it-legends-pretoria",
+        "name": "IT Legends - Pretoria",
+        "url": "https://www.itlegends.co.za/"
+        "telephone": "+27-84-634-8144",
+        "email": "info@itlegends.co.za",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "265 Theuns Van Niekerk Street, Wierdapark",
+          "addressLocality": "Centurion",
+          "addressRegion": "Gauteng",
+          "postalCode": "0157",
+          "addressCountry": "ZA"
+        },
+        "geo": { "@type": "GeoCoordinates", "latitude": -25.8600, "longitude": 28.1890 },
+        "areaServer": [
+          { "@type": "City", "name": "Centurion" },
+          { "@type": "City", "name": "Pretoria" }
+        ]
       }
+    ]
     </script>
   </head>
 

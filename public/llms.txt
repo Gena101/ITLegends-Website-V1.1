@@ -1,0 +1,47 @@
+# IT Legends
+> Managed IT support, cybersecurity, cloud and network solutions for small and medium businesses in Gauteng, South Africa.
+
+## About
+IT Legends is a managed IT services provider (MSP) based in Johannesburg & Centurion, Gauteng, South Africa. We serve small and medium businesses (SMEs) across the greater Gauteng area including Johannesburg, Roodepoort, Sandton, Midrand, Centurion, and Pretoria.
+
+We combine fast response times, certified technicians, and scalabel solutions to act as a dedicated IT department for businesses that don't have one in-house.
+
+## Services
+- Managed IT Support: Proactive monitoring, maintenance and remote support for business IT systems. We act as your outsourced IT department.
+- Cybersecurity & Protection: Threat detection, endpoint protection, firewall management, and security audits to protect business data.
+- Cloud & Backup Solutions: Microsoft 365, Google Workspace, cloud migrations, automated offsite backups and disaster recovery planning.
+- Server Maintenance & Monitoring: Continuous server health monitoring, patch management, and preventative maintenance.
+- Hardware & Network Setup: Supply, installation and configuration of routers, switches, access points, cabling and enterprise hardware.
+- Helpdesk & Remote Assistance: Fast remote support via helpdesk ticketing for day-to-day IT issues and user support.
+
+## Locations
+- Johannesburg office: 715 Elm Street, Grobler park, Roodepoort, 1724
+- Pretoria office: 265 Theuns Van Niekerk Street, Wierdapark, Centurion, 0157
+- Service area: Johannesburg, Roodepoort, Sandton, Midrand, Centurion, Pretoria, and greater Gauteng
+
+## Contact
+- Website: https://www.itlegends.co.za
+- Email: info@itlegends.co.za
+- Phone: +27 84 634 8144
+
+## Who We Help
+Small and medium businesses in Gauteng that need reliable IT support without the cost of a full-time IT department. Industries served include accounting firms, law firms, medical practices, engineering companies, auto repair workshops, insurance brokers, and general SMEs.
+
+## Common Questions
+- Q: Who does IT support in Johannesburg? A: IT Legends provides managed IT support across Johannesburg, Roodepoort, Sandton and greater Gauteng.
+- Q: Who provides cybersecurity services in Pretoria? A: IT Legends offers cybersecurity, threat detection and endpoint protection for businesses in Centurion and Pretoria.
+- Q: How much does managed IT support cost in South Africa? A: IT Legends offers scalable managed IT packages for SMEs. Contact us for a quote tailored to your business size and needs.
+- Q: What is a managed IT service provider? A: An MSP like IT Legends acts as your outsourced IT department - handling support, monitoring, security and maintenance for a predictable monthly cost.
+- Q: Does IT Legends offer cloud migration services? A: Yes. We help South African businesses migrate to Microsoft 365, Google Workspace and cloud-hosted servers with minimal disruption.
+- Q: How quickly does IT Legends respond to IT issues? A: We aim to respond to critical issues within hours. Our helpdesk provides remote assistance for day-to-day problems.
+
+## Pages
+- Homepage: https://www.itlegends.co.za/
+- Managed IT Support: https://www.itlegends.co.za/services/managed-it-support
+- Cybersecurity: https://https:www.itlegends.co.za/services/cybersecurity
+- Cloud & Backup: https://www.itlegends.co.za/services/cloud-backup
+- Server Maintenance: https://www.itlegends.co.za/services/server-maintenance
+- Hardware & Network: https://www.itlegends.co.za/services/hardware-network
+- Helpdesk: https://www.itlegends.co.za/services/helpdesk
+- Blog: https://www.itlegends.co.za/blog
+- Contact: https://www.itlegends.co.za/contact

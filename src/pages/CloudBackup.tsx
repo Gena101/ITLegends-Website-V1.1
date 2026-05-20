@@ -30,6 +30,53 @@ const cloudbackupSchema = {
   '',
 };
 
+const cloudBackupFAQSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What cloud backup solutions does IT Legends offer for South African businesses?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'IT Legends provides automated offsite cloud backups, Microsoft 365 backup, cloud server hosting, disaster recovery planning, and hybrid cloud setups for businesses across Gauteng. We ensure your data is safe even during load shedding or hardware failure.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does cloud backup protect my business during load shedding?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Cloud backup stores copies of your critical business data on secure offsite servers. If your local hardware is damaged or powered off during load shedding, your data remains safe and accessible from any device with an internet connection.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the defference between cloud backup and cloud storage?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Cloud storage (like Google Drive or Dropbox) is for accessing and sharing files. Cloud backup is an automated, versioned copy of your systems and data designed for disaster recovery - if your business suffers data loss, you can restore everything quickly from a backup.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How often should a small business back up its data?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Most small businesses should run automated backups at least daily, with critical systems backed up more frequently. IT Legends configures and monitors your backup schedule to ensure recovery points meet your business continuity requirements.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can IT Legends help migrate my business to Microsoft 365 or Google Workspace?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. IT Legends manages the full migration process including email, files, calendars and contacts - with minimal distruption to your business. We also provide ongoing support and management of your Microsoft 365 or Google Workspace environment.',
+      },
+    },
+  ],
+};
+
 export default function CloudBackupPage() {
 
   useEffect (() => {
@@ -43,7 +90,7 @@ export default function CloudBackupPage() {
         description=""
         url="/services/cloud-backup"
         type="article"
-        schema={cloudbackupSchema}
+        schema={[cloudbackupSchema, cloudBackupFAQSchema]}
       />
       
       <ServiceNavigation />
