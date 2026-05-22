@@ -243,7 +243,7 @@ export default function FAQ() {
             Talk to one of our technicians - no obligation, no jargon.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/contact" className="btn-primary">
+            <a href="/#contact" className="btn-primary">
               Contact Us
             </a>
             <a href="tel:+27846348144" className="btn-secondary">

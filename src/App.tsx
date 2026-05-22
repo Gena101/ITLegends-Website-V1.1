@@ -24,7 +24,6 @@ import CloudBackupPage from './pages/CloudBackup';
 import ServerMaintenancePage from './pages/ServerMaintenance';
 import HelpdeskPage from './pages/Helpdesk';
 import BlogPostPage from './pages/BlogPost';
-import ContactPage from './pages/Contact';
 import FAQPage from './pages/FAQ';
 import Footer from './components/Footer';
 import BlogIndexPage from './pages/BlogIndexPage';
@@ -195,10 +194,6 @@ function App() {
           <Route 
             path="/blog/:slug" 
             element={<BlogPostPage />} 
-          />
-          <Route 
-            path="/contact" 
-            element={<ContactPage />} 
           />
           <Route
             path="/faq"
