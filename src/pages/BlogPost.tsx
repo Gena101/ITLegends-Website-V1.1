@@ -362,7 +362,7 @@ export default function BlogPostPage() {
       <SeoHead
         title={post.title + ' | IT Legends'}
         description={post.excerpt}
-        url={`/blog/${post.slug}`}
+        url={`/blog/${post.slug}/`}
         type="article"
         schema={[articleSchema]}
       />

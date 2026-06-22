@@ -91,7 +91,7 @@ export default function HelpdeskPage() {
       <SeoHead
         title="Helpdesk & Remote IT Support for Business | IT Legends South Africa"
         description=""
-        url="/services/helpdesk"
+        url="/services/helpdesk/"
         type="article"
         schema={[HelpdeskRemoteSchema, helpdeskFAQSchema]}
       />

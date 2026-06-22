@@ -4,7 +4,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://www.itlegends.co.za/</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -12,37 +12,37 @@
   <!-- Service Pages -->
   <url>
     <loc>https://www.itlegends.co.za/services/managed-it-support</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.itlegends.co.za/services/hardware-network</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.itlegends.co.za/services/cloud-backup</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.itlegends.co.za/services/server-maintenance</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.itlegends.co.za/services/cybersecurity</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.itlegends.co.za/services/helpdesk</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -50,7 +50,7 @@
   <!-- Blog listing -->
   <url>
     <loc>https://www.itlegends.co.za/blog</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-06-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -58,27 +58,41 @@
   <!-- Individual blog posts -->
   <url>
     <loc>https://www.itlegends.co.za/blog/cloud-future</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-06-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.itlegends.co.za/blog/ai-integration-guide</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-06-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.itlegends.co.za/blog/cybersecurity-best-practices-2025</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-06-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.itlegends.co.za/faq</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <!-- Location pages -->
+  <url>
+    <loc>https://www.itlegends.co.za/it-support-roodepoort</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.itlegends.co.za/it-support-centurion</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
 
 </urlset>

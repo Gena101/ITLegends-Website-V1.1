@@ -89,7 +89,7 @@ export default function ManagedITSupportPage() {
       <SeoHead
         title="Managed IT Support for SMEs | IT Legends South Africa"
         description="Proactive IT support, remote monitoring and maintenance for South African businesses. Reduce downtime and stabilize your IT with IT Legends managed IT support."
-        url="/services/managed-it-support"
+        url="/services/managed-it-support/"
         type="article"
         schema={[managedITSupportSchema, managedITFAQSchema]}
       />

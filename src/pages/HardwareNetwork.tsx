@@ -91,7 +91,7 @@ export default function HardwareNetworkPage() {
       <SeoHead
         title="Hardware & Network Setup for Business | IT Legends South Africa"
         description=""
-        url="/services/hardware-network"
+        url="/services/hardware-network/"
         type="article"
         schema={[hardwareNetworkSchema, hardwareNetworkFAQSchema]}
       />

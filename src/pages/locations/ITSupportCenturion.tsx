@@ -99,7 +99,7 @@ export default function ITSupportCenturion() {
       <SeoHead
         title="IT Support Centurion | Managed IT Services | IT Legends"
         description="IT Legends provides managed IT support, cybersecurity, cloud and network solutions for businesses in Centurion. Local technicians, fast response. Call +27 84 634 8144."
-        url="/it-support-centurion"
+        url="/it-support-centurion/"
         type="website"
         schema={schema}
       />

@@ -88,7 +88,7 @@ export default function CloudBackupPage() {
       <SeoHead
         title="Cloud & Backup Solutions for Business | IT Legends South Africa"
         description=""
-        url="/services/cloud-backup"
+        url="/services/cloud-backup/"
         type="article"
         schema={[cloudbackupSchema, cloudBackupFAQSchema]}
       />

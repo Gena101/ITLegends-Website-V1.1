@@ -89,7 +89,7 @@ export default function CybersecurityPage() {
       <SeoHead
         title="Cybersecurity & Protection for Business | IT Legends South Africa"
         description="Protect your business from ransomware, phising and data breaches with layered cybersecurity, email filtering and user awareness from IT Legends."
-        url="/services/cybersecurity"
+        url="/services/cybersecurity/"
         type="article"
         schema={[cybersecurityServiceSchema, cybersecurityFAQSchema]}
       />

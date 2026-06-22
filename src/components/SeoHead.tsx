@@ -35,14 +35,15 @@ export default function SeoHead({
       url && url.startsWith('http')
         ? url
         : url
-        ? `${BASE_URL}${url}`
-        : undefined;
+        ? `${BASE_URL}${url.startsWith('/') ? url : '/' + url}`
+        : BASE_URL + '/';
 
     return (
         <Helmet>
             {/* Basic SEO */}
             <title>{title}</title>
             <meta name="description" content={description} />
+            <meta name="robots" content="index, follow" />
             {canonicalURL && <link rel="canonical" href={canonicalURL} />}
 
             {/* OpenGraph (bonus) */}

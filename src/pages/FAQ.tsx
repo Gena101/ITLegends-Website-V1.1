@@ -163,7 +163,7 @@ export default function FAQ() {
       <SeoHead
         title="IT Support FAQs | IT Legends Johannesburg & Pretoria"
         description="Answers to the most common questions about managed IT support, cybersecurity, cloud backup and network services for businesses in Johannesburg, Pretoria and greater Gauteng."
-        url="/faq"
+        url="/faq/"
         type="website"
         schema={[faqSchema]}
       />

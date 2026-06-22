@@ -15,7 +15,7 @@ export default function PrivacyPolicyPage() {
       <SeoHead
         title="Privacy & Cookie Policy | IT Legends"
         description="Learn how IT Legends collects, uses and protects your personal information, and how we use cookies and analytics on this website."
-        url="/privacy-policy"
+        url="/privacy-policy/"
         type="article"
     />
 

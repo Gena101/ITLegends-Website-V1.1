@@ -91,7 +91,7 @@ export default function ServerMaintenancePage() {
       <SeoHead
         title="Server Maintenance & Monitoring for Businesses | IT Legends South Africa"
         description=""
-        url="/services/server-maintenance"
+        url="/services/server-maintenance/"
         type="article"
         schema={[servermaintenanceSchema, serverMaintenanceFAQSchema]}
       />
