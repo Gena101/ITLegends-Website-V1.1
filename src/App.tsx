@@ -30,8 +30,8 @@ import BlogIndexPage from './pages/BlogIndexPage';
 import { blogPosts } from './data/blogPosts';
 import ITSupportRoodepoort from './pages/locations/ITSupportRoodepoort';
 import ITSupportCenturion from './pages/locations/ITSupportCenturion';
-//import ITSupportMidrand from './pages/locations/ITSupportMidrand';
-//import ITSupportSandton from './pages/locations/ITSupportSandton';
+import ITSupportMidrand from './pages/locations/ITSupportMidrand';
+import ITSupportSandton from './pages/locations/ITSupportSandton';
 
 // ✅ Image imports so Vite/Netlify can bundle them correctly
 import heroBg from './assets/hero.webp';
@@ -211,14 +211,14 @@ function App() {
             path="/it-support-centurion"
             element={<ITSupportCenturion />}
           />
-          {/* <Route
+          <Route
             path="/it-support-midrand"
             element={<ITSupportMidrand />}
           />
           <Route
             path="/it-support-sandton"
             element={<ITSupportSandton />}
-          /> */}
+          />
           <Route
             path="/privacy-policy"
             element={<PrivacyPolicyPage />}
@@ -386,7 +386,7 @@ function Hero() {
             src={heroLogoImg}
             alt="IT Legends Logo"
             loading="eager"
-            fetchPriority="high"
+            fetchpriority="high"
             className="h-32 w-auto drop-shadow-[0_0_12px_rgba(255,255,255,0.35)]"
           />
         </div>
