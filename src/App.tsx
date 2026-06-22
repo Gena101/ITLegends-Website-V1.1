@@ -28,6 +28,10 @@ import FAQPage from './pages/FAQ';
 import Footer from './components/Footer';
 import BlogIndexPage from './pages/BlogIndexPage';
 import { blogPosts } from './data/blogPosts';
+import ITSupportRoodepoort from './pages/locations/ITSupportRoodepoort';
+import ITSupportCenturion from './pages/locations/ITSupportCenturion';
+//import ITSupportMidrand from './pages/locations/ITSupportMidrand';
+//import ITSupportSandton from './pages/locations/ITSupportSandton';
 
 // ✅ Image imports so Vite/Netlify can bundle them correctly
 import heroBg from './assets/hero.webp';
@@ -199,6 +203,22 @@ function App() {
             path="/faq"
             element={<FAQPage />}
           />
+          <Route
+            path="/it-support-roodepoort"
+            element={<ITSupportRoodepoort />}
+          />
+          <Route
+            path="/it-support-centurion"
+            element={<ITSupportCenturion />}
+          />
+          {/* <Route
+            path="/it-support-midrand"
+            element={<ITSupportMidrand />}
+          />
+          <Route
+            path="/it-support-sandton"
+            element={<ITSupportSandton />}
+          /> */}
           <Route
             path="/privacy-policy"
             element={<PrivacyPolicyPage />}

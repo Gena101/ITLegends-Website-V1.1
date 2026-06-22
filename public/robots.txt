@@ -2,4 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.itlegends.co.za/sitemap.xml
-LLMs: https://www.itlegends.co.za/llms.txt
