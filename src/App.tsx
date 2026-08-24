@@ -44,6 +44,7 @@ import heroLogoImg from './assets/hero-img.webp';
 import SeoHead from './components/SeoHead';
 import CookieBanner from './components/CookieBanner';
 import PrivacyPolicyPage from './pages/PrivacyPolicy';
+import ChatWidget from './components/chatbot/ChatWidget'
 
 const localBusinessSchema = {
   '@context': 'https://schema.org',
@@ -227,6 +228,7 @@ function App() {
 
       {/* Cookie banner is rendered globally for all pages */}
       <CookieBanner />
+      <ChatWidget />
     </>
     </BrowserRouter>
   );
@@ -386,7 +388,7 @@ function Hero() {
             src={heroLogoImg}
             alt="IT Legends Logo"
             loading="eager"
-            fetchpriority="high"
+            fetchPriority="high"
             className="h-32 w-auto drop-shadow-[0_0_12px_rgba(255,255,255,0.35)]"
           />
         </div>
