@@ -1,14 +1,20 @@
-import { useEffect, useRef } from 'react';
-import type { Message } from './types';
+import { useEffect, useRef, useState } from 'react';
+import type { ChatInteraction, Message } from './types';
 import ChatHeader from './ChatHeader';
 import ChatMessage from './ChatMessage';
 
 interface ChatPanelProps {
   isOpen: boolean;
   messages: Message[];
+  interaction: ChatInteraction;
+  /** Changes only when the underlying node changes, so the input draft resets at
+   * the right moments and not on every keystroke. */
+  interactionKey: string;
   onClose: () => void;
   onTalkToHuman: () => void;
   onStartOver: () => void;
+  onSelectOption: (index: number) => void;
+  onSubmitInput: (value: string) => void;
 }
 
 /**
@@ -30,11 +36,23 @@ interface ChatPanelProps {
 export default function ChatPanel({
   isOpen,
   messages,
+  interaction,
+  interactionKey,
   onClose,
   onTalkToHuman,
   onStartOver,
+  onSelectOption,
+  onSubmitInput,
 }: ChatPanelProps): JSX.Element {
   const listRef = useRef<HTMLDivElement>(null);
+  const [inputValue, setInputValue] = useState('');
+
+  // Reset the draft only when the engine moves to a different node - keyed
+  // on interactionKey rather than the messages array, which changes on
+  // every keystroke's parent re-render too.
+  useEffect(() => {
+    setInputValue('');
+  }, [interactionKey]);
 
   useEffect(() => {
     if (!listRef.current) return;
@@ -42,6 +60,12 @@ export default function ChatPanel({
   }, [messages]);
 
   const hasMessages = messages.length > 0;
+  const isTextInput = interaction.kind === 'input';
+
+  function handleSubmit(): void {
+    if (!isTextInput) return;
+    onSubmitInput(inputValue);
+  }
 
   return(
     <div
@@ -61,6 +85,20 @@ export default function ChatPanel({
           <ChatMessage key={message.id} message={message} />
         ))}
       </div>
+      {interaction.kind === 'choice' && (
+        <div className="flex flex-col gap-2 border-t border-itgray2 px-4 py-3">
+          {interaction.options.map((label, index) => (
+            <button
+              key={label}
+              type="button"
+              onClick={() => onSelectOption(index)}
+              className="min-h-[44px] rounded-xl border border-itblue/40 bg-itblue/10 px-4 py-2.5 text-left text-sm font-medium text-itsilver transition-colors duration-200 hover:border-itblue hover:bg-itblue/20"
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      )}
 
       <footer className="border-t border-itgray2 px-4 py-3">
         {hasMessages && (
@@ -73,25 +111,37 @@ export default function ChatPanel({
           </button>
         )}
 
+        {isTextInput && interaction.errorText && (
+          <p role="alert" className="mb-2 text-xs text-itred">
+            {interaction.errorText}
+          </p>
+        )}
+
         <div className="flex items-center gap-2">
           <input
             type="text"
-            disabled
-            placeholder="Type a message..."
-            aria-label="Message input (enabled in a later phase)"
+            value={inputValue}
+            disabled={!isTextInput}
+            onChange={(event) => setInputValue(event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') handleSubmit();
+            }}
+            placeholder={isTextInput ? interaction.placeholder : 'Type a message...'}
+            aria-label={isTextInput ? interaction.placeholder : 'Message input (enabled once the bot asks a question)'}
             className="min-h-[44px] flex-1 rounded-full border border-itgray2 bg-itgray px-4 text-sm text-itsilver placeholder:text-itsilver/40 disabled:cursor-not-allowed"
           />
           <button
             type="button"
-            disabled
-            aria-label="Send message (enabled in a later phase)"
-            className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-itgray2 text-itsilver/40 disabled:cursor-not-allowed"
+            disabled={!isTextInput}
+            onClick={handleSubmit}
+            aria-label="Send message"
+            className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-itblue text-white transition-colors duration:200 disabled:cursor-not-allowed disabled:bg-itgray2 disabled:text-itsilver/40"
           >
             <svg
               viewBox="0 0 24 24"
               className="h-5 w-5"
               fill="none"
-              stroke="curentColor"
+              stroke="currentColor"
               strokeWidth={2}
               aria-hidden="true"
             >

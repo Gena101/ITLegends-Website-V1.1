@@ -39,3 +39,14 @@ export interface WidgetState {
   /** Whether the 15s launcher teaser has already been shown/dismissed this session. */
   teaserDismissed: boolean;
 }
+
+/**
+ * What ChatPanel's footer should render right now, derived from the engine's
+ * current node. Deliberately NodeId-agnostic - ChatPanel never imports from
+ * engine/nodeTypes.ts, so the same plumbing works for the Phase 2 smoke test
+ * and the real Phase 3 flow without changes here.
+ */
+export type ChatInteraction =
+  | { kind: 'none' }
+  | { kind: 'choice'; options: readonly string[] }
+  | { kind: 'input'; placeholder: string; errorText: string | null };
