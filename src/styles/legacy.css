@@ -1,0 +1,53 @@
+/* src/styles/legacy.css
+   TEMPORARY. Styles for the pre-redesign pages only.
+   - Retired classes (glow, glass, dark cards, gradient divider) are defined
+     here unscoped: only legacy pages use them.
+   - The three kept classes are restored to their OLD look inside .legacy,
+     which Layout wraps around legacy routes (item 22).
+   Delete this file and its @import in index.css when the last legacy page
+   is replaced (Phase 6). Do not use any of these in new components. */
+
+/* Wrapper: restores the old dark page look for legacy routes */
+.legacy {
+  @apply min-h-screen bg-itdark text-itsilver;
+}
+
+/* Kept classes, old appearance, legacy routes only */
+.legacy .btn-primary {
+  @apply rounded-lg px-8 py-4 font-semibold shadow-lg transition-all duration-300 hover:bg-red-700 hover:shadow-xl hover:shadow-itred/30;
+}
+
+.legacy .btn-secondary {
+  @apply rounded-lg border-2 border-itblue bg-transparent px-8 py-4 font-semibold text-itblue transition-all duration-300 hover:bg-itblue hover:text-white;
+}
+
+.legacy .section-title {
+  @apply mb-4 text-4xl font-bold text-white sm:text-5xl;
+}
+
+/* Retired classes - used only by legacy pages */
+.section-divider {
+  @apply mx-auto h-1 w-24 bg-gradient-to-r from-itred to-itblue;
+}
+
+.card-dark {
+  @apply rounded-xl border border-itgray2 bg-itgray p-6 transition-all duration-300 hover:border-itblue;
+}
+
+.glow-blue {
+  @apply shadow-lg shadow-itblue/20 transition-shadow hover:shadow-itblue/40;
+}
+
+.glow-red {
+  @apply shadow-lg shadow-itred/20 transition-shadow hover:shadow-itred/40;
+}
+
+.tech-glass {
+  background: rgba(42, 42, 42, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(224, 224, 224, 0.1);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(199, 0, 57, 0.3), 0 0 40px rgba(0, 123, 255, 0.2);
+}
