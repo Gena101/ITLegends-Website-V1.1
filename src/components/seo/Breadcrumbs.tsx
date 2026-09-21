@@ -1,46 +1,13 @@
 // src/components/seo/Breadcrumbs.tsx
 // Visible breadcrumb trail AND its BreadcrumbList JSON-LD, from one array,
 // so schema always matches what is on the page (D16).
-// Trail: Home -> real parent pages (from routes.json) -> currentpage.
-// Services and Industries have no index page, so they get no crumb.
-// Location pages get the Gauteng hub as a parent once it exists (Phase 5).
-// Renders nothing on the homepage or on URLs not in routes.json.
+// Trail logic lives in lib/breadcrumbs.ts. Renders nothing when the trail
+// has fewer than two crumbs (homepage, unknown URLs).
 import { Helmet } from 'react-helmet-async';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
-import routesData from '../../data/routes.json';
-import { toCanonical } from '../../lib/canonical';
+import { crumbsFor } from '../../lib/breadcrumbs';
 import { breadcrumbList, type Crumb } from '../../lib/schema/page';
-
-const HUB_PATH = '/it-support-gauteng';
-
-function routeAt(path: string) {
-  return routesData.routes.find((r) => r.path === path);
-}
-
-/** Builds the trail for a path from routes.json. Empty for home or unknown paths. */
-export function crumbsFor(rawPath: string): Crumb[] {
-  const path = new URL(toCanonical(rawPath)).pathname;
-  const current = routeAt(path);
-  if (path === '/' || !current) return [];
-
-  const crumbs: Crumb[] = [{ name: 'Home', path: '/' }];
-
-  if (current.template === 'location') {
-    const hub = routeAt(HUB_PATH);
-    if (hub) crumbs.push({ name: hub.label, path: HUB_PATH });
-  }
-
-  const segments = path.split('/').filter(Boolean);
-  for (let i = 1; i < segments.length; i++) {
-    const parentPath = `/${segments.slice(0, i).join('/')}`;
-    const parent = routeAt(parentPath);
-    if (parent) crumbs.push({ name: parent.label, path: parentPath });
-  }
-
-  crumbs.push({ name: current.label, path });
-  return crumbs;
-}
 
 export default function Breadcrumbs({ crumbs }: { crumbs?: Crumb[] }) {
   const { pathname } = useLocation();
