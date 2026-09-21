@@ -1,0 +1,28 @@
+{
+  "$comment": "Every URL the site serves. Single source for the route table (App.tsx), LastUpdated, dateModified, sitemap.xml and the _redirects whitelist; scripts/check-routes.mjs enforces agreement. Add a route here, to _redirects and to sitemap.xml together, and only once the page returns real content. Dates are ISO dates (YYYY-MM-DD) and must be real: null means unknown, and nothing is emitted. `modified` changes only on a material content change. `legacy: true` renders the pre-redesign page inside .legacy without the new Header/Footer; remove it when the phase that rebuilds the page ships.",
+  "routes": [
+    { "path": "/", "page": "LegacyHome", "template": "home", "label": "Home", "legacy": true, "published": null, "modified": null, "sitemap": true },
+
+    { "path": "/services/managed-it-support", "page": "ManagedITSupport", "template": "service", "label": "Managed IT Support", "legacy": true, "published": null, "modified": null, "sitemap": true },
+    { "path": "/services/cybersecurity", "page": "Cybersecurity", "template": "service", "label": "Cybersecurity", "legacy": true, "published": null, "modified": null, "sitemap": true },
+    { "path": "/services/cloud-backup", "page": "CloudBackup", "template": "service", "label": "Cloud Backup", "legacy": true, "published": null, "modified": null, "sitemap": true },
+    { "path": "/services/server-maintenance", "page": "ServerMaintenance", "template": "service", "label": "Server Maintenance", "legacy": true, "published": null, "modified": null, "sitemap": true },
+    { "path": "/services/helpdesk", "page": "Helpdesk", "template": "service", "label": "IT Helpdesk", "legacy": true, "published": null, "modified": null, "sitemap": true },
+    { "path": "/services/hardware-network", "page": "HardwareNetwork", "template": "service", "label": "Hardware and Network", "legacy": true, "published": null, "modified": null, "sitemap": true },
+
+    { "path": "/it-support-roodepoort", "page": "ITSupportRoodepoort", "template": "location", "label": "IT Support Roodepoort", "legacy": true, "published": null, "modified": null, "sitemap": true },
+    { "path": "/it-support-centurion", "page": "ITSupportCenturion", "template": "location", "label": "IT Support Centurion", "legacy": true, "published": null, "modified": null, "sitemap": true },
+    { "path": "/it-support-midrand", "page": "ITSupportMidrand", "template": "location", "label": "IT Support Midrand", "legacy": true, "published": null, "modified": null, "sitemap": true },
+    { "path": "/it-support-sandton", "page": "ITSupportSandton", "template": "location", "label": "IT Support Sandton", "legacy": true, "published": null, "modified": null, "sitemap": true },
+
+    { "path": "/faq", "page": "FAQ", "template": "faq", "label": "FAQ", "legacy": true, "published": null, "modified": null, "sitemap": true },
+
+    { "path": "/blog", "page": "BlogIndex", "template": "blog-index", "label": "Blog", "legacy": true, "published": null, "modified": null, "sitemap": true },
+    { "path": "/blog/cloud-future", "page": "BlogPost", "template": "article", "label": "The Future of Cloud Computing in 2025 (and Beyond) for South African Businesses", "legacy": true, "published": "2025-11-03", "modified": "2025-11-03", "sitemap": true },
+    { "path": "/blog/ai-integration-guide", "page": "BlogPost", "template": "article", "label": "AI Integration: A Practical Guide for Business Owners (Not Data Scientists)", "legacy": true, "published": "2025-11-10", "modified": "2025-11-10", "sitemap": true },
+    { "path": "/blog/cybersecurity-best-practices-2025", "page": "BlogPost", "template": "article", "label": "Cybersecurity Best Practices for 2025: A Practical Checklist for SMEs", "legacy": true, "published": "2025-11-17", "modified": "2025-11-17", "sitemap": true },
+    { "path": "/blog/it-equipment=price-increase-sa", "page": "BlogPost", "template": "article", "label": "Why IT Equipment Prices in South Africa Are Set to Increase (And What You Can Do About It)", "legacy": true, "published": "2026-01-14", "modified": "2026-01-14", "sitemap": true },
+
+    { "path": "/privacy-policy", "page": "PrivacyPolicy", "template": "legal", "label": "Privacy Policy", "legacy": true, "published": null, "modified": null, "sitemap": true }
+  ]
+}
