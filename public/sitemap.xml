@@ -1,98 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated from src/data/routes.json. Every route must appear here, in
+     routes.json and in public/_redirects: npm run check:routes enforces it.
+     lastmod is only present where a real date exists (02 section 4). A page
+     gets its date in the phase that rebuilds it. Never invent a lastmod. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Homepage -->
   <url>
     <loc>https://www.itlegends.co.za/</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
   </url>
-
-  <!-- Service Pages -->
   <url>
     <loc>https://www.itlegends.co.za/services/managed-it-support</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.itlegends.co.za/services/hardware-network</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.itlegends.co.za/services/cloud-backup</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.itlegends.co.za/services/server-maintenance</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.itlegends.co.za/services/cybersecurity</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.itlegends.co.za/services/cloud-backup</loc>
+  </url>
+  <url>
+    <loc>https://www.itlegends.co.za/services/server-maintenance</loc>
   </url>
   <url>
     <loc>https://www.itlegends.co.za/services/helpdesk</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Blog listing -->
-  <url>
-    <loc>https://www.itlegends.co.za/blog</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Individual blog posts -->
-  <url>
-    <loc>https://www.itlegends.co.za/blog/cloud-future</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.itlegends.co.za/blog/ai-integration-guide</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://www.itlegends.co.za/services/hardware-network</loc>
   </url>
-  <url>
-    <loc>https://www.itlegends.co.za/blog/cybersecurity-best-practices-2025</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.itlegends.co.za/faq</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Location pages -->
   <url>
     <loc>https://www.itlegends.co.za/it-support-roodepoort</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.itlegends.co.za/it-support-centurion</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
   </url>
-
+  <url>
+    <loc>https://www.itlegends.co.za/it-support-midrand</loc>
+  </url>
+  <url>
+    <loc>https://www.itlegends.co.za/it-support-sandton</loc>
+  </url>
+  <url>
+    <loc>https://www.itlegends.co.za/faq</loc>
+  </url>
+  <url>
+    <loc>https://www.itlegends.co.za/blog</loc>
+  </url>
+  <url>
+    <loc>https://www.itlegends.co.za/blog/cloud-future</loc>
+    <lastmod>2025-11-03</lastmod>
+  </url>
+  <url>
+    <loc>https://www.itlegends.co.za/blog/ai-integration-guide</loc>
+    <lastmod>2025-11-10</lastmod>
+  </url>
+  <url>
+    <loc>https://www.itlegends.co.za/blog/cybersecurity-best-practices-2025</loc>
+    <lastmod>2025-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://www.itlegends.co.za/blog/it-equipment=price-increase-sa</loc>
+    <lastmod>2026-01-14</lastmod>
+  </url>
+  <url>
+    <loc>https://www.itlegends.co.za/privacy-policy</loc>
+  </url>
 </urlset>
