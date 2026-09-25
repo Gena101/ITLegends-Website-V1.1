@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Home, ChevronRight, Shield, Server, Cloud, Cpu, Users, Zap } from 'lucide-react';
+import { Home, ChevronRight, Shield, Server, Cloud, Cpu, Users } from 'lucide-react';
 import Footer from '../../components/Footer';
 import SeoHead from '../../components/SeoHead';
 import managedHero from '../../assets/managed-hero.webp';
