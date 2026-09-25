@@ -2,82 +2,30 @@
 <html lang="en-ZA">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=5.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale-1.0" />
+    <meta name="theme-color" content="#1A1A1A" />
 
-    <!-- Fallback title only. SeoHead (react-helmet-async) owns the title,
-         description, canonical, og:* and twitter:* tags on every route.
-         Do not add any of them here: duplicates break canonical signals (D26). -->
-    <title>Managed IT Services in Gauteng for SMEs | IT Legends</title>
+    <!-- Fallback title only. SeoHead sets the real title, description,
+         canonical, robots, OG, Twitter and all JSON-LD on every route.
+         index.html must never carry those tags (D26). -->
+    <title>IT Legends | Managed IT Support in Gauteng</title>
 
-    <link rel="preload" as="image" href="/src/assets/hero.webp" />
-
-    <!-- Favicon (place these in /public) -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <!-- The H1 is the LCP element, so the font is the critical resource.
+         crossorigin is required on font preloads, or the file is fetched twice. -->
     <link
-      rel="icon"
-      type="image/png"
-      sizes="192x192"
-      href="/favicon-192x192.png"
+      rel="preload"
+      href="/fonts/montserrat-latin-var.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-
-    <!-- Structured Data (Local Business) -->
-    <script type="application/ld+json">
-    [
-      {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "@id": "https://www.itlegends.co.za/#it-legends-johannesburg",
-        "name": "IT Legends - Johannesburg",
-        "url": "https://www.itlegends.co.za/",
-        "telephone": "+27-84-634-8144",
-        "email": "info@itlegends.co.za",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "715 Elm Street, Grobler Park",
-          "addressLocality": "Roodepoort",
-          "addressRegion": "Gauteng",
-          "postalCode": "1724",
-          "addressCountry": "ZA"
-        },
-        "geo": { "@type": "GeoCoordinates", "latitude": -26.1436, "longitude": 27.8564 },
-        "areaServed": [
-          { "@type": "City", "name": "Johannesburg" },
-          { "@type": "City", "name": "Roodepoort" },
-          { "@type": "City", "name": "Sandton" }
-        ]
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "@id": "https://www.itlegends.co.za/#it-legends-pretoria",
-        "name": "IT Legends - Pretoria",
-        "url": "https://www.itlegends.co.za/",
-        "telephone": "+27-84-634-8144",
-        "email": "info@itlegends.co.za",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "265 Theuns Van Niekerk Street, Wierdapark",
-          "addressLocality": "Centurion",
-          "addressRegion": "Gauteng",
-          "postalCode": "0157",
-          "addressCountry": "ZA"
-        },
-        "geo": { "@type": "GeoCoordinates", "latitude": -25.8600, "longitude": 28.1890 },
-        "areaServed": [
-          { "@type": "City", "name": "Centurion" },
-          { "@type": "City", "name": "Pretoria" }
-        ]
-      }
-    ]
-    </script>
   </head>
-
-  <body class="bg-itdark text-silver">
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
