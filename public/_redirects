@@ -1,3 +1,56 @@
-https://itlegends.co.za/* https://www.itlegends.co.za/:splat 301!
+# public/_redirects
+# Order matters. Netlify evaluates top to bottom and stops at the first match.
+# Static files (assets, fonts, favicons, robots.txt, sitemap.xml, llms.txt,
+# 410.html) are served before any non-forced rule, so they need no entries.
+# Netlify limits: wildcards only at the END of a path (/solar-* is invalid),
+# a 410 must point at a file that exists (public/410.html) or it is served as
+# a 404, and a trailing slash cannot be added or removed by a rule.
+# Every new route must be added here, to routes.json and to sitemap.xml
+# together: npm run check:routes enforces it.
 
-/*  /index.html  200
+# 1. Canonical host — must be the first rule
+https://itlegends.co.za/*  https://www.itlegends.co.za/:splat  301!
+
+# 2. Canonical root — /index.html is one of the duplicate URLs in GSC.
+#    Forced, or the real index.html file would shadow this rule.
+/index.html  /  301!
+
+# 3. Retired WooCommerce and solar URL space — HTTP 410 Gone (D45).
+#    Confirmed in the GSC not-indexed export and the prerender log.
+#    Bare and wildcard forms are both listed: a splat is not guaranteed to
+#    match the parent path itself.
+/shop                       /410.html  410
+/shop/*                     /410.html  410
+/product                    /410.html  410
+/product/*                  /410.html  410
+/product-category           /410.html  410
+/product-category/*         /410.html  410
+/cart                       /410.html  410
+/cart/*                     /410.html  410
+/solar-inverters            /410.html  410
+/solar-inverters/*          /410.html  410
+/solar-charge-controllers   /410.html  410
+/solar-charge-controllers/* /410.html  410
+
+# 4. Route whitelist — every live route serves the SPA with HTTP 200.
+/                                          /index.html  200
+/services/managed-it-support               /index.html  200
+/services/cybersecurity                    /index.html  200
+/services/cloud-backup                     /index.html  200
+/services/server-maintenance               /index.html  200
+/services/helpdesk                         /index.html  200
+/services/hardware-network                 /index.html  200
+/it-support-roodepoort                     /index.html  200
+/it-support-centurion                      /index.html  200
+/it-support-midrand                        /index.html  200
+/it-support-sandton                        /index.html  200
+/faq                                       /index.html  200
+/blog                                      /index.html  200
+/blog/cloud-future                         /index.html  200
+/blog/ai-integration-guide                 /index.html  200
+/blog/cybersecurity-best-practices-2025    /index.html  200
+/blog/it-equipment=price-increase-sa       /index.html  200
+/privacy-policy                            /index.html  200
+
+# 5. Everything else — the React 404 page with a real 404 status (D23).
+/*  /index.html  404
