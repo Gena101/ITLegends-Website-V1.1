@@ -1,6 +1,6 @@
 # https://www.itlegends.co.za/robots.txt
 # Everything on this site is open to crawling. AI crawlers are named
-# explicitly (04-AEO-PLAYBOOK §5) because some operators only honour a
+# explicitly (04-AEO-PLAYBOOK section 5) because some operators only honour a
 # directive addressed to their own user-agent.
 # NOTE: nothing is disallowed on purpose. Staging is kept out of the index
 # with a noindex meta tag, which a crawler can only see if it may fetch the
