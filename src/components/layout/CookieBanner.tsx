@@ -50,7 +50,7 @@ export default function CookieBanner() {
     window.addEventListener('resize', measure);
 
     return () => {
-      observer.disconnect()
+      observer.disconnect();
       window.removeEventListener('resize', measure);
       root.style.setProperty(OFFSET_VAR, NO_BANNER);
     };
@@ -76,10 +76,10 @@ export default function CookieBanner() {
       className="fixed inset-x-0 bottom-0 z-[60] border-t border-border bg-surface"
       style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
     >
-      <Container className="flex flex-col gap-4 py-4 lg:flex-row lg:item-center lg:justify-between">
+      <Container className="flex flex-col gap-4 py-4 lg:flex-row lg:items-center lg:justify-between">
         <p className="max-w-prose text-small">
           We use essential cookies to run this site and optional analytics cookies to see how it
-          is used. Read more in out{' '}
+          is used. Read more in our{' '}
           <Link to="/privacy-policy" className="text-link underline underline-offset-2 hover:no-underline">
             privacy and cookie policy
           </Link>
