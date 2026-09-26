@@ -4,11 +4,13 @@
 //
 // - Canonical: lib/canonical (https, www, no trailing slash).
 // - Robots: noindex when the page asks (404) OR on staging/deploy previews
-//   (lib/env). Production can never be noIndexed by the deploy check.
+//   (lib/env). Production can never be noindexed by the deploy check.
 // - JSON-LD: ONE @graph per page = Organization + WebSite + WebPage + the
 //   page's `nodes`. Emitted as the <script>'s text child (never
 //   dangerouslySetInnerHTML, or react-helmet-async drops it - D47).
 // - Dates: taken from routes.json for the current path unless passed in.
+//   article:modified_time is emitted on EVERY page that has a modified date
+//   (AEO §2.1 Content Freshness, 08 §12), not only on blog posts (D67).
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import routesData from '../../data/routes.json';
@@ -71,7 +73,7 @@ export default function SeoHead({
   const legacySchemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 
   const webPage: JsonLd = {
-    '@type': 'Webpage',
+    '@type': 'WebPage',
     '@id': `${canonicalURL}#webpage`,
     url: canonicalURL,
     name: title,
@@ -103,13 +105,12 @@ export default function SeoHead({
       <meta property="og:image" content={imageURL} />
       {!image && <meta property="og:image:width" content="1200" />}
       {!image && <meta property="og:image:height" content="630" />}
-      {!image && <meta property="og:imaghe:alt" content="IT Legends logo" />}
+      {!image && <meta property="og:image:alt" content="IT Legends logo" />}
       {type === 'article' && published && (
         <meta property="article:published_time" content={published} />
       )}
-      {type === 'article' && modified && (
-        <meta property="article:modified_time" content={modified} />
-      )}
+      {/* Every content page, not only articles - AEO §2.1 (D67) */}
+      {modified && <meta property="article:modified_time" content={modified} />}
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
