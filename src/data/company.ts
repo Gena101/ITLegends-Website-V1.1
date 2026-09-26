@@ -37,7 +37,7 @@ export const company = {
 } as const;
 
 // ----------------------------------------------------------------- branches
-// Authoritative from Google Business Profile. Names use a plain hypen-minus,
+// Authoritative from Google Business Profile. Names use a plain hyphen-minus,
 // never an en dash. Reproduce byte-identically everywhere.
 
 export type Branch = {
@@ -167,7 +167,7 @@ export const responseGuarantee = {
 export const travelPolicy = [
   { zone: 'within-20km', label: 'Within 20km of either branch', display: 'free' },
   { zone: '20-50km', label: '20-50km', display: 'R650' },
-  { zone: 'beyond-50km', label: 'Beyond 50km', display: 'R 650 + R 6,50/km' },
+  { zone: 'beyond-50km', label: 'Beyond 50km', display: 'R650 + R6.50/km' },
 ] as const;
 
 // ----------------------------------------------------------------- sameAs
