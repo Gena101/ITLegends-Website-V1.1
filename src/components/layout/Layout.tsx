@@ -4,7 +4,9 @@
 // footer inside the .legacy wrapper, WITHOUT the new Header/Footer, so there
 // is only ever one of each. The flag is removed in the phase that rebuilds
 // the page, and that page then picks up the new chrome automatically.
-import { useCallback, useState, type ReactNode } from 'react';
+// The WhatsApp buttons clears the cookie banner via the --whatsapp-offset
+// CSS variable, so no state is shared between them.
+import type { ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
 import routesData from '../../data/routes.json';
 import { toCanonical } from '../../lib/canonical';
@@ -17,13 +19,10 @@ import ScrollToTop from './ScrollToTop';
 
 export default function Layout({ children }: { children: ReactNode }) {
   const { pathname } = useLocation();
-  const [cookieVisible, setCookieVisible] = useState(false);
 
   const path = new URL(toCanonical(pathname)).pathname;
   const route = routesData.routes.find((r) => r.path === path);
   const isLegacy = route?.legacy === true;
-
-  const handleCookieVisibility = useCallback((visible: boolean) => setCookieVisible(visible), []);
 
   return (
     <>
@@ -38,8 +37,8 @@ export default function Layout({ children }: { children: ReactNode }) {
 
       {!isLegacy && <Footer />}
 
-      <WhatsAppButton raised={cookieVisible} />
-      <CookieBanner onVisibleChange={handleCookieVisibility} />
+      <WhatsAppButton />
+      <CookieBanner />
     </>
   );
 }
