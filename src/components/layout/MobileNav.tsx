@@ -124,7 +124,7 @@ export default function MobileNav({ open, onClose }: { open: boolean; onClose: (
         ) : (
           <a
             href={company.phone.tel}
-            onClick={() => trackEvent('click_tel', { location: 'monile_drawer' })}
+            onClick={() => trackEvent('click_tel', { location: 'mobile_drawer' })}
             className="btn-primary w-full"
           >
             <Phone aria-hidden="true" className="h-5 w-5" />
