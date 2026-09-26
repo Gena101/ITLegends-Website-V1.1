@@ -5,6 +5,8 @@
 // HTML loses the internal-link mesh (D07, D14, D40).
 // Menus come from navigation.ts, which filters to live routes, so a page
 // appears in the nav in the phase that builds it.
+// Logo: /logo-mark.webp (88px, 2 kb). /logo-png is the 512px schema logo and
+// must never be used here.
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown, Menu, Phone } from 'lucide-react';
@@ -59,7 +61,13 @@ export default function Header() {
       <Container className="flex h-16 items-center justify-between gap-4">
         {/* Logo: square tile (unaltered logo) + live wordmark */}
         <Link to="/" className="flex shrink-0 items-center gap-2.5" aria-label="IT Legends home">
-          <img src="/logo.png" alt="" width={44} height={44} className="h-11 w-11 rounded-card" />
+          <img
+            src="/logo-mark.webp"
+            alt=""
+            width={44}
+            height={44}
+            className="h-11 w-11 rounded-card"
+          />
           <span className="text-h3 font-bold leading-none text-itdark">IT Legends</span>
         </Link>
 
