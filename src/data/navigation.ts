@@ -6,7 +6,13 @@
 // CRAWLER RULE: Header, MobileNav and Footer must render every returned link
 // in the HTML at all times (visually hidden when closed), never mounted on
 // hover or click.
+//
+// Service and industry links come from services.ts and industries.ts, which
+// are the single source for these lists. Never re-declare a label or a path
+// here - it will drift from the cards and the page templates.
 import routesData from './routes.json';
+import { serviceNavLinks } from './services';
+import { industryNavLinks } from './industries';
 
 export type NavLink = { label: string; to: string };
 
@@ -28,23 +34,12 @@ function live(links: NavLink[]): NavLink[] {
 
 // ----------------------------------------------------------------- link sets
 
-const services: NavLink[] = [
-  { label: 'Managed IT Support', to: '/services/managed-it-support' },
-  { label: 'Cybersecurity', to: '/services/cybersecurity' },
-  { label: 'Cloud Backup', to: '/services/cloud-backup' },
-  { label: 'Server Maintenance', to: '/services/server-maintenance' },
-  { label: 'IT Helpdesk', to: '/services/helpdesk' },
-  { label: 'Hardware and Network', to: '/services/hardware-network' },
-];
+// From services.ts - all six exist as routes today.
+const services: NavLink[] = serviceNavLinks;
 
-const industries: NavLink[] = [
-  { label: 'Accountants', to: '/it-support-for-accountants' },
-  { label: 'Law firms', to: '/it-support-for-law-firms' },
-  { label: 'Medical practices', to: '/it-support-for-medical-practices' },
-  { label: 'Insurance brokers', to: '/it-support-for-insurance-brokers' },
-  // Slug held until the automotive client type is chosen in Phase 5.
-  { label: 'Automotive', to: '/it-support-for-automotive' },
-];
+// From industries.ts - already excludes any vertical whose slug is still
+// held or whose page is not build (path null). Phase 5 fills those in.
+const industries: NavLink[] = industryNavLinks;
 
 const areasHub: NavLink = { label: 'All areas', to: '/it-support-gauteng' };
 
@@ -53,7 +48,7 @@ const areas: NavLink[] = [
   { label: 'Pretoria', to: '/it-support-pretoria' },
   { label: 'Roodepoort', to: '/it-support-roodepoort' },
   { label: 'Centurion', to: '/it-support-centurion' },
-  { label: 'Midrand' , to: '/it-support-midrand' },
+  { label: 'Midrand', to: '/it-support-midrand' },
   { label: 'Sandton', to: '/it-support-sandton' },
 ];
 
