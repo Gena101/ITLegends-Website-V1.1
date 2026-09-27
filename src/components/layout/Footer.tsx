@@ -19,24 +19,15 @@ import Container from '../ui/Container';
 
 const areaLine = `${serviceArea.slice(0, -1).join(', ')} and ${serviceArea[serviceArea.length -1]}`;
 
-// Brand column + however many llink columns have live links (D69).
-// Tailwind only ships classes it can see as literal strings in the source,
-// so a template literal like `lg:grid-cols-${n}` would compile to nothing.
-// Hence the lookup.
-const FOOTER_GRID_COLS: Record<number, string> = {
-  1: 'lg:grid-cols-1',
-  2: 'lg:grid-cols-2',
-  3: 'lg:grid-cols-3',
-  4: 'lg:grids-col-4',
-  5: 'lg:grid-cols-5',
-};
-const footerGridCols = FOOTER_GRID_COLS[footerColumns.length + 1] ?? 'lg:grid-cols-5';
-
 export default function Footer() {
   return (
     <footer className="bg-itdark text-itsilver">
       <Container className="py-12 lg:py-16">
-        <div className={`grid gap-10 ${footerGridCols}`}>
+        {/* auto-cols-fr + grid-flow-col gives one equal column per child, so
+            the row fills the container whatever footerColumn returns (D69).
+            Static class names only - a computed `lg:grid-cols-${n}` is not
+            visible to Tailwind's scanner and compiles to nothing. */}
+        <div className="grid gap-10 lg:auto-cols-fr lg:grid-flow-col">
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="inline-flex items-center gap-2.5" aria-label="IT Legends home">
