@@ -162,13 +162,58 @@ export const responseGuarantee = {
   critical: readonly { tier: TierId, display: string }[];
 };
 
-// ----------------------------------------------------------------- travel policy
+// ----------------------------------------------------------------- -site call-out and labour
+// 02 §2, revised 1 Oct 2026. REPLACES the old travelPolicy (free / R650 /
+// R650 + R6.50/km), which priced travel only and was silent on labour - a
+// reader took "free within 20km" to mean the whole visit was free.
+// Distances are measured ONE WAY from the nearest branch. All excl. VAT.
 
-export const travelPolicy = [
-  { zone: 'within-20km', label: 'Within 20km of either branch', display: 'free' },
-  { zone: '20-50km', label: '20-50km', display: 'R650' },
-  { zone: 'beyond-50km', label: 'Beyond 50km', display: 'R650 + R6.50/km' },
-] as const;
+export const onSite = {
+  callOut: {
+    amount: 650,
+    display: 'R650',
+    radiusKm: 20,
+    label: 'Call-out, within 20km of the nearest branch',
+    note: 'Includes the first hour on site, from the time the technician arrives. Charged per visit, not per day.',
+  },
+  extraTravel: {
+    amountPerKm: 4.5,
+    display: 'R4.50 per km',
+    label: 'Travel beyond 20km',
+    note: 'Charged on the kilometres beyond 20, measured one way.',
+  },
+  labour: {
+    amountPerHour: 450,
+    display: 'R450 per hour',
+    label: 'Labour after the first hour',
+    note: 'Billed in 30-minute increments, rounded-up.',
+  },
+  sla: {
+    included:
+      'Included on-site visits carry no call-out fee within 20km of the nearest branch. Beyond 20km, travel is agreed when the SLA is signed.',
+    beyondAllowance: 'Visits beyond the tier allowance bill at R650 plus R450 per hour.',
+  },
+} as const;
+
+// Free IT assessment - the pre-sales exception to the call-out fee above.
+
+export const assessment = {
+  withinRadius: {
+    label: 'Within 20km of either branch',
+    display: 'free',
+  },
+  beyondRadiusGauteng: {
+    amount: 650,
+    display: 'R650',
+    label: 'Beyond 20km, within Gauteng',
+    note: 'A flat fee with no per-kilometer charge.',
+  },
+  outsideGauteng: {
+    label: 'Outside Gauteng',
+    display: 'quoted per site',
+  },
+  credit: 'The assessment fee is credited against your first invoice if you sign.',
+} as const;
 
 // ----------------------------------------------------------------- sameAs
 // Organization sameAs: social profiles and both GBP listings.
