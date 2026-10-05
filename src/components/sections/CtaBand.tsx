@@ -7,11 +7,12 @@
 //
 // The compact ContactForm posts to the same webhook as /contact, with
 // `source` set per page so enquiries can be told apart by origin.
-import { MessageCircle, Phone } from 'lucide-react';
+import { Phone } from 'lucide-react';
 import { company } from '../../data/company';
 import { trackEvent } from '../../analytics';
 import ContactForm from './ContactForm';
 import Container from '../ui/Container';
+import WhatsAppIcon from '../ui/WhatsAppIcon';
 
 type CtaBandProps = {
   /** H2 for this page's CTA. Make it specific - never "Get in touch". */
@@ -54,7 +55,7 @@ export default function CtaBand({ heading, intro, source, showForm = true }: Cta
                 onClick={() => trackEvent('click_whatsapp', { location: source })}
                 className="btn-secondary border-itsilver text-itsilver hover:bg-itgray"
               >
-                <MessageCircle aria-hidden="true" className="h-5 w-5" />
+                <WhatsAppIcon className="h-5 w-5" />
                 WhatsApp us
               </a>
             </div>
