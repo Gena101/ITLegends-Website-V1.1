@@ -11,7 +11,7 @@
 // DEVIATION from 08 §7's "CtaBand at the end of every page": omitted here.
 // The whole page is the CTA, and a band repeating the phone number and a
 // second form below the first one is a noise, not conversion.
-import { Mail, MessageCircle, Phone } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SeoHead from '../components/seo/SeoHead';
 import Breadcrumbs from '../components/seo/Breadcrumbs';
