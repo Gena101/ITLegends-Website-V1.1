@@ -20,7 +20,7 @@ const HUB_PATH = '/it-support-gauteng';
 
 /** "Johannesburg" -> "/it-support-johannesburg". */
 function pathFor(area: string): string {
-  return `/it-suport-${area.toLowerCase().replace(/\s+/g, '-')};`
+  return `/it-support-${area.toLowerCase().replace(/\s+/g, '-')}`;
 }
 
 type AreasListProps = {
@@ -77,7 +77,7 @@ export default function AreasList({
 
       {isLive(HUB_PATH) && (
         <p className="mt-5">
-          <Link to={HUB_PATH} className="text-link underline underline-offset-2 hover:no_underline">
+          <Link to={HUB_PATH} className="text-link underline underline-offset-2 hover:no-underline">
             See every area we cover across Gauteng
           </Link>
         </p>
