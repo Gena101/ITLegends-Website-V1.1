@@ -44,6 +44,7 @@ https://itlegends.co.za/*  https://www.itlegends.co.za/:splat  301!
 /it-support-centurion                      /index.html  200
 /it-support-midrand                        /index.html  200
 /it-support-sandton                        /index.html  200
+/contact                                   /index.html  200
 /faq                                       /index.html  200
 /blog                                      /index.html  200
 /blog/cloud-future                         /index.html  200

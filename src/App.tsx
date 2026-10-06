@@ -1,7 +1,7 @@
 // src/App.tsx
 // Route table only - every route comes from src/data/routes.json, with one
 // lazy import per page (D22, D38). To add a page: add it to routes.json,
-// add one line to PAGES below, and add it to _redireccts and sitemap.xlm
+// add one line to PAGES below, and add it to _redirects and sitemap.xlm
 // (npm run check:routes enforces the last two).
 import { lazy, Suspense, type ComponentType, type LazyExoticComponent } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -19,6 +19,7 @@ const PAGES: Record<string, LazyExoticComponent<ComponentType>> = {
   ServerMaintenance: lazy(() => import('./pages/ServerMaintenance')),
   Helpdesk: lazy(() => import('./pages/Helpdesk')),
   HardwareNetwork: lazy(() => import('./pages/HardwareNetwork')),
+  Contact: lazy(() => import('./pages/ContactPage')),
   ITSupportRoodepoort: lazy(() => import('./pages/locations/ITSupportRoodepoort')),
   ITSupportCenturion: lazy(() => import('./pages/locations/ITSupportCenturion')),
   ITSupportMidrand: lazy(() => import('./pages/locations/ITSupportMidrand')),
