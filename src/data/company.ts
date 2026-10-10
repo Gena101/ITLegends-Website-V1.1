@@ -125,8 +125,8 @@ export const verticals = ['accounting', 'legal', 'medical', 'insurance', 'automo
 
 // ----------------------------------------------------------------- pricing
 // EXACT. Never round or alter. `amount` feeds Offer schema; `display` is
-// what appears on the page. Tier INCLUSIONS are not yet supplied (02 §2) -
-// do not add them here until Eugene provides them.
+// what appears on the page. Tier inclusions, add-ons and extended retention
+// are below, decided Oct 2026.
 
 export const vatNote = 'excl. VAT';
 
@@ -140,10 +140,80 @@ export const tiers = [
 
 export const pricingTerms = {
   currency: 'ZAR',
-  serverAddOn: { amount: 1495, display: 'R1,495', unit: 'per server per month', tier: 'complete' as TierId },
+  // Available on ALL tiers (decided 5 Oct 2026, correcting the earlier
+  // Complete Care restriction).
+  serverAddOn: { amount: 1495, display: 'R1,495', unit: 'per server per month' },
   minimumMonthlyFee: { amount: 2245, display: 'R2,245', note: 'equivalent to 5 devices' },
   annualSlaDiscount: { percent: 10, display: '10%' },
   priceLock: { months: 12, display: '12 months' },
+} as const;
+
+// ----------------------------------------------------------------- inclusions
+// What each tier includes - 02 §, decided Oct 2026. Each toer lists only
+// what it ADDS; the page states that a tier carries everything below it.
+//
+// Every line must be deliverable TODAY with the stack in use (Action1 for
+// patching, monitoring and Defender reporting; MSP360 to Z1 for backup).
+// Never list a capability the tooling cannot deliver - that is D54 and D60
+// repeating itself on a page a model will quote.
+
+export const tierInclusions: Record<TierId, readonly string[]> = {
+  essential: [
+    'Remote helpdesk during business hours',
+    'Endpoint monitoring and alerting',
+    'Operating system and third-party patching',
+    'Microsoft Defender configured and monitored',
+    'User account and mailbox administration',
+    'Asset register kept current',
+    'Remote support only - on-site visits are billed separately',
+  ],
+  managed: [
+    'Proactive maintenance',
+    'Microsoft 365 administration',
+    'Monthly reporting',
+    'One on-site visit a month included',
+  ],
+  complete: [
+    'Security reviews',
+    'Quarterly IT planning',
+    'Vendor and ISP liaison',
+    'Two on-site visits a month included',
+  ],
+};
+
+// ----------------------------------------------------------------- add-ons
+// Available on every tier. Cloud backup is delivered by MSP360 Managed Backup
+// to Z1 Storage, so restore testing is real rather than aspirational.
+// "1TB" means STORED backup data pooled across the site, never live data and
+// never per device - the difference is where backup margin is lost.
+
+export const addOns = {
+  server: {
+    name: 'Server management',
+    display: 'R1,495',
+    unit: 'per server per month',
+    note: 'Available on any plan, in addition to the per-device fee.'
+  },
+  backup: {
+    name: 'Cloud backup',
+    display: 'R249',
+    unit: 'per device per month',
+    note: 'Includes up to 1TB of stored backup data pooled across the site, with 30-day retention, monitored backups and restore testing.',
+    overage: { display: 'R0.40', unit: 'per GB per month', note: 'Storage beyond 1TB.' },
+  },
+} as const;
+
+export const extendedRetention = {
+  defaultDisplay: '30 days',
+  note: 'Assumes ordinary office files data. Databases, CAD and videos are quoted after an assessment.',
+  warning:
+    'Backup retention is not records archiving. Keeping records for fivve or seven years to satisfy SARS or Companies Act needs an archiving system, not a longer backup window.',
+  options: [
+    { period: '60 days', display: 'R350', unit: 'per site per month' },
+    { period: '90 days', disaply: 'R650', unit: 'per site per month' },
+    { period: '180 days', display: 'R1,400', unit: 'per site per month' },
+    { perios: '365 days', display: 'R2,900', unit: 'per site per month' },
+  ],
 } as const;
 
 // ----------------------------------------------------------------- response guarantee
