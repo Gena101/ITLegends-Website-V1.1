@@ -6,7 +6,7 @@
 // described a third of it. Recorded as a deviation in 08.
 //
 // Every figure from company.ts, which mirrors 02 §2. The point of this block
-// is that no reader can cofuse travel with labour - the old policy said
+// is that no reader can confuse travel with labour - the old policy said
 // travel within 20km was free and was silent on labour, which invited exactly
 // that reading.
 import { onSite, assessment, vatNote } from '../../data/company';
@@ -39,7 +39,7 @@ export default function CallOutRates({
         on the invoice.
       </p>
 
-      <div className="mt-6 overflow-x-auto">
+      <div className="mt-6 max-w-3xl overflow-x-auto">
         <table className="w-full min-w-[30rem] border-collapse text-left">
           <caption className="sr-only">
             IT Legends on-site call-out, travel and labour rates, excluding VAT
@@ -62,7 +62,7 @@ export default function CallOutRates({
                 </span>
                 <span className="block text-small text-muted">{onSite.callOut.note}</span>
               </th>
-              <td className="py-4 text-right align-top text-h3 font-bold text-itdark">
+              <td className="whitespace-nowrap py-4 text-right align-top text-h3 font-bold text-itdark">
                 {onSite.callOut.display}
               </td>
             </tr>
@@ -74,7 +74,7 @@ export default function CallOutRates({
                 </span>
                 <span className="block text-small text-muted">{onSite.extraTravel.note}</span>
               </th>
-              <td className="py-4 text-right align-top text-h3 font-bold text-itdark">
+              <td className="whitespace-nowrap py-4 text-right align-top text-h3 font-bold text-itdark">
                 {onSite.extraTravel.display}
               </td>
             </tr>
@@ -86,7 +86,7 @@ export default function CallOutRates({
                 </span>
                 <span className="block text-small text-muted">{onSite.labour.note}</span>
               </th>
-              <td className="py-4 text-right align-top text-h3 font-bold text-itdark">
+              <td className="whitespace-nowrap py-4 text-right align-top text-h3 font-bold text-itdark">
                 {onSite.labour.display}
               </td>
             </tr>

@@ -89,7 +89,7 @@ export default function PricingPage() {
         </Section>
 
         <Section id="pricing-callouts">
-          <CallOutRates heading="pricing-callouts-heading" />
+          <CallOutRates headingId="pricing-callouts-heading" />
         </Section>
 
         <Section id="pricing-faq" tone="alt">

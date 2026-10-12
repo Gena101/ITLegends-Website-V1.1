@@ -120,7 +120,7 @@ export default function TierInclusions({
             are priced per site:
           </p>
 
-          <div className="mt-5 overflow-x-auto">
+          <div className="mt-5 max-w-2xl overflow-x-auto">
             <table className="w-full min-w-[22rem] border-collapse text-left">
               <caption className="sr-only">
                 IT Legends extended backup retention pricing per site per month, excluding VAT
