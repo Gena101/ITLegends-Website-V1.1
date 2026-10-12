@@ -14,6 +14,9 @@ import { branches } from '../../data/company';
 import { reviews, reviewLinks } from '../../data/reviews';
 import { formatDate } from '../../lib/dates';
 
+// Google shows most review timestamps as relative times, so `date` is often
+// absent. Render the branch alone rather than an estimated date.
+
 type ReviewsListProps = {
   as?: 'h2' | 'h3';
   heading?: string;
@@ -62,7 +65,13 @@ export default function ReviewsList({
             <footer className="mt-4 text-small text-muted">
               <span className="block font-bold text-itdark">{review.author}</span>
               <span className="block">
-                {branchName(review.branch)} · <time dateTime={review.date}>{formatDate(review.date)}</time>
+                {branchName(review.branch)}
+                {review.date && (
+                  <>
+                    {' · '}
+                    <time dateTime={review.date}>{formatDate(review.date)}</time>
+                  </>
+                )}  
               </span>
             </footer>
           </li>
