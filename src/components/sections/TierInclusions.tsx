@@ -80,7 +80,7 @@ export default function TierInclusions({
       {showAddOns && (
         <>
           <h3 className="mt-12 text-h3 font-bold text-itdark lg:text-h3-lg">
-            Add-ons, avaialble on any plan
+            Add-ons, available on any plan
           </h3>
 
           <ul className="mt-5 grid gap-5 sm:grid-cols-2">

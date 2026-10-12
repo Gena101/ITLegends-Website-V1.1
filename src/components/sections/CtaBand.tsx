@@ -53,7 +53,7 @@ export default function CtaBand({ heading, intro, source, showForm = true }: Cta
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent('click_whatsapp', { location: source })}
-                className="btn-secondary border-itsilver text-itsilver hover:bg-itgray"
+                className="btn-secondary border-itsilver bg-transparent text-itsilver hover:bg-itgray"
               >
                 <WhatsAppIcon className="h-5 w-5" />
                 WhatsApp us
@@ -61,7 +61,7 @@ export default function CtaBand({ heading, intro, source, showForm = true }: Cta
             </div>
 
             <p className="mt-5 text-small">
-              Monday to Firday 07:30 to 17:00, Saturday 08:00 to 13:00. Email{' '}
+              Monday to Friday 07:30 to 17:00, Saturday 08:00 to 13:00. Email{' '}
               <a
                 href={`mailto:${company.email}`}
                 className="text-link-dark underline underline-offset-2 hover:no-underline"

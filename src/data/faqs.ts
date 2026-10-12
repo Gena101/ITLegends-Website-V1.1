@@ -96,7 +96,7 @@ export const pricingFaqs: readonly Faq[] = [
   {
     id: 'pricing assessment',
     category: 'pricing',
-    question: 'Is the IT Assessment really free?',
+    question: 'Is the IT assessment really free?',
     answer:
       'Yes, within 20km of either branch. Further out but still Gauteng, the assessment is a flat R650 excluding VAT with no per-kilometre charge, and that R650 is credited against your first invoice if you sign. Outside Gauteng, travel is quoted per site. The assessment lists every device and shows what is exposed.',
   },

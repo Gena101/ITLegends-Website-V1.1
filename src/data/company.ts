@@ -205,9 +205,9 @@ export const addOns = {
 
 export const extendedRetention = {
   defaultDisplay: '30 days',
-  note: 'Assumes ordinary office files data. Databases, CAD and videos are quoted after an assessment.',
+  note: 'Assumes ordinary office file data. Databases, CAD and video are quoted after an assessment.',
   warning:
-    'Backup retention is not records archiving. Keeping records for fivve or seven years to satisfy SARS or Companies Act needs an archiving system, not a longer backup window.',
+    'Backup retention is not records archiving. Keeping records for five or seven years to satisfy SARS or Companies Act needs an archiving system, not a longer backup window.',
   options: [
     { period: '60 days', display: 'R350', unit: 'per site per month' },
     { period: '90 days', display: 'R650', unit: 'per site per month' },
@@ -256,7 +256,7 @@ export const onSite = {
     amountPerHour: 450,
     display: 'R450 per hour',
     label: 'Labour after the first hour',
-    note: 'Billed in 30-minute increments, rounded-up.',
+    note: 'Billed in 30-minute increments, rounded up.',
   },
   sla: {
     included:
@@ -276,7 +276,7 @@ export const assessment = {
     amount: 650,
     display: 'R650',
     label: 'Beyond 20km, within Gauteng',
-    note: 'A flat fee with no per-kilometer charge.',
+    note: 'A flat fee with no per-kilometre charge.',
   },
   outsideGauteng: {
     label: 'Outside Gauteng',
