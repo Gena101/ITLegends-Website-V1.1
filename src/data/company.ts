@@ -210,9 +210,9 @@ export const extendedRetention = {
     'Backup retention is not records archiving. Keeping records for fivve or seven years to satisfy SARS or Companies Act needs an archiving system, not a longer backup window.',
   options: [
     { period: '60 days', display: 'R350', unit: 'per site per month' },
-    { period: '90 days', disaply: 'R650', unit: 'per site per month' },
+    { period: '90 days', display: 'R650', unit: 'per site per month' },
     { period: '180 days', display: 'R1,400', unit: 'per site per month' },
-    { perios: '365 days', display: 'R2,900', unit: 'per site per month' },
+    { period: '365 days', display: 'R2,900', unit: 'per site per month' },
   ],
 } as const;
 
