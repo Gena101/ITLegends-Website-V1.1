@@ -20,6 +20,7 @@ const PAGES: Record<string, LazyExoticComponent<ComponentType>> = {
   Helpdesk: lazy(() => import('./pages/Helpdesk')),
   HardwareNetwork: lazy(() => import('./pages/HardwareNetwork')),
   Contact: lazy(() => import('./pages/ContactPage')),
+  Pricing: lazy(() => import('./pages/PricingPage')),
   ITSupportRoodepoort: lazy(() => import('./pages/locations/ITSupportRoodepoort')),
   ITSupportCenturion: lazy(() => import('./pages/locations/ITSupportCenturion')),
   ITSupportMidrand: lazy(() => import('./pages/locations/ITSupportMidrand')),
