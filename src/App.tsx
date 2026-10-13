@@ -12,7 +12,7 @@ import NotFoundPage from './pages/NotFoundPage';
 // `page` in route.json -> component. Legacy pages live in pages/legacy or
 // their original folders until the phase that replaces them.
 const PAGES: Record<string, LazyExoticComponent<ComponentType>> = {
-  LegacyHome: lazy(() => import('./pages/legacy/LegacyHome')),
+  Home: lazy(() => import('./pages/HomePage')),
   ManagedITSupport: lazy(() => import('./pages/ManagedITSupport')),
   Cybersecurity: lazy(() => import('./pages/Cybersecurity')),
   CloudBackup: lazy(() => import('./pages/CloudBackup')),

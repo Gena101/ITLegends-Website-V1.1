@@ -1,7 +1,7 @@
 {
   "$comment": "Every URL the site serves. Single source for the route table (App.tsx), LastUpdated, dateModified, sitemap.xml and the _redirects whitelist; scripts/check-routes.mjs enforces agreement. Add a route here, to _redirects and to sitemap.xml together, and only once the page returns real content. Dates are ISO dates (YYYY-MM-DD) and must be real: null means unknown, and nothing is emitted. `modified` changes only on a material content change. `legacy: true` renders the pre-redesign page inside .legacy without the new Header/Footer; remove it when the phase that rebuilds the page ships.",
   "routes": [
-    { "path": "/", "page": "LegacyHome", "template": "home", "label": "Home", "legacy": true, "published": null, "modified": null, "sitemap": true },
+    { "path": "/", "page": "Home", "template": "home", "label": "Home", "legacy": false, "published": "2026-10-13", "modified": "2026-10-13", "sitemap": true },
 
     { "path": "/services/managed-it-support", "page": "ManagedITSupport", "template": "service", "label": "Managed IT Support", "legacy": true, "published": null, "modified": null, "sitemap": true },
     { "path": "/services/cybersecurity", "page": "Cybersecurity", "template": "service", "label": "Cybersecurity", "legacy": true, "published": null, "modified": null, "sitemap": true },
@@ -16,7 +16,7 @@
     { "path": "/it-support-sandton", "page": "ITSupportSandton", "template": "location", "label": "IT Support Sandton", "legacy": true, "published": null, "modified": null, "sitemap": true },
 
     { "path": "/pricing", "page": "Pricing", "template": "pricing", "label": "Pricing", "legacy": false, "published": "2026-10-12", "modified": "2026-10-12", "sitemap": true },
-    
+
     { "path": "/contact", "page": "Contact", "template": "contact", "label": "Contact", "legacy": false, "published": "2026-10-06", "modified": "2026-10-06", "sitemap": true },
     
     { "path": "/faq", "page": "FAQ", "template": "faq", "label": "FAQ", "legacy": true, "published": null, "modified": null, "sitemap": true },
