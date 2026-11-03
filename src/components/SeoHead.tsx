@@ -1,5 +1,4 @@
 // src/components/SeoHead.tsx
-import React from "react";
 import { Helmet } from "react-helmet-async";
 
 type SeoHeadProps = {

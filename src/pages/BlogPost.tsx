@@ -326,9 +326,6 @@ export default function BlogPostPage() {
     );
   }
 
-  const baseURL = 'https://www.itlegends.co.za';
-  const postURL = `${baseURL}/blog/${post.slug}`;
-
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
