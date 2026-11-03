@@ -1,60 +1,142 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
-
+/* src/index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ================= v2 BASE ================= */
 @layer base {
+  :root {
+    color-scheme: dark;
+    --header-h: 4.5rem;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: var(--header-h);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   body {
-    @apply bg-itdark text-itsilver font-sans;
+    @apply min-h-screen bg-ink-950 font-sans text-base text-fg antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold;
+    @apply font-display font-semibold tracking-tight text-white text-balance;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 
   a {
-    @apply transition-colors duration-300;
+    @apply transition-colors duration-200;
+  }
+
+  ::selection {
+    @apply bg-itred text-white;
+  }
+
+  :focus-visible {
+    outline: 2px solid theme('colors.itblue.soft');
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 }
 
+/* ================= v2 COMPONENTS ================= */
+@layer components {
+  /* Glass card surface: only for cards that hold real content */
+  .glass {
+    @apply border border-white/10 bg-white/[0.03] backdrop-blur-md;
+  }
+}
+
+/* ================= v2 UTILITIES ================= */
+@layer utilities {
+  /* Subtle grid for section breaks, fading out from the top edge */
+  .grid-backdrop {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 30%, transparent 100%);
+  }
+
+  /* Animated gradient mesh. Moves a pseudo-element with transform (GPU), never repaints the background */
+  .mesh-backdrop {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .mesh-backdrop::before {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(38% 32% at 18% 28%, rgb(199 0 57 / 0.2), transparent 70%),
+      radial-gradient(34% 38% at 82% 18%, rgb(0 123 255 / 0.2), transparent 70%),
+      radial-gradient(40% 36% at 62% 88%, rgb(0 123 255 / 0.1), transparent 70%);
+    animation: mesh-drift 30s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+}
+
+@keyframes mesh-drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(3%, -2%, 0) scale(1.05); }
+  100% { transform: translate3d(-2%, 3%, 0) scale(1); }
+}
+
+/* ================= REDUCED MOTION ================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =====================================================
+   LEGACY v1: used by App.tsx and the v1 pages.
+   Delete this whole block once the last v1 page is rebuilt (Phase 5).
+   ===================================================== */
 @layer components {
   .btn-primary {
     @apply px-8 py-4 bg-itred text-white font-semibold rounded-lg hover:bg-red-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-itred/30;
   }
-
   .btn-secondary {
     @apply px-8 py-4 border-2 border-itblue text-itblue font-semibold rounded-lg hover:bg-itblue hover:text-white transition-all duration-300;
   }
-
   .btn-outline {
     @apply px-6 py-2 border border-itsilver text-itsilver font-medium rounded hover:bg-itsilver hover:text-itdark transition-all duration-300;
   }
-
   .section-title {
     @apply text-4xl sm:text-5xl font-bold text-white mb-4;
   }
-
   .section-divider {
     @apply w-24 h-1 bg-gradient-to-r from-itred to-itblue mx-auto;
   }
-
   .section-subtitle {
     @apply text-xl text-itsilver max-w-3xl mx-auto;
   }
-
   .card-dark {
     @apply bg-itgray border border-itgray2 rounded-xl p-6 hover:border-itblue transition-all duration-300;
   }
-
   .accent-text {
     @apply text-itred font-semibold;
   }
-
   .glow-blue {
     @apply shadow-lg shadow-itblue/20 hover:shadow-itblue/40 transition-shadow;
   }
-
   .glow-red {
     @apply shadow-lg shadow-itred/20 hover:shadow-itred/40 transition-shadow;
   }
@@ -63,39 +145,26 @@
 .hero-gradient {
   background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 50%, #0f0f1e 100%);
 }
-
 .tech-glass {
   background: rgba(42, 42, 42, 0.4);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(224, 224, 224, 0.1);
 }
-
 .text-glow {
   text-shadow: 0 0 20px rgba(199, 0, 57, 0.3), 0 0 40px rgba(0, 123, 255, 0.2);
 }
-
 .floating {
   animation: float 6s ease-in-out infinite;
 }
-
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
 }
-
 .pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
 }
-
 @keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(199, 0, 57, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(199, 0, 57, 0.6);
-  }
+  0%, 100% { box-shadow: 0 0 20px rgba(199, 0, 57, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(199, 0, 57, 0.6); }
 }
+/* ================= END LEGACY v1 ================= */
