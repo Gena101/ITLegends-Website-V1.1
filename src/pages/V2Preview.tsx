@@ -2,7 +2,8 @@
 // TEMPORARY design-system preview at /v2-preview (noindex). Delete in Phase 1 Step 7.
 import { Layout } from '../components/layout';
 import { SeoHead } from '../components/seo';
-import { Badge, Button, Card, Section, SectionHeading } from '../components/ui';
+import { HeroBackdrop } from '../components/three';
+import { Badge, Button, Card, Container, Section, SectionHeading } from '../components/ui';
 import { company } from '../data/company';
 import { pillars, servicesByPillar } from '../data/services';
 
@@ -16,31 +17,31 @@ export default function V2Preview() {
         noindex
       />
 
-      <Section backdrop="mesh" spacing="flush" className="pt-header" labelledBy="preview-title">
-        <div className="py-20 sm:py-28">
-          <Badge tone="blue">Design preview</Badge>
-          <SectionHeading
-            as="h1"
-            id="preview-title"
-            className="mt-5"
-            title="Sample heading at H1 size for checking the type scale"
-            intro="This paragraph shows the lead text style used for the 40 to 60 word direct answer under each page heading. It checks line length, contrast and spacing on the dark background before real copy goes in."
-            actions={
-              <>
-                <Button href="/contact" size="lg">
-                  Contact us
-                </Button>
-                <Button href={company.phone.href} variant="secondary" size="lg">
-                  Call {company.phone.display}
-                </Button>
-                <Button href="/services" variant="ghost" size="lg">
-                  Ghost button
-                </Button>
-              </>
-            }
-          />
-        </div>
-      </Section>
+      <section aria-labelledby="preview-title" className="relative isolate overflow-hidden bg-ink-950 pt-header">
+        <HeroBackdrop />
+        <Container className="relative flex min-h-[85svh] items-center py-20">
+          <div>
+            <Badge tone="blue">Design preview</Badge>
+            <SectionHeading
+              as="h1"
+              id="preview-title"
+              className="mt-5"
+              title="Sample heading at H1 size for checking the type scale"
+              intro="This paragraph shows the lead text style used for the 40 to 60 word direct answer under each page heading. It checks line length, contrast and spacing over the hero network before real copy goes in."
+              actions={
+                <>
+                  <Button href="/contact" size="lg">
+                    Contact us
+                  </Button>
+                  <Button href={company.phone.href} variant="secondary" size="lg">
+                    Call {company.phone.display}
+                  </Button>
+                </>
+              }
+            />
+          </div>
+        </Container>
+      </section>
 
       <Section backdrop="grid" divider labelledBy="preview-services">
         <SectionHeading
