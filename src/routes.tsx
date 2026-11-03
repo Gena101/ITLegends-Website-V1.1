@@ -4,7 +4,7 @@
 import type { ReactElement } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { V1HomePage } from './App';
+import Home from './pages/Home';
 import ManagedITSupportPage from './pages/ManagedITSupport';
 import HardwareNetworkPage from './pages/HardwareNetwork';
 import CybersecurityPage from './pages/Cybersecurity';
@@ -19,7 +19,6 @@ import ITSupportRoodepoort from './pages/locations/ITSupportRoodepoort';
 import ITSupportCenturion from './pages/locations/ITSupportCenturion';
 import ITSupportMidrand from './pages/locations/ITSupportMidrand';
 import ITSupportSandton from './pages/locations/ITSupportSandton';
-import V2Preview from './pages/V2Preview';
 import NotFound from './pages/NotFound';
 
 import { blogPosts } from './data/blogPosts';
@@ -34,7 +33,7 @@ export interface AppRoute {
 }
 
 export const appRoutes: AppRoute[] = [
-  { path: '/', element: <V1HomePage /> },
+  { path: '/', element: <Home /> },
 
   // Services (v1 pages until Phase 2)
   { path: '/services/managed-it-support', element: <ManagedITSupportPage /> },
@@ -61,9 +60,6 @@ export const appRoutes: AppRoute[] = [
   // Other
   { path: '/faq', element: <FAQPage /> },
   { path: '/privacy-policy', element: <PrivacyPolicyPage /> },
-
-  // TEMPORARY: removed in Phase 1 Step 7
-  { path: '/v2-preview', element: <V2Preview />, sitemap: false },
 ];
 
 export function AppRoutes() {

@@ -5,12 +5,19 @@ import { useLocation } from 'react-router-dom';
 import { CookieBanner } from './components/layout';
 import { AppRoutes } from './routes';
 
-/** New page = start at the top (unless navigating to an #anchor) */
-function ScrollToTop() {
+/** New page → top (instantly, not smooth). "/#contact" from another page → scroll to that section. */
+function ScrollManager() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    if (!hash) window.scrollTo(0, 0);
+    if (hash) {
+      const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+      if (target) {
+        target.scrollIntoView();
+        return;
+      }
+    }
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }, [pathname, hash]);
 
   return null;
@@ -19,7 +26,7 @@ function ScrollToTop() {
 export function Root() {
   return (
     <>
-      <ScrollToTop />
+      <ScrollManager />
       <AppRoutes />
       <CookieBanner />
     </>
