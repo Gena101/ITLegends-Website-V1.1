@@ -4,6 +4,7 @@ let hasInitialized = false;
 const GA_MEASUREMENT_ID = 'G-QFCYN911RS';
 
 export function initAnalytics() {
+  if (import.meta.env.VITE_SITE_ENV !== "production") return;
   if (hasInitialized) return;
   if (!GA_MEASUREMENT_ID) return;
 
