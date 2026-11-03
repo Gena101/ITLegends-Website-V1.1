@@ -397,6 +397,90 @@ export const servicePages: Partial<Record<ServiceSlug, ServicePageContent>> = {
     ],
     related: ['cloud-backup', 'managed-it-support', 'hardware-network'],
   },
+
+  'cloud-backup': {
+    metaTitle: 'Cloud Backup Stored in South Africa | IT Legends',
+    metaDescription:
+      'Encrypted, automated backups of Microsoft 365, Google Workspace, servers and PCs, stored in South Africa and restore-tested quarterly, plus disaster recovery.',
+    headline: 'Cloud backup and disaster recovery',
+    intro:
+      'IT Legends backs up your Microsoft 365 or Google Workspace data, servers and computers automatically, at least once a day. ' +
+      'Backups are encrypted before they leave your office, stored in South African data centres and locked against deletion, ' +
+      'and we test restores every quarter. We also plan your disaster recovery and move email and files to the cloud.',
+    included: [
+      {
+        title: 'Microsoft 365 and Google Workspace backup',
+        text: 'Mail, OneDrive, SharePoint and Teams, or Gmail and Google Drive including shared drives, backed up separately from Microsoft and Google.',
+      },
+      {
+        title: 'Servers and computers',
+        text: 'Windows Server, Hyper-V and VMware virtual machines, Windows computers and files on Mac, backed up at least daily and more often for files that change constantly.',
+      },
+      {
+        title: 'Stored in South Africa',
+        text: 'Your backups are kept off-site in South African data centres in Johannesburg and Cape Town, and never leave the country.',
+      },
+      {
+        title: 'Encrypted and locked',
+        text: 'Data is encrypted before it leaves your premises, and backup copies are locked for a set period so ransomware or an accidental delete can’t remove them.',
+      },
+      {
+        title: 'Restores tested every quarter',
+        text: 'We test restores every quarter, so you know your backups work before the day you need them.',
+      },
+      {
+        title: 'Disaster recovery planning',
+        text: 'We agree with you what gets restored first, and how, if you lose a server, a laptop or access to your office.',
+      },
+    ],
+    process: [
+      {
+        title: 'Agree what to protect',
+        text: 'We work out with you which accounts, servers and computers hold the data your business can’t lose.',
+      },
+      {
+        title: 'Set up encrypted backups',
+        text: 'We configure automated, encrypted backups to South African storage on a schedule that fits how your data changes.',
+      },
+      {
+        title: 'Watch every backup',
+        text: 'Failed or missed backups alert us, so we can fix them before they leave a gap.',
+      },
+      {
+        title: 'Test restores quarterly',
+        text: 'Every quarter we restore sample data to prove your backups can be recovered.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Where is my backup data stored?',
+        answer:
+          'In South Africa. IT Legends stores backups in data centres in Johannesburg and Cape Town, encrypted before they leave your premises, ' +
+          'so your data stays in the country.',
+      },
+      {
+        question: 'Doesn’t Microsoft 365 or Google Workspace already back up my data?',
+        answer:
+          'Not in the way most businesses assume. Microsoft and Google keep their services running, but recovering data you lose through deletion, ransomware ' +
+          'or a departing employee is your responsibility, and their built-in recovery options are limited. A separate backup lets you restore mail and files whenever you need to.',
+      },
+      {
+        question: 'How often are backups taken?',
+        answer:
+          'At least once a day, automatically. Files that change constantly can be backed up more often, close to real time, so you lose as little work as possible.',
+      },
+      {
+        question: 'Can you keep a local backup as well as the cloud copy?',
+        answer:
+          'Yes. Depending on your needs, we can quote and install a local backup device, which gives you fast restores on site alongside the off-site copy in South Africa.',
+      },
+      {
+        question: 'Can you migrate our email and files to Microsoft 365 or Google Workspace?',
+        answer: 'Yes. IT Legends migrates email and files to Microsoft 365 or Google Workspace and sets up backups for them from day one.',
+      },
+    ],
+    related: ['cybersecurity', 'server-maintenance', 'managed-it-support'],
+  },
 };
 
 export function getServicePage(slug: ServiceSlug): ServicePageContent | undefined {
