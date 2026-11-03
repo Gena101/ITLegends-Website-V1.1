@@ -42,7 +42,8 @@ import contactBg from './assets/contact-bg.webp';
 import headerImg from './assets/header-img.webp';
 import heroLogoImg from './assets/hero-img.webp';
 import SeoHead from './components/SeoHead';
-import CookieBanner from './components/CookieBanner';
+import { CookieBanner } from './components/layout';
+import V2Preview from './pages/V2Preview';
 import PrivacyPolicyPage from './pages/PrivacyPolicy';
 
 const localBusinessSchema = {
@@ -223,6 +224,7 @@ function App() {
             path="/privacy-policy"
             element={<PrivacyPolicyPage />}
           />
+          <Route path="/v2-preview" element={<V2Preview />} />
       </Routes>
 
       {/* Cookie banner is rendered globally for all pages */}
@@ -386,7 +388,7 @@ function Hero() {
             src={heroLogoImg}
             alt="IT Legends Logo"
             loading="eager"
-            fetchpriority="high"
+            fetchPriority="high"
             className="h-32 w-auto drop-shadow-[0_0_12px_rgba(255,255,255,0.35)]"
           />
         </div>
