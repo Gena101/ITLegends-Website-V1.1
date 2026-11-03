@@ -20,9 +20,21 @@ if (!template.includes('<!--app-head-->') || !template.includes('<!--app-html-->
   throw new Error('dist/index.html is missing the <!--app-head--> or <!--app-html--> placeholder');
 }
 
+// Preload the two Latin font files (hashed names) so text doesn't reflow when fonts swap in (CLS)
+const PRELOAD_FONTS = [/^inter-latin-wght-normal-.+\.woff2$/, /^space-grotesk-latin-wght-normal-.+\.woff2$/];
+const assetFiles = await fs.readdir(path.join(distDir, 'assets'));
+const fontPreloads = PRELOAD_FONTS.map((pattern) => {
+  const file = assetFiles.find((name) => pattern.test(name));
+  if (!file) console.warn(`⚠ Font to preload not found in dist/assets: ${pattern}`);
+  return file ? `<link rel="preload" href="/assets/${file}" as="font" type="font/woff2" crossorigin>` : '';
+})
+  .filter(Boolean)
+  .join('\n    ');
+
 /** Function replacers: page HTML may contain "$&" etc., which a string replacement would mangle */
 function fillTemplate(page) {
-  return template.replace('<!--app-head-->', () => page.head).replace('<!--app-html-->', () => page.html);
+  const head = fontPreloads ? `${fontPreloads}\n    ${page.head}` : page.head;
+  return template.replace('<!--app-head-->', () => head).replace('<!--app-html-->', () => page.html);
 }
 
 /** "/" → dist/index.html, "/services/helpdesk" → dist/services/helpdesk.html */
