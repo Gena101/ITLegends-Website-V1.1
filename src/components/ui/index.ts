@@ -10,3 +10,5 @@ export type { ButtonProps } from './Button';
 export { Card } from './Card';
 export { Badge } from './Badge';
 export { Reveal } from './Reveal';
+export { Breadcrumbs } from './Breadcrumbs';
+export type { Crumb } from './Breadcrumbs';

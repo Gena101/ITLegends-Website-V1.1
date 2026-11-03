@@ -7,6 +7,17 @@ import { Route, Routes, matchRoutes } from 'react-router-dom';
 
 // NotFound stays in the main bundle: it must render for any unknown URL without a network round trip
 import NotFound from './pages/NotFound';
+import { servicePath, services, type ServiceSlug } from './data/services';
+
+/** v1 pages still own these URLs until Phase 2.4b replaces them */
+const V1_SERVICE_PAGES = new Set<ServiceSlug>([
+  'managed-it-support',
+  'helpdesk',
+  'cybersecurity',
+  'cloud-backup',
+  'server-maintenance',
+  'hardware-network',
+]);
 
 type PageModule = { default: ComponentType };
 
@@ -36,6 +47,13 @@ export const appRoutes: AppRoute[] = [
   { path: '/services/cloud-backup', page: 'CloudBackup' },
   { path: '/services/server-maintenance', page: 'ServerMaintenance' },
   { path: '/services/hardware-network', page: 'HardwareNetwork' },
+  {
+    path: '/services/:slug',
+    page: 'ServicePage',
+    // 2.4a: only the 4 new services. Static v1 routes above outrank this one on their own URLs.
+    prerenderPaths: async () =>
+      services.filter((s) => !V1_SERVICE_PAGES.has(s.slug)).map((s) => servicePath(s.slug)),
+  },
 
   // Locations (v1 pages until Phase 4)
   { path: '/it-support-roodepoort', page: 'locations/ITSupportRoodepoort' },
