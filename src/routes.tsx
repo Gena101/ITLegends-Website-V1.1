@@ -1,75 +1,137 @@
 // src/routes.tsx
 // THE route table. The router, the prerender script and sitemap.xml all read from here.
-// Adding a page = one entry here. Dynamic paths must list their concrete URLs.
-import type { ReactElement } from 'react';
-import { Route, Routes } from 'react-router-dom';
+// Adding a page = one entry here; `page` is the file under src/pages without ".tsx".
+// Every page is its own JS chunk: the browser downloads only the page it's on.
+import { Suspense, lazy, type ComponentType } from 'react';
+import { Route, Routes, matchRoutes } from 'react-router-dom';
 
-import Home from './pages/Home';
-import ManagedITSupportPage from './pages/ManagedITSupport';
-import HardwareNetworkPage from './pages/HardwareNetwork';
-import CybersecurityPage from './pages/Cybersecurity';
-import CloudBackupPage from './pages/CloudBackup';
-import ServerMaintenancePage from './pages/ServerMaintenance';
-import HelpdeskPage from './pages/Helpdesk';
-import BlogIndexPage from './pages/BlogIndexPage';
-import BlogPostPage from './pages/BlogPost';
-import FAQPage from './pages/FAQ';
-import PrivacyPolicyPage from './pages/PrivacyPolicy';
-import ITSupportRoodepoort from './pages/locations/ITSupportRoodepoort';
-import ITSupportCenturion from './pages/locations/ITSupportCenturion';
-import ITSupportMidrand from './pages/locations/ITSupportMidrand';
-import ITSupportSandton from './pages/locations/ITSupportSandton';
+// NotFound stays in the main bundle: it must render for any unknown URL without a network round trip
 import NotFound from './pages/NotFound';
 
-import { blogPosts } from './data/blogPosts';
+type PageModule = { default: ComponentType };
+
+// One lazily loaded chunk per page file (NotFound excluded, it's imported above)
+const pageModules = import.meta.glob<PageModule>(['./pages/**/*.tsx', '!./pages/NotFound.tsx']);
 
 export interface AppRoute {
   path: string;
-  element: ReactElement;
-  /** Required for dynamic paths (containing ":"): every concrete URL to prerender */
-  prerenderPaths?: string[];
+  /** File under src/pages without ".tsx", e.g. "Home" or "locations/ITSupportCenturion" */
+  page: string;
+  /**
+   * Required for dynamic paths (containing ":"): resolves every concrete URL to prerender.
+   * A function (with a dynamic import) so the data it reads stays out of the browser bundle.
+   */
+  prerenderPaths?: () => Promise<string[]>;
   /** false = prerender but leave out of sitemap.xml (noindex pages) */
   sitemap?: boolean;
 }
 
 export const appRoutes: AppRoute[] = [
-  { path: '/', element: <Home /> },
+  { path: '/', page: 'Home' },
 
   // Services (v1 pages until Phase 2)
-  { path: '/services/managed-it-support', element: <ManagedITSupportPage /> },
-  { path: '/services/helpdesk', element: <HelpdeskPage /> },
-  { path: '/services/cybersecurity', element: <CybersecurityPage /> },
-  { path: '/services/cloud-backup', element: <CloudBackupPage /> },
-  { path: '/services/server-maintenance', element: <ServerMaintenancePage /> },
-  { path: '/services/hardware-network', element: <HardwareNetworkPage /> },
+  { path: '/services/managed-it-support', page: 'ManagedITSupport' },
+  { path: '/services/helpdesk', page: 'Helpdesk' },
+  { path: '/services/cybersecurity', page: 'Cybersecurity' },
+  { path: '/services/cloud-backup', page: 'CloudBackup' },
+  { path: '/services/server-maintenance', page: 'ServerMaintenance' },
+  { path: '/services/hardware-network', page: 'HardwareNetwork' },
 
   // Locations (v1 pages until Phase 4)
-  { path: '/it-support-roodepoort', element: <ITSupportRoodepoort /> },
-  { path: '/it-support-centurion', element: <ITSupportCenturion /> },
-  { path: '/it-support-midrand', element: <ITSupportMidrand /> },
-  { path: '/it-support-sandton', element: <ITSupportSandton /> },
+  { path: '/it-support-roodepoort', page: 'locations/ITSupportRoodepoort' },
+  { path: '/it-support-centurion', page: 'locations/ITSupportCenturion' },
+  { path: '/it-support-midrand', page: 'locations/ITSupportMidrand' },
+  { path: '/it-support-sandton', page: 'locations/ITSupportSandton' },
 
   // Blog
-  { path: '/blog', element: <BlogIndexPage /> },
+  { path: '/blog', page: 'BlogIndexPage' },
   {
     path: '/blog/:slug',
-    element: <BlogPostPage />,
-    prerenderPaths: blogPosts.map((post) => `/blog/${post.slug}`),
+    page: 'BlogPost',
+    prerenderPaths: async () => {
+      const { blogPosts } = await import('./data/blogPosts');
+      return blogPosts.map((post) => `/blog/${post.slug}`);
+    },
   },
 
   // Other
-  { path: '/faq', element: <FAQPage /> },
-  { path: '/privacy-policy', element: <PrivacyPolicyPage /> },
+  { path: '/faq', page: 'FAQ' },
+  { path: '/privacy-policy', page: 'PrivacyPolicy' },
 ];
+
+interface PageHandle {
+  /** Source path as Vite's build manifest names it, e.g. "src/pages/Home.tsx" */
+  file: string;
+  load: () => Promise<void>;
+  Component: ComponentType;
+}
+
+/** One handle per page file, so routes sharing a template share one chunk */
+const pageHandles = new Map<string, PageHandle>();
+
+function getPage(name: string): PageHandle {
+  const existing = pageHandles.get(name);
+  if (existing) return existing;
+
+  const importer = pageModules[`./pages/${name}.tsx`];
+  if (!importer) throw new Error(`Route page "${name}" not found: expected src/pages/${name}.tsx`);
+
+  let Loaded: ComponentType | undefined;
+  const loadModule = () =>
+    importer().then((mod) => {
+      Loaded = mod.default;
+      return mod;
+    });
+  const LazyPage = lazy(loadModule);
+
+  // Module already loaded (prerender, first load after preloadRoute, revisits) → render it directly,
+  // so server and client trees match. First client-side visit → React.lazy fetches the chunk while
+  // the router (startTransition) keeps the previous page on screen.
+  function Component() {
+    const Page = Loaded;
+    return Page ? <Page /> : <LazyPage />;
+  }
+
+  const handle: PageHandle = {
+    file: `src/pages/${name}.tsx`,
+    load: async () => {
+      await loadModule();
+    },
+    Component,
+  };
+  pageHandles.set(name, handle);
+  return handle;
+}
+
+// Resolve every page up front: a typo in `page` fails the build instead of a visitor's page view
+appRoutes.forEach((route) => getPage(route.page));
+
+/** Same order as appRoutes; matchRoutes returns these objects, indexOf maps back to the route */
+const routeMatchers = appRoutes.map((route) => ({ path: route.path }));
+
+/**
+ * Loads the page module for a URL before the first render (prerender and hydration),
+ * so nothing suspends and the HTML matches. Returns the page's source file, or undefined (404).
+ */
+export async function preloadRoute(pathname: string): Promise<string | undefined> {
+  const match = matchRoutes(routeMatchers, pathname)?.[0];
+  if (!match) return undefined;
+  const page = getPage(appRoutes[routeMatchers.indexOf(match.route)].page);
+  await page.load();
+  return page.file;
+}
 
 export function AppRoutes() {
   return (
-    <Routes>
-      {appRoutes.map((route) => (
-        <Route key={route.path} path={route.path} element={route.element} />
-      ))}
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <Suspense fallback={null}>
+      <Routes>
+        {appRoutes.map((route) => {
+          const { Component } = getPage(route.page);
+          return <Route key={route.path} path={route.path} element={<Component />} />;
+        })}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
   );
 }
 
@@ -79,13 +141,16 @@ export interface PrerenderEntry {
 }
 
 /** Every concrete URL to prerender, in route-table order */
-export function getPrerenderEntries(): PrerenderEntry[] {
-  return appRoutes.flatMap((route) => {
-    const isDynamic = route.path.includes(':');
-    if (isDynamic && !route.prerenderPaths) {
-      throw new Error(`Route "${route.path}" is dynamic but has no prerenderPaths`);
-    }
-    const paths = isDynamic ? route.prerenderPaths ?? [] : [route.path];
-    return paths.map((path) => ({ path, sitemap: route.sitemap !== false }));
-  });
+export async function getPrerenderEntries(): Promise<PrerenderEntry[]> {
+  const groups = await Promise.all(
+    appRoutes.map(async (route) => {
+      const isDynamic = route.path.includes(':');
+      if (isDynamic && !route.prerenderPaths) {
+        throw new Error(`Route "${route.path}" is dynamic but has no prerenderPaths`);
+      }
+      const paths = isDynamic && route.prerenderPaths ? await route.prerenderPaths() : [route.path];
+      return paths.map((path) => ({ path, sitemap: route.sitemap !== false }));
+    }),
+  );
+  return groups.flat();
 }

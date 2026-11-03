@@ -1,6 +1,7 @@
 // scripts/prerender.mjs
 // Runs after `vite build` (client) and `vite build --ssr` (server).
 // Writes one static HTML file per route, plus 404.html and sitemap.xml.
+// Each page's HTML preloads its own JS chunk (route code splitting), so hydration isn't delayed by a waterfall.
 // Fails the build if a listed route doesn't render as a real page.
 
 import fs from 'node:fs/promises';
@@ -20,6 +21,15 @@ if (!template.includes('<!--app-head-->') || !template.includes('<!--app-html-->
   throw new Error('dist/index.html is missing the <!--app-head--> or <!--app-html--> placeholder');
 }
 
+// Client build manifest: source file → hashed chunk + its imports (needs build.manifest in vite.config.ts)
+const manifestDir = path.join(distDir, '.vite');
+let manifest;
+try {
+  manifest = JSON.parse(await fs.readFile(path.join(manifestDir, 'manifest.json'), 'utf8'));
+} catch {
+  throw new Error('dist/.vite/manifest.json not found: set build.manifest for the client build in vite.config.ts');
+}
+
 // Preload the two Latin font files (hashed names) so text doesn't reflow when fonts swap in (CLS)
 const PRELOAD_FONTS = [/^inter-latin-wght-normal-.+\.woff2$/, /^space-grotesk-latin-wght-normal-.+\.woff2$/];
 const assetFiles = await fs.readdir(path.join(distDir, 'assets'));
@@ -27,13 +37,62 @@ const fontPreloads = PRELOAD_FONTS.map((pattern) => {
   const file = assetFiles.find((name) => pattern.test(name));
   if (!file) console.warn(`⚠ Font to preload not found in dist/assets: ${pattern}`);
   return file ? `<link rel="preload" href="/assets/${file}" as="font" type="font/woff2" crossorigin>` : '';
-})
-  .filter(Boolean)
-  .join('\n    ');
+}).filter(Boolean);
+
+/**
+ * modulepreload (and any CSS) for a page's chunk and the chunks it imports.
+ * Anything index.html already links (the main entry and its imports) is skipped.
+ * Lazy imports inside the page (e.g. HeroScene) are deliberately not followed.
+ */
+/**
+ * Manifest key of a page's chunk. Usually its source path ("src/pages/Home.tsx"), but when Rollup
+ * doesn't mark the page as its chunk's facade (Home, whose chunk also serves code to the lazy
+ * HeroScene), Vite keys it by file name ("_Home-<hash>.js"). Fall back to the one dynamic-entry
+ * chunk named after the page file. Case-sensitive: "Home" never matches lucide's "home" icon chunk.
+ */
+function findChunkKey(sourceFile) {
+  if (manifest[sourceFile]) return sourceFile;
+  const name = path.posix.basename(sourceFile).replace(/\.[jt]sx?$/, '');
+  const pattern = new RegExp(`^assets/${name}-[\\w-]{8}\\.js$`);
+  const candidates = Object.keys(manifest).filter(
+    (key) => manifest[key].isDynamicEntry && pattern.test(manifest[key].file),
+  );
+  if (candidates.length !== 1) {
+    throw new Error(
+      `${sourceFile}: expected 1 matching chunk in the build manifest, found ${candidates.length}` +
+        (candidates.length ? ` (${candidates.join(', ')})` : ''),
+    );
+  }
+  return candidates[0];
+}
+
+function pageAssetTags(sourceFile) {
+  if (!sourceFile) return [];
+  const startKey = findChunkKey(sourceFile);
+
+  const tags = new Set();
+  const visited = new Set();
+  const linked = (file) => template.includes(`/${file}"`);
+
+  const visit = (key) => {
+    if (visited.has(key)) return;
+    visited.add(key);
+    const chunk = manifest[key];
+    if (!chunk) return;
+    for (const css of chunk.css ?? []) {
+      if (!linked(css)) tags.add(`<link rel="stylesheet" crossorigin href="/${css}">`);
+    }
+    if (!linked(chunk.file)) tags.add(`<link rel="modulepreload" crossorigin href="/${chunk.file}">`);
+    for (const dep of chunk.imports ?? []) visit(dep);
+  };
+
+  visit(startKey);
+  return [...tags];
+}
 
 /** Function replacers: page HTML may contain "$&" etc., which a string replacement would mangle */
 function fillTemplate(page) {
-  const head = fontPreloads ? `${fontPreloads}\n    ${page.head}` : page.head;
+  const head = [...fontPreloads, ...pageAssetTags(page.pageFile), page.head].filter(Boolean).join('\n    ');
   return template.replace('<!--app-head-->', () => head).replace('<!--app-html-->', () => page.html);
 }
 
@@ -62,7 +121,7 @@ function escapeXml(value) {
     .replace(/'/g, '&apos;');
 }
 
-const entries = getPrerenderEntries();
+const entries = await getPrerenderEntries();
 const errors = [];
 const rendered = new Set();
 /** internal link path → pages linking to it */
@@ -76,8 +135,10 @@ for (const { path: urlPath } of entries) {
 
 for (const entry of entries) {
   let page;
+  let html;
   try {
-    page = render(entry.path);
+    page = await render(entry.path);
+    if (page.status === 200) html = fillTemplate(page);
   } catch (error) {
     errors.push(`${entry.path}: render threw: ${error instanceof Error ? error.stack : error}`);
     continue;
@@ -90,7 +151,7 @@ for (const entry of entries) {
 
   const file = outputFile(entry.path);
   await fs.mkdir(path.dirname(file), { recursive: true });
-  await fs.writeFile(file, fillTemplate(page));
+  await fs.writeFile(file, html);
   rendered.add(entry.path);
 
   for (const match of page.html.matchAll(/href="(\/[^"]*)"/g)) {
@@ -104,7 +165,7 @@ for (const entry of entries) {
 }
 
 // 404 page: Netlify serves dist/404.html with a real 404 status for unknown URLs
-const notFound = render('/__prerender-not-found__');
+const notFound = await render('/__prerender-not-found__');
 if (notFound.status !== 404) {
   errors.push(`404 page rendered with status ${notFound.status}; NotFound must call useRenderStatus(404)`);
 } else {
@@ -119,6 +180,10 @@ const sitemap =
   sitemapUrls.map((url) => `  <url><loc>${escapeXml(url)}</loc></url>`).join('\n') +
   '\n</urlset>\n';
 await fs.writeFile(path.join(distDir, 'sitemap.xml'), sitemap);
+
+// The manifest is a build input only; don't publish it (it lists source file paths).
+// Kept when the prerender fails, so it can be inspected.
+if (errors.length === 0) await fs.rm(manifestDir, { recursive: true, force: true });
 
 // Report internal links that don't resolve to a prerendered page (warning, not failure:
 // nav links to pages from later phases are expected until launch)
