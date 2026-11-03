@@ -50,6 +50,13 @@ export const company = {
     href: 'tel:+27846348144',
   },
   whatsapp: 'https://wa.me/27846348144',
+  /** Time to ACKNOWLEDGE a request, not to resolve it */
+  support: {
+    standardResponse: 'within one business day',
+    criticalResponse: 'within 2 hours during business hours',
+    criticalAfterHours:
+      'Outside business hours, responses to critical issues may take longer, but we aim to respond within 2 hours.',
+  },
   logo: '/logo-itlegends.webp',
   mark: '/it-legends-mark.svg',
   socialShareImage: '/social-share.jpg',

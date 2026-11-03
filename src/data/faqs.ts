@@ -1,6 +1,7 @@
 // src/data/faqs.ts
 // Visible FAQs AND FAQPage schema are generated from these arrays (never duplicate the text).
 // Answers are plain text, written as direct answers (AEO).
+import { company } from './company';
 import { formatRand, getPlan, VAT_NOTE } from './pricing';
 
 export interface FaqItem {
@@ -29,6 +30,13 @@ export const homeFaqs: FaqItem[] = [
       `Managed IT plans start at ${formatRand(essential.pricePerDevice)} per device per month on ${essential.name}. ` +
       `${managed.name} is ${formatRand(managed.pricePerDevice)} and ${complete.name} is ${formatRand(complete.pricePerDevice)} per device per month, ` +
       `with servers on ${complete.name} at ${formatRand(complete.pricePerServer ?? 0)} per server per month. All prices are ${VAT_NOTE}.`,
+  },
+  {
+    question: 'How quickly does IT Legends respond to support requests?',
+    answer:
+      `We acknowledge standard support requests ${company.support.standardResponse} and critical issues ${company.support.criticalResponse}. ` +
+      `${company.support.criticalAfterHours} ` +
+      'These are response times, meaning how quickly a technician acknowledges your request, not the time it takes to fully resolve it.',
   },
   {
     question: 'What is a managed IT services provider (MSP)?',

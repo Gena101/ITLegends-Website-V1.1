@@ -6,7 +6,7 @@ import { HeroBackdrop } from '../components/three';
 import { Badge, Button, Card, Container, Section, SectionHeading } from '../components/ui';
 import { company } from '../data/company';
 import { pillars, servicesByPillar } from '../data/services';
-import { CtaBand, FaqList, ServiceGrid } from '../components/sections';
+import { ContactForm, CtaBand, FaqList, ServiceGrid } from '../components/sections';
 import { homeFaqs } from '../data/faqs';
 
 export default function V2Preview() {
@@ -92,6 +92,11 @@ export default function V2Preview() {
       <Section divider labelledBy="preview-faq">
         <SectionHeading id="preview-faq" title="Preview: FaqList" />
         <FaqList items={homeFaqs} className="mt-10" />
+      </Section>
+
+      <Section divider width="narrow" labelledBy="preview-form">
+        <SectionHeading id="preview-form" title="Preview: ContactForm" />
+        <ContactForm className="mt-10" />
       </Section>
 
       <CtaBand title="Preview: CtaBand" text="Mesh panel with phone and WhatsApp." />
