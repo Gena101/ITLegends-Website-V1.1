@@ -49,6 +49,7 @@ export const company = {
     schema: '+27-84-634-8144',
     href: 'tel:+27846348144',
   },
+  whatsapp: 'https://wa.me/27846348144',
   logo: '/logo-itlegends.webp',
   mark: '/it-legends-mark.svg',
   socialShareImage: '/social-share.jpg',
