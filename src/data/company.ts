@@ -21,10 +21,10 @@ export interface Branch {
   /** Short UI label */
   label: string;
   address: Address;
-  /** TODO: copy from each GBP map pin. null = omitted from schema */
+  /** From the GBP map pin */
   geo: { latitude: number; longitude: number } | null;
-  /** TODO: add at launch (Phase 5 GBP checklist) */
-  googleBusinessProfileUrl: string | null;
+  /** Google Place ID ("ChIJ…"). null until added */
+  placeId: string | null;
 }
 
 export interface OpeningHours {
@@ -77,8 +77,8 @@ export const branches: Branch[] = [
       country: 'South Africa',
       countryCode: 'ZA',
     },
-    geo: null,
-    googleBusinessProfileUrl: null,
+    geo: { latitude: -26.148472, longitude: 27.842823 },
+    placeId: 'ChIJEyIDg4WflR4RLKSZ54st_LE',
   },
   {
     id: 'pretoria',
@@ -93,8 +93,8 @@ export const branches: Branch[] = [
       country: 'South Africa',
       countryCode: 'ZA',
     },
-    geo: null,
-    googleBusinessProfileUrl: null,
+    geo: { latitude: -25.856242, longitude: 28.137159 },
+    placeId: 'ChIJMTV5HEZllR4Rz-4NSPGwD-8',
   },
 ];
 
@@ -120,11 +120,25 @@ export function schemaStreetAddress(a: Address): string {
   return `${a.streetAddress}, ${a.suburb}`;
 }
 
-/** Google Maps link: GBP URL when known, otherwise a search for name + address */
+/** Google Maps link to the listing: Place ID when known, otherwise a name + address search */
 export function mapsUrl(branch: Branch): string {
-  if (branch.googleBusinessProfileUrl) return branch.googleBusinessProfileUrl;
+  if (branch.placeId) {
+    return `https://www.google.com/maps/place/?q=place_id:${branch.placeId}`;
+  }
   const query = `${branch.name}, ${formatAddress(branch.address)}`;
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+}
+
+/** "Write a review" link, or null until the Place ID is known */
+export function reviewUrl(branch: Branch): string | null {
+  return branch.placeId
+    ? `https://search.google.com/local/writereview?placeid=${branch.placeId}`
+    : null;
+}
+
+/** For schema sameAs: only the canonical listing URL, never the search fallback */
+export function listingUrl(branch: Branch): string | null {
+  return branch.placeId ? mapsUrl(branch) : null;
 }
 
 export function getBranch(id: BranchId): Branch {
