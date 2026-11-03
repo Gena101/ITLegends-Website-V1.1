@@ -58,27 +58,24 @@ export function NetworkFallback({ className }: NetworkFallbackProps) {
         })}
       </g>
 
-      {nodes.map((node) => {
-        const pulses = node.i % 3 === 0;
-        return (
-          <g key={node.i}>
-            <circle
-              cx={node.px}
-              cy={node.py}
-              r={fmt(0.3 * node.scale)}
-              fill={`url(#hero-glow-${node.hot ? 'red' : 'blue'})`}
-              className={pulses ? 'origin-center animate-node-pulse [transform-box:fill-box]' : undefined}
-              style={pulses ? { animationDelay: `${fmt(-node.phase)}s` } : undefined}
-            />
-            <circle
-              cx={node.px}
-              cy={node.py}
-              r={fmt(0.045 * node.scale)}
-              fill={node.hot ? NETWORK_COLORS.redSoft : NETWORK_COLORS.blueSoft}
-            />
-          </g>
-        );
-      })}
+      {/* Deliberately static: this layer is for mobile / low-power / reduced-motion devices,
+          and animated SVG repaints on the main thread (battery + Lighthouse Speed Index). */}
+      {nodes.map((node) => (
+        <g key={node.i}>
+          <circle
+            cx={node.px}
+            cy={node.py}
+            r={fmt(0.3 * node.scale)}
+            fill={`url(#hero-glow-${node.hot ? 'red' : 'blue'})`}
+          />
+          <circle
+            cx={node.px}
+            cy={node.py}
+            r={fmt(0.045 * node.scale)}
+            fill={node.hot ? NETWORK_COLORS.redSoft : NETWORK_COLORS.blueSoft}
+          />
+        </g>
+      ))}
     </svg>
   );
 }
