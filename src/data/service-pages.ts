@@ -13,6 +13,7 @@ import {
   onboarding,
   onsite,
   plans,
+  projectTerms,
   startingPrice,
   VAT_NOTE,
 } from './pricing';
@@ -109,6 +110,13 @@ const managedOnboarding: ContentItem[] = [
       'Support is active once the SLA is signed, the agents are installed and the first payment is received.',
   },
 ];
+
+const freeSiteVisit = `free within ${projectTerms.freeSiteVisitRadiusKm} km of either branch`;
+
+const workmanshipGuarantee =
+  `Installation work carries a ${projectTerms.workmanshipGuaranteeDays}-day workmanship guarantee. ` +
+  'It covers faults in our workmanship, not damage caused after installation, for example when another contractor moves or cuts a cable. ' +
+  'Full terms are in your quotation.';
 
 // ---------- Pages ----------
 
@@ -480,6 +488,245 @@ export const servicePages: Partial<Record<ServiceSlug, ServicePageContent>> = {
       },
     ],
     related: ['cybersecurity', 'server-maintenance', 'managed-it-support'],
+  },
+
+  // ---------- Infrastructure ----------
+
+  'hardware-network': {
+    metaTitle: 'Hardware & Network Setup for Businesses | IT Legends',
+    metaDescription:
+      'Dell, HP and Lenovo computers, switches, Wi-Fi, firewalls, printers, VoIP and UPS for Gauteng offices, supplied, installed and configured by IT Legends.',
+    headline: 'Business hardware and network setup',
+    intro:
+      'IT Legends supplies, installs and configures the hardware your office runs on: Dell, HP and Lenovo computers and laptops, ' +
+      'switches, Wi-Fi access points, firewalls, printers and VoIP phone systems. ' +
+      "We also size and install UPS and surge protection and set up backup internet, so power outages and load shedding don't stop your business.",
+    included: [
+      {
+        title: 'Computers and laptops',
+        text: 'Dell, HP and Lenovo machines supplied and set up ready to work, with user accounts, email and your business software.',
+      },
+      {
+        title: 'Switches and Wi-Fi',
+        text: 'A wired and wireless network designed around your office, so every desk and meeting room has a reliable connection.',
+      },
+      {
+        title: 'Firewalls',
+        text: 'Business firewalls installed and configured to protect your network from the internet.',
+      },
+      {
+        title: 'Printers and VoIP phones',
+        text: 'Printers and VoIP phone systems connected to your network and set up for your team.',
+      },
+      {
+        title: 'UPS and surge protection',
+        text: 'UPS units sized for the equipment that must keep running, plus surge protection against power spikes when the power returns.',
+      },
+      {
+        title: 'Backup internet',
+        text: 'A second connection that takes over when your main line or the power goes down.',
+      },
+    ],
+    process: [
+      {
+        title: 'Site visit',
+        text: `We visit your office to see what you have and what you need, ${freeSiteVisit}.`,
+      },
+      {
+        title: 'Quotation',
+        text: 'You get a written quotation for the hardware and installation before any work starts.',
+      },
+      {
+        title: 'Supply and install',
+        text: 'We supply the equipment, install it and configure it for your network and your team.',
+      },
+      {
+        title: 'Handover',
+        text: 'We test everything, show your team what changed and leave your network ready to work.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Which computer brands does IT Legends supply?',
+        answer: 'We supply Dell, HP and Lenovo computers and laptops, set up ready to work, as well as switches, Wi-Fi access points, firewalls, printers and VoIP phones.',
+      },
+      {
+        question: 'Can you help our office keep working during load shedding?',
+        answer:
+          'Yes. We size and install UPS units for the equipment that must stay on, add surge protection, and set up a backup internet connection. ' +
+          'Combined with cloud backups, a power cut doesn’t have to mean lost work or damaged equipment.',
+      },
+      {
+        question: 'Do you set up printers and phone systems?',
+        answer: 'Yes. We connect printers and VoIP phone systems to your network and set them up for your team.',
+      },
+      {
+        question: 'Is there a guarantee on installation work?',
+        answer: workmanshipGuarantee,
+      },
+    ],
+    related: ['structured-cabling', 'business-connectivity', 'managed-it-support'],
+  },
+
+  'structured-cabling': {
+    metaTitle: 'Structured Cabling & Cable Management | IT Legends',
+    metaDescription:
+      'Office network cabling in Gauteng: Cat5e, Cat6 and Cat6a, fibre uplinks, cabinets, patch panels and labelling. ' +
+      `Every cable tested. Free site visit within ${projectTerms.freeSiteVisitRadiusKm} km.`,
+    headline: 'Structured cabling and cable management',
+    intro:
+      'IT Legends installs structured network cabling for offices across Gauteng: Cat5e, Cat6 and Cat6a Ethernet, ' +
+      'fibre drop cable between switches for uplinks, patch panels, cabinets and trunking. ' +
+      'Every cable is labelled and tested at both ends, and we tidy up existing messy cabling. ' +
+      `Each job is quoted after a site visit, ${freeSiteVisit}.`,
+    included: [
+      {
+        title: 'Ethernet cabling',
+        text: 'Cat5e, Cat6 and Cat6a runs to desks, printers and Wi-Fi access points, chosen for the speeds your office needs.',
+      },
+      {
+        title: 'Fibre uplinks',
+        text: 'Fibre drop cable between switches, for fast, interference-free links between floors, rooms or buildings.',
+      },
+      {
+        title: 'Cabinets and patch panels',
+        text: 'Network cabinets, patch panels and trunking that keep cabling organised, protected and easy to work on.',
+      },
+      {
+        title: 'Labelled and tested',
+        text: 'Every cable is labelled at both ends and tested with a cable tester that checks every pair is wired correctly.',
+      },
+      {
+        title: 'Cable management',
+        text: 'We tidy up existing messy cabling and cabinets, so faults are quicker to find and changes are easier to make.',
+      },
+      {
+        title: `${projectTerms.workmanshipGuaranteeDays}-day workmanship guarantee`,
+        text: 'Our installation work is guaranteed against workmanship faults, with full terms in your quotation.',
+      },
+    ],
+    process: [
+      {
+        title: 'Site visit',
+        text: `We walk your office to plan cable routes and points, ${freeSiteVisit}.`,
+      },
+      {
+        title: 'Quotation',
+        text: 'You get a written quotation for the materials and installation before any work starts.',
+      },
+      {
+        title: 'Install, label and test',
+        text: 'We run and terminate the cables, label both ends and test every run.',
+      },
+      {
+        title: 'Handover',
+        text: 'We walk you through the finished installation, covered by our workmanship guarantee.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'How much does structured cabling cost?',
+        answer:
+          'It depends on the number of points, the cable distances and the building, so every job is quoted after a site visit. ' +
+          `The site visit is ${freeSiteVisit}.`,
+      },
+      {
+        question: 'Which network cables do you install?',
+        answer:
+          'IT Legends installs Cat5e, Cat6 and Cat6a Ethernet cabling, and fibre drop cable between switches for uplinks, ' +
+          'together with patch panels, cabinets and trunking.',
+      },
+      {
+        question: 'Is every network cable tested?',
+        answer: 'Yes. Every cable run is labelled at both ends and tested with a cable tester that checks each pair is wired correctly.',
+      },
+      {
+        question: 'Can you tidy up our existing messy cabling?',
+        answer:
+          'Yes. We re-route, label and organise existing cabling and cabinets, which makes faults quicker to find and future changes easier.',
+      },
+      {
+        question: 'What does the workmanship guarantee cover?',
+        answer: workmanshipGuarantee,
+      },
+    ],
+    related: ['hardware-network', 'business-connectivity', 'server-maintenance'],
+  },
+
+  'business-connectivity': {
+    metaTitle: 'Business Internet: Fibre, LTE, 5G & Air Fibre | IT Legends',
+    metaDescription:
+      'Business fibre, fixed LTE, 5G, air fibre and microwave links for Gauteng businesses, plus backup connections, installed, set up and supported by IT Legends.',
+    headline: 'Business internet and connectivity',
+    intro:
+      'IT Legends supplies business internet of every type, including fibre, fixed LTE, 5G, air fibre (fixed wireless) and microwave links, ' +
+      "sourced from South African network providers. We check what's available at your address, install and set up your router, " +
+      'and stay your point of contact if the line goes down. A backup connection keeps you online during outages.',
+    included: [
+      {
+        title: 'Every connection type',
+        text: 'Fibre, fixed LTE, 5G, air fibre (fixed wireless) and microwave links, so we can recommend what works best at your address.',
+      },
+      {
+        title: 'Availability check',
+        text: 'We check which connections and providers are available at your premises before you commit to anything.',
+      },
+      {
+        title: 'Installation and router setup',
+        text: 'We arrange the installation and set up your router so the connection works with your office network from day one.',
+      },
+      {
+        title: 'One point of contact',
+        text: 'If the line goes down, you call us, not a call centre. We deal with the network provider for you.',
+      },
+      {
+        title: 'Backup connections',
+        text: 'A second connection, such as LTE or 5G alongside fibre, takes over when the main line fails.',
+      },
+    ],
+    process: [
+      {
+        title: 'Tell us what you need',
+        text: 'How many people, what you run online, and how critical uptime is for your business.',
+      },
+      {
+        title: 'We check availability',
+        text: 'We check which connection types and providers are available at your address.',
+      },
+      {
+        title: 'Quotation and agreement',
+        text: 'You get a quotation for the connection, and the agreement follows the provider’s contract terms.',
+      },
+      {
+        title: 'Installation and go-live',
+        text: 'We arrange the installation, set up your router and confirm everything works.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What types of business internet does IT Legends offer?',
+        answer:
+          'Fibre, fixed LTE, 5G, air fibre (fixed wireless) and microwave links, sourced from South African network providers. ' +
+          'We check what’s available at your address and recommend the best fit.',
+      },
+      {
+        question: 'Who do I contact when our internet goes down?',
+        answer:
+          `You contact us: call or WhatsApp ${company.phone.display}, or email ${company.email}. ` +
+          `We deal with the network provider for you. Standard requests are acknowledged ${standardResponse} and critical issues ${criticalResponse}.`,
+      },
+      {
+        question: 'Can we have a backup internet connection for outages and load shedding?',
+        answer:
+          'Yes. A second connection, such as LTE or 5G alongside fibre, takes over when the main line fails. ' +
+          'Add a UPS for the router and network equipment, and your office stays online through a power cut.',
+      },
+      {
+        question: 'How long is a business internet contract?',
+        answer: 'Usually a minimum of 12 months, depending on the network provider’s contract terms. Every connection is quoted before you sign.',
+      },
+    ],
+    related: ['hardware-network', 'structured-cabling', 'managed-it-support'],
   },
 };
 

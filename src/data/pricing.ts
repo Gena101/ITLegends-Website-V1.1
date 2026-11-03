@@ -46,6 +46,14 @@ export const contractTerms = {
   annualMinDevices: 5,
 } as const;
 
+/** Installation projects (hardware, cabling, connectivity): always quoted after a site visit */
+export const projectTerms = {
+  /** The site visit before a quote is free within this distance of either branch */
+  freeSiteVisitRadiusKm: 20,
+  /** Workmanship guarantee on installation work (excludes later damage by third parties; full T&Cs on the quote) */
+  workmanshipGuaranteeDays: 30,
+} as const;
+
 export const VAT_NOTE = 'excl. VAT';
 
 /** 1495 → "R1,495". Manual grouping: Intl output can differ between Node and browsers (hydration). */
