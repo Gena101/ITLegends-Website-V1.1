@@ -15,23 +15,10 @@ import {
 } from 'lucide-react';
 import React from 'react';
 import { useState } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import ManagedITSupportPage from './pages/ManagedITSupport';
-import HardwareNetworkPage from './pages/HardwareNetwork';
-import CybersecurityPage from './pages/Cybersecurity';
-import CloudBackupPage from './pages/CloudBackup';
-import ServerMaintenancePage from './pages/ServerMaintenance';
-import HelpdeskPage from './pages/Helpdesk';
-import BlogPostPage from './pages/BlogPost';
-import FAQPage from './pages/FAQ';
 import Footer from './components/Footer';
-import BlogIndexPage from './pages/BlogIndexPage';
 import { blogPosts } from './data/blogPosts';
-import ITSupportRoodepoort from './pages/locations/ITSupportRoodepoort';
-import ITSupportCenturion from './pages/locations/ITSupportCenturion';
-import ITSupportMidrand from './pages/locations/ITSupportMidrand';
-import ITSupportSandton from './pages/locations/ITSupportSandton';
 
 // ✅ Image imports so Vite/Netlify can bundle them correctly
 import heroBg from './assets/hero.webp';
@@ -42,9 +29,6 @@ import contactBg from './assets/contact-bg.webp';
 import headerImg from './assets/header-img.webp';
 import heroLogoImg from './assets/hero-img.webp';
 import SeoHead from './components/SeoHead';
-import { CookieBanner } from './components/layout';
-import V2Preview from './pages/V2Preview';
-import PrivacyPolicyPage from './pages/PrivacyPolicy';
 
 const localBusinessSchema = {
   '@context': 'https://schema.org',
@@ -152,86 +136,10 @@ const homepageFAQSchema = {
   ],
 };
 
-function App() {
+/** v1 homepage, kept until Phase 1 Step 7 replaces it. Owns the v1 mobile-menu state. */
+export function V1HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  return (
-    <BrowserRouter>
-      <>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <HomePage
-                mobileMenuOpen={mobileMenuOpen}
-                setMobileMenuOpen={setMobileMenuOpen}
-              />
-            }
-          />
-          <Route
-            path="/services/managed-it-support"
-            element={<ManagedITSupportPage />}
-          />
-          <Route
-            path="/services/hardware-network"
-            element={<HardwareNetworkPage />}
-          />
-          <Route
-            path="/services/cybersecurity"
-            element={<CybersecurityPage />}
-          />
-          <Route 
-            path="/services/cloud-backup" 
-            element={<CloudBackupPage />}
-          />
-          <Route
-            path="/services/server-maintenance"
-            element={<ServerMaintenancePage />}
-          />
-          <Route
-            path="/services/helpdesk" 
-            element={<HelpdeskPage />} 
-          />
-          <Route
-            path="/blog" 
-            element={<BlogIndexPage />} 
-          />
-          <Route 
-            path="/blog/:slug" 
-            element={<BlogPostPage />} 
-          />
-          <Route
-            path="/faq"
-            element={<FAQPage />}
-          />
-          <Route
-            path="/it-support-roodepoort"
-            element={<ITSupportRoodepoort />}
-          />
-          <Route
-            path="/it-support-centurion"
-            element={<ITSupportCenturion />}
-          />
-          <Route
-            path="/it-support-midrand"
-            element={<ITSupportMidrand />}
-          />
-          <Route
-            path="/it-support-sandton"
-            element={<ITSupportSandton />}
-          />
-          <Route
-            path="/privacy-policy"
-            element={<PrivacyPolicyPage />}
-          />
-          <Route path="/v2-preview" element={<V2Preview />} />
-      </Routes>
-
-      {/* Cookie banner is rendered globally for all pages */}
-      <CookieBanner />
-    </>
-    </BrowserRouter>
-  );
+  return <HomePage mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />;
 }
 
 function HomePage({
@@ -1050,5 +958,3 @@ function Contact() {
     </section>
   );
 }
-
-export default App;
