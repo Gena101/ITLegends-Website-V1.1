@@ -14,8 +14,10 @@ import {
   onsite,
   plans,
   projectTerms,
+  softwarePricing,
   startingPrice,
   VAT_NOTE,
+  websitePricing,
 } from './pricing';
 import type { ServiceSlug } from './services';
 
@@ -118,10 +120,14 @@ const workmanshipGuarantee =
   'It covers faults in our workmanship, not damage caused after installation, for example when another contractor moves or cuts a cable. ' +
   'Full terms are in your quotation.';
 
+const basicWebsite = formatRand(websitePricing.basicPrice);
+const websiteManagement = formatRand(websitePricing.managementMonthly);
+const softwareSupport = formatRand(softwarePricing.supportMonthly);
+
 // ---------- Pages ----------
 
-// Partial until all 10 services are written; then change to Record so TypeScript enforces completeness.
-export const servicePages: Partial<Record<ServiceSlug, ServicePageContent>> = {
+// Record, not Partial: TypeScript fails the build if any service is missing its page content.
+export const servicePages: Record<ServiceSlug, ServicePageContent> = {
   'managed-it-support': {
     metaTitle: `Managed IT Support from ${fromPrice} per Device | IT Legends`,
     metaDescription:
@@ -728,8 +734,186 @@ export const servicePages: Partial<Record<ServiceSlug, ServicePageContent>> = {
     ],
     related: ['hardware-network', 'structured-cabling', 'managed-it-support'],
   },
+
+  // ---------- Digital ----------
+
+  'website-design': {
+    metaTitle: `Website Design & Development from ${basicWebsite} | IT Legends`,
+    metaDescription:
+      `Hand-coded, fast, mobile-friendly websites from ${basicWebsite} ${VAT_NOTE}: up to ${websitePricing.basicMaxPages} pages, contact form, WhatsApp and Google Maps. ` +
+      'Fixed price, live in about a month.',
+    headline: 'Website design and development',
+    intro:
+      'IT Legends designs and hand-codes fast, mobile-friendly websites for businesses in South Africa and abroad. ' +
+      `A basic website starts at ${basicWebsite} (${VAT_NOTE}) for up to ${countWord(websitePricing.basicMaxPages)} pages with a contact form, ` +
+      'WhatsApp button, Google Maps and basic on-page SEO, at a fixed price agreed upfront and usually live in about a month.',
+    included: [
+      {
+        title: `Up to ${countWord(websitePricing.basicMaxPages)} pages`,
+        text: `The basic website covers up to ${countWord(websitePricing.basicMaxPages)} pages or sections, such as home, services, about and contact.`,
+      },
+      {
+        title: 'Hand-coded, fast and mobile-friendly',
+        text: 'No page builders or heavy templates: every site is hand-coded, so it loads quickly and works on any screen size.',
+      },
+      {
+        title: 'Contact form, WhatsApp and Google Maps',
+        text: 'Visitors can send an enquiry, message you on WhatsApp or find your office in one tap.',
+      },
+      {
+        title: 'Basic on-page SEO',
+        text: 'Page titles, descriptions, headings and a clean page structure, so search engines understand what your business does.',
+      },
+      {
+        title: `${websitePricing.revisionRounds} rounds of revisions`,
+        text: `You review the design and request changes in up to ${countWord(websitePricing.revisionRounds)} rounds before signing it off.`,
+      },
+      {
+        title: 'One fixed price',
+        text: 'Every website is quoted at a fixed project price agreed upfront, not billed by the hour.',
+      },
+    ],
+    process: [
+      {
+        title: 'Brief and quote',
+        text: 'We agree what your website needs and quote a fixed price before any work starts.',
+      },
+      {
+        title: 'Design',
+        text: `We design the look and layout, with up to ${countWord(websitePricing.revisionRounds)} rounds of revisions until you sign it off.`,
+      },
+      {
+        title: 'Build',
+        text: 'We hand-code the site with your content, forms and basic on-page SEO, and test it on phones and computers.',
+      },
+      {
+        title: 'Launch',
+        text: 'We put your website live. With website management, we keep it hosted, monitored and backed up from then on.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'How much does a website cost?',
+        answer:
+          `A basic website costs ${basicWebsite} (${VAT_NOTE}) for up to ${countWord(websitePricing.basicMaxPages)} pages or sections, ` +
+          'with a contact form, WhatsApp button, Google Maps and basic on-page SEO. ' +
+          'Larger websites and online stores are quoted per project, always at a fixed price agreed upfront.',
+      },
+      {
+        question: 'How long does it take to build a website?',
+        answer:
+          'A basic website usually takes about a month. The timeline depends on how quickly you send feedback and sign off the final design.',
+      },
+      {
+        question: 'Are domain and hosting included?',
+        answer:
+          `Not in the website price. Website management at ${websiteManagement} per month (${VAT_NOTE}) includes your domain and hosting, ` +
+          'website monitoring, backups and bug fixes on existing features. New features are quoted separately.',
+      },
+      {
+        question: 'What do I need to provide for my website?',
+        answer:
+          'The text, photos and logo for your pages. We turn them into a designed, hand-coded website. ' +
+          'Online stores and extra features are quoted separately.',
+      },
+      {
+        question: 'Do you build online stores and larger websites?',
+        answer: 'Yes. E-commerce and larger websites are quoted per project at a fixed price agreed upfront.',
+      },
+    ],
+    related: ['custom-software', 'managed-it-support'],
+    areaServed: ['South Africa'],
+  },
+
+  'custom-software': {
+    metaTitle: 'Custom Software Development in South Africa | IT Legends',
+    metaDescription:
+      'Bespoke web apps, client portals, internal systems, dashboards and mobile apps, built with React, TypeScript and Supabase. Fixed price, and you own the code.',
+    headline: 'Custom software development',
+    intro:
+      'IT Legends builds custom software around how your business works: web apps, client portals, internal business systems, dashboards and mobile apps, ' +
+      'for clients in South Africa and abroad. We scope each project with you, quote a fixed price and deliver in milestones, ' +
+      'using React, TypeScript and Supabase. Once the project is paid, you own the code and your data.',
+    included: [
+      {
+        title: 'Web apps and client portals',
+        text: 'Browser-based systems your team and your clients can use from anywhere, on any device.',
+      },
+      {
+        title: 'Internal business systems',
+        text: 'Job cards, workshop management, field service and asset tracking, built around the way your business already works.',
+      },
+      {
+        title: 'Dashboards and reporting',
+        text: 'Your data in one place, with the reports and PDFs your business needs.',
+      },
+      {
+        title: 'Mobile apps',
+        text: 'Apps for staff in the field or for your customers, connected to the same system as your office.',
+      },
+      {
+        title: 'A modern, proven stack',
+        text: 'React and TypeScript on the front end, Supabase and PostgreSQL behind it: fast, secure and easy to extend.',
+      },
+      {
+        title: 'You own it',
+        text: 'Once the project is paid in full, the code and your data belong to you.',
+      },
+    ],
+    process: [
+      {
+        title: 'Discovery and scoping',
+        text: 'We map out your processes, users and requirements, and agree exactly what will be built.',
+      },
+      {
+        title: 'Fixed-price quote',
+        text: `You get a fixed price for the agreed scope. A ${softwarePricing.depositPercent}% deposit starts the build.`,
+      },
+      {
+        title: 'Build in milestones',
+        text: 'You see working software at each milestone and give feedback as the project progresses.',
+      },
+      {
+        title: 'Launch and support',
+        text: 'We launch the system and, with monthly support, keep it running and fix any bugs.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'How much does custom software cost?',
+        answer:
+          'Every project is scoped with you first and then quoted at a fixed price for the agreed scope, not billed by the hour. ' +
+          `A ${softwarePricing.depositPercent}% deposit starts the build.`,
+      },
+      {
+        question: 'Who owns the code IT Legends builds?',
+        answer: 'You do. Once the project is paid in full, the code and all your data belong to your business.',
+      },
+      {
+        question: 'Which technologies does IT Legends use?',
+        answer:
+          'We build with React and TypeScript, with Supabase and PostgreSQL for the database, authentication and storage. ' +
+          'It’s a modern, widely used stack, so your system is fast, secure and easy to extend.',
+      },
+      {
+        question: 'Do you support software after launch?',
+        answer:
+          `Yes. Monthly support costs ${softwareSupport} (${VAT_NOTE}) and covers bug fixes on live features plus ` +
+          `${countWord(softwarePricing.supportRevisionsPerMonth)} small revisions a month, such as wording or colour changes. ` +
+          'Changes to how a feature works, and new features, are quoted separately as projects.',
+      },
+      {
+        question: 'What kind of software has IT Legends built?',
+        answer:
+          'Business systems such as job-card and workshop management, field service and asset tracking. ' +
+          'Our own SiteNexus app, used daily by IT Legends technicians, manages clients, sites and assets, times jobs, prints QR asset labels and produces PDF site reports.',
+      },
+    ],
+    related: ['website-design', 'managed-it-support'],
+    areaServed: ['South Africa'],
+  },
 };
 
-export function getServicePage(slug: ServiceSlug): ServicePageContent | undefined {
+export function getServicePage(slug: ServiceSlug): ServicePageContent {
   return servicePages[slug];
 }

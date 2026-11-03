@@ -54,6 +54,27 @@ export const projectTerms = {
   workmanshipGuaranteeDays: 30,
 } as const;
 
+/** Website design & development: fixed project prices agreed upfront */
+export const websitePricing = {
+  /** Basic website, excl. VAT */
+  basicPrice: 6500,
+  basicMaxPages: 6,
+  /** Rounds of design revisions included */
+  revisionRounds: 3,
+  /** Monthly website management, excl. VAT: domain, hosting, monitoring, backups, bug fixes on existing features */
+  managementMonthly: 600,
+} as const;
+
+/** Custom software: fixed price after scoping */
+export const softwarePricing = {
+  /** Deposit to start a project, as % of the fixed price */
+  depositPercent: 50,
+  /** Monthly support, excl. VAT: bug fixes on live features plus small revisions */
+  supportMonthly: 850,
+  /** Small revisions (wording, colours; no change to how a feature works) included per month */
+  supportRevisionsPerMonth: 2,
+} as const;
+
 export const VAT_NOTE = 'excl. VAT';
 
 /** 1495 → "R1,495". Manual grouping: Intl output can differ between Node and browsers (hydration). */
