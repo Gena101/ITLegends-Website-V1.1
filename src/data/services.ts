@@ -62,7 +62,7 @@ export const services: Service[] = [
     slug: 'helpdesk',
     pillar: 'managed-it',
     name: 'Helpdesk & Remote Assistance',
-    summary: 'Remote help for everyday IT problems, logged and tracked through our helpdesk.',
+    summary: 'Remote help for everyday IT problems, by phone, email or WhatsApp.',
   },
   {
     slug: 'cybersecurity',
