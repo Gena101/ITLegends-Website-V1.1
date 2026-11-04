@@ -253,3 +253,26 @@ export function offerCatalogSchema({
     },
   };
 }
+
+export interface WebPageSchemaInput {
+  path: string;
+  name: string;
+  description: string;
+}
+
+/** ContactPage about the Organization (whose branches are in the global graph) */
+export function contactPageSchema({ path, name, description }: WebPageSchemaInput): JsonLd {
+  const url = absoluteUrl(path);
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    '@id': `${url}#webpage`,
+    url,
+    name,
+    description,
+    inLanguage: 'en-ZA',
+    isPartOf: { '@id': schemaIds.website },
+    about: { '@id': schemaIds.organization },
+    mainEntity: { '@id': schemaIds.organization },
+  };
+}

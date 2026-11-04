@@ -42,8 +42,7 @@ export const primaryNav: PrimaryNavItem[] = [
   { kind: 'link', label: 'Blog', href: '/blog' },
 ];
 
-// TODO Phase 3: switch to '/contact' once the contact page exists
-export const primaryCta: NavLink = { label: 'Contact us', href: '/#contact' };
+export const primaryCta: NavLink = { label: 'Contact us', href: '/contact' };
 
 export const footerNav = {
   services: serviceGroups,

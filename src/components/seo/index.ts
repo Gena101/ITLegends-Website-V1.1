@@ -4,6 +4,7 @@ export { GlobalSchema } from './GlobalSchema';
 export { absoluteUrl, normalizePath } from './url';
 export {
   breadcrumbSchema,
+  contactPageSchema,
   faqSchema,
   itemListSchema,
   offerCatalogSchema,
@@ -19,4 +20,5 @@ export type {
   OfferCatalogSchemaInput,
   OfferPrice,
   ServiceSchemaInput,
+  WebPageSchemaInput,
 } from './schema';
