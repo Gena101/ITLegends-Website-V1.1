@@ -457,7 +457,7 @@ export const servicePages: Record<ServiceSlug, ServicePageContent> = {
         answer:
           `Device and server backup is ${formatRand(cloudBackup.pricePerDevice)} per device per month, with ${cloudBackup.includedStorageGbPerDevice} GB per device pooled across your site. ` +
           `Microsoft 365 and Google Workspace backup is ${formatRand(workspaceBackup.pricePerUser)} per user per month. ` +
-          `Both are add-ons to any managed IT plan, ${VAT_NOTE}.`,
+          `Both are available on their own or as add-ons to any managed IT plan, all ${VAT_NOTE}.`,
       },
       {
         question: 'Can you keep a local backup as well as the cloud copy?',

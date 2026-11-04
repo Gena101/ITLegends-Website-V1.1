@@ -268,7 +268,7 @@ export default function Pricing() {
           <SectionHeading
             id="addons-title"
             title="Add-ons"
-            intro={`Available on any plan unless stated, ${VAT_NOTE}.`}
+            intro={`Available on any plan unless stated, ${VAT_NOTE}. Cloud backup and Microsoft 365 / Google Workspace backup can also be taken on their own, without a managed IT plan.`}
           />
         </Reveal>
         <Reveal>

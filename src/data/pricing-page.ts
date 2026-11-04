@@ -98,7 +98,7 @@ export const pricingFaqs: FaqItem[] = [
   {
     question: 'Is backup included in the plans?',
     answer:
-      `No, backup is an add-on on any plan. Device and server backup is ${deviceBackup} per device per month, with ` +
+      `No. Backup is an add-on to any plan, or you can take it on its own without a managed IT plan. Device and server backup is ${deviceBackup} per device per month, with ` +
       `${cloudBackup.includedStorageGbPerDevice} GB per device pooled across your site. Microsoft 365 and Google Workspace backup is ` +
       `${userBackup} per user per month. You choose which devices and users to back up.`,
   },
