@@ -185,3 +185,71 @@ export function itemListSchema(name: string, items: BreadcrumbItem[]): JsonLd {
     })),
   };
 }
+
+export interface OfferPrice {
+  price: number;
+  /** e.g. "per device per month" */
+  unitText: string;
+}
+
+export interface CatalogOffer {
+  name: string;
+  description: string;
+  prices: OfferPrice[];
+}
+
+export interface OfferCatalogSchemaInput {
+  /** The service the offers belong to; reuses that service page's @id so both pages describe one entity */
+  serviceName: string;
+  servicePath: string;
+  catalogName: string;
+  /** Page that lists the offers (e.g. /pricing) */
+  pagePath: string;
+  offers: CatalogOffer[];
+  areaServed?: string[];
+}
+
+/** Service with an OfferCatalog of priced plans. Prices excl. VAT. No ratings or reviews. */
+export function offerCatalogSchema({
+  serviceName,
+  servicePath,
+  catalogName,
+  pagePath,
+  offers,
+  areaServed = ['Gauteng'],
+}: OfferCatalogSchemaInput): JsonLd {
+  const serviceUrl = absoluteUrl(servicePath);
+  const pageUrl = absoluteUrl(pagePath);
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${serviceUrl}#service`,
+    name: serviceName,
+    serviceType: serviceName,
+    url: serviceUrl,
+    provider: { '@id': schemaIds.organization },
+    areaServed: areaServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: catalogName,
+      url: pageUrl,
+      itemListElement: offers.map((offer) => ({
+        '@type': 'Offer',
+        name: offer.name,
+        description: offer.description,
+        url: pageUrl,
+        price: offer.prices[0]?.price,
+        priceCurrency: 'ZAR',
+        seller: { '@id': schemaIds.organization },
+        priceSpecification: offer.prices.map((p) => ({
+          '@type': 'UnitPriceSpecification',
+          price: p.price,
+          priceCurrency: 'ZAR',
+          valueAddedTaxIncluded: false,
+          unitText: p.unitText,
+        })),
+      })),
+    },
+  };
+}

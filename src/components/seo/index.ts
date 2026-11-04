@@ -6,9 +6,17 @@ export {
   breadcrumbSchema,
   faqSchema,
   itemListSchema,
+  offerCatalogSchema,
   serviceSchema,
   globalSchemaGraph,
   serializeJsonLd,
   schemaIds,
 } from './schema';
-export type { JsonLd, BreadcrumbItem, ServiceSchemaInput } from './schema';
+export type {
+  JsonLd,
+  BreadcrumbItem,
+  CatalogOffer,
+  OfferCatalogSchemaInput,
+  OfferPrice,
+  ServiceSchemaInput,
+} from './schema';

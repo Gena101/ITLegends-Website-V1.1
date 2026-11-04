@@ -43,7 +43,6 @@ const from = (first: PlanId): Record<PlanId, FeatureValue> => {
 const visits = (id: PlanId) => `${countWord(getPlan(id).onsiteVisitsPerMonth)} a month`;
 const complete = getPlan('complete');
 if (!complete.pricePerServer) throw new Error('Complete Care needs pricePerServer in pricing.ts');
-const webrootAddOn = `Webroot, ${formatRand(planAddOns.webroot.pricePerDevice)} per device a month`;
 const drAddOn = `${formatRand(planAddOns.disasterRecoveryPlan.onceOff)} once-off`;
 
 export const planFeatures: PlanFeature[] = [
@@ -128,21 +127,15 @@ export const planFeatures: PlanFeature[] = [
   },
 
   // Security
-  {
+   {
     id: 'endpoint-protection',
     group: 'security',
     label: 'Endpoint protection',
     values: {
-      essential: detail('Microsoft Defender, configured and monitored'),
+      essential: detail('Microsoft Defender, configured and monitored (Webroot available as an add-on)'),
       managed: detail('Webroot'),
       complete: detail('Webroot'),
     },
-  },
-  {
-    id: 'webroot-addon',
-    group: 'security',
-    label: 'Webroot on Essential Care',
-    values: { essential: addOn(webrootAddOn), managed: no, complete: no },
   },
   {
     id: 'mfa',
@@ -231,7 +224,8 @@ export function planCardItems(id: PlanId): string[] {
 
 /** Always quoted separately, on every plan */
 export const notIncluded: string[] = [
-  'Hardware and software licences (we can supply them, quoted separately)',
+  'Hardware',
+  'Software licences',
   'Installation and development projects',
-  'Printer servicing and maintenance',
+  'Printer servicing',
 ];

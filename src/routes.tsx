@@ -37,6 +37,8 @@ export const appRoutes: AppRoute[] = [
     page: 'ServicePage',
     prerenderPaths: async () => services.map((s) => servicePath(s.slug)),
   },
+    // Company
+  { path: '/pricing', page: 'Pricing' },
 
   // Locations (v1 pages until Phase 4)
   { path: '/it-support-roodepoort', page: 'locations/ITSupportRoodepoort' },
