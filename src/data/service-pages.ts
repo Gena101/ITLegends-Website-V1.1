@@ -7,6 +7,7 @@
 import { company } from './company';
 import type { FaqItem } from './faqs';
 import {
+  cloudBackup,
   contractTerms,
   formatRand,
   getPlan,
@@ -18,6 +19,7 @@ import {
   startingPrice,
   VAT_NOTE,
   websitePricing,
+  workspaceBackup,
 } from './pricing';
 import type { ServiceSlug } from './services';
 import { countWord, joinList } from '../lib/text';
@@ -449,6 +451,13 @@ export const servicePages: Record<ServiceSlug, ServicePageContent> = {
         question: 'How often are backups taken?',
         answer:
           'At least once a day, automatically. Files that change constantly can be backed up more often, close to real time, so you lose as little work as possible.',
+      },
+      {
+        question: 'How much does cloud backup cost?',
+        answer:
+          `Device and server backup is ${formatRand(cloudBackup.pricePerDevice)} per device per month, with ${cloudBackup.includedStorageGbPerDevice} GB per device pooled across your site. ` +
+          `Microsoft 365 and Google Workspace backup is ${formatRand(workspaceBackup.pricePerUser)} per user per month. ` +
+          `Both are add-ons to any managed IT plan, ${VAT_NOTE}.`,
       },
       {
         question: 'Can you keep a local backup as well as the cloud copy?',

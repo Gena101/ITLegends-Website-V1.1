@@ -80,6 +80,13 @@ function ServiceView({ service }: { service: Service }) {
                   {company.phone.display}
                 </Button>
               </div>
+              {service.pillar === 'managed-it' && (
+                <p className="mt-6 text-sm">
+                  <Link to="/pricing" className="font-semibold text-itblue-soft transition-colors hover:text-white">
+                    Compare managed IT plans and pricing
+                  </Link>
+                </p>
+              )}
             </div>
 
             {/* Decorative animated art (desktop only) */}
