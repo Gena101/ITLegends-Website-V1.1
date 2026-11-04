@@ -1,8 +1,10 @@
 // src/pages/ServicePage.tsx
 // Data-driven template for all 10 service pages (/services/:slug).
 // Content: src/data/services.ts (name, pillar, summary) + src/data/service-pages.ts (page content).
+import type { ComponentType } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Phone } from 'lucide-react';
+import { CablingArt } from '../components/art/CablingArt';
 import { ServiceIcon } from '../components/icons';
 import { Layout } from '../components/layout';
 import { ContactSection, FaqList, ProcessSteps } from '../components/sections';
@@ -10,13 +12,18 @@ import { breadcrumbSchema, faqSchema, SeoHead, serviceSchema } from '../componen
 import { Badge, Breadcrumbs, Button, Card, Container, Reveal, Section, SectionHeading, cn } from '../components/ui';
 import { company } from '../data/company';
 import { getServicePage } from '../data/service-pages';
-import { getService, pillars, servicePath, type PillarId, type Service } from '../data/services';
+import { getService, pillars, servicePath, type PillarId, type Service, type ServiceSlug } from '../data/services';
 import NotFound from './NotFound';
 
 const heroCta: Record<PillarId, string> = {
   'managed-it': 'Book an IT assessment',
   infrastructure: 'Book a site visit',
   digital: 'Request a quote',
+};
+
+/** Services with custom hero art; the rest show their icon tile */
+const heroArt: Partial<Record<ServiceSlug, ComponentType>> = {
+  'structured-cabling': CablingArt,
 };
 
 export default function ServicePage() {
@@ -33,6 +40,7 @@ function ServiceView({ service }: { service: Service }) {
   const path = servicePath(service.slug);
   const digital = service.pillar === 'digital';
   const accentText = digital ? 'text-itred-soft' : 'text-itblue-soft';
+  const HeroArt = heroArt[service.slug];
 
   const crumbs = [
     { name: 'Home', path: '/' },
@@ -82,17 +90,21 @@ function ServiceView({ service }: { service: Service }) {
               </div>
             </div>
 
-            {/* Decorative icon tile (desktop only) */}
+            {/* Decorative art (desktop only): custom art where defined, otherwise the icon tile */}
             <div aria-hidden="true" className="hidden lg:col-span-4 lg:flex lg:justify-end">
-              <div className="glass relative flex h-60 w-60 items-center justify-center rounded-panel">
-                <div
-                  className={cn(
-                    'absolute inset-0 rounded-panel bg-gradient-to-br to-transparent',
-                    digital ? 'from-itred/25' : 'from-itblue/25',
-                  )}
-                />
-                <ServiceIcon slug={service.slug} strokeWidth={1} className={cn('relative h-28 w-28', accentText)} />
-              </div>
+              {HeroArt ? (
+                <HeroArt />
+              ) : (
+                <div className="glass relative flex h-60 w-60 items-center justify-center rounded-panel">
+                  <div
+                    className={cn(
+                      'absolute inset-0 rounded-panel bg-gradient-to-br to-transparent',
+                      digital ? 'from-itred/25' : 'from-itblue/25',
+                    )}
+                  />
+                  <ServiceIcon slug={service.slug} strokeWidth={1} className={cn('relative h-28 w-28', accentText)} />
+                </div>
+              )}
             </div>
           </div>
         </Container>

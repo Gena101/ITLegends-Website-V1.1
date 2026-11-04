@@ -105,6 +105,44 @@
   }
 }
 
+/* Structured Cabling hero art (CablingArt): cables drawn once on load, desktop only */
+@keyframes cable-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes cable-node {
+  to {
+    opacity: 1;
+  }
+}
+
+.cable-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: cable-draw 2.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.cable-node {
+  opacity: 0.25;
+  animation: cable-node 0.5s ease-out forwards;
+}
+
+/* The global kill-switch shortens durations but not delays: show the finished drawing at once */
+@media (prefers-reduced-motion: reduce) {
+  .cable-draw {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+
+  .cable-node {
+    opacity: 1;
+    animation: none;
+  }
+}
+
 /* =====================================================
    LEGACY v1: used by App.tsx and the v1 pages.
    Delete this whole block once the last v1 page is rebuilt (Phase 5).
