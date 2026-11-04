@@ -9,6 +9,7 @@ import { preloadRoute } from './routes';
 // Self-hosted variable fonts; the browser downloads only the Latin subsets it needs
 import '@fontsource-variable/inter';
 import '@fontsource-variable/space-grotesk';
+import './font-fallbacks.css';
 import './index.css';
 
 const container = document.getElementById('root') as HTMLElement;

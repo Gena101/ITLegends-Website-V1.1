@@ -7,8 +7,13 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Inter Variable"', ...defaultTheme.fontFamily.sans],
-        display: ['"Space Grotesk Variable"', '"Inter Variable"', ...defaultTheme.fontFamily.sans],
+        sans: ['"Inter Variable"', '"Inter Fallback Arial"', '"Inter Fallback Roboto"', ...defaultTheme.fontFamily.sans],
+        display: [
+          '"Space Grotesk Variable"',
+          '"Space Grotesk Fallback Arial"',
+          '"Space Grotesk Fallback Roboto"',
+          ...defaultTheme.fontFamily.sans,
+        ],
       },
 
       colors: {
