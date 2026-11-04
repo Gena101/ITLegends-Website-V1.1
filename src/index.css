@@ -105,39 +105,53 @@
   }
 }
 
-/* Structured Cabling hero art (CablingArt): cables drawn once on load, desktop only */
-@keyframes cable-draw {
+/* Service hero art (ServiceArt): drawn once on load, desktop only */
+@keyframes art-draw {
+  from {
+    stroke-dashoffset: 1;
+    opacity: 0;
+  }
+  1% {
+    opacity: 1;
+  }
   to {
     stroke-dashoffset: 0;
+    opacity: 1;
   }
 }
 
-@keyframes cable-node {
+@keyframes art-show {
   to {
     opacity: 1;
   }
 }
 
-.cable-draw {
+/* `both`: hidden during its delay (no round-cap dot), finished state kept afterwards */
+.art-draw {
   stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: cable-draw 2.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  animation: art-draw 2.4s cubic-bezier(0.65, 0, 0.35, 1) both;
 }
 
-.cable-node {
+.art-fade {
+  opacity: 0;
+  animation: art-show 0.5s ease-out forwards;
+}
+
+.art-node {
   opacity: 0.25;
-  animation: cable-node 0.5s ease-out forwards;
+  animation: art-show 0.5s ease-out forwards;
 }
 
-/* The global kill-switch shortens durations but not delays: show the finished drawing at once */
+/* The global kill-switch shortens durations but not delays: show the finished scene at once */
 @media (prefers-reduced-motion: reduce) {
-  .cable-draw {
+  .art-draw {
     stroke-dasharray: none;
-    stroke-dashoffset: 0;
+    opacity: 1;
     animation: none;
   }
 
-  .cable-node {
+  .art-fade,
+  .art-node {
     opacity: 1;
     animation: none;
   }
