@@ -50,10 +50,10 @@ export const planAddOns = {
 export const cloudBackup = {
   /** Per backed-up device (PC, laptop or server) per month, excl. VAT */
   pricePerDevice: 249,
-  /** Storage included, pooled across the client's site */
-  includedStorageTb: 1,
+  /** Storage included per backed-up device, pooled across the client's site (4 devices = 1,000 GB) */
+  includedStorageGbPerDevice: 250,
   /** Storage beyond the pool, Rand per GB per month, excl. VAT (also applies to extra data from longer retention) */
-  overagePerGb: 0.4,
+  overagePerGb: 0.5,
   /** Retention included in the price */
   includedRetentionDays: 30,
   /** Longer retention, per site per month, excl. VAT */
@@ -63,6 +63,20 @@ export const cloudBackup = {
     { days: 180, pricePerSite: 1400 },
     { days: 365, pricePerSite: 2900 },
   ],
+} as const;
+
+/**
+ * Microsoft 365 / Google Workspace backup add-on, per user, available on any plan.
+ * Covers mail, OneDrive or Drive, calendars and contacts.
+ * SharePoint, Teams and shared drives need a per-tenant licence: quoted.
+ */
+export const workspaceBackup = {
+  /** Per backed-up user per month, excl. VAT */
+  pricePerUser: 99,
+  /** Storage included per user, pooled across the client's tenant; beyond it, cloudBackup.overagePerGb */
+  includedStorageGbPerUser: 50,
+  /** Retention included (longer than Microsoft's and Google's own recycle bins) */
+  includedRetentionDays: 365,
 } as const;
 
 /** From first contact to live support */
