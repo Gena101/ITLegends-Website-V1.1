@@ -20,6 +20,8 @@ import {
   websitePricing,
 } from './pricing';
 import type { ServiceSlug } from './services';
+import { countWord, joinList } from '../lib/text';
+import { managedOnboarding } from './onboarding';
 
 export interface ContentItem {
   title: string;
@@ -56,17 +58,6 @@ const fromPrice = formatRand(startingPrice);
 const callout = formatRand(onsite.calloutFee);
 const { standardResponse, criticalResponse, criticalAfterHours } = company.support;
 
-const COUNT_WORDS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
-function countWord(n: number): string {
-  return COUNT_WORDS[n] ?? String(n);
-}
-
-/** ["a","b","c"] → "a, b and c" */
-function joinList(items: string[]): string {
-  if (items.length < 2) return items.join('');
-  return `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`;
-}
-
 /** "Essential Care includes one on-site visit a month; Managed Care and Complete Care include two" */
 const onsiteVisits = (() => {
   const groups = new Map<number, string[]>();
@@ -88,30 +79,6 @@ const planPrices = joinList(plans.map((p) => `${p.name} ${formatRand(p.pricePerD
 const extraVisits =
   `Additional visits cost ${callout} per call-out (${VAT_NOTE}) within ${onsite.radiusKm} km of either branch, ` +
   'including the first hour of labour, and travel beyond that is charged per kilometre.';
-
-/** Onboarding for every Managed IT service */
-const managedOnboarding: ContentItem[] = [
-  {
-    title: 'Book a free IT assessment',
-    text: `We agree a date to visit your office. The assessment is free within ${onboarding.freeAssessmentRadiusKm} km of either branch.`,
-  },
-  {
-    title: 'Get your assessment report',
-    text:
-      `We assess your current IT setup and send you a written report within ${countWord(onboarding.reportBusinessDays)} business days. ` +
-      'The report is yours to keep, whether or not you sign up.',
-  },
-  {
-    title: 'Choose your plan',
-    text: 'We talk you through the findings, recommend the plan that fits your business and send a formal quotation.',
-  },
-  {
-    title: 'Go live',
-    text:
-      `Once you accept, we sign a service level agreement (SLA) and install our management agents on your devices within ${countWord(onboarding.deploymentBusinessDays)} business days. ` +
-      'Support is active once the SLA is signed, the agents are installed and the first payment is received.',
-  },
-];
 
 const freeSiteVisit = `free within ${projectTerms.freeSiteVisitRadiusKm} km of either branch`;
 

@@ -1,23 +1,19 @@
 // src/pages/Home.tsx
 import { Link } from 'react-router-dom';
-import { CalendarDays, Clock, Code2, Mail, MapPin, MessageCircle, Phone, Wallet } from 'lucide-react';
+import { CalendarDays, Clock, Code2, MapPin, Phone, Wallet } from 'lucide-react';
 import { Layout } from '../components/layout';
 import { faqSchema, SeoHead } from '../components/seo';
-import { ContactForm, FaqList, ServiceGrid } from '../components/sections';
+import { ContactSection, FaqList, ProcessSteps, ServiceGrid } from '../components/sections';
 import { HeroBackdrop } from '../components/three';
 import { Button, Container, Reveal, Section, SectionHeading } from '../components/ui';
-import { branches, company, formatHours, openingHours } from '../data/company';
+import { branches, company } from '../data/company';
 import { homeFaqs } from '../data/faqs';
 import { industries, industryPath } from '../data/industries';
 import { primaryCta } from '../data/navigation';
+import { managedOnboarding } from '../data/onboarding';
 import { formatRand, startingPrice, VAT_NOTE } from '../data/pricing';
 import { services } from '../data/services';
-
-/** ["a","b","c"] → "a, b and c" */
-function joinList(items: string[]): string {
-  if (items.length < 2) return items.join('');
-  return `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`;
-}
+import { joinList } from '../lib/text';
 
 const branchTowns = joinList(branches.map((b) => b.address.locality));
 const fromPrice = formatRand(startingPrice);
@@ -57,27 +53,6 @@ const reasons = [
     text: 'The team that runs your IT can also build your website or custom software, quoted at a fixed project price.',
   },
 ];
-
-const steps = [
-  {
-    title: 'Talk to us',
-    text: 'Call, WhatsApp or send a message. Tell us how many people and devices you have and what is getting in the way.',
-  },
-  {
-    title: 'We review your setup',
-    text: 'We look at your devices, network, backups and security to find the risks and gaps.',
-  },
-  {
-    title: 'You get a clear proposal',
-    text: 'A recommended plan with a monthly price per device, and any once-off work quoted upfront.',
-  },
-  {
-    title: 'Onboarding and support',
-    text: 'We document your environment, set up protection and monitoring, and give your team one place to log support requests.',
-  },
-];
-
-const contactLinkClass = 'inline-flex items-center gap-3 text-fg transition-colors hover:text-white';
 
 export default function Home() {
   return (
@@ -146,28 +121,12 @@ export default function Home() {
         </p>
       </Section>
 
-      <Section backdrop="grid" divider labelledBy="process-title">
-        <Reveal>
-          <SectionHeading
-            id="process-title"
-            title="How getting started works"
-            intro="Four steps from the first conversation to your team being supported."
-          />
-        </Reveal>
-        <ol className="relative mt-14 grid gap-10 md:grid-cols-4 md:gap-6 md:before:absolute md:before:inset-x-0 md:before:top-5 md:before:h-px md:before:bg-gradient-to-r md:before:from-itblue/60 md:before:via-itblue/30 md:before:to-itred/50">
-          {steps.map((step, i) => (
-            <li key={step.title} className="relative">
-              <Reveal delay={i * 0.1}>
-                <span className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-itblue/50 bg-ink-950 font-display text-sm font-semibold tabular-nums text-white">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <h3 className="mt-5 text-lg font-semibold">{step.title}</h3>
-                <p className="mt-2 text-sm text-fg-muted">{step.text}</p>
-              </Reveal>
-            </li>
-          ))}
-        </ol>
-      </Section>
+      <ProcessSteps
+        id="process"
+        title="How getting started works"
+        intro="Four steps from the first conversation to your team being supported."
+        steps={managedOnboarding}
+      />
 
       <Section tone="raised" divider labelledBy="industries-title">
         <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
@@ -212,50 +171,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section id="contact" tone="raised" divider labelledBy="contact-title">
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <SectionHeading
-              id="contact-title"
-              title="Tell us what's going on with your IT"
-              intro={`Send a message and we'll respond ${company.support.standardResponse}. Prefer to talk? Call or WhatsApp us.`}
-            />
-            <ul className="mt-8 space-y-4">
-              <li>
-                <a href={company.phone.href} className={contactLinkClass}>
-                  <Phone aria-hidden="true" className="h-5 w-5 text-itblue-soft" />
-                  {company.phone.display}
-                </a>
-              </li>
-              <li>
-                <a href={company.whatsapp} target="_blank" rel="noopener noreferrer" className={contactLinkClass}>
-                  <MessageCircle aria-hidden="true" className="h-5 w-5 text-itblue-soft" />
-                  WhatsApp {company.phone.display}
-                </a>
-              </li>
-              <li>
-                <a href={`mailto:${company.email}`} className={contactLinkClass}>
-                  <Mail aria-hidden="true" className="h-5 w-5 text-itblue-soft" />
-                  {company.email}
-                </a>
-              </li>
-            </ul>
-            <div className="mt-10 border-t border-white/10 pt-8">
-              <h3 className="text-base font-semibold">Opening hours</h3>
-              <dl className="mt-4 grid max-w-xs grid-cols-[auto_1fr] gap-x-8 gap-y-1.5 text-sm">
-                {openingHours.map((h) => (
-                  <div key={h.label} className="contents">
-                    <dt className="text-fg-subtle">{h.label}</dt>
-                    <dd className="tabular-nums text-fg-muted">{formatHours(h)}</dd>
-                  </div>
-                ))}
-              </dl>
-              <p className="mt-4 text-sm text-fg-muted">Branches in {branchTowns}.</p>
-            </div>
-          </div>
-          <ContactForm className="lg:col-span-7" />
-        </div>
-      </Section>
+      <ContactSection title="Tell us what's going on with your IT" />
     </Layout>
   );
 }

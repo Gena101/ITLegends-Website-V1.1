@@ -170,3 +170,18 @@ export function serviceSchema({ name, description, path, areaServed = ['Gauteng'
     areaServed: areaServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
   };
 }
+
+/** A list of pages (e.g. the services hub). Items use the same shape as breadcrumbs. */
+export function itemListSchema(name: string, items: BreadcrumbItem[]): JsonLd {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name,
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      url: absoluteUrl(item.path),
+    })),
+  };
+}

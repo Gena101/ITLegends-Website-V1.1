@@ -5,6 +5,7 @@ export { absoluteUrl, normalizePath } from './url';
 export {
   breadcrumbSchema,
   faqSchema,
+  itemListSchema,
   serviceSchema,
   globalSchemaGraph,
   serializeJsonLd,

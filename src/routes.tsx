@@ -7,17 +7,7 @@ import { Route, Routes, matchRoutes } from 'react-router-dom';
 
 // NotFound stays in the main bundle: it must render for any unknown URL without a network round trip
 import NotFound from './pages/NotFound';
-import { servicePath, services, type ServiceSlug } from './data/services';
-
-/** v1 pages still own these URLs until Phase 2.4b replaces them */
-const V1_SERVICE_PAGES = new Set<ServiceSlug>([
-  'managed-it-support',
-  'helpdesk',
-  'cybersecurity',
-  'cloud-backup',
-  'server-maintenance',
-  'hardware-network',
-]);
+import { servicePath, services } from './data/services';
 
 type PageModule = { default: ComponentType };
 
@@ -30,7 +20,7 @@ export interface AppRoute {
   page: string;
   /**
    * Required for dynamic paths (containing ":"): resolves every concrete URL to prerender.
-   * A function (with a dynamic import) so the data it reads stays out of the browser bundle.
+   * A function (with a dynamic import where needed) so heavy data stays out of the browser bundle.
    */
   prerenderPaths?: () => Promise<string[]>;
   /** false = prerender but leave out of sitemap.xml (noindex pages) */
@@ -40,19 +30,12 @@ export interface AppRoute {
 export const appRoutes: AppRoute[] = [
   { path: '/', page: 'Home' },
 
-  // Services (v1 pages until Phase 2)
-  { path: '/services/managed-it-support', page: 'ManagedITSupport' },
-  { path: '/services/helpdesk', page: 'Helpdesk' },
-  { path: '/services/cybersecurity', page: 'Cybersecurity' },
-  { path: '/services/cloud-backup', page: 'CloudBackup' },
-  { path: '/services/server-maintenance', page: 'ServerMaintenance' },
-  { path: '/services/hardware-network', page: 'HardwareNetwork' },
+  // Services: one hub + one data-driven template for all 10
+  { path: '/services', page: 'ServicesHub' },
   {
     path: '/services/:slug',
     page: 'ServicePage',
-    // 2.4a: only the 4 new services. Static v1 routes above outrank this one on their own URLs.
-    prerenderPaths: async () =>
-      services.filter((s) => !V1_SERVICE_PAGES.has(s.slug)).map((s) => servicePath(s.slug)),
+    prerenderPaths: async () => services.map((s) => servicePath(s.slug)),
   },
 
   // Locations (v1 pages until Phase 4)
