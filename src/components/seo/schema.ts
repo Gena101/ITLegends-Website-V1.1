@@ -260,12 +260,13 @@ export interface WebPageSchemaInput {
   description: string;
 }
 
-/** ContactPage about the Organization (whose branches are in the global graph) */
-export function contactPageSchema({ path, name, description }: WebPageSchemaInput): JsonLd {
+type WebPageType = 'WebPage' | 'AboutPage' | 'ContactPage';
+
+function webPageSchema(type: WebPageType, { path, name, description }: WebPageSchemaInput): JsonLd {
   const url = absoluteUrl(path);
   return {
     '@context': 'https://schema.org',
-    '@type': 'ContactPage',
+    '@type': type,
     '@id': `${url}#webpage`,
     url,
     name,
@@ -275,4 +276,14 @@ export function contactPageSchema({ path, name, description }: WebPageSchemaInpu
     about: { '@id': schemaIds.organization },
     mainEntity: { '@id': schemaIds.organization },
   };
+}
+
+/** ContactPage about the Organization (whose branches are in the global graph) */
+export function contactPageSchema(input: WebPageSchemaInput): JsonLd {
+  return webPageSchema('ContactPage', input);
+}
+
+/** AboutPage about the Organization */
+export function aboutPageSchema(input: WebPageSchemaInput): JsonLd {
+  return webPageSchema('AboutPage', input);
 }

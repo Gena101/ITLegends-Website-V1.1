@@ -498,7 +498,7 @@ export const servicePages: Record<ServiceSlug, ServicePageContent> = {
       },
       {
         title: 'Printers and VoIP phones',
-        text: 'Printers and VoIP phone systems connected to your network and set up for your team.',
+        text: 'Printers and VoIP phone systems, including 3CX, connected to your network and set up for your team.',
       },
       {
         title: 'UPS and surge protection',
@@ -540,7 +540,7 @@ export const servicePages: Record<ServiceSlug, ServicePageContent> = {
       },
       {
         question: 'Do you set up printers and phone systems?',
-        answer: 'Yes. We connect printers and VoIP phone systems to your network and set them up for your team.',
+        answer: 'Yes. We connect printers and VoIP phone systems, including 3CX, to your network and set them up for your team.',
       },
       {
         question: 'Is there a guarantee on installation work?',

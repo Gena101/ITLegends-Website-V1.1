@@ -3,6 +3,7 @@ export { SeoHead } from './SeoHead';
 export { GlobalSchema } from './GlobalSchema';
 export { absoluteUrl, normalizePath } from './url';
 export {
+  aboutPageSchema,
   breadcrumbSchema,
   contactPageSchema,
   faqSchema,

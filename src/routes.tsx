@@ -40,6 +40,7 @@ export const appRoutes: AppRoute[] = [
     // Company
   { path: '/pricing', page: 'Pricing' },
   { path: '/contact', page: 'Contact' },
+  { path: '/about', page: 'About' },
 
   // Locations (v1 pages until Phase 4)
   { path: '/it-support-roodepoort', page: 'locations/ITSupportRoodepoort' },
