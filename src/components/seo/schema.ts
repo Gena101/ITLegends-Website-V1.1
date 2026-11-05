@@ -158,6 +158,10 @@ export interface ServiceSchemaInput {
   serviceType?: string;
   /** Who the service is for (BusinessAudience), e.g. "accounting firms" */
   audience?: string;
+  /** schema type for areaServed entries; location pages use City */
+  areaType?: 'AdministrativeArea' | 'City';
+  /** @id of the provider; defaults to the Organization (location pages pass their branch) */
+  providerId?: string;
 }
 
 export function serviceSchema({
@@ -167,6 +171,8 @@ export function serviceSchema({
   areaServed = ['Gauteng'],
   serviceType = name,
   audience,
+  areaType = 'AdministrativeArea',
+  providerId = schemaIds.organization,
 }: ServiceSchemaInput): JsonLd {
   const url = absoluteUrl(path);
   return {
@@ -177,8 +183,8 @@ export function serviceSchema({
     serviceType,
     description,
     url,
-    provider: { '@id': schemaIds.organization },
-    areaServed: areaServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
+    provider: { '@id': providerId },
+    areaServed: areaServed.map((name) => ({ '@type': areaType, name })),
     ...(audience ? { audience: { '@type': 'BusinessAudience', audienceType: audience } } : {}),
   };
 }

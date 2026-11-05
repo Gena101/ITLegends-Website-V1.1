@@ -9,6 +9,7 @@ import { Route, Routes, matchRoutes } from 'react-router-dom';
 import NotFound from './pages/NotFound';
 import { servicePath, services } from './data/services';
 import { industries, industryPath } from './data/industries';
+import { locationPath, locations } from './data/locations';
 
 type PageModule = { default: ComponentType };
 
@@ -17,7 +18,7 @@ const pageModules = import.meta.glob<PageModule>(['./pages/**/*.tsx', '!./pages/
 
 export interface AppRoute {
   path: string;
-  /** File under src/pages without ".tsx", e.g. "Home" or "locations/ITSupportCenturion" */
+  /** File under src/pages without ".tsx", e.g. "Home" or "ServicePage" */
   page: string;
   /**
    * Required for dynamic paths (containing ":"): resolves every concrete URL to prerender.
@@ -51,11 +52,8 @@ export const appRoutes: AppRoute[] = [
   { path: '/contact', page: 'Contact' },
   { path: '/about', page: 'About' },
 
-  // Locations (v1 pages until Phase 4)
-  { path: '/it-support-roodepoort', page: 'locations/ITSupportRoodepoort' },
-  { path: '/it-support-centurion', page: 'locations/ITSupportCenturion' },
-  { path: '/it-support-midrand', page: 'locations/ITSupportMidrand' },
-  { path: '/it-support-sandton', page: 'locations/ITSupportSandton' },
+  // Locations: one template, one route per area (/it-support-:slug isn't a valid router pattern)
+  ...locations.map((l) => ({ path: locationPath(l.slug), page: 'LocationPage' })),
 
   // Blog
   { path: '/blog', page: 'BlogIndexPage' },
