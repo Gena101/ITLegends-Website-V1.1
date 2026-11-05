@@ -8,6 +8,7 @@ import { Route, Routes, matchRoutes } from 'react-router-dom';
 // NotFound stays in the main bundle: it must render for any unknown URL without a network round trip
 import NotFound from './pages/NotFound';
 import { servicePath, services } from './data/services';
+import { industries, industryPath } from './data/industries';
 
 type PageModule = { default: ComponentType };
 
@@ -37,7 +38,15 @@ export const appRoutes: AppRoute[] = [
     page: 'ServicePage',
     prerenderPaths: async () => services.map((s) => servicePath(s.slug)),
   },
-    // Company
+
+  // Industries: one data-driven template
+  {
+    path: '/industries/:slug',
+    page: 'IndustryPage',
+    prerenderPaths: async () => industries.map((i) => industryPath(i.slug)),
+  },
+
+  // Company
   { path: '/pricing', page: 'Pricing' },
   { path: '/contact', page: 'Contact' },
   { path: '/about', page: 'About' },

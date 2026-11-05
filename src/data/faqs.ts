@@ -3,6 +3,8 @@
 // Answers are plain text, written as direct answers (AEO).
 import { company } from './company';
 import { formatRand, getPlan, VAT_NOTE } from './pricing';
+import { industries } from './industries';
+import { joinList } from '../lib/text';
 
 export interface FaqItem {
   question: string;
@@ -46,7 +48,8 @@ export const homeFaqs: FaqItem[] = [
   {
     question: 'Which industries does IT Legends work with?',
     answer:
-      'IT Legends works with accounting firms, law firms, medical practices, insurance businesses and automotive businesses, as well as general small and medium businesses. Each of these industries has its own software, compliance and data-protection needs, which shape how we set up support and security.',
+      `IT Legends works with ${joinList(industries.map((i) => i.name.toLowerCase()))} businesses, as well as general small and medium businesses. ` +
+      'Each of these industries has its own software, compliance and data-protection needs, which shape how we set up support and security.',
   },
   {
     question: 'Can IT Legends help protect my business against power outages and load shedding?',

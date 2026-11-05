@@ -154,20 +154,32 @@ export interface ServiceSchemaInput {
   path: string;
   /** Defaults to Gauteng; digital services can add e.g. "South Africa" */
   areaServed?: string[];
+  /** Defaults to name; industry pages pass the general type, e.g. "Managed IT services" */
+  serviceType?: string;
+  /** Who the service is for (BusinessAudience), e.g. "accounting firms" */
+  audience?: string;
 }
 
-export function serviceSchema({ name, description, path, areaServed = ['Gauteng'] }: ServiceSchemaInput): JsonLd {
+export function serviceSchema({
+  name,
+  description,
+  path,
+  areaServed = ['Gauteng'],
+  serviceType = name,
+  audience,
+}: ServiceSchemaInput): JsonLd {
   const url = absoluteUrl(path);
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
     '@id': `${url}#service`,
     name,
-    serviceType: name,
+    serviceType,
     description,
     url,
     provider: { '@id': schemaIds.organization },
     areaServed: areaServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
+    ...(audience ? { audience: { '@type': 'BusinessAudience', audienceType: audience } } : {}),
   };
 }
 
