@@ -13,3 +13,15 @@ const COUNT_WORDS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven'
 export function countWord(n: number): string {
   return COUNT_WORDS[n] ?? String(n);
 }
+
+
+const MONTHS = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+];
+
+/** "2026-01-14" → "14 January 2026" (manual, because Intl output can differ between Node and browsers) */
+export function formatDate(iso: string): string {
+  const [year, month, day] = iso.split('-').map(Number);
+  return `${day} ${MONTHS[month - 1]} ${year}`;
+}

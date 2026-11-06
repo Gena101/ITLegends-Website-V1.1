@@ -204,6 +204,52 @@ export function itemListSchema(name: string, items: BreadcrumbItem[]): JsonLd {
   };
 }
 
+
+export interface ArticleSchemaInput {
+  path: string;
+  headline: string;
+  description: string;
+  /** "YYYY-MM-DD" */
+  datePublished: string;
+  /** "YYYY-MM-DD" */
+  dateModified: string;
+  section?: string;
+  wordCount?: number;
+}
+
+/** BlogPosting. Author and publisher are the company (the site names no individual authors). */
+export function articleSchema({
+  path,
+  headline,
+  description,
+  datePublished,
+  dateModified,
+  section,
+  wordCount,
+}: ArticleSchemaInput): JsonLd {
+  const url = absoluteUrl(path);
+  const organization = { '@type': 'Organization', '@id': schemaIds.organization, name: company.name, url: `${SITE}/` };
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    '@id': `${url}#article`,
+    headline,
+    description,
+    url,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    datePublished,
+    dateModified,
+    inLanguage: 'en-ZA',
+    image: absoluteUrl(company.socialShareImage),
+    author: organization,
+    publisher: { ...organization, logo: { '@type': 'ImageObject', url: absoluteUrl(company.logo) } },
+    isPartOf: { '@id': schemaIds.website },
+    ...(section ? { articleSection: section } : {}),
+    ...(wordCount ? { wordCount } : {}),
+  };
+}
+
 export interface OfferPrice {
   price: number;
   /** e.g. "per device per month" */

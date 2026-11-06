@@ -61,8 +61,8 @@ export const appRoutes: AppRoute[] = [
     path: '/blog/:slug',
     page: 'BlogPost',
     prerenderPaths: async () => {
-      const { blogPosts } = await import('./data/blogPosts');
-      return blogPosts.map((post) => `/blog/${post.slug}`);
+      const { blogPosts, blogPath } = await import('./data/blog');
+      return blogPosts.map((post) => blogPath(post.slug));
     },
   },
 
