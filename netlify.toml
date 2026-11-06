@@ -13,3 +13,11 @@
 
 [context.branch-deploy.environment]
   VITE_SITE_ENV = "staging"
+
+# Vite puts a content hash in every filename under /assets, so a file never changes under the same name:
+# cache for a year. HTML pages are NOT covered and keep Netlify's default (always revalidated),
+# so a new deploy is picked up immediately.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
