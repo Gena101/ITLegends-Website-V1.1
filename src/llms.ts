@@ -98,6 +98,9 @@ export function buildLlmsTxt(): string {
     '',
     link('Blog', '/blog'),
     link('Privacy policy', '/privacy-policy'),
+    link('Cookie policy', '/cookie-policy'),
+    link('Terms of use', '/terms'),
+    link('PAIA manual', '/paia'),
     '',
   );
 

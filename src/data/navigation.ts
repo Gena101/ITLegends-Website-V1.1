@@ -65,7 +65,7 @@ export const footerNav = {
     label: 'Legal',
     links: [
       { label: 'Privacy policy', href: '/privacy-policy' },
-      { label: 'Terms and conditions', href: '/terms' },
+      { label: 'Terms of use', href: '/terms' },
       { label: 'Cookie policy', href: '/cookie-policy' },
       { label: 'PAIA manual', href: '/paia' },
     ],

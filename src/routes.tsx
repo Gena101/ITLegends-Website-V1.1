@@ -10,6 +10,7 @@ import NotFound from './pages/NotFound';
 import { servicePath, services } from './data/services';
 import { industries, industryPath } from './data/industries';
 import { locationPath, locations } from './data/locations';
+import { legalPaths } from './data/legal/paths';
 
 type PageModule = { default: ComponentType };
 
@@ -69,7 +70,8 @@ export const appRoutes: AppRoute[] = [
 
   // Other
   { path: '/faq', page: 'FAQ' },
-  { path: '/privacy-policy', page: 'PrivacyPolicy' },
+  // Legal: one template, one route per document (paths in data/legal/paths.ts)
+  ...legalPaths.map((path) => ({ path, page: 'LegalPage' })),
 ];
 
 interface PageHandle {
