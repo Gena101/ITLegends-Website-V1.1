@@ -2,7 +2,11 @@
 // Blog posts: the ONE source for /blog, /blog/:slug, the Article schema, sitemap and llms.txt.
 // Blog pages only (kept out of the shared bundle). Post bodies are plain text; the template renders the HTML.
 // The checks at the bottom fail the build on bad dates, long meta tags or duplicate slugs.
+import { getPlan } from './pricing';
 import type { ServiceSlug } from './services';
+
+const managedCare = getPlan('managed');
+const completeCare = getPlan('complete');
 
 export interface BlogSection {
   /** Rendered as an H2 */
@@ -44,249 +48,336 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     slug: 'cloud-future',
-    title: 'The Future of Cloud Computing in 2025 (and Beyond) for South African Businesses',
-    metaTitle: 'Cloud Computing for South African Businesses | IT Legends',
-    metaDescription: 'How South African SMEs can move to the cloud safely: cloud-first thinking, hybrid setups and keeping cloud costs under control.',
-    excerpt: 'Cloud is no longer a "nice to have". It is the backbone of modern, always-on business - especially for SMEs that need flexibility, resilience, and predictable costs.',
+    title: 'Moving Your Business to the Cloud: A Practical Guide for South African SMEs',
+    metaTitle: 'Moving to the Cloud: A Guide for SA SMEs | IT Legends',
+    metaDescription:
+      'What to move to the cloud first, what to keep on-site, how to control costs and where your data lives, written for South African small businesses.',
+    excerpt:
+      'Most small businesses should move email, files and backup to the cloud first, keep anything that needs local speed or special hardware on-site, ' +
+      'and manage both as one environment. With the major cloud providers now running data centres in South Africa, local options are better than ever.',
     category: 'Cloud',
     datePublished: '2025-11-03',
-    dateModified: '2025-11-03',
-    related: ['cloud-backup', 'managed-it-support'],
-    ctaTitle: 'Chat to us about your cloud plan',
+    dateModified: '2026-11-06',
+    related: ['cloud-backup', 'managed-it-support', 'business-connectivity'],
+    ctaTitle: 'Plan your move to the cloud with us',
     sections: [
       {
-        heading: 'From Servers in the Corner to "Cloud-First" Thinking',
+        heading: 'Start with email, files and backup',
         paragraphs: [
-          'Many South African businesses still run critical systems on a single on-premise server sitting in a storeroom. It works... until it doesn\'t. Load shedding, hardware failures, theft, and lack of maintenance all put your data and uptime at risk.',
-          'A cloud-first mindset means asking: "Can this safely and sensibly live in the cloud?" instead of defaulting to on-premises every time. You don\'t have to move everything at once, but you need a roadmap.',
+          'A single server in a storeroom is a single point of failure: hardware faults, theft, power problems and missed maintenance all put your data at risk. ' +
+            'The easiest wins are the services with mature cloud versions, which most businesses can move with little disruption.',
         ],
         list: [
-          'Move email and collaboration to Microsoft 365 or Google Workspace.',
-          'Create off-site backup copies into secure cloud storage.',
-          'Migrate line-of-business applications to hosted servers or SaaS.',
-          'Provide secure remote access or VPN for staff working remotely.',
+          'Move email, calendars and file sharing to Microsoft 365 or Google Workspace.',
+          'Keep a backup copy of your data off-site, separate from your office network.',
+          'Use the cloud version of your business software where your software vendor offers one.',
+          'Give staff secure access from anywhere, protected by multi-factor authentication.',
         ],
       },
       {
-        heading: 'Hybrid Cloud Will Be the Default',
+        heading: 'Keep some things on-site, and manage everything as one',
         paragraphs: [
-          'For most SMEs, a hybrid setup is the sweet spot: some services in the cloud, some kept on-site for performance, regulation or cost reasons. The key is that everything is managed as a single environment, not as two separate worlds.',
-        ],
-        list: [
-          'Centralised monitoring for both cloud and on-premises servers.',
-          'Standardised security policies across all locations.',
-          'Documented failover and recovery plans.',
+          'Not everything belongs in the cloud. Software that needs a local server, very large files on a slow connection and specialised equipment often work better on-site. ' +
+            'For most small businesses the answer is a mix of the two.',
+          'What matters is managing the mix as one environment: the same monitoring, the same security settings and the same backup plan, whether a system runs in the office or in the cloud.',
         ],
       },
       {
-        heading: 'Cost Management: Avoid Cloud Bill Shock',
+        heading: 'Your data can stay in South Africa',
         paragraphs: [
-          'Cloud can save money, but only if it is designed properly. Spinning up random servers with no plan is a quick way to overspend.',
-        ],
-        list: [
-          'Right-size servers based on actual utilisation.',
-          'Shut down non-critical workloads outside business hours.',
-          'Review cloud usage and costs monthly.',
+          'The major cloud providers now run data centres locally. Microsoft opened its South African Azure regions in 2019, Amazon Web Services opened a region in Cape Town in 2020, ' +
+            'and Google opened its first African cloud region, in Johannesburg, in 2024.',
+          'Local regions mean faster response times, and they can make POPIA compliance simpler, because the Act restricts sending personal information outside South Africa ' +
+            'unless certain conditions are met. Ask where your data will be stored before you sign up for a service.',
         ],
       },
       {
-        heading: 'Where IT Legends Fits In',
-        paragraphs: [
-          'At IT Legends, we help South African businesses move to the cloud in a controlled, low-risk way. We assess your environment, design a realistic roadmap, and then migrate, secure and maintain your cloud and hybrid environment.',
+        heading: 'Keep cloud costs under control',
+        paragraphs: ['Cloud services save money when they are planned and reviewed. Without a plan, monthly bills creep up.'],
+        list: [
+          'Remove licences for staff who have left, and match each licence to what the person actually uses.',
+          'Size cloud servers to their real workload, and switch off non-critical ones outside business hours.',
+          'Review cloud bills monthly, so a surprise costs one month, not a year.',
         ],
+      },
+      {
+        heading: 'Power and internet still matter',
+        paragraphs: [
+          'Eskom reports that there has been no load shedding since 16 May 2025, but local outages, cable theft and line faults still happen. ' +
+            'Cloud services only help if you can reach them, so a backup internet connection and a UPS on your network equipment keep the office working when the main line or power drops.',
+        ],
+      },
+      {
+        heading: 'How IT Legends helps',
+        paragraphs: [
+          'We migrate email and files to Microsoft 365 or Google Workspace and manage user accounts and mailboxes on every managed IT plan. ' +
+            'We back up Microsoft 365, Google Workspace, servers and PCs, test restores every quarter, and supply backup internet connections and UPS units, ' +
+            'so your cloud setup keeps working when something fails.',
+        ],
+      },
+    ],
+    sources: [
+      {
+        label: 'DatacenterDynamics: Google launches its first African cloud region in Johannesburg',
+        url: 'https://datacenterdynamics.com/en/news/google-launches-first-african-cloud-region-in-johannesburg-south-africa',
+      },
+      {
+        label: 'SAnews: No load shedding in over 500 days, says Eskom (October 2026)',
+        url: 'https://www.sanews.gov.za/south-africa/no-load-shedding-over-500-days-says-eskom',
       },
     ],
   },
   {
     slug: 'ai-integration-guide',
-    title: 'AI Integration: A Practical Guide for Business Owners (Not Data Scientists)',
+    title: 'AI for Business Owners: A Practical Guide to Getting Started',
     metaTitle: 'AI for Business Owners: A Practical Guide | IT Legends',
-    metaDescription: 'A practical guide to AI for business owners: start with pain points, pick low-risk use cases, keep a human in the loop and protect your data.',
-    excerpt: 'Artificial intelligence does not have to be confusing, expensive or risky. Used correctly, it quietly makes your team faster, your decisions better, and your customers happier.',
+    metaDescription:
+      'How small businesses can use AI safely: start with real problems, keep a person in charge, protect client data and know when custom software makes sense.',
+    excerpt:
+      'Start with a task that wastes your team’s time, try the AI features in tools you already pay for, keep a person responsible for every result, ' +
+      'and never paste client data into tools you have not checked. Build something custom only when off-the-shelf tools cannot do the job.',
     category: 'AI',
     datePublished: '2025-11-10',
-    dateModified: '2025-11-10',
-    related: ['custom-software'],
-    ctaTitle: 'Talk to us about AI in your business',
+    dateModified: '2026-11-06',
+    related: ['custom-software', 'managed-it-support'],
+    ctaTitle: 'Have a process that should be easier? Talk to us',
     sections: [
       {
-        heading: 'Start with Pain Points, Not Tools',
+        heading: 'Start with the problem, not the tool',
         paragraphs: [
-          'The worst way to adopt AI is to start with a shiny tool and then go hunting for problems. Instead, list the repetitive, time-consuming or error-prone tasks in your business and ask, "Can AI help here?".',
+          'The worst way to adopt AI is to buy a tool and then look for something for it to do. Start with the tasks that are repetitive, slow or error-prone, and ask whether AI could help.',
         ],
         list: [
-          'Support tickets or emails that ask the same question.',
-          'Manual data capture into spreadsheets or systems.',
-          'Simple reports that take staff hours every month.',
+          'Emails and messages that answer the same questions every week.',
+          'Information typed in by hand from documents such as invoices, quotes, job cards or claim forms.',
+          'Long documents that someone has to read and summarise.',
+          'Reports that take hours to put together every month.',
         ],
       },
       {
-        heading: 'Great Early Use Cases for SMEs',
+        heading: 'Use what you already pay for first',
         paragraphs: [
-          'Here are some low-risk starting points that work well in real businesses.',
+          'Microsoft and Google now build AI assistants into Microsoft 365 and Google Workspace, and many accounting and industry systems are adding AI features of their own. ' +
+            'Check what your current subscriptions include before paying for another tool.',
         ],
+      },
+      {
+        heading: 'Keep a person in charge',
+        paragraphs: [
+          'AI can be confidently wrong. The safe pattern for most businesses is that AI drafts and a person approves: it suggests the reply, summary or figures, and someone on your team checks them before anything goes to a client.',
+          'Take extra care with numbers, names, prices and anything legal or financial.',
+        ],
+      },
+      {
+        heading: 'Protect client and staff data',
         list: [
-          'Support assistants that suggest answers to technicians based on past tickets.',
-          'Document assistants that summarise long PDFs, proposals or contracts.',
-          'Internal chatbots that answer common HR or IT questions.',
-          'Data cleanup and enrichment for CRM or asset lists.',
+          'Do not paste personal information about clients or staff into free AI tools unless you have checked how they use and store it.',
+          'Use business accounts with admin controls rather than personal sign-ups, so you decide who can use which tools.',
+          'Tidy up file and folder permissions first: assistants built into your office suite can usually see whatever the user can see.',
+          'Remember that POPIA applies to personal information you process with AI tools, including where that information is sent and stored.',
         ],
       },
       {
-        heading: 'Keep a Human in the Loop',
+        heading: 'When custom software makes sense',
         paragraphs: [
-          'For most SMEs, the right pattern is "AI suggests, humans approve." AI drafts the answer, email or summary - your team clicks send or takes the final decision.',
+          'Off-the-shelf tools work well for general tasks. When your process is specific to your business, such as job cards, claims, site visits or asset tracking, ' +
+            'a system built around how you work can capture information properly from the start.',
+          'Once your information is structured, AI features such as summarising notes or reading data from documents can be added where they genuinely save time, with a person still approving the result.',
         ],
       },
       {
-        heading: 'Data Security and Privacy',
+        heading: 'How IT Legends helps',
         paragraphs: [
-          'When you plug AI into your environment, it must be done with proper controls. Use tools that allow you to restrict what data the AI can see, protect logs and restrict access to prompts and outputs.',
-        ],
-      },
-      {
-        heading: 'Where IT Legends Fits In',
-        paragraphs: [
-          'We help businesses design and implement practical AI automation - from IT support chatbots and admin assistants to reporting and internal tools. No hype, just workflows that actually work.',
+          'We build custom web apps, client portals and internal business systems at a fixed price agreed after scoping, and where AI features make sense, they can be part of the system we build. ' +
+            'For managed IT clients, we set up and secure Microsoft 365 and Google Workspace, including the user accounts and permissions that AI assistants rely on.',
         ],
       },
     ],
   },
   {
-    slug: 'cybersecurity-best-practices-2025',
-    title: 'Cybersecurity Best Practices for 2025: A Practical Checklist for SMEs',
-    metaTitle: 'Cybersecurity Checklist for SMEs | IT Legends',
-    metaDescription: 'A practical cybersecurity checklist for SMEs: passwords and MFA, patching, email security, staff awareness and tested backups.',
-    excerpt: 'Most breaches do not start with elite hackers. They start with a simple password, a fake email, or an unpatched system. The good news: disciplined basics make you a much harder target.',
+    slug: 'cybersecurity-checklist-smes',
+    title: 'Cybersecurity Checklist for Small Businesses: What Actually Stops Attacks',
+    metaTitle: 'Cybersecurity Checklist for Small Businesses | IT Legends',
+    metaDescription:
+      'The security basics that stop most attacks on small businesses: patching, MFA, email filtering, staff awareness and tested backups, with current breach data.',
+    excerpt:
+      'Most attacks on small businesses exploit basic gaps: software that has not been patched, accounts without multi-factor authentication, and staff tricked by convincing emails. ' +
+      'Closing those gaps and keeping backups you have tested stops most attacks. This checklist covers what matters most, in order.',
     category: 'Security',
     datePublished: '2025-11-17',
-    dateModified: '2025-11-17',
-    related: ['cybersecurity', 'cloud-backup'],
-    ctaTitle: 'Book a cybersecurity review',
+    dateModified: '2026-11-06',
+    related: ['cybersecurity', 'cloud-backup', 'managed-it-support'],
+    ctaTitle: 'Want to know where your gaps are?',
     sections: [
       {
-        heading: 'Strong identity: Passwords and MFA',
+        heading: 'What attackers are exploiting now',
         paragraphs: [
-          'Identity is the new perimeter. Weak or reused passwords are still one of the biggest risks for SMEs.',
-        ],
-        list: [
-          'Use a password manager instead of spreadsheets or notes.',
-          'Enforce strong, unique passwords for email, VPN and admin accounts.',
-          'Enable multi-factor authentication (MFA) everywhere you can.',
+          'Verizon’s 2026 Data Breach Investigations Report, which analysed more than 22,000 confirmed breaches, found that exploiting software vulnerabilities has overtaken stolen passwords ' +
+            'as the most common way attackers get in, for the first time in the report’s 19-year history. Vulnerabilities were the entry point in 31% of breaches.',
+          'Stolen passwords and phishing remain close behind, and ransomware featured in nearly half of all breaches. Small businesses are not too small to be targeted: ' +
+            'most attacks are automated and go wherever the defences are weakest.',
         ],
       },
       {
-        heading: 'Patch and Update Regularly',
-        paragraphs: [
-          'Unpatched systems are one of the easiest ways attackers get in. You need a disciplined approach to updates.',
-        ],
+        heading: '1. Patch everything, quickly',
         list: [
-          'Automatic updates for workstations and laptops.',
-          'Regular patching cycles for servers and network devices.',
-          'Plans for replacing unsupported operating systems.',
+          'Install Windows and macOS updates automatically, and check that they actually installed.',
+          'Update browsers, PDF readers and other third-party software, not just the operating system.',
+          'Update the firmware on firewalls, routers and storage devices.',
+          'Replace systems that no longer get security updates. Windows 10 support ended on 14 October 2025.',
         ],
       },
       {
-        heading: 'Email Security and User Awareness',
+        heading: '2. Turn on multi-factor authentication',
         paragraphs: [
-          'Phishing is still the number one way attackers reach your users. Technology and training must work together.',
+          'A Microsoft research study found that multi-factor authentication reduced the risk of account compromise by 99.22%, and authenticator apps performed better than SMS codes.',
         ],
         list: [
-          'Modern email filtering with spoofing and malware protection.',
-          'Regular phishing awareness training.',
-          'Clear internal process if someone clicks a suspicious link.',
+          'Start with email: Microsoft 365 or Google Workspace accounts for every user.',
+          'Then admin accounts, remote access, banking and accounting software.',
+          'Use a password manager so every account has a unique password.',
         ],
       },
       {
-        heading: 'Backups and Recovery',
-        paragraphs: [
-          'Backups are your last line of defence against ransomware and accidental deletion. They must be tested, not just configured.',
-        ],
+        heading: '3. Filter email and train your team',
         list: [
-          'Multiple backup copies, including off-site or cloud.',
-          'Regular restore tests to prove backups work.',
-          'Documented recovery time objectives (RTOs) for key systems.',
+          'Filter incoming email for phishing, spoofing and malware before it reaches inboxes.',
+          'Train staff regularly to recognise suspicious emails, messages and calls.',
+          'Make it easy and blame-free to report a suspicious email or a wrong click.',
+          'Confirm any change to a supplier’s banking details by phone, using a number you already have.',
         ],
       },
       {
-        heading: 'Where IT Legends Fits In',
+        heading: '4. Protect every device',
+        list: [
+          'Run endpoint protection on every PC, laptop and server, and make sure someone watches the alerts.',
+          'Put a properly configured firewall between your office network and the internet.',
+          'Give staff normal user accounts for daily work, and keep admin rights for IT tasks only.',
+        ],
+      },
+      {
+        heading: '5. Keep backups you have tested',
+        list: [
+          'Keep at least one backup copy off-site and separate from your network, where ransomware cannot reach it.',
+          'Back up Microsoft 365 or Google Workspace too: deleted data only stays in their recycle bins for a limited time.',
+          'Test restores regularly, and know how long it takes to get each key system running again.',
+        ],
+      },
+      {
+        heading: '6. Know what to do when something goes wrong',
         paragraphs: [
-          'We help design layered security for SMEs - from firewalls and endpoint protection to backup, MFA and staff awareness - so you can focus on running your business.',
+          'Disconnect affected devices from the network, but do not switch them off or delete anything. Change passwords from a device you know is clean, and call your IT provider. ' +
+            'If personal information may have been accessed, POPIA requires you to notify the Information Regulator and the people affected.',
+        ],
+      },
+      {
+        heading: 'How IT Legends helps',
+        paragraphs: [
+          'Every managed IT plan includes operating system and third-party patching, Microsoft Defender set up and monitored, multi-factor authentication and staff awareness training. ' +
+            `${managedCare.name} adds Webroot, email filtering and firewall management, and ${completeCare.name} adds quarterly security reviews. ` +
+            'We help with the technical safeguards POPIA expects; we do not give legal advice.',
         ],
       },
     ],
+    sources: [
+      {
+        label: 'Verizon: 2026 Data Breach Investigations Report',
+        url: 'https://www.verizon.com/business/resources/reports/dbir/',
+      },
+      {
+        label: 'Microsoft Research: How effective is multifactor authentication at deterring cyberattacks?',
+        url: 'https://www.microsoft.com/en-us/research/publication/how-effective-is-multifactor-authentication-at-deterring-cyberattacks/',
+      },
+    ],
   },
-  {
-    slug: 'it-equipment=price-increase-sa',
-    title: 'Why IT Equipment Prices in South Africa Are Set to Increase (And What You Can Do About It)',
-    metaTitle: 'Why IT Equipment Prices Are Rising in SA | IT Legends',
-    metaDescription: 'Why IT hardware prices in South Africa keep rising, from supply pressure and the rand to shipping costs, and how businesses can plan for it.',
-    excerpt: 'IT hardware prices in South Africa are rising due to global supply pressure, a weaker rand, and higher logistics costs. Businesses that plan ahead can reduce the impact and avoid costly surprises.',
+    {
+    slug: 'it-equipment-price-increase-sa',
+    title: 'Why IT Hardware Prices Are Rising in South Africa, and How to Plan for It',
+    metaTitle: 'Why IT Hardware Prices Are Rising in SA | IT Legends',
+    metaDescription:
+      'AI data centres are buying up memory chips, pushing PC and laptop prices up in 2026. What is behind it, and how SA businesses can plan their hardware spend.',
+    excerpt:
+      'Computers and laptops cost more in 2026 mainly because memory is scarce. Chipmakers are selling more of their output to AI data centres, ' +
+      'and Gartner expects memory and SSD prices to more than double this year, lifting average PC prices by about 17%. ' +
+      'Planning replacements early is the best defence.',
     category: 'IT Costs',
     datePublished: '2026-01-14',
-    dateModified: '2026-01-14',
+    dateModified: '2026-11-06',
     related: ['hardware-network', 'managed-it-support'],
-    ctaTitle: 'Chat to us about your strategy',
+    ctaTitle: 'Plan your next hardware refresh with us',
     sections: [
       {
-        heading: 'Global Supply Chain Pressure Isn’t Over',
+        heading: 'Memory is the main reason prices are rising',
         paragraphs: [
-          'Although the worst of the global chip shortage has eased, supply chains have not returned to pre-2020 stability.',
-          'Key components such as CPUs, memory, SSDs, and networking chips are still affected by limited manufacturing capacity, higher production costs, and ongoing geopolitical uncertainty.',
-          'When global suppliers increase prices, South African importers feel it immediately - and those costs are passed down to businesses.',
+          'The biggest cost driver in 2026 is memory: the RAM and SSD storage inside every PC and laptop. Demand from AI systems and data centres is keeping memory supply tight, ' +
+            'and manufacturers are moving production towards higher-margin server memory, which leaves less for business and consumer devices.',
+          'Gartner estimates that combined DRAM and SSD prices will rise by about 130% by the end of 2026, pushing average PC prices up 17% compared with 2025. ' +
+            'Memory is expected to make up 23% of the cost of building a PC, up from 16% in 2025.',
+          'The increases are slowing but have not stopped. TrendForce expected DRAM contract prices to rise another 13% to 18% in the third quarter of 2026, ' +
+            'after jumps of around 60% in the second quarter, and its outlook suggests real relief is still some way off.',
         ],
       },
       {
-        heading: 'The Weak Rand Makes Imported Technology More Expensive',
+        heading: 'The rand is not the cause this time',
         paragraphs: [
-          'Most IT hardware sold in South Africa is imported and priced in US dollars or euros.',
-          'A weaker rand increases landed costs for laptops, servers, firewalls, and networking equipment. Even if international prices stay flat, local prices can rise purely due to exchange rate movement.',
+          'Most IT hardware is imported and priced in US dollars, so a weaker rand normally means higher prices. This time the rand has helped slightly: ' +
+            'it averaged about R17.23 to the dollar in November 2025 and was around R16.53 in early October 2026, according to US Federal Reserve data.',
+          'A firmer rand takes a little off the landed cost of hardware, but nowhere near enough to offset memory prices rising this steeply. ' +
+            'The rand can also move several percent in a month, which is why hardware quotes are only valid for a short time.',
         ],
       },
       {
-        heading: 'Rising Shipping, Insurance, and Compliance Costs',
+        heading: 'Windows 10 support has ended',
         paragraphs: [
-          'The cost of getting hardware into the country has increased significantly.',
-          'Higher fuel prices, shipping fees, insurance premiums, and regulatory overhead all contribute to higher final prices, even if these costs are not visible as separate line items on invoices.',
+          'Microsoft stopped releasing free security updates for Windows 10 on 14 October 2025. Businesses can buy Extended Security Updates, ' +
+            'starting at US$61 per device for the first year and doubling each year, for up to three years. Microsoft describes them as a temporary bridge, not a long-term solution.',
+          'Older PCs that cannot run Windows 11 now have to be replaced or paid for every year, at the same time as new machines cost more.',
         ],
       },
       {
-        heading: 'Modern IT Equipment Is More Powerful - and More Expensive',
+        heading: 'What this means for your business',
         paragraphs: [
-          'Modern business hardware includes advanced security chips, faster storage, AI acceleration features, and higher-grade components.',
-          'While these improvements deliver better performance and security, they also increase manufacturing and replacement costs compared to older systems.',
+          'If you only replace computers when they fail, you pay 2026 prices in a hurry, often for whatever is in stock. ' +
+            'Businesses that plan replacements choose when to buy, spread the cost and avoid emergency purchases.',
         ],
       },
       {
-        heading: 'Shorter Upgrade Cycles Increase Replacement Pressure',
-        paragraphs: [
-          'Software vendors now enforce faster upgrade and end-of-support cycles.',
-          'This often forces businesses to replace equipment earlier than expected to remain secure and compliant, rather than upgrading gradually over time.',
-        ],
-      },
-      {
-        heading: 'What This Means for South African Businesses',
-        paragraphs: [
-          'Without proper planning, rising IT costs can result in unexpected capital expenses, delayed upgrades, increased security risks, and reduced productivity.',
-          'Businesses that react only when equipment fails are usually the ones hit hardest.',
-        ],
-      },
-      {
-        heading: 'What You Can Do to Reduce the Impact',
+        heading: 'What you can do to reduce the impact',
         list: [
-          'Plan hardware upgrades in advance to avoid emergency purchases.',
-          'Extend equipment lifespan safely through maintenance and monitoring.',
-          'Standardise hardware models to reduce support and replacement costs.',
-          'Consider leasing or lifecycle-based procurement to smooth cash flow.',
-          'Work with an IT partner who proactively monitors pricing and end-of-life risks.',
+          'Keep an up-to-date list of your computers with their age, specifications and warranty dates, so you can see what is due for replacement.',
+          'Budget for replacements a year ahead instead of buying when a machine dies.',
+          'Plan to replace Windows 10 PCs that cannot run Windows 11, rather than relying on paid extended updates that double in price each year.',
+          'Buy enough memory at the start: many business laptops have memory soldered to the board, so it cannot be upgraded later.',
+          'Look after the machines you keep. Patching, health checks and monitoring help them last their full working life.',
+          'Standardise on a few models, so setup, spares and support stay simple.',
+          'Accept hardware quotes promptly. When component prices move week to week, quotes are only valid for a short time.',
         ],
       },
       {
-        heading: 'Where IT Legends Fits In',
+        heading: 'How IT Legends helps',
         paragraphs: [
-          'At IT Legends, we help South African businesses plan realistic hardware refresh cycles, extend the life of existing equipment, and avoid unnecessary emergency replacements.',
-          'Smart IT planning reduces downtime, security risk, and long-term costs - without panic buying.',
+          'We supply Dell, HP and Lenovo computers and laptops, set up ready to work. Every managed IT plan includes an asset register, ' +
+            `so you can see what you have and what is due for replacement, and ${completeCare.name} adds quarterly IT planning, ` +
+            'where we work out together what to replace and when.',
         ],
+      },
+    ],
+    sources: [
+      {
+        label: 'Gartner: surging memory costs will reduce global PC and smartphone shipments in 2026 (February 2026)',
+        url: 'https://www.gartner.com/en/newsroom/press-releases/2026-02-26-gartner-says-surging-memory-costs-will-reduce-global-pc-and-smartphone-shipments-in-2026',
+      },
+      {
+        label: 'Tom’s Hardware: TrendForce memory price forecast for Q3 2026',
+        url: 'https://www.tomshardware.com/pc-components/ram/memory-price-surge-begins-to-cool-as-consumers-hit-affordability-limit-ai-demand-still-keeps-dram-and-nand-prices-climbing-through-q3-2026',
+      },
+      {
+        label: 'Federal Reserve Bank of St. Louis (FRED): South African rand to US dollar exchange rate',
+        url: 'https://fred.stlouisfed.org/series/DEXSFUS',
+      },
+      {
+        label: 'Microsoft: When to use Windows 10 Extended Security Updates',
+        url: 'https://techcommunity.microsoft.com/t5/windows-it-pro-blog/when-to-use-windows-10-extended-security-updates/ba-p/4102628',
       },
     ],
   },
