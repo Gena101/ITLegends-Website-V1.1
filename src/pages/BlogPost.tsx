@@ -82,7 +82,7 @@ const blogPosts: BlogPost[] = [
       },
     ],
     ctaLabel: 'Chat to us about your cloud plan',
-    ctaHref: '/#contact',
+    ctaHref: '/contact',
   },
   {
     slug: 'ai-integration-guide',
@@ -136,7 +136,7 @@ const blogPosts: BlogPost[] = [
       },
     ],
     ctaLabel: 'Talk to us about AI in your business',
-    ctaHref: '/#contact',
+    ctaHref: '/contact',
   },
   {
     slug: 'cybersecurity-best-practices-2025',
@@ -199,7 +199,7 @@ const blogPosts: BlogPost[] = [
       },
     ],
     ctaLabel: 'Book a cybersecurity review',
-    ctaHref: '/#contact',
+    ctaHref: '/contact',
   },
   {
     slug: 'it-equipment=price-increase-sa',
@@ -272,7 +272,7 @@ const blogPosts: BlogPost[] = [
       },
     ],
     ctaLabel: 'Chat to us about your strategy',
-    ctaHref: '/#contact',
+    ctaHref: '/contact',
   },
 ];
 

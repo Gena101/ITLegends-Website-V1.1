@@ -75,7 +75,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/#contact" className="hover:text-itblue transition-colors">
+                <a href="/contact" className="hover:text-itblue transition-colors">
                   Contact
                 </a>
               </li>
