@@ -43,12 +43,6 @@ export default {
           muted: '#A3ADC2',   // secondary text (8.8:1)
           subtle: '#7D889E',  // captions, meta (5.5:1)
         },
-
-        // LEGACY v1: delete once the last v1 page is rebuilt (Phase 5)
-        itsilver: '#E0E0E0',
-        itdark: '#1A1A1A',
-        itgray: '#2A2A2A',
-        itgray2: '#3A3A3A',
       },
 
       fontSize: {
