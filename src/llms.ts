@@ -7,6 +7,7 @@ import { absoluteUrl } from './components/seo/url';
 import { branches, company, formatAddress, getBranch } from './data/company';
 import { industries, industryPath } from './data/industries';
 import { industryPages } from './data/industry-pages';
+import { blogPath, blogPostsByDate } from './data/blog';
 import { branchPhrase, openHoursText } from './data/location-pages';
 import { locationPath, locations } from './data/locations';
 import {
@@ -92,11 +93,12 @@ export function buildLlmsTxt(): string {
     link('Our work', '/work', 'portfolio: SiteNexus, website projects and custom software'),
     link('Contact', '/contact', 'branches, hours, contact form'),
     link('Services', '/services', 'all services by pillar'),
-    link('FAQ', '/faq'),
+    link('FAQ', '/faq', 'answers on plans, pricing, support hours, security, backup, connectivity, websites and software'),
     '',
     '## Optional',
     '',
-    link('Blog', '/blog'),
+    link('Blog', '/blog', 'practical IT advice for South African businesses'),
+    ...blogPostsByDate.map((p) => link(p.title, blogPath(p.slug), p.metaDescription)),
     link('Privacy policy', '/privacy-policy'),
     link('Cookie policy', '/cookie-policy'),
     link('Terms of use', '/terms'),
