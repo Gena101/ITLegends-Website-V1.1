@@ -17,6 +17,7 @@ import {
   onsiteRadiusText,
   plans,
   projectTerms,
+  siteVisitRadiusText,
   softwarePricing,
   startingPrice,
   VAT_NOTE,
@@ -84,7 +85,7 @@ const extraVisits =
   `Additional visits cost ${callout} per call-out (${VAT_NOTE}) within ${onsiteRadiusText} km of either branch, ` +
   'including the first hour of labour, and travel beyond that is charged per kilometre.';
 
-const freeSiteVisit = `free within ${projectTerms.freeSiteVisitRadiusKm} km of either branch`;
+const freeSiteVisit = `free within ${siteVisitRadiusText} of either branch`;
 
 const workmanshipGuarantee =
   `Installation work carries a ${projectTerms.workmanshipGuaranteeDays}-day workmanship guarantee. ` +
@@ -555,8 +556,8 @@ export const servicePages: Record<ServiceSlug, ServicePageContent> = {
   'structured-cabling': {
     metaTitle: 'Structured Cabling & Cable Management | IT Legends',
     metaDescription:
-      'Office network cabling in Gauteng: Cat5e, Cat6 and Cat6a, fibre uplinks, cabinets, patch panels and labelling. ' +
-      `Every cable tested. Free site visit within ${projectTerms.freeSiteVisitRadiusKm} km.`,
+      'Office network cabling in Gauteng: Cat5e, Cat6 and Cat6a, fibre uplinks, cabinets and patch panels, labelled and tested. ' +
+      `Free site visit within ${siteVisitRadiusText}.`,
     headline: 'Structured cabling and cable management',
     intro:
       'IT Legends installs structured network cabling for offices across Gauteng: Cat5e, Cat6 and Cat6a Ethernet, ' +
@@ -806,12 +807,12 @@ export const servicePages: Record<ServiceSlug, ServicePageContent> = {
   'custom-software': {
     metaTitle: 'Custom Software Development in South Africa | IT Legends',
     metaDescription:
-      'Bespoke web apps, client portals, internal systems, dashboards and mobile apps, built with React, TypeScript and Supabase. Fixed price, and you own the code.',
+      'Bespoke web apps, client portals, internal systems, dashboards and mobile apps, built with React and TypeScript. Fixed price; you own the code written for you.',
     headline: 'Custom software development',
     intro:
       'IT Legends builds custom software around how your business works: web apps, client portals, internal business systems, dashboards and mobile apps, ' +
       'for clients in South Africa and abroad. We scope each project with you, quote a fixed price and deliver in milestones, ' +
-      'using React, TypeScript and Supabase. Once the project is paid, you own the code and your data.',
+      'using React, TypeScript and Supabase. Once the project is paid in full, you own the code written for you and your data.',
     included: [
       {
         title: 'Web apps and client portals',
@@ -865,7 +866,9 @@ export const servicePages: Record<ServiceSlug, ServicePageContent> = {
       },
       {
         question: 'Who owns the code IT Legends builds?',
-        answer: 'You do. Once the project is paid in full, the code and all your data belong to your business.',
+        answer:
+          'You do. Once the project is paid in full, the code written for your project and all your data belong to your business. ' +
+          'Tools and code we built before your project stay ours, and you get a permanent licence to use them as part of your system.',
       },
       {
         question: 'Which technologies does IT Legends use?',

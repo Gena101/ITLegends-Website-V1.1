@@ -15,6 +15,7 @@ import {
   getPlan,
   plans,
   projectTerms,
+  siteVisitRadiusText,
   softwarePricing,
   VAT_NOTE,
   workspaceBackup,
@@ -339,7 +340,7 @@ export const industryPages: Record<IndustrySlug, IndustryPageContent> = {
       {
         question: 'Can you install Wi-Fi and cabling in our workshop?',
         answer:
-          `Yes. Every job is quoted after a site visit, which is free within ${projectTerms.freeSiteVisitRadiusKm} km of either branch. ` +
+          `Yes. Every job is quoted after a site visit, which is free within ${siteVisitRadiusText} of either branch. ` +
           `Installation work carries a ${projectTerms.workmanshipGuaranteeDays}-day workmanship guarantee.`,
       },
     ],

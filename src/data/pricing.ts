@@ -111,6 +111,9 @@ export const projectTerms = {
   workmanshipGuaranteeDays: 30,
 } as const;
 
+/** "20 km by road": the free site visit radius for installation quotes (see onsiteRadiusText) */
+export const siteVisitRadiusText = `${projectTerms.freeSiteVisitRadiusKm} km by road`;
+
 /** Website design & development: fixed project prices agreed upfront */
 export const websitePricing = {
   /** Basic website, excl. VAT */
