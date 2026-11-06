@@ -89,6 +89,13 @@ export const onboarding = {
   deploymentBusinessDays: 5,
 } as const;
 
+/**
+ * The radius is always measured BY ROAD from either branch. Use these in copy
+ * instead of `${onsite.radiusKm} km`, so the wording can't drift: "20 km by road".
+ */
+export const onsiteRadiusText = `${onsite.radiusKm} km by road`;
+export const assessmentRadiusText = `${onboarding.freeAssessmentRadiusKm} km by road`;
+
 /** Month-to-month or 12 months, the client's choice */
 export const contractTerms = {
   annualDiscountPercent: 10,

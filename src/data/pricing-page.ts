@@ -10,8 +10,10 @@ import {
   contractTerms,
   formatRand,
   getPlan,
+  assessmentRadiusText,
   onboarding,
   onsite,
+  onsiteRadiusText,
   outOfScopeHourly,
   plans,
   VAT_NOTE,
@@ -50,8 +52,8 @@ export const planTerms: { title: string; text: string }[] = [
   {
     title: 'On-site visits',
     text:
-      `Included visits are within ${onsite.radiusKm} km of either branch and don't roll over to the next month. ` +
-      `Extra visits are ${callout} per call-out, including the first hour of labour, plus ${perKm} per km beyond ${onsite.radiusKm} km. ` +
+      `Included visits are within ${onsiteRadiusText} of either branch and don't roll over to the next month. ` +
+      `Extra visits are ${callout} per call-out, including the first hour of labour, plus ${perKm} per km beyond ${onsiteRadiusText}. ` +
       'Regular extra visits can be built into your plan at an agreed rate.',
   },
   {
@@ -92,7 +94,7 @@ export const pricingFaqs: FaqItem[] = [
   {
     question: 'What if we need more on-site visits than our plan includes?',
     answer:
-      `Extra visits cost ${callout} per call-out (${VAT_NOTE}) within ${onsite.radiusKm} km of either branch, including the first hour of labour; ` +
+      `Extra visits cost ${callout} per call-out (${VAT_NOTE}) within ${onsiteRadiusText} of either branch, including the first hour of labour; ` +
       `travel beyond that is ${perKm} per km. Unused visits don't roll over. If you regularly need more, we can build extra visits into your plan at an agreed rate.`,
   },
   {
@@ -105,8 +107,8 @@ export const pricingFaqs: FaqItem[] = [
   {
     question: 'Is the IT assessment free?',
     answer:
-      `Yes, within ${onboarding.freeAssessmentRadiusKm} km of either branch. Further away in Gauteng it's a ${callout} call-out; ` +
-      `outside Gauteng it's ${callout} plus ${perKm} per km beyond the first ${onsite.radiusKm} km. The call-out is credited against your ` +
+      `Yes, within ${assessmentRadiusText} of either branch. Further away in Gauteng it's a ${callout} call-out; ` +
+      `outside Gauteng it's ${callout} plus ${perKm} per km beyond the first ${onsiteRadiusText}. The call-out is credited against your ` +
       `first invoice if you sign a 12-month agreement. You get the report within ${countWord(onboarding.reportBusinessDays)} business days, and it's yours to keep.`,
   },
   {

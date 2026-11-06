@@ -3,7 +3,7 @@
 
 import { branches, company, formatHours, openingHours } from './company';
 import type { FaqItem } from './faqs';
-import { onboarding, onsite } from './pricing';
+import { assessmentRadiusText, onsiteRadiusText } from './pricing';
 import { joinList } from '../lib/text';
 
 const { standardResponse, criticalResponse, criticalAfterHours } = company.support;
@@ -38,8 +38,8 @@ export const contactFaqs: FaqItem[] = [
   {
     question: 'Do you come to our office?',
     answer:
-      `Yes. Managed IT plans include on-site visits within ${onsite.radiusKm} km of either branch, ` +
-      `and the first IT assessment is free within ${onboarding.freeAssessmentRadiusKm} km. Further away, a call-out fee applies.`,
+      `Yes. Managed IT plans include on-site visits within ${onsiteRadiusText} of either branch, ` +
+      `and the first IT assessment is free within ${assessmentRadiusText}. Further away, a call-out fee applies.`,
   },
   {
     question: 'Which areas do you serve?',

@@ -12,7 +12,7 @@ import { branches, company } from '../data/company';
 import { getIndustry, industryPath, type Industry } from '../data/industries';
 import { industryPages } from '../data/industry-pages';
 import { managedOnboarding } from '../data/onboarding';
-import { formatRand, onboarding, startingPrice, VAT_NOTE } from '../data/pricing';
+import { assessmentRadiusText, formatRand, startingPrice, VAT_NOTE } from '../data/pricing';
 import { getService, servicePath, type Service } from '../data/services';
 import { joinList } from '../lib/text';
 import NotFound from './NotFound';
@@ -25,7 +25,7 @@ const defaultService = managedIt.name;
 const glance = [
   { label: 'Managed IT plans', value: `From ${formatRand(startingPrice)} per device per month, ${VAT_NOTE}` },
   { label: 'Critical issues', value: `Acknowledged ${company.support.criticalResponse}` },
-  { label: 'IT assessment', value: `Free within ${onboarding.freeAssessmentRadiusKm} km of either branch` },
+  { label: 'IT assessment', value: `Free within ${assessmentRadiusText} of either branch` },
   { label: 'Branches', value: joinList(branches.map((b) => b.address.locality)) },
 ];
 

@@ -1,12 +1,12 @@
 // src/data/onboarding.ts
 // How a managed IT client gets started. Shared by Home and the Managed IT service pages.
 import { countWord } from '../lib/text';
-import { onboarding } from './pricing';
+import { assessmentRadiusText, onboarding } from './pricing';
 
 export const managedOnboarding: { title: string; text: string }[] = [
   {
     title: 'Book a free IT assessment',
-    text: `We agree a date to visit your office. The assessment is free within ${onboarding.freeAssessmentRadiusKm} km of either branch.`,
+    text: `We agree a date to visit your office. The assessment is free within ${assessmentRadiusText} of either branch.`,
   },
   {
     title: 'Get your assessment report',

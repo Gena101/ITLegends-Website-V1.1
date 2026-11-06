@@ -5,7 +5,7 @@ import { company, getBranch } from './company';
 import type { FaqItem } from './faqs';
 import { industries } from './industries';
 import { locationsForBranch } from './locations';
-import { contractTerms, onboarding } from './pricing';
+import { assessmentRadiusText, contractTerms, onboarding } from './pricing';
 import { services } from './services';
 import { countWord, joinList } from '../lib/text';
 
@@ -80,7 +80,7 @@ export const principles: { title: string; text: string; href?: string }[] = [
   {
     title: 'A free IT assessment',
     text:
-      `We assess your setup for free within ${onboarding.freeAssessmentRadiusKm} km of either branch and send a report within ` +
+      `We assess your setup for free within ${assessmentRadiusText} of either branch and send a report within ` +
       `${countWord(onboarding.reportBusinessDays)} business days. It's yours to keep, whether or not you sign.`,
   },
   {

@@ -12,6 +12,7 @@ import { locationPath, locations } from './data/locations';
 import {
   cloudBackup,
   contractTerms,
+  assessmentRadiusText,
   formatRand,
   onboarding,
   plans,
@@ -53,7 +54,7 @@ export function buildLlmsTxt(): string {
     `- Cloud backup: ${formatRand(cloudBackup.pricePerDevice)} per backed-up device per month; Microsoft 365 / Google Workspace backup: ` +
       `${formatRand(workspaceBackup.pricePerUser)} per user per month (${VAT_NOTE}). Available with or without a managed IT plan. ` +
       'Backups are stored in South African data centres.',
-    `- Free IT assessment within ${onboarding.freeAssessmentRadiusKm} km by road of either branch, with a written report within ` +
+    `- Free IT assessment within ${assessmentRadiusText} of either branch, with a written report within ` +
       `${countWord(onboarding.reportBusinessDays)} business days.`,
     `- Websites: basic website from ${formatRand(websitePricing.basicPrice)} (fixed price, ${VAT_NOTE}); website management ` +
       `${formatRand(websitePricing.managementMonthly)} per month. Custom software: fixed price after scoping, ` +

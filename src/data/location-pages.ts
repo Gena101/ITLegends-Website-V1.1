@@ -9,7 +9,16 @@
 import { company, getBranch, openingHours, formatHours, type Branch, type BranchId } from './company';
 import type { FaqItem } from './faqs';
 import { childLocations, locations, type LocationSlug, type ServiceLocation } from './locations';
-import { formatRand, onboarding, onsite, plans, startingPrice, VAT_NOTE } from './pricing';
+import {
+  assessmentRadiusText,
+  formatRand,
+  onboarding,
+  onsite,
+  onsiteRadiusText,
+  plans,
+  startingPrice,
+  VAT_NOTE,
+} from './pricing';
 import { countWord, joinList } from '../lib/text';
 
 export interface LocationPageContent {
@@ -30,7 +39,7 @@ export interface LocationPageContent {
 const { standardResponse, criticalResponse, criticalAfterHours } = company.support;
 const callout = formatRand(onsite.calloutFee);
 const perKm = formatRand(onsite.travelPerKm);
-const radius = `${onsite.radiusKm} km by road`;
+const radius = onsiteRadiusText;
 
 /** "Mon–Fri 09:00–17:00 and Sat 09:00–13:00" */
 export const openHoursText = joinList(
@@ -118,7 +127,7 @@ function buildPage(loc: ServiceLocation): LocationPageContent {
       {
         question: `Is the IT assessment free in ${loc.name}?`,
         answer:
-          `It's free within ${radius} of either branch. Further away in Gauteng it's a ${callout} call-out, credited against your first invoice ` +
+          `It's free within ${assessmentRadiusText} of either branch. Further away in Gauteng it's a ${callout} call-out, credited against your first invoice ` +
           `if you sign a 12-month agreement. You get a written report within ${countWord(onboarding.reportBusinessDays)} business days, ` +
           'and it’s yours to keep either way.',
       },

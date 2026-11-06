@@ -3,7 +3,7 @@
 // Plan cards ("Everything in X, plus…") and the comparison table are both generated from this list.
 
 import { company } from './company';
-import { getPlan, onsite, planAddOns, formatRand, type PlanId, plans } from './pricing';
+import { getPlan, onsiteRadiusText, planAddOns, formatRand, type PlanId, plans } from './pricing';
 import { countWord } from '../lib/text';
 
 export type FeatureValue =
@@ -68,7 +68,7 @@ export const planFeatures: PlanFeature[] = [
   {
     id: 'onsite',
     group: 'support',
-    label: `On-site visits within ${onsite.radiusKm} km of either branch`,
+    label: `On-site visits within ${onsiteRadiusText} of either branch`,
     values: {
       essential: detail(visits('essential')),
       managed: detail(visits('managed')),
