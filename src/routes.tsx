@@ -51,6 +51,7 @@ export const appRoutes: AppRoute[] = [
   { path: '/pricing', page: 'Pricing' },
   { path: '/contact', page: 'Contact' },
   { path: '/about', page: 'About' },
+  { path: '/work', page: 'Work' },
 
   // Locations: one template, one route per area (/it-support-:slug isn't a valid router pattern)
   ...locations.map((l) => ({ path: locationPath(l.slug), page: 'LocationPage' })),

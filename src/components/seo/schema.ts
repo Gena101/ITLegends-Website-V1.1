@@ -250,6 +250,53 @@ export function articleSchema({
   };
 }
 
+export interface PortfolioItem {
+  name: string;
+  description: string;
+  kind: 'Software' | 'Website';
+  url?: string;
+}
+
+/** Portfolio page: a CollectionPage whose main entity lists the projects. Creator is the company. */
+export function portfolioSchema({
+  path,
+  name,
+  description,
+  items,
+}: {
+  path: string;
+  name: string;
+  description: string;
+  items: PortfolioItem[];
+}): JsonLd {
+  const url = absoluteUrl(path);
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${url}#webpage`,
+    url,
+    name,
+    description,
+    inLanguage: 'en-ZA',
+    isPartOf: { '@id': schemaIds.website },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: items.map((item, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        item: {
+          '@type': item.kind === 'Software' ? 'SoftwareApplication' : 'WebSite',
+          name: item.name,
+          description: item.description,
+          ...(item.url ? { url: item.url } : {}),
+          ...(item.kind === 'Software' ? { applicationCategory: 'BusinessApplication', operatingSystem: 'Web' } : {}),
+          creator: { '@id': schemaIds.organization },
+        },
+      })),
+    },
+  };
+}
+
 export interface OfferPrice {
   price: number;
   /** e.g. "per device per month" */

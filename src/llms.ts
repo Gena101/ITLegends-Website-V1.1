@@ -89,6 +89,7 @@ export function buildLlmsTxt(): string {
     '',
     link('Pricing', '/pricing', 'managed IT plans, add-ons, backup and terms'),
     link('About', '/about', 'company story, timeline, team qualifications, B-BBEE level'),
+    link('Our work', '/work', 'portfolio: SiteNexus, website projects and custom software'),
     link('Contact', '/contact', 'branches, hours, contact form'),
     link('Services', '/services', 'all services by pillar'),
     link('FAQ', '/faq'),

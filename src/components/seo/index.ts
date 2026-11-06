@@ -10,6 +10,7 @@ export {
   faqSchema,
   itemListSchema,
   offerCatalogSchema,
+  portfolioSchema,
   serviceSchema,
   globalSchemaGraph,
   serializeJsonLd,
@@ -22,6 +23,7 @@ export type {
   CatalogOffer,
   OfferCatalogSchemaInput,
   OfferPrice,
+  PortfolioItem,
   ServiceSchemaInput,
   WebPageSchemaInput,
 } from './schema';
