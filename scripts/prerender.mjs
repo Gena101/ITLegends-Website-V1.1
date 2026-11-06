@@ -1,6 +1,6 @@
 // scripts/prerender.mjs
 // Runs after `vite build` (client) and `vite build --ssr` (server).
-// Writes one static HTML file per route, plus 404.html and sitemap.xml.
+// Writes one static HTML file per route, plus 404.html, sitemap.xml and llms.txt.
 // Each page's HTML preloads its own JS chunk (route code splitting), so hydration isn't delayed by a waterfall.
 // Fails the build if a listed route doesn't render as a real page.
 
@@ -12,7 +12,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const distDir = path.join(root, 'dist');
 const serverEntry = pathToFileURL(path.join(root, 'dist-ssr', 'entry-server.js')).href;
 
-const { render, getPrerenderEntries, siteUrl } = await import(serverEntry);
+const { render, getPrerenderEntries, siteUrl, buildLlmsTxt } = await import(serverEntry);
 
 const templatePath = path.join(distDir, 'index.html');
 const template = await fs.readFile(templatePath, 'utf8');
@@ -181,6 +181,16 @@ const sitemap =
   '\n</urlset>\n';
 await fs.writeFile(path.join(distDir, 'sitemap.xml'), sitemap);
 
+// llms.txt from src/data (src/llms.ts). Every site URL it lists must be a prerendered page.
+const llms = buildLlmsTxt();
+for (const match of llms.matchAll(/\]\((https?:\/\/[^)\s]+)\)/g)) {
+  const url = match[1];
+  if (!url.startsWith(siteUrl)) continue;
+  const target = normalizeLink(url.slice(siteUrl.length) || '/');
+  if (!rendered.has(target)) errors.push(`llms.txt lists ${url}, but no page was rendered for ${target}`);
+}
+await fs.writeFile(path.join(distDir, 'llms.txt'), llms);
+
 // The manifest is a build input only; don't publish it (it lists source file paths).
 // Kept when the prerender fails, so it can be inspected.
 if (errors.length === 0) await fs.rm(manifestDir, { recursive: true, force: true });
@@ -189,7 +199,7 @@ if (errors.length === 0) await fs.rm(manifestDir, { recursive: true, force: true
 // nav links to pages from later phases are expected until launch)
 const broken = [...links.entries()].filter(([target]) => !rendered.has(target)).sort(([a], [b]) => a.localeCompare(b));
 
-console.log(`\nPrerendered ${rendered.size} pages + 404.html; sitemap.xml has ${sitemapUrls.length} URLs.`);
+console.log(`\nPrerendered ${rendered.size} pages + 404.html; sitemap.xml has ${sitemapUrls.length} URLs; llms.txt written.`);
 
 if (broken.length > 0) {
   console.warn(`\n⚠ ${broken.length} internal link target(s) have no page yet:`);

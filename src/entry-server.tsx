@@ -11,6 +11,7 @@ import { preloadRoute } from './routes';
 import { company } from './data/company';
 
 export { getPrerenderEntries } from './routes';
+export { buildLlmsTxt } from './llms';
 export const siteUrl = company.url;
 
 /** Exactly the type HelmetProvider expects for `context` */
