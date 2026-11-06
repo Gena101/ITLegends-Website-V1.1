@@ -74,7 +74,7 @@ function Block({ block }: { block: LegalBlock }) {
       );
     case 'table':
       return (
-        <div className="mt-6 overflow-x-auto rounded-card border border-white/10">
+        <div className="relative mt-6 overflow-x-auto rounded-card border border-white/10">
           <table className="w-full min-w-[32rem] text-left text-sm">
             <thead className="bg-white/5">
               <tr>
@@ -129,7 +129,7 @@ function LegalView({ doc, path }: { doc: LegalDoc; path: string }) {
       </section>
 
       <Section tone="raised" divider>
-        <div className="grid gap-12 lg:grid-cols-12">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
           <nav aria-label="On this page" className="lg:col-span-3">
             <div className="lg:sticky lg:top-28">
               <p className="text-sm font-semibold text-white">On this page</p>
@@ -145,7 +145,7 @@ function LegalView({ doc, path }: { doc: LegalDoc; path: string }) {
             </div>
           </nav>
 
-          <div className="max-w-3xl lg:col-span-9">
+          <div className="min-w-0 max-w-3xl lg:col-span-9">
             {doc.sections.map((section) => (
               <section key={section.id} id={section.id} aria-labelledby={`${section.id}-title`} className="mt-12 first:mt-0">
                 <h2 id={`${section.id}-title`} className="text-h3">

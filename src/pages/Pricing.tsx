@@ -208,7 +208,7 @@ export default function Pricing() {
           <SectionHeading id="compare-title" title="Compare the plans" />
         </Reveal>
         <Reveal>
-          <div className="mt-12 overflow-x-auto rounded-card border border-white/10">
+          <div className="relative mt-12 overflow-x-auto rounded-card border border-white/10">
             <table className="w-full min-w-[44rem] border-collapse text-left">
               <caption className="sr-only">What each managed IT plan includes</caption>
               <thead>
@@ -302,7 +302,7 @@ export default function Pricing() {
               Cloud backup keeps {retention(cloudBackup.includedRetentionDays)} of versions. Longer retention is priced per site per
               month ({VAT_NOTE}); extra storage beyond your pool is billed at the normal rate.
             </p>
-            <div className="mt-6 overflow-x-auto rounded-card border border-white/10">
+            <div className="relative mt-6 overflow-x-auto rounded-card border border-white/10">
               <table className="w-full border-collapse text-left">
                 <caption className="sr-only">Longer backup retention, per site per month</caption>
                 <thead>
