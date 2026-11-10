@@ -6,8 +6,7 @@ import { disableAnalytics, initAnalytics } from '../../analytics';
 import { OPEN_COOKIE_SETTINGS_EVENT, readConsent, writeConsent } from '../../consent';
 import { Button } from '../ui';
 
-// TODO Phase 5: point to /cookie-policy once that page exists
-const POLICY_PATH = '/privacy-policy';
+const POLICY_PATH = '/cookie-policy';
 
 export function CookieBanner() {
   const [visible, setVisible] = useState(false);
@@ -49,7 +48,7 @@ export function CookieBanner() {
             to={POLICY_PATH}
             className="text-itblue-soft underline underline-offset-2 transition-colors hover:text-white"
           >
-            Privacy and cookie policy
+            Cookie policy
           </Link>
         </p>
         <div className="mt-4 flex shrink-0 gap-3 sm:mt-0">
