@@ -2,7 +2,7 @@
 // App root shared by the browser entry and the prerender (server) entry.
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { CookieBanner } from './components/layout';
+import { BackToTop, CookieBanner } from './components/layout';
 import { AppRoutes } from './routes';
 
 /** New page → top (instantly, not smooth). "/#contact" from another page → scroll to that section. */
@@ -28,6 +28,7 @@ export function Root() {
     <>
       <ScrollManager />
       <AppRoutes />
+      <BackToTop />
       <CookieBanner />
     </>
   );

@@ -5,3 +5,4 @@ export { MobileNav } from './MobileNav';
 export { Footer } from './Footer';
 export { Logo } from './Logo';
 export { CookieBanner } from './CookieBanner';
+export { BackToTop } from './BackToTop';
