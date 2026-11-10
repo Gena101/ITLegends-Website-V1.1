@@ -71,6 +71,7 @@ export const projects: Project[] = [
       'An llms.txt file that summarises the site for AI assistants',
     ],
     stack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'three.js'],
+    launched: 'November 2026',
     service: 'website-design',
   },
   {
