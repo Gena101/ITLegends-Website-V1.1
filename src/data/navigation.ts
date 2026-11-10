@@ -59,7 +59,7 @@ export const footerNav = {
   } satisfies NavGroup,
   areas: {
     label: 'Areas we serve',
-    links: locations.map((l) => ({ label: `IT support ${l.name}`, href: locationPath(l.slug) })),
+    links: locations.map((l) => ({ label: l.name, href: locationPath(l.slug) })),
   } satisfies NavGroup,
   legal: {
     label: 'Legal',
