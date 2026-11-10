@@ -1,9 +1,10 @@
 // src/data/legal/paia.ts
 // PAIA manual (section 51), structured on the Information Regulator's template for private bodies.
 // Fees: Annexure B to the PAIA Regulations, 2021 (GN R.757, GG 45057, 27 Aug 2021): request fee R140 (checked Nov 2026).
-// The Information Officer is named; do NOT state that they are registered with the Regulator until the eServices
-// registration certificate exists. Reviewed by an attorney: NO (Nov 2026).
+// Information Officer registered with the Regulator on eServices (06 Nov 2026); details in shared.ts.
+// PAIA annual report due to the Regulator by 30 June each year. Reviewed by an attorney: NO (Nov 2026).
 import { company, formatAddress, getBranch } from '../company';
+import { formatDate } from '../../lib/text';
 import { informationOfficer, operators, securityMeasures } from './shared';
 import type { LegalDoc } from './types';
 
@@ -23,7 +24,7 @@ export const paiaManual: LegalDoc = {
   intro:
     'This manual explains how to request access to records held by IT Legends under the Promotion of Access to Information Act (PAIA): ' +
     'which records we hold, which are freely available, how to make a request, the fees involved, and how we process personal information under POPIA.',
-  lastUpdated: '2026-11-06',
+  lastUpdated: '2026-11-10',
   sections: [
     {
       id: 'about',
@@ -46,6 +47,7 @@ export const paiaManual: LegalDoc = {
           head: ['Detail', ''],
           rows: [
             ['Head of the private body and Information Officer', `${informationOfficer.name} (${informationOfficer.title})`],
+            ['Registered with the Information Regulator', `Yes, registration number ${informationOfficer.registrationNumber} (${formatDate(informationOfficer.registeredOn)})`],
             ['Deputy Information Officer', 'None designated'],
             ['Email', email],
             ['Phone', phone],

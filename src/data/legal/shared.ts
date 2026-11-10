@@ -4,6 +4,9 @@
 export const informationOfficer = {
   name: 'Eugene Morton',
   title: 'Director',
+  /** Information Regulator eServices registration. Never publish the certificate file itself. */
+  registrationNumber: '2026-071401',
+  registeredOn: '2026-11-06',
 } as const;
 
 /** Service providers (operators) for the website and enquiries. Confirmed Nov 2026. */

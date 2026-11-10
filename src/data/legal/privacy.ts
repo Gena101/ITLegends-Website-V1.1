@@ -18,7 +18,7 @@ export const privacyPolicy: LegalDoc = {
   intro:
     'This policy explains what personal information IT Legends collects through this website and in the course of our work, why we collect it, ' +
     'who we share it with, how long we keep it, and how you can exercise your rights under the Protection of Personal Information Act (POPIA).',
-  lastUpdated: '2026-11-06',
+  lastUpdated: '2026-11-10',
   sections: [
     {
       id: 'who-we-are',
@@ -40,7 +40,8 @@ export const privacyPolicy: LegalDoc = {
         {
           kind: 'p',
           text:
-            `Our Information Officer is ${io}. Contact our Information Officer at ${email} or ${phone} ` +
+            `Our Information Officer is ${io}. registered with the Information Regulator under registration number ` +
+            `${informationOfficer.registrationNumber}. Contact our Information Officer at ${email} or ${phone}` +
             'with any question about your personal information or to exercise your rights under POPIA.',
         },
       ],
